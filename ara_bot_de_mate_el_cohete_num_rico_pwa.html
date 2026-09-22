@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-slate-950">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  
+  <title>ARA BOT de Mate: El Cohete Numérico</title>
+  
+  <!-- PWA & Mobile Optimization Metas -->
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ARA BOT Mate">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="description" content="Juego interactivo de valor posicional y conteo espacial con ARA BOT de Mate.">
+
+  <!-- Anti-Cache Directives for Instant Web Updates -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- Embedded Web App Manifest via Data URL -->
+  <link rel="manifest" id="manifestPlaceholder">
+  <script>
+    const manifestObj = {
+      name: "ARA BOT de Mate: El Cohete Numérico",
+      short_name: "ARA BOT Mate",
+      description: "Aprende valor posicional de 1° a 6° de primaria con bloques base-10 inmersivos.",
+      start_url: "./",
+      display: "standalone",
+      background_color: "#020617",
+      theme_color: "#0f172a",
+      orientation: "any",
+      icons: [
+        {
+          src: "https://placehold.co/192x192/0f172a/22d3ee?text=ARA+BOT",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "any maskable"
+        },
+        {
+          src: "https://placehold.co/512x512/0f172a/22d3ee?text=ARA+BOT",
+          sizes: "512x512",
+          type: "image/png"
+        }
+      ]
+    };
+    const manifestBlob = new Blob([JSON.stringify(manifestObj)], { type: 'application/json' });
+    document.getElementById('manifestPlaceholder').setAttribute('href', URL.createObjectURL(manifestBlob));
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            unidad: '#22c55e',   /* Green 🟢 */
+            decena: '#3b82f6',   /* Blue 🔵 */
+            centena: '#ef4444',  /* Red 🔴 */
+            millar: '#eab308',   /* Gold 🟡 */
+          },
+          animation: {
+            'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'bounce-soft': 'bounceSoft 1.8s infinite',
+            'float': 'float 3s ease-in-out infinite',
+            'portal-spin': 'portalSpin 2.5s linear infinite',
+            'arrow-bounce': 'arrowBounce 1s infinite',
+          },
+          keyframes: {
+            bounceSoft: {
+              '0%, 100%': { transform: 'translateY(-3%)' },
+              '50%': { transform: 'translateY(3%)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-5px)' },
+            },
+            portalSpin: {
+              '0%': { transform: 'translate(-50%, -50%) rotate(0deg) scale(0.8)' },
+              '50%': { transform: 'translate(-50%, -50%) rotate(180deg) scale(1.15)' },
+              '100%': { transform: 'translate(-50%, -50%) rotate(360deg) scale(0.8)' }
+            },
+            arrowBounce: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-8px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html, body {
+      height: 100%;
+      height: -webkit-fill-available;
+      max-height: 100vh;
+      overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .glow-green { box-shadow: 0 0 12px rgba(34, 197, 94, 0.5); }
+    .glow-blue { box-shadow: 0 0 12px rgba(59, 130, 246, 0.5); }
+    .glow-red { box-shadow: 0 0 12px rgba(239, 68, 68, 0.5); }
+    .glow-gold { box-shadow: 0 0 12px rgba(234, 179, 8, 0.5); }
+
+    #particleCanvas {
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 40;
+    }
+
+    #magicPortal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168,85,247,0.85) 0%, rgba(59,130,246,0.6) 50%, transparent 80%);
+      box-shadow: 0 0 35px rgba(168, 85, 247, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.6);
+      pointer-events: none;
+      z-index: 30;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .spotlight-active {
+      position: relative;
+      z-index: 55 !important;
+      box-shadow: 0 0 0 9999px rgba(3, 7, 18, 0.9) !important;
+      border-radius: 14px;
+      transition: all 0.3s ease;
+    }
+
+    /* Custom touch scrollbar for block factory */
+    .custom-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.3);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body class="h-full bg-slate-950 font-sans text-slate-100 flex flex-col justify-between relative overflow-hidden">
+
+  <!-- Particle FX Overlay -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- PWA INSTALL PROMPT BANNER -->
+  <div id="pwaInstallBanner" class="hidden fixed top-2 inset-x-2 z-50 bg-indigo-900/95 border border-indigo-500/50 rounded-xl p-2.5 shadow-2xl backdrop-blur-md flex items-center justify-between gap-2 text-xs">
+    <div class="flex items-center gap-2">
+      <span class="text-xl">📱</span>
+      <div>
+        <div class="font-bold text-white">¡Instala ARA BOT de Mate!</div>
+        <div class="text-[10px] text-indigo-200">Juega sin internet en tu pantalla de inicio.</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5 shrink-0">
+      <button id="btnInstallPwa" onclick="triggerPwaInstall()" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-3 py-1 rounded-lg shadow transition-all">
+        Instalar
+      </button>
+      <button onclick="closePwaBanner()" class="text-slate-400 hover:text-white px-2 py-1">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- HEADER HUD -->
+  <header class="h-12 bg-slate-900/90 border-b border-slate-800 px-3 flex items-center justify-between z-30 shrink-0">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 via-blue-500 to-cyan-400 flex items-center justify-center shadow-md">
+        <i class="fa-solid fa-robot text-sm text-white"></i>
+      </div>
+      <div>
+        <h1 class="font-display font-black text-sm text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 leading-none">
+          ARA BOT <span class="text-[9px] px-1.5 py-0.2 rounded bg-indigo-900/80 text-indigo-300 border border-indigo-700/50 uppercase">Mate</span>
+        </h1>
+        <p class="text-[9px] text-slate-400 font-medium">Cohete Numérico • Base-10</p>
+      </div>
+    </div>
+
+    <!-- HEADER COMPACT CONTROLS -->
+    <div class="flex items-center gap-1.5">
+      <!-- Step Increment Switcher -->
+      <button onclick="openStepModal()" id="btnConfigStep" class="h-8 px-2 rounded-lg bg-slate-800 border border-slate-700 text-cyan-400 font-display font-black text-xs hover:bg-slate-700 flex items-center gap-1">
+        <i class="fa-solid fa-plus text-[10px]"></i><span id="headerStepLabel">5</span>
+      </button>
+
+      <!-- Onboarding Tour Trigger -->
+      <button id="tourTriggerBtn" onclick="startOnboardingTour()" class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center justify-center" title="Tutorial de ARA BOT">
+        <i class="fa-solid fa-graduation-cap text-xs"></i>
+      </button>
+
+      <!-- Settings Drawer Toggle Button -->
+      <button onclick="toggleSettingsDrawer()" class="w-8 h-8 rounded-lg bg-indigo-600/30 text-indigo-300 border border-indigo-500/40 flex items-center justify-center font-bold" title="Menú de Ajustes y Grados">
+        <i class="fa-solid fa-bars text-xs"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN ZERO-SCROLL VIEWPORT GRID -->
+  <main class="flex-1 grid grid-cols-12 gap-2 p-2 overflow-hidden relative z-10">
+
+    <!-- LEFT COLUMN: ROCKET ALTITUDE HUD (Cols 1-3) -->
+    <section id="tourRocketPanel" class="col-span-3 sm:col-span-2 bg-slate-900/70 border border-slate-800/80 rounded-xl p-2 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
+      <div class="flex items-center justify-between text-[10px] font-bold text-slate-400">
+        <span class="hidden sm:inline"><i class="fa-solid fa-gauge-high text-cyan-400"></i> Altura</span>
+        <span id="altitudePercentage" class="text-cyan-400 bg-cyan-950 border border-cyan-800 px-1 py-0.2 rounded font-mono text-[9px] mx-auto sm:mx-0">0%</span>
+      </div>
+
+      <!-- Vertical Altitude Meter -->
+      <div class="flex-1 relative my-1 bg-slate-950/80 rounded-lg border border-slate-800/80 flex items-end p-1 overflow-hidden">
+        <div class="absolute inset-0 flex flex-col justify-between p-1 pointer-events-none opacity-20 text-[8px] font-mono text-cyan-300">
+          <div class="border-b border-cyan-500/50 w-full flex justify-between"><span>MAX</span></div>
+          <div class="border-b border-cyan-500/30 w-full flex justify-between"><span>50%</span></div>
+          <div class="border-b border-cyan-500/50 w-full flex justify-between"><span>BASE</span></div>
+        </div>
+
+        <div id="rocketProgressFill" class="w-full bg-gradient-to-t from-indigo-900 via-indigo-600 to-cyan-400 rounded transition-all duration-300 relative" style="height: 0%;">
+          <div class="absolute top-0 inset-x-0 h-0.5 bg-cyan-200 shadow-[0_0_8px_#22d3ee]"></div>
+        </div>
+
+        <div id="rocketAvatar" class="absolute left-1/2 -translate-x-1/2 transition-all duration-300 flex flex-col items-center" style="bottom: 0%;">
+          <div id="rocketFlame" class="w-2 h-3 bg-gradient-to-b from-amber-400 via-red-500 to-transparent rounded-full animate-bounce opacity-80 -mt-0.5"></div>
+          <div class="text-xl sm:text-2xl filter drop-shadow-[0_0_6px_rgba(34,211,238,0.8)] transform -rotate-45">🚀</div>
+        </div>
+      </div>
+
+      <div class="bg-slate-950 border border-slate-800/80 rounded-lg p-1 text-center">
+        <div class="text-[8px] text-slate-400 uppercase font-semibold">Valor Total</div>
+        <div id="displayAltitude" class="font-display font-black text-sm sm:text-base text-cyan-300 leading-tight">0</div>
+      </div>
+    </section>
+
+    <!-- RIGHT COLUMN: PLACE CARDS & VISUAL BLOCK FACTORY (Cols 4-12) -->
+    <section class="col-span-9 sm:col-span-10 flex flex-col gap-2 justify-between overflow-hidden">
+
+      <!-- PLACE VALUE CARDS PANEL -->
+      <div id="tourPlaceCards" class="grid grid-cols-4 gap-1.5 bg-slate-900/60 border border-slate-800/80 rounded-xl p-2 backdrop-blur-md">
+        
+        <!-- Millar (🟡) -->
+        <div id="cardMillar" class="bg-slate-950/90 border border-amber-500/30 rounded-lg p-1.5 text-center flex flex-col justify-between">
+          <div class="flex items-center justify-between text-[9px] font-bold text-amber-400 uppercase">
+            <span>Millar</span>
+            <span class="w-2 h-2 rounded-full bg-amber-400 glow-gold"></span>
+          </div>
+          <div id="valMillar" class="font-display font-black text-2xl sm:text-3xl text-amber-400 my-0.5">0</div>
+          <div id="labelMillarSub" class="text-[8px] text-amber-300/70 font-mono bg-amber-950/40 rounded py-0.2 border border-amber-800/30">0x1000</div>
+        </div>
+
+        <!-- Centenas (🔴) -->
+        <div id="cardCentena" class="bg-slate-950/90 border border-red-500/30 rounded-lg p-1.5 text-center flex flex-col justify-between">
+          <div class="flex items-center justify-between text-[9px] font-bold text-red-400 uppercase">
+            <span>Centena</span>
+            <span class="w-2 h-2 rounded-full bg-red-500 glow-red"></span>
+          </div>
+          <div id="valCentena" class="font-display font-black text-2xl sm:text-3xl text-red-400 my-0.5">0</div>
+          <div id="labelCentenaSub" class="text-[8px] text-red-300/70 font-mono bg-red-950/40 rounded py-0.2 border border-red-800/30">0x100</div>
+        </div>
+
+        <!-- Decenas (🔵) -->
+        <div id="cardDecena" class="bg-slate-950/90 border border-blue-500/30 rounded-lg p-1.5 text-center flex flex-col justify-between">
+          <div class="flex items-center justify-between text-[9px] font-bold text-blue-400 uppercase">
+            <span>Decena</span>
+            <span class="w-2 h-2 rounded-full bg-blue-500 glow-blue"></span>
+          </div>
+          <div id="valDecena" class="font-display font-black text-2xl sm:text-3xl text-blue-400 my-0.5">0</div>
+          <div id="labelDecenaSub" class="text-[8px] text-blue-300/70 font-mono bg-blue-950/40 rounded py-0.2 border border-blue-800/30">0x10</div>
+        </div>
+
+        <!-- Unidades (🟢) -->
+        <div id="cardUnidad" class="bg-slate-950/90 border border-emerald-500/30 rounded-lg p-1.5 text-center flex flex-col justify-between">
+          <div class="flex items-center justify-between text-[9px] font-bold text-emerald-400 uppercase">
+            <span>Unidad</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500 glow-green"></span>
+          </div>
+          <div id="valUnidad" class="font-display font-black text-2xl sm:text-3xl text-emerald-400 my-0.5">0</div>
+          <div id="labelUnidadSub" class="text-[8px] text-emerald-300/70 font-mono bg-emerald-950/40 rounded py-0.2 border border-emerald-800/30">0x1</div>
+        </div>
+      </div>
+
+      <!-- VISUAL BASE-10 BLOCK FACTORY CONTAINER -->
+      <div id="tourBlockFactory" class="flex-1 bg-slate-900/60 border border-slate-800/80 rounded-xl p-2 flex flex-col justify-between relative overflow-hidden backdrop-blur-md min-h-[160px]">
+        
+        <!-- Magic Portal Black Hole Element -->
+        <div id="magicPortal" class="animate-portal-spin"></div>
+
+        <div class="flex items-center justify-between border-b border-slate-800/80 pb-1.5 text-[10px]">
+          <div class="flex items-center gap-1.5">
+            <span class="font-bold text-slate-300"><i class="fa-solid fa-cubes text-indigo-400"></i> Fábrica Base-10:</span>
+            <span id="equationDecomposition" class="font-mono text-cyan-300 bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800 text-[9px]">
+              0 = 0 + 0 + 0
+            </span>
+          </div>
+          <div class="text-[10px] text-slate-400">
+            Salto: <span id="currentStepBadge" class="font-bold text-amber-400 bg-amber-950/60 px-1.5 py-0.2 rounded border border-amber-800/50">+5</span>
+          </div>
+        </div>
+
+        <!-- EXPLORATION CANVAS -->
+        <div id="explorationView" class="flex-1 my-1.5 bg-slate-950/90 rounded-lg border border-slate-800/80 p-2 overflow-y-auto custom-scroll flex flex-wrap content-start gap-2 relative">
+          
+          <div id="factoryMillares" class="flex flex-wrap gap-1.5 items-center"></div>
+          <div id="factoryCentenas" class="flex flex-wrap gap-1.5 items-center"></div>
+          <div id="factoryDecenas" class="flex flex-wrap gap-1 items-center"></div>
+          <div id="factoryUnidades" class="flex flex-wrap gap-1 items-center"></div>
+
+          <div id="emptyBlockHint" class="absolute inset-0 flex items-center justify-center text-slate-600 text-xs italic pointer-events-none p-2 text-center">
+            Toca <span class="text-emerald-400 font-bold mx-1">🚀 ¡SUMAR!</span> para ver aparecer las unidades desde el portal mágico...
+          </div>
+        </div>
+
+        <!-- MISSION CHALLENGE VIEW -->
+        <div id="missionView" class="hidden flex-1 my-1.5 bg-slate-950/90 rounded-lg border border-indigo-900/50 p-3 flex flex-col justify-between relative">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1 text-[10px]">
+            <span class="font-bold text-indigo-300"><i class="fa-solid fa-brain text-amber-400"></i> Reto ARA BOT:</span>
+            <span id="missionGradeTag" class="font-bold text-cyan-300 bg-cyan-950 border border-cyan-800 px-1.5 py-0.2 rounded">3° Primaria</span>
+          </div>
+
+          <div class="my-auto text-center py-1">
+            <p id="missionQuestionText" class="text-xs sm:text-sm font-bold text-slate-100">
+              Cargando misión pedagógica...
+            </p>
+            <div id="missionOptionsContainer" class="grid grid-cols-2 gap-1.5 mt-2 max-w-sm mx-auto"></div>
+          </div>
+
+          <div id="missionFeedback" class="text-center text-[10px] font-bold h-4 text-emerald-400"></div>
+        </div>
+
+        <!-- PRIMARY ACTION BUTTONS -->
+        <div id="tourActionButtons" class="flex items-center gap-1.5 pt-1 relative">
+          
+          <!-- Bouncing Green Guide Arrow (Appears post-tour) -->
+          <div id="guideArrow" class="hidden absolute -top-10 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-30 animate-arrow-bounce">
+            <span class="bg-emerald-500 text-slate-950 font-black text-[10px] px-2 py-0.2 rounded-full shadow-lg border border-emerald-300">¡Toca aquí!</span>
+            <i class="fa-solid fa-caret-down text-emerald-400 text-xl -mt-1 drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]"></i>
+          </div>
+
+          <button id="btnAddStep" onclick="executeStepAdd()" class="flex-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-black text-sm sm:text-base py-2.5 px-3 rounded-xl shadow-lg shadow-emerald-600/30 transition-all transform active:scale-95 flex items-center justify-center gap-2 border border-emerald-400/40">
+            <i class="fa-solid fa-circle-plus text-base animate-bounce"></i>
+            <span id="btnAddText">🚀 ¡SUMAR +5!</span>
+          </button>
+
+          <button onclick="resetCounter()" class="px-2.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs border border-slate-700 transition-all flex items-center gap-1" title="Reiniciar a Cero">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span class="hidden sm:inline">Borrar</span>
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ONBOARDING TOUR DIALOGUE CARD -->
+  <div id="araBotDialogueCard" class="absolute bottom-3 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 border-2 border-indigo-500 rounded-xl p-3 shadow-2xl max-w-lg w-[94%] backdrop-blur-xl transition-all duration-300 flex items-start gap-2.5">
+    <div class="relative shrink-0">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-cyan-400 flex items-center justify-center text-xl text-white shadow-lg shadow-indigo-500/40 animate-float">
+        🤖
+      </div>
+    </div>
+
+    <div class="flex-1">
+      <div class="flex items-center justify-between mb-0.5">
+        <h4 class="text-[10px] font-extrabold uppercase text-cyan-400">ARA BOT de Mate</h4>
+        <span id="tourStepIndicator" class="text-[9px] font-mono text-slate-400">Mensaje inicial</span>
+      </div>
+      <p id="araBotText" class="text-xs text-slate-200 leading-snug font-medium">
+        ¡Hola! Yo soy ARA BOT de Mate, fui creado por Romina para ayudarte a aprender mejor. ¡Presiona el botón verde para comenzar a sumar!
+      </p>
+
+      <div id="araBotControls" class="flex items-center justify-end gap-1.5 mt-2">
+        <button id="btnTourPrev" onclick="prevTourStep()" class="hidden px-2 py-0.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-bold border border-slate-700">
+          <i class="fa-solid fa-chevron-left mr-1"></i> Atrás
+        </button>
+        <button id="btnTourNext" onclick="nextTourStep()" class="px-2.5 py-0.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-bold shadow-md">
+          Entendido <i class="fa-solid fa-chevron-right ml-1"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLLAPSIBLE SETTINGS & MENU DRAWER -->
+  <div id="settingsDrawer" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex justify-end">
+    <div class="bg-slate-900 border-l border-slate-800 w-80 h-full p-4 flex flex-col justify-between shadow-2xl overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+          <h3 class="font-display font-black text-sm text-cyan-400 flex items-center gap-2">
+            <i class="fa-solid fa-sliders"></i> Menú y Configuración
+          </h3>
+          <button onclick="toggleSettingsDrawer()" class="text-slate-400 hover:text-white p-1">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+
+        <!-- Grade Selector -->
+        <div class="mb-4">
+          <label for="gradeSelect" class="block text-xs font-bold text-slate-300 mb-1">
+            <i class="fa-solid fa-graduation-cap text-indigo-400 mr-1"></i> Grado Escolar:
+          </label>
+          <select id="gradeSelect" onchange="changeGrade(this.value)" class="w-full bg-slate-950 text-xs font-bold text-cyan-300 rounded-lg border border-slate-700 p-2 focus:outline-none cursor-pointer">
+            <option value="1">1° Primaria (hasta 100)</option>
+            <option value="2">2° Primaria (hasta 1,000)</option>
+            <option value="3" selected>3° Primaria (Romina - 10,000)</option>
+            <option value="4">4° Primaria (100,000)</option>
+            <option value="5">5° Primaria (1,000,000)</option>
+            <option value="6">6° Primaria (Desafíos Baldor)</option>
+          </select>
+        </div>
+
+        <!-- Mode Toggle -->
+        <div class="mb-4">
+          <label class="block text-xs font-bold text-slate-300 mb-1">Modo de Juego:</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button id="btnExplorationMode" onclick="setGameMode('explore')" class="p-2 rounded-lg text-xs font-bold transition-all bg-indigo-600 text-white shadow-md">
+              <i class="fa-solid fa-rocket mr-1"></i> Explorar
+            </button>
+            <button id="btnMissionMode" onclick="setGameMode('mission')" class="p-2 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700">
+              <i class="fa-solid fa-bullseye mr-1 text-emerald-400"></i> Misiones
+            </button>
+          </div>
+        </div>
+
+        <!-- XP Badge -->
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex items-center justify-between mb-4">
+          <span class="text-xs font-bold text-slate-400">Experiencia Ganada:</span>
+          <span id="xpBadge" class="bg-emerald-950 text-emerald-300 text-xs font-extrabold px-2.5 py-1 rounded-full border border-emerald-700/50">0 XP</span>
+        </div>
+
+        <!-- iOS PWA Manual Hint -->
+        <div id="iosInstallHint" class="hidden bg-indigo-950/60 border border-indigo-800/50 rounded-xl p-3 text-[11px] text-indigo-200">
+          <div class="font-bold mb-1 text-cyan-300"><i class="fa-solid fa-mobile-screen mr-1"></i> Instalar en iPhone / iPad:</div>
+          Toca el botón <span class="font-bold text-white">Compartir <i class="fa-solid fa-share-from-square"></i></span> en Safari y elige <span class="font-bold text-white">'Añadir a la pantalla de inicio'</span>.
+        </div>
+      </div>
+
+      <div class="text-[10px] text-center text-slate-500 border-t border-slate-800 pt-3">
+        ARA BOT de Mate • Creado por Romina<br>Versión PWA Offline Incorporada
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: STEP VALUE CONFIG -->
+  <div id="stepModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 max-w-xs w-full shadow-2xl">
+      <h3 class="text-xs font-extrabold text-cyan-400 mb-1 flex items-center gap-1.5">
+        <i class="fa-solid fa-sliders"></i> Salto Numérico (+1 a +100)
+      </h3>
+      <p class="text-[11px] text-slate-400 mb-3">Elige cuánto incrementará la suma en cada clic:</p>
+      
+      <div class="grid grid-cols-3 gap-1.5 mb-3">
+        <button onclick="setStepValue(1)" class="p-2 rounded-xl bg-slate-800 hover:bg-indigo-600 text-white font-display font-black text-sm border border-slate-700">+1</button>
+        <button onclick="setStepValue(2)" class="p-2 rounded-xl bg-slate-800 hover:bg-indigo-600 text-white font-display font-black text-sm border border-slate-700">+2</button>
+        <button onclick="setStepValue(5)" class="p-2 rounded-xl bg-slate-800 hover:bg-indigo-600 text-white font-display font-black text-sm border border-slate-700">+5</button>
+        <button onclick="setStepValue(10)" class="p-2 rounded-xl bg-slate-800 hover:bg-indigo-600 text-white font-display font-black text-sm border border-slate-700">+10</button>
+        <button onclick="setStepValue(50)" class="p-2 rounded-xl bg-slate-800 hover:bg-indigo-600 text-white font-display font-black text-sm border border-slate-700">+50</button>
+        <button onclick="setStepValue(100)" class="p-2 rounded-xl bg-slate-800 hover:bg-indigo-600 text-white font-display font-black text-sm border border-slate-700">+100</button>
+      </div>
+
+      <!-- Custom Number Input -->
+      <div class="flex gap-1.5 mb-3">
+        <input id="customStepInput" type="number" min="1" max="1000" placeholder="Otro número..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-cyan-300 font-bold focus:outline-none">
+        <button onclick="setCustomStep()" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl">Ok</button>
+      </div>
+
+      <button onclick="closeStepModal()" class="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl border border-slate-700">
+        Cerrar
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const state = {
+      currentValue: 0,
+      stepValue: 5,
+      grade: 3,
+      maxAltitude: 10000,
+      xp: 0,
+      gameMode: 'explore',
+      currentMission: null,
+      tourStep: 0,
+      isTourActive: false,
+      audioCtx: null,
+      hasAudibleFusionPlayed: { decena: false, centena: false, millar: false },
+      deferredPwaPrompt: null
+    };
+
+    /* REGISTER INLINE SERVICE WORKER FOR OFFLINE PLAY */
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        const swCode = `
+          const CACHE_NAME = 'ara-bot-pwa-v1';
+          self.addEventListener('install', e => {
+            e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(['./'])));
+            self.skipWaiting();
+          });
+          self.addEventListener('activate', e => {
+            e.waitUntil(self.clients.claim());
+          });
+          self.addEventListener('fetch', e => {
+            e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+          });
+        `;
+        const blob = new Blob([swCode], { type: 'text/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
+      });
+    }
+
+    /* PWA INSTALL EVENT LISTENER */
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      state.deferredPwaPrompt = e;
+      document.getElementById('pwaInstallBanner').classList.remove('hidden');
+    });
+
+    function triggerPwaInstall() {
+      if (state.deferredPwaPrompt) {
+        state.deferredPwaPrompt.prompt();
+        state.deferredPwaPrompt.userChoice.then(() => {
+          state.deferredPwaPrompt = null;
+          closePwaBanner();
+        });
+      }
+    }
+
+    function closePwaBanner() {
+      document.getElementById('pwaInstallBanner').classList.add('hidden');
+    }
+
+    // Detect iOS Safari
+    const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIos && !window.navigator.standalone) {
+      document.getElementById('iosInstallHint').classList.remove('hidden');
+    }
+
+    /* TOUR DEFINITIONS */
+    const tourSteps = [
+      {
+        targetId: 'araBotDialogueCard',
+        text: "¡Hola! Yo soy ARA BOT de Mate, fui creado por Romina para ayudarte a aprender mejor.",
+        indicator: "Paso 1 de 5"
+      },
+      {
+        targetId: 'tourRocketPanel',
+        text: "Aquí vemos la altura de nuestro cohete 🚀. A medida que sumes, despegará por el espacio.",
+        indicator: "Paso 2 de 5"
+      },
+      {
+        targetId: 'tourPlaceCards',
+        text: "Estas son las tarjetas de valor: Unidades 🟢, Decenas 🔵, Centenas 🔴 y Millar 🟡.",
+        indicator: "Paso 3 de 5"
+      },
+      {
+        targetId: 'tourBlockFactory',
+        text: "¡Del agujero negro central saldrán los bloques con 'bip-bip' y se fusionarán al llegar a 10!",
+        indicator: "Paso 4 de 5"
+      },
+      {
+        targetId: 'tourActionButtons',
+        text: "Da clic en el botón verde 🚀 ¡SUMAR! para ver la magia de las unidades.",
+        indicator: "Paso 5 de 5"
+      }
+    ];
+
+    /* WEB AUDIO SYNTHESIZER */
+    function initAudio() {
+      if (!state.audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        state.audioCtx = new AudioContext();
+      }
+      if (state.audioCtx.state === 'suspended') {
+        state.audioCtx.resume();
+      }
+    }
+
+    function playBipSound(index) {
+      initAudio();
+      if (!state.audioCtx) return;
+
+      const osc = state.audioCtx.createOscillator();
+      const gain = state.audioCtx.createGain();
+      const pitch = 540 + (index * 60);
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(pitch, state.audioCtx.currentTime);
+      
+      gain.gain.setValueAtTime(0.18, state.audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, state.audioCtx.currentTime + 0.1);
+
+      osc.connect(gain);
+      gain.connect(state.audioCtx.destination);
+
+      osc.start();
+      osc.stop(state.audioCtx.currentTime + 0.1);
+    }
+
+    function playFusionSound(type) {
+      initAudio();
+      if (!state.audioCtx) return;
+
+      const now = state.audioCtx.currentTime;
+      const osc = state.audioCtx.createOscillator();
+      const gain = state.audioCtx.createGain();
+
+      if (type === 'decena') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.35);
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+      } else if (type === 'centena') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(160, now);
+        osc.frequency.exponentialRampToValueAtTime(65, now + 0.5);
+        gain.gain.setValueAtTime(0.35, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+      } else {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(1320, now + 0.7);
+        gain.gain.setValueAtTime(0.4, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.7);
+      }
+
+      osc.connect(gain);
+      gain.connect(state.audioCtx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.7);
+    }
+
+    /* PARTICLE CANVAS SYSTEM */
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function triggerParticleBurst(x, y, color) {
+      for (let i = 0; i < 24; i++) {
+        particles.push({
+          x: x || window.innerWidth / 2,
+          y: y || window.innerHeight / 2,
+          vx: (Math.random() - 0.5) * 8,
+          vy: (Math.random() - 0.5) * 8,
+          radius: Math.random() * 3.5 + 1.5,
+          color: color || '#22c55e',
+          alpha: 1,
+          life: 0.93 + Math.random() * 0.04
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, idx) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha *= p.life;
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        if (p.alpha < 0.05) particles.splice(idx, 1);
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    /* ONBOARDING TOUR ENGINE */
+    function startOnboardingTour() {
+      toggleSettingsDrawer(false);
+      state.tourStep = 0;
+      state.isTourActive = true;
+      document.getElementById('araBotDialogueCard').classList.remove('hidden');
+      document.getElementById('guideArrow').classList.add('hidden');
+      renderTourStep();
+    }
+
+    function renderTourStep() {
+      document.querySelectorAll('.spotlight-active').forEach(el => el.classList.remove('spotlight-active'));
+
+      if (!state.isTourActive || state.tourStep >= tourSteps.length) {
+        endTourAndShowArrow();
+        return;
+      }
+
+      const step = tourSteps[state.tourStep];
+      const targetEl = document.getElementById(step.targetId);
+      if (targetEl && step.targetId !== 'araBotDialogueCard') {
+        targetEl.classList.add('spotlight-active');
+      }
+
+      document.getElementById('araBotText').innerText = step.text;
+      document.getElementById('tourStepIndicator').innerText = step.indicator;
+
+      if (state.tourStep > 0) {
+        document.getElementById('btnTourPrev').classList.remove('hidden');
+      } else {
+        document.getElementById('btnTourPrev').classList.add('hidden');
+      }
+
+      document.getElementById('btnTourNext').innerHTML = (state.tourStep === tourSteps.length - 1) ? 
+        `¡A jugar! <i class="fa-solid fa-rocket ml-1"></i>` : 
+        `Entendido <i class="fa-solid fa-chevron-right ml-1"></i>`;
+    }
+
+    function nextTourStep() {
+      if (!state.isTourActive) {
+        startOnboardingTour();
+        return;
+      }
+      state.tourStep++;
+      if (state.tourStep >= tourSteps.length) {
+        endTourAndShowArrow();
+      } else {
+        renderTourStep();
+      }
+    }
+
+    function prevTourStep() {
+      if (state.tourStep > 0) {
+        state.tourStep--;
+        renderTourStep();
+      }
+    }
+
+    function endTourAndShowArrow() {
+      state.isTourActive = false;
+      document.querySelectorAll('.spotlight-active').forEach(el => el.classList.remove('spotlight-active'));
+      document.getElementById('araBotDialogueCard').classList.add('hidden');
+      
+      const arrow = document.getElementById('guideArrow');
+      arrow.classList.remove('hidden');
+      setTimeout(() => {
+        arrow.classList.add('hidden');
+      }, 6000);
+    }
+
+    /* GAMEPLAY EXECUTION */
+    function executeStepAdd() {
+      initAudio();
+      document.getElementById('guideArrow').classList.add('hidden');
+      
+      state.currentValue += state.stepValue;
+
+      // Portal FX
+      const portal = document.getElementById('magicPortal');
+      portal.style.opacity = '1';
+      triggerParticleBurst(window.innerWidth * 0.6, window.innerHeight * 0.5, '#a855f7');
+
+      const bipCount = Math.min(state.stepValue, 10);
+      for (let i = 0; i < bipCount; i++) {
+        setTimeout(() => {
+          playBipSound(i);
+          triggerParticleBurst(window.innerWidth * 0.6 + (i * 8), window.innerHeight * 0.5, '#22c55e');
+        }, i * 60);
+      }
+
+      setTimeout(() => {
+        portal.style.opacity = '0';
+      }, bipCount * 60 + 150);
+
+      updateUI();
+    }
+
+    function resetCounter() {
+      state.currentValue = 0;
+      state.hasAudibleFusionPlayed = { decena: false, centena: false, millar: false };
+      updateUI();
+    }
+
+    function updateUI() {
+      const val = state.currentValue;
+
+      const millares = Math.floor(val / 1000) % 10;
+      const centenas = Math.floor(val / 100) % 10;
+      const decenas = Math.floor(val / 10) % 10;
+      const unidades = val % 10;
+
+      document.getElementById('valMillar').innerText = millares;
+      document.getElementById('valCentena').innerText = centenas;
+      document.getElementById('valDecena').innerText = decenas;
+      document.getElementById('valUnidad').innerText = unidades;
+
+      document.getElementById('labelMillarSub').innerText = `${millares}x1000`;
+      document.getElementById('labelCentenaSub').innerText = `${centenas}x100`;
+      document.getElementById('labelDecenaSub').innerText = `${decenas}x10`;
+      document.getElementById('labelUnidadSub').innerText = `${unidades}x1`;
+
+      document.getElementById('equationDecomposition').innerText = 
+        `${val} = (${millares}×1000) + (${centenas}×100) + (${decenas}×10) + (${unidades}×1)`;
+
+      document.getElementById('displayAltitude').innerText = val;
+      const pct = Math.min(100, Math.round((val / state.maxAltitude) * 100));
+      document.getElementById('rocketProgressFill').style.height = `${pct}%`;
+      document.getElementById('rocketAvatar').style.bottom = `${pct}%`;
+      document.getElementById('altitudePercentage').innerText = `${pct}%`;
+
+      renderVisualBlocks(millares, centenas, decenas, unidades);
+    }
+
+    function renderVisualBlocks(m, c, d, u) {
+      const uContainer = document.getElementById('factoryUnidades');
+      const dContainer = document.getElementById('factoryDecenas');
+      const cContainer = document.getElementById('factoryCentenas');
+      const mContainer = document.getElementById('factoryMillares');
+      const emptyHint = document.getElementById('emptyBlockHint');
+
+      uContainer.innerHTML = '';
+      dContainer.innerHTML = '';
+      cContainer.innerHTML = '';
+      mContainer.innerHTML = '';
+
+      emptyHint.style.display = (m + c + d + u) === 0 ? 'flex' : 'none';
+
+      // Millares Cubes
+      for (let i = 0; i < m; i++) {
+        const cube = document.createElement('div');
+        cube.className = 'w-8 h-8 rounded-lg bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-300 border border-amber-200 shadow flex items-center justify-center font-display font-black text-[10px] text-amber-950 animate-bounceSoft';
+        cube.innerText = '1000';
+        mContainer.appendChild(cube);
+      }
+
+      // Centenas Plates
+      for (let i = 0; i < c; i++) {
+        const plate = document.createElement('div');
+        plate.className = 'w-7 h-7 rounded bg-gradient-to-tr from-red-600 via-red-500 to-rose-400 border border-red-300 shadow flex items-center justify-center font-display font-bold text-[9px] text-white';
+        plate.innerText = '100';
+        cContainer.appendChild(plate);
+      }
+      if (c > 0 && !state.hasAudibleFusionPlayed.centena) {
+        playFusionSound('centena');
+        triggerParticleBurst(window.innerWidth * 0.65, window.innerHeight * 0.5, '#ef4444');
+        state.hasAudibleFusionPlayed.centena = true;
+      }
+
+      // Decenas Bars
+      for (let i = 0; i < d; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'w-3 h-7 rounded bg-gradient-to-b from-blue-400 to-blue-600 border border-blue-300 shadow-sm flex items-center justify-center text-[7px] font-bold text-white';
+        bar.innerText = '10';
+        dContainer.appendChild(bar);
+      }
+      if (d > 0 && !state.hasAudibleFusionPlayed.decena) {
+        playFusionSound('decena');
+        triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.5, '#3b82f6');
+        state.hasAudibleFusionPlayed.decena = true;
+      }
+
+      // Unidades Cubes
+      for (let i = 0; i < u; i++) {
+        const unit = document.createElement('div');
+        unit.className = 'w-3 h-3 rounded bg-emerald-500 border border-emerald-300 shadow-sm animate-pulse';
+        uContainer.appendChild(unit);
+      }
+    }
+
+    /* DRAWER & GAME MODES */
+    function toggleSettingsDrawer(forceState) {
+      const drawer = document.getElementById('settingsDrawer');
+      if (typeof forceState === 'boolean') {
+        if (forceState) drawer.classList.remove('hidden');
+        else drawer.classList.add('hidden');
+      } else {
+        drawer.classList.toggle('hidden');
+      }
+    }
+
+    function setGameMode(mode) {
+      state.gameMode = mode;
+      const exploreBtn = document.getElementById('btnExplorationMode');
+      const missionBtn = document.getElementById('btnMissionMode');
+      const exploreView = document.getElementById('explorationView');
+      const missionView = document.getElementById('missionView');
+
+      if (mode === 'explore') {
+        exploreBtn.className = "p-2 rounded-lg text-xs font-bold transition-all bg-indigo-600 text-white shadow-md";
+        missionBtn.className = "p-2 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700";
+        exploreView.classList.remove('hidden');
+        missionView.classList.add('hidden');
+      } else {
+        missionBtn.className = "p-2 rounded-lg text-xs font-bold transition-all bg-indigo-600 text-white shadow-md";
+        exploreBtn.className = "p-2 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 border border-slate-700";
+        exploreView.classList.add('hidden');
+        missionView.classList.remove('hidden');
+        generateMission();
+      }
+      toggleSettingsDrawer(false);
+    }
+
+    function changeGrade(gradeVal) {
+      state.grade = parseInt(gradeVal);
+      if (state.grade === 1) state.maxAltitude = 100;
+      else if (state.grade === 2) state.maxAltitude = 1000;
+      else if (state.grade === 3) state.maxAltitude = 10000;
+      else if (state.grade === 4) state.maxAltitude = 100000;
+      else state.maxAltitude = 1000000;
+
+      updateUI();
+      if (state.gameMode === 'mission') generateMission();
+    }
+
+    function generateMission() {
+      const qText = document.getElementById('missionQuestionText');
+      const optsContainer = document.getElementById('missionOptionsContainer');
+      const feedback = document.getElementById('missionFeedback');
+      optsContainer.innerHTML = '';
+      feedback.innerText = '';
+
+      const targetNumber = (Math.floor(Math.random() * 8) + 1) * 100;
+      const centenasCount = targetNumber / 100;
+
+      state.currentMission = {
+        question: `Romina quiere formar el número ${targetNumber}. ¿Cuántas Placas Rojas de Centenas (100) 🔴 necesita?`,
+        correctOption: centenasCount,
+        options: [centenasCount, centenasCount + 2, Math.max(1, centenasCount - 1), centenasCount + 4].sort(() => Math.random() - 0.5)
+      };
+
+      qText.innerText = state.currentMission.question;
+
+      state.currentMission.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = "p-2 rounded-xl bg-slate-800 hover:bg-indigo-600 text-cyan-300 font-display font-black text-xs border border-slate-700 transition-all";
+        btn.innerText = `${opt} Centenas`;
+        btn.onclick = () => checkMissionAnswer(opt);
+        optsContainer.appendChild(btn);
+      });
+    }
+
+    function checkMissionAnswer(selectedOpt) {
+      const feedback = document.getElementById('missionFeedback');
+      if (selectedOpt === state.currentMission.correctOption) {
+        feedback.className = "text-center text-[10px] font-bold h-4 text-emerald-400";
+        feedback.innerText = "¡Correcto! 🎉 +50 XP";
+        state.xp += 50;
+        document.getElementById('xpBadge').innerText = `${state.xp} XP`;
+        triggerParticleBurst(window.innerWidth / 2, window.innerHeight / 2, '#22c55e');
+        setTimeout(generateMission, 1800);
+      } else {
+        feedback.className = "text-center text-[10px] font-bold h-4 text-rose-400";
+        feedback.innerText = "Casi... ¡Inténtalo de nuevo!";
+      }
+    }
+
+    /* STEP MODAL HANDLERS */
+    function openStepModal() { document.getElementById('stepModal').classList.remove('hidden'); }
+    function closeStepModal() { document.getElementById('stepModal').classList.add('hidden'); }
+    function setStepValue(val) {
+      state.stepValue = val;
+      document.getElementById('btnAddText').innerText = `🚀 ¡SUMAR +${val}!`;
+      document.getElementById('headerStepLabel').innerText = `${val}`;
+      document.getElementById('currentStepBadge').innerText = `+${val}`;
+      closeStepModal();
+    }
+    function setCustomStep() {
+      const input = document.getElementById('customStepInput');
+      const val = parseInt(input.value);
+      if (val && val > 0) {
+        setStepValue(val);
+      }
+    }
+
+    window.onload = function() {
+      document.body.addEventListener('click', () => initAudio(), { once: true });
+      updateUI();
+    };
+  </script>
+</body>
+</html>

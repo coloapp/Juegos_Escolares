@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-slate-950">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  
+  <title>ARA BOT de Mate | El Cohete Numérico & Laboratorio Dinosaurio</title>
+  
+  <!-- PWA & Mobile Metas -->
+  <meta name="theme-color" content="#020617">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ARA BOT Mate">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="description" content="PWA educativa interactiva offline con ARA BOT: El Cohete Numérico (3.° Grado) y Laboratorio Dinosaurio Base-10 (2.° Grado).">
+
+  <!-- Anti-Cache Directives -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- Manifest Link -->
+  <link rel="manifest" href="manifest.json" id="manifestPlaceholder">
+  <script>
+    // Inline Blob Manifest Fallback
+    try {
+      const manifestObj = {
+        name: "ARA BOT de Mate: Cohete & Dinosaurio",
+        short_name: "ARA BOT Mate",
+        description: "Aprende matemáticas y valor posicional con Nonia y Doydo.",
+        start_url: "./index.html",
+        display: "standalone",
+        background_color: "#020617",
+        theme_color: "#0f172a",
+        icons: [
+          {
+            src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text y='.9em' font-size='70' x='15'>🤖</text></svg>",
+            sizes: "192x192 512x512",
+            type: "image/svg+xml"
+          }
+        ]
+      };
+      const blob = new Blob([JSON.stringify(manifestObj)], { type: 'application/json' });
+      document.getElementById('manifestPlaceholder').setAttribute('href', URL.createObjectURL(blob));
+    } catch(e) {}
+  </script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            nonia: {
+              DEFAULT: '#f43f5e',
+              glow: '#fb7185',
+              dark: '#881337',
+              light: '#ffe4e6'
+            },
+            doydo: {
+              DEFAULT: '#0284c7',
+              glow: '#38bdf8',
+              dark: '#082f49',
+              light: '#e0f2fe'
+            },
+            unidad: '#22c55e',   /* Green 🟢 */
+            decena: '#3b82f6',   /* Blue 🔵 */
+            centena: '#ef4444',  /* Red 🔴 */
+            millar: '#eab308',   /* Gold 🟡 */
+            dinodark: '#090d16',
+          },
+          animation: {
+            'pulse-fast': 'pulse 0.8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'bounce-soft': 'bounceSoft 2s infinite',
+            'float': 'float 3s ease-in-out infinite',
+            'portal-spin': 'portalSpin 3s linear infinite',
+            'radar': 'radarSweep 4s linear infinite',
+            'alarm-blink': 'alarmBlink 1s infinite alternate',
+            'slam-door': 'slamDoor 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+            'trex-roar': 'trexShake 0.5s ease-in-out infinite',
+          },
+          keyframes: {
+            bounceSoft: {
+              '0%, 100%': { transform: 'translateY(-2%)' },
+              '50%': { transform: 'translateY(2%)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-6px)' },
+            },
+            portalSpin: {
+              '0%': { transform: 'translate(-50%, -50%) rotate(0deg) scale(0.85)' },
+              '50%': { transform: 'translate(-50%, -50%) rotate(180deg) scale(1.1)' },
+              '100%': { transform: 'translate(-50%, -50%) rotate(360deg) scale(0.85)' }
+            },
+            alarmBlink: {
+              '0%': { backgroundColor: 'rgba(239, 68, 68, 0.05)', borderColor: 'rgba(239, 68, 68, 0.2)' },
+              '100%': { backgroundColor: 'rgba(239, 68, 68, 0.35)', borderColor: 'rgba(239, 68, 68, 0.9)', boxShadow: '0 0 35px rgba(239, 68, 68, 0.6)' }
+            },
+            slamDoor: {
+              '0%': { transform: 'translateY(-100%)', opacity: '0.2' },
+              '80%': { transform: 'translateY(5%)', opacity: '1' },
+              '100%': { transform: 'translateY(0%)', opacity: '1' }
+            },
+            trexShake: {
+              '0%, 100%': { transform: 'translate(0, 0) rotate(0deg) scale(1)' },
+              '25%': { transform: 'translate(-4px, 3px) rotate(-2deg) scale(1.03)' },
+              '75%': { transform: 'translate(4px, -3px) rotate(2deg) scale(1.05)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Global Zero-Scroll Constraint */
+    html, body {
+      height: 100%;
+      height: 100dvh;
+      max-height: 100dvh;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      background-color: #020617;
+    }
+
+    /* Glow Tokens */
+    .glow-pink { box-shadow: 0 0 25px rgba(244, 63, 94, 0.6), inset 0 0 15px rgba(251, 113, 133, 0.3); }
+    .glow-blue-neon { box-shadow: 0 0 25px rgba(56, 189, 248, 0.6), inset 0 0 15px rgba(2, 132, 199, 0.3); }
+    .glow-green { box-shadow: 0 0 16px rgba(34, 197, 94, 0.5); }
+    .glow-blue { box-shadow: 0 0 16px rgba(59, 130, 246, 0.5); }
+    .glow-red { box-shadow: 0 0 16px rgba(239, 68, 68, 0.5); }
+    .glow-gold { box-shadow: 0 0 16px rgba(234, 179, 8, 0.5); }
+
+    /* Cyberpunk Grid Background */
+    .cyber-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+    }
+
+    /* Canvas full screen overlay */
+    #particleCanvas {
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 90;
+    }
+
+    /* Custom Touch Scrollbar */
+    .custom-scroll::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.35);
+      border-radius: 4px;
+    }
+
+    /* Titanium Blast Door */
+    .titanium-gate {
+      background: repeating-linear-gradient(
+        45deg,
+        #1e293b,
+        #1e293b 12px,
+        #334155 12px,
+        #334155 24px
+      );
+      border: 3px solid #64748b;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 0 25px rgba(239, 68, 68, 0.4);
+    }
+
+    /* Spotlight highlight for onboarding */
+    .spotlight-active {
+      position: relative;
+      z-index: 70 !important;
+      box-shadow: 0 0 0 9999px rgba(2, 6, 23, 0.85) !important;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+
+<body class="h-full bg-slate-950 font-sans text-slate-100 flex flex-col justify-between relative overflow-hidden cyber-grid">
+
+  <!-- Particle FX Overlay -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- PWA INSTALL BANNER -->
+  <div id="pwaInstallBanner" class="hidden fixed top-2 inset-x-2 z-[100] bg-indigo-900/95 border border-cyan-400/50 rounded-xl p-2.5 shadow-2xl backdrop-blur-md flex items-center justify-between gap-2 text-xs">
+    <div class="flex items-center gap-2">
+      <span class="text-xl">🤖</span>
+      <div>
+        <div class="font-bold text-white">¡Instala ARA BOT de Mate!</div>
+        <div class="text-[10px] text-cyan-200">Juega 100% offline y en pantalla completa.</div>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5 shrink-0">
+      <button id="btnInstallPwa" onclick="triggerPwaInstall()" class="bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-extrabold px-3 py-1 rounded-lg shadow transition-all">
+        Instalar
+      </button>
+      <button onclick="closePwaBanner()" class="text-slate-400 hover:text-white px-2 py-1">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- FLOATING GLOBAL BUTTON: CAMBIAR PERFIL & AUDIO MUTE -->
+  <aside class="fixed top-2 right-2 z-50 flex items-center gap-2">
+    <!-- Sound FX Toggle -->
+    <button id="btnAudioToggle" onclick="toggleMute()" class="w-9 h-9 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-cyan-400 flex items-center justify-center shadow-lg backdrop-blur-md transition-all active:scale-95" title="Activar / Silenciar Sonido">
+      <i id="audioIcon" class="fa-solid fa-volume-high text-xs"></i>
+    </button>
+
+    <!-- Global Home Profile Switcher Button -->
+    <button id="btnGlobalProfile" onclick="showScreen('screen-profile')" class="hidden h-9 px-3 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:brightness-110 text-white font-display font-bold text-xs flex items-center gap-1.5 shadow-xl shadow-indigo-500/20 border border-cyan-300/40 backdrop-blur-md transition-all active:scale-95">
+      <i class="fa-solid fa-house"></i>
+      <span class="hidden sm:inline">Cambiar Perfil</span>
+    </button>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- 🎨 PANTALLA 1: SELECTOR DE PERFIL (CYBERPUNK NEON)                         -->
+  <!-- ========================================================================= -->
+  <section id="screen-profile" class="flex-1 flex flex-col justify-between items-center p-4 sm:p-6 w-full h-full relative z-20">
+    
+    <!-- Title Header -->
+    <div class="text-center pt-2 sm:pt-4">
+      <div class="inline-flex items-center gap-2 bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-full mb-2 shadow-inner">
+        <span class="text-lg">🤖</span>
+        <span class="font-display font-black text-xs text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-300 to-rose-400 uppercase tracking-wider">
+          Academia Interactiva de Matemáticas
+        </span>
+      </div>
+      <h1 class="font-display font-black text-2xl sm:text-4xl text-white tracking-tight leading-tight">
+        ARA BOT <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">de Mate</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-400 mt-1 max-w-md mx-auto">
+        Selecciona tu perfil de explorador para comenzar la misión matemática:
+      </p>
+    </div>
+
+    <!-- Center Profile Neon Portals -->
+    <div class="w-full max-w-2xl grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 my-auto">
+      
+      <!-- 🌸 PERFIL NONIA (ROMINA - 3.° GRADO) -->
+      <div onclick="launchProfile('nonia')" class="group cursor-pointer relative bg-slate-900/80 border-2 border-rose-500/40 hover:border-rose-400 rounded-3xl p-5 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:-translate-y-1.5 hover:scale-[1.02] shadow-xl hover:glow-pink overflow-hidden backdrop-blur-md">
+        <!-- Ambient decorative neon badge -->
+        <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-rose-500/20 blur-xl pointer-events-none group-hover:bg-rose-500/30 transition-all"></div>
+        <div class="w-full flex justify-between items-center text-[10px] font-bold text-rose-300 mb-2">
+          <span class="px-2 py-0.5 rounded-full bg-rose-950/80 border border-rose-800">3.er Grado Primaria</span>
+          <span class="flex items-center gap-1"><i class="fa-solid fa-star text-amber-400"></i> Romina</span>
+        </div>
+
+        <!-- Glowing Neon Circle Button -->
+        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-rose-600 via-pink-500 to-rose-400 p-1 flex items-center justify-center shadow-lg shadow-rose-500/50 group-hover:scale-110 transition-transform duration-300 my-2">
+          <div class="w-full h-full rounded-full bg-slate-950 flex flex-col items-center justify-center border-2 border-rose-300">
+            <span class="text-3xl sm:text-4xl animate-bounce-soft">🚀</span>
+            <span class="font-display font-black text-[10px] text-rose-300 uppercase tracking-wide">Nonia</span>
+          </div>
+        </div>
+
+        <div class="my-1">
+          <h2 class="font-display font-black text-lg sm:text-xl text-white group-hover:text-rose-300 transition-colors">
+            El Cohete Numérico
+          </h2>
+          <p class="text-[11px] text-slate-300 mt-0.5 leading-snug">
+            Conteo por saltos de 5 en 5, odómetro y construcción de Millares 🟡, Centenas 🔴, Decenas 🔵 y Unidades 🟢.
+          </p>
+        </div>
+
+        <button class="w-full mt-3 py-2 px-3 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-display font-black text-xs shadow-lg shadow-rose-600/30 flex items-center justify-center gap-2">
+          <span>¡Despegar Misión!</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </button>
+      </div>
+
+      <!-- 💙 PERFIL DOYDO (RICARDO - 2.° GRADO) -->
+      <div onclick="launchProfile('doydo')" class="group cursor-pointer relative bg-slate-900/80 border-2 border-sky-500/40 hover:border-sky-400 rounded-3xl p-5 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:-translate-y-1.5 hover:scale-[1.02] shadow-xl hover:glow-blue-neon overflow-hidden backdrop-blur-md">
+        <!-- Ambient decorative neon badge -->
+        <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full bg-sky-500/20 blur-xl pointer-events-none group-hover:bg-sky-500/30 transition-all"></div>
+        <div class="w-full flex justify-between items-center text-[10px] font-bold text-sky-300 mb-2">
+          <span class="px-2 py-0.5 rounded-full bg-sky-950/80 border border-sky-800">2.° Grado Primaria</span>
+          <span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Ricardo</span>
+        </div>
+
+        <!-- Glowing Neon Circle Button -->
+        <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-tr from-sky-600 via-cyan-400 to-blue-500 p-1 flex items-center justify-center shadow-lg shadow-sky-500/50 group-hover:scale-110 transition-transform duration-300 my-2">
+          <div class="w-full h-full rounded-full bg-slate-950 flex flex-col items-center justify-center border-2 border-sky-300">
+            <span class="text-3xl sm:text-4xl animate-bounce-soft">🦖</span>
+            <span class="font-display font-black text-[10px] text-sky-300 uppercase tracking-wide">Doydo</span>
+          </div>
+        </div>
+
+        <div class="my-1">
+          <h2 class="font-display font-black text-lg sm:text-xl text-white group-hover:text-sky-300 transition-colors">
+            Laboratorio Dinosaurio
+          </h2>
+          <p class="text-[11px] text-slate-300 mt-0.5 leading-snug">
+            Reactor de Fusión Base-10 (10🔵➔1🟢 / 10🟢➔1🔴), 9 compuertas de seguridad y escape del T-Rex 🚨.
+          </p>
+        </div>
+
+        <button class="w-full mt-3 py-2 px-3 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-500 hover:to-cyan-500 text-white font-display font-black text-xs shadow-lg shadow-sky-600/30 flex items-center justify-center gap-2">
+          <span>¡Activar Protocolo T-Rex!</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Footer Stats & Info -->
+    <div class="w-full max-w-md text-center border-t border-slate-800/80 pt-2 pb-1 text-[10px] text-slate-500 flex items-center justify-between">
+      <span>100% Offline & PWA Ready</span>
+      <span class="text-cyan-400 font-semibold">Diseñado con ❤️ para Romina & Ricardo</span>
+      <span>v2.5 Full Pro</span>
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 🚀 PANTALLA 2: NONIA (ROMINA) - EL COHETE NUMÉRICO (3.° GRADO)            -->
+  <!-- ========================================================================= -->
+  <section id="screen-rocket" class="hidden flex-1 flex flex-col justify-between p-2 sm:p-3 w-full h-full relative z-20 overflow-hidden">
+    
+    <!-- Top HUD Header -->
+    <header class="h-11 bg-slate-900/90 border border-slate-800 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg backdrop-blur-md">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-rose-600 to-pink-500 flex items-center justify-center shadow-md">
+          <i class="fa-solid fa-rocket text-xs text-white"></i>
+        </div>
+        <div>
+          <h2 class="font-display font-black text-xs text-rose-300 leading-none">
+            Nonia: <span class="text-white font-medium">El Cohete Numérico</span>
+          </h2>
+          <p class="text-[8px] text-slate-400">3.° Grado • Conteo por Saltos & Base-10</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1.5">
+        <!-- Step Increment Switcher -->
+        <button onclick="openStepModal()" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-rose-500/40 text-rose-300 font-display font-black text-[11px] flex items-center gap-1" title="Cambiar salto numérico">
+          <i class="fa-solid fa-plus text-[9px]"></i><span id="headerStepLabel">5</span>
+        </button>
+
+        <!-- Rocket Tutorial Guide -->
+        <button onclick="startRocketTutorial()" class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center justify-center text-xs" title="Explicación ARA BOT">
+          <i class="fa-solid fa-robot"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Game Workspace Grid (Single Screen Zero-Scroll) -->
+    <div class="flex-1 grid grid-cols-12 gap-2 my-1.5 overflow-hidden">
+      
+      <!-- LEFT COL: ROCKET ALTITUDE HUD & LAUNCHPAD (Cols 1-3) -->
+      <div class="col-span-3 sm:col-span-2 bg-slate-900/80 border border-slate-800 rounded-xl p-2 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
+        
+        <div class="flex items-center justify-between text-[9px] font-bold text-slate-400">
+          <span class="hidden sm:inline"><i class="fa-solid fa-gauge-high text-cyan-400"></i> Altura</span>
+          <span id="rocketAltitudePct" class="text-cyan-300 bg-cyan-950 border border-cyan-800 px-1 py-0.2 rounded font-mono text-[9px] mx-auto sm:mx-0">0%</span>
+        </div>
+
+        <!-- Vertical Gauge -->
+        <div class="flex-1 relative my-1 bg-slate-950/90 rounded-lg border border-slate-800 flex items-end p-1 overflow-hidden">
+          <div class="absolute inset-0 flex flex-col justify-between p-1 pointer-events-none opacity-20 text-[7px] font-mono text-cyan-300">
+            <div class="border-b border-cyan-500/50 w-full flex justify-between"><span>10,000 M</span></div>
+            <div class="border-b border-cyan-500/30 w-full flex justify-between"><span>5,000 M</span></div>
+            <div class="border-b border-cyan-500/50 w-full flex justify-between"><span>BASE 0</span></div>
+          </div>
+
+          <div id="rocketProgressFill" class="w-full bg-gradient-to-t from-indigo-900 via-rose-600 to-cyan-400 rounded transition-all duration-300 relative" style="height: 0%;">
+            <div class="absolute top-0 inset-x-0 h-0.5 bg-cyan-200 shadow-[0_0_8px_#22d3ee]"></div>
+          </div>
+
+          <!-- Rocket Avatar Icon -->
+          <div id="rocketAvatar" class="absolute left-1/2 -translate-x-1/2 transition-all duration-300 flex flex-col items-center" style="bottom: 0%;">
+            <div id="rocketFlame" class="w-2.5 h-3.5 bg-gradient-to-b from-amber-400 via-rose-500 to-transparent rounded-full animate-bounce opacity-90 -mt-1"></div>
+            <div class="text-xl sm:text-2xl filter drop-shadow-[0_0_8px_rgba(244,63,94,0.9)] transform -rotate-45">🚀</div>
+          </div>
+        </div>
+
+        <div class="bg-slate-950 border border-slate-800 rounded-lg p-1 text-center">
+          <div class="text-[7px] text-slate-400 uppercase font-semibold">Valor Total</div>
+          <div id="rocketDisplayTotal" class="font-display font-black text-sm sm:text-base text-rose-300 leading-tight">0</div>
+        </div>
+      </div>
+
+      <!-- RIGHT COL: ODOMETER VALUES & BASE-10 FACTORY (Cols 4-12) -->
+      <div class="col-span-9 sm:col-span-10 flex flex-col gap-1.5 justify-between overflow-hidden">
+        
+        <!-- ODOMETER PLACE VALUE CARDS -->
+        <div class="grid grid-cols-4 gap-1 sm:gap-1.5 bg-slate-900/70 border border-slate-800 rounded-xl p-1.5 backdrop-blur-md">
+          
+          <!-- Millar (🟡) -->
+          <div class="bg-slate-950/90 border border-amber-500/30 rounded-lg p-1 text-center flex flex-col justify-between shadow">
+            <div class="flex items-center justify-between text-[8px] sm:text-[9px] font-bold text-amber-400 uppercase">
+              <span>Millar</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 glow-gold"></span>
+            </div>
+            <div id="rocketValMillar" class="font-display font-black text-xl sm:text-3xl text-amber-400 my-0.5">0</div>
+            <div id="rocketLabelMillarSub" class="text-[7px] sm:text-[8px] text-amber-300/70 font-mono bg-amber-950/40 rounded py-0.2 border border-amber-800/30">0x1000</div>
+          </div>
+
+          <!-- Centena (🔴) -->
+          <div class="bg-slate-950/90 border border-red-500/30 rounded-lg p-1 text-center flex flex-col justify-between shadow">
+            <div class="flex items-center justify-between text-[8px] sm:text-[9px] font-bold text-red-400 uppercase">
+              <span>Centena</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-red-500 glow-red"></span>
+            </div>
+            <div id="rocketValCentena" class="font-display font-black text-xl sm:text-3xl text-red-400 my-0.5">0</div>
+            <div id="rocketLabelCentenaSub" class="text-[7px] sm:text-[8px] text-red-300/70 font-mono bg-red-950/40 rounded py-0.2 border border-red-800/30">0x100</div>
+          </div>
+
+          <!-- Decena (🔵) -->
+          <div class="bg-slate-950/90 border border-blue-500/30 rounded-lg p-1 text-center flex flex-col justify-between shadow">
+            <div class="flex items-center justify-between text-[8px] sm:text-[9px] font-bold text-blue-400 uppercase">
+              <span>Decena</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500 glow-blue"></span>
+            </div>
+            <div id="rocketValDecena" class="font-display font-black text-xl sm:text-3xl text-blue-400 my-0.5">0</div>
+            <div id="rocketLabelDecenaSub" class="text-[7px] sm:text-[8px] text-blue-300/70 font-mono bg-blue-950/40 rounded py-0.2 border border-blue-800/30">0x10</div>
+          </div>
+
+          <!-- Unidad (🟢) -->
+          <div class="bg-slate-950/90 border border-emerald-500/30 rounded-lg p-1 text-center flex flex-col justify-between shadow">
+            <div class="flex items-center justify-between text-[8px] sm:text-[9px] font-bold text-emerald-400 uppercase">
+              <span>Unidad</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 glow-green"></span>
+            </div>
+            <div id="rocketValUnidad" class="font-display font-black text-xl sm:text-3xl text-emerald-400 my-0.5">0</div>
+            <div id="rocketLabelUnidadSub" class="text-[7px] sm:text-[8px] text-emerald-300/70 font-mono bg-emerald-950/40 rounded py-0.2 border border-emerald-800/30">0x1</div>
+          </div>
+
+        </div>
+
+        <!-- VISUAL BASE-10 BLOCK FACTORY & PORTAL -->
+        <div class="flex-1 bg-slate-900/70 border border-slate-800 rounded-xl p-2 flex flex-col justify-between relative overflow-hidden backdrop-blur-md min-h-[140px]">
+          
+          <!-- Portal Graphic Effect -->
+          <div id="rocketMagicPortal" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 rounded-full bg-gradient-to-r from-purple-600/30 via-pink-600/30 to-cyan-500/30 pointer-events-none opacity-0 transition-opacity duration-300 animate-portal-spin z-10"></div>
+
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1 text-[9px] sm:text-[10px]">
+            <div class="flex items-center gap-1.5">
+              <span class="font-bold text-slate-300"><i class="fa-solid fa-cubes text-rose-400"></i> Fábrica Base-10:</span>
+              <span id="rocketEquationText" class="font-mono text-cyan-300 bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800">
+                0 = 0 + 0 + 0 + 0
+              </span>
+            </div>
+            <div class="text-slate-400">
+              Salto actual: <span id="rocketCurrentStepBadge" class="font-bold text-amber-400 bg-amber-950/60 px-1.5 py-0.2 rounded border border-amber-800/50">+5</span>
+            </div>
+          </div>
+
+          <!-- Base-10 Block Canvas Container -->
+          <div id="rocketBlocksContainer" class="flex-1 my-1 bg-slate-950/90 rounded-lg border border-slate-800/80 p-2 overflow-y-auto custom-scroll flex flex-wrap content-start gap-1.5 relative">
+            <div id="factoryMillares" class="flex flex-wrap gap-1.5 items-center"></div>
+            <div id="factoryCentenas" class="flex flex-wrap gap-1.5 items-center"></div>
+            <div id="factoryDecenas" class="flex flex-wrap gap-1 items-center"></div>
+            <div id="factoryUnidades" class="flex flex-wrap gap-1 items-center"></div>
+
+            <div id="rocketEmptyHint" class="absolute inset-0 flex items-center justify-center text-slate-500 text-xs italic pointer-events-none p-2 text-center">
+              Toca <span class="text-emerald-400 font-bold mx-1">🚀 ¡SUMAR +5!</span> para cargar combustible al cohete espacial...
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex items-center gap-1.5 pt-0.5">
+            <button id="btnRocketAdd" onclick="executeRocketStepAdd()" class="flex-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-black text-xs sm:text-sm py-2 px-3 rounded-xl shadow-lg shadow-emerald-600/30 transition-all transform active:scale-95 flex items-center justify-center gap-2 border border-emerald-400/40">
+              <i class="fa-solid fa-circle-plus text-sm animate-bounce"></i>
+              <span id="btnRocketAddText">🚀 ¡SUMAR +5!</span>
+            </button>
+
+            <!-- Manual Launch Trigger -->
+            <button onclick="triggerRocketLaunchCelebration()" class="px-3 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-display font-black text-xs border border-rose-400/40 shadow-lg shadow-rose-600/20 transition-all flex items-center gap-1.5 active:scale-95" title="¡Despegar Cohete!">
+              <i class="fa-solid fa-fire"></i>
+              <span>¡Despegar!</span>
+            </button>
+
+            <button onclick="resetRocketCounter()" class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs border border-slate-700 transition-all flex items-center gap-1" title="Reiniciar a Cero">
+              <i class="fa-solid fa-rotate-left"></i>
+              <span class="hidden sm:inline">Borrar</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bottom Dialogue Banner with ARA BOT -->
+    <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2 flex items-center justify-between gap-2 shrink-0">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-600 to-rose-500 flex items-center justify-center text-sm shadow">
+          🤖
+        </div>
+        <p id="rocketAraBotSpeech" class="text-[10px] sm:text-xs text-slate-300 font-medium">
+          ¡Hola Romina! Salta de 5 en 5 para construir números de 4 cifras (Millares 🟡). Al llegar a 10 unidades, ¡se fusionan en 1 decena!
+        </p>
+      </div>
+      <button onclick="showRocketChallenge()" class="shrink-0 px-2 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-bold shadow">
+        <i class="fa-solid fa-brain mr-1 text-amber-300"></i>Reto
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 🦖 PANTALLA 3: DOYDO (RICARDO) - LABORATORIO DINOSAURIO (2.° GRADO)        -->
+  <!-- ========================================================================= -->
+  <section id="screen-dino" class="hidden flex-1 flex flex-col justify-between p-2 sm:p-3 w-full h-full relative z-20 overflow-hidden">
+    
+    <!-- Red Alert Header HUD -->
+    <header class="h-11 bg-slate-900/95 border-2 border-red-500/60 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg shadow-red-950/50 backdrop-blur-md animate-alarm-blink">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-red-600 text-white flex items-center justify-center shadow-lg animate-pulse">
+          <i class="fa-solid fa-triangle-exclamation text-xs"></i>
+        </div>
+        <div>
+          <h2 class="font-display font-black text-xs text-red-400 uppercase tracking-wide leading-none">
+            ¡Alarma de Contención Nivel Alfa!
+          </h2>
+          <p class="text-[8px] text-slate-300">Doydo: Laboratorio Dinosaurio • Escape del T-Rex 🦖</p>
+        </div>
+      </div>
+
+      <!-- Level Tracker Badges -->
+      <div class="flex items-center gap-2">
+        <div class="bg-slate-950/90 border border-red-500/50 px-2 py-0.5 rounded-lg flex items-center gap-1.5">
+          <span class="text-[8px] text-slate-400 font-bold">Puerta:</span>
+          <span id="dinoCurrentLevelLabel" class="font-display font-black text-xs text-amber-300">1 / 9</span>
+        </div>
+        <button onclick="startDinoTutorial()" class="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 flex items-center justify-center text-xs" title="Instrucciones de Emergencia">
+          <i class="fa-solid fa-robot"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Dinosaur Lab Viewport (Zero-Scroll Flex Grid) -->
+    <div class="flex-1 grid grid-cols-12 gap-2 my-1.5 overflow-hidden">
+      
+      <!-- LEFT COL: T-REX CONTAINMENT CHAMBER & BLAST GATE (Cols 1-5) -->
+      <div class="col-span-12 sm:col-span-5 bg-slate-900/85 border border-red-500/30 rounded-xl p-2.5 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
+        
+        <!-- Top Chamber Info -->
+        <div class="flex items-center justify-between text-[9px] font-bold border-b border-slate-800 pb-1">
+          <span class="text-rose-400 flex items-center gap-1"><i class="fa-solid fa-shield-virus"></i> Jaula de Titanio</span>
+          <span id="dinoThreatLevel" class="text-red-400 bg-red-950/80 border border-red-800 px-1.5 py-0.2 rounded font-mono animate-pulse">PELIGRO: 98%</span>
+        </div>
+
+        <!-- Visual T-Rex & Titanium Door Cage Canvas -->
+        <div class="flex-1 relative my-1 bg-gradient-to-b from-slate-950 via-slate-900 to-red-950/40 rounded-lg border border-slate-800 flex items-center justify-center overflow-hidden">
+          
+          <!-- Warning Strip Background -->
+          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background: repeating-linear-gradient(45deg, #ef4444, #ef4444 10px, transparent 10px, transparent 20px);"></div>
+
+          <!-- T-Rex SVG Animated Avatar -->
+          <div id="trexAvatar" class="relative z-10 flex flex-col items-center animate-trex-roar">
+            <div class="text-5xl sm:text-6xl filter drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]">🦖</div>
+            <div class="text-[9px] font-display font-black text-red-400 bg-black/80 px-2 py-0.5 rounded-full border border-red-600 mt-1">
+              T-REX FURIOSO
+            </div>
+          </div>
+
+          <!-- Laser Grid Lines -->
+          <div class="absolute inset-0 flex justify-around pointer-events-none opacity-40">
+            <div class="w-0.5 h-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></div>
+            <div class="w-0.5 h-full bg-red-500 shadow-[0_0_8px_#ef4444]"></div>
+            <div class="w-0.5 h-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></div>
+          </div>
+
+          <!-- Titanium Blast Door Overlay (Slams down on correct answer) -->
+          <div id="titaniumBlastDoor" class="hidden absolute inset-0 z-30 titanium-gate flex flex-col items-center justify-center p-3 animate-slam-door">
+            <div class="w-12 h-12 rounded-full bg-slate-900 border-2 border-emerald-400 flex items-center justify-center text-emerald-400 text-2xl shadow-lg glow-green">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="font-display font-black text-sm sm:text-base text-emerald-300 mt-1 uppercase tracking-wider text-center">
+              ¡PUERTA DE TITANIO BLOQUEADA!
+            </div>
+            <div class="text-[9px] text-slate-300 font-mono">Contención al 100%</div>
+          </div>
+
+        </div>
+
+        <!-- Target Code Display -->
+        <div class="bg-slate-950 border-2 border-red-500/50 rounded-xl p-2 text-center">
+          <div class="text-[8px] text-slate-400 uppercase font-bold">Código de Seguridad Requerido</div>
+          <div class="flex items-center justify-center gap-2 mt-0.5">
+            <span class="text-xs text-red-400 font-bold">CÓDIGO:</span>
+            <span id="dinoTargetCode" class="font-display font-black text-xl sm:text-2xl text-amber-300 tracking-widest font-mono bg-red-950/60 px-3 py-0.5 rounded-lg border border-red-700/60">
+              378
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COL: REACTOR DE FUSIÓN BASE-10 & SECURITY KEYPAD (Cols 6-12) -->
+      <div class="col-span-12 sm:col-span-7 flex flex-col gap-1.5 justify-between overflow-hidden">
+        
+        <!-- BASE-10 FUSION REACTOR PANEL -->
+        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-2 flex flex-col justify-between backdrop-blur-md">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-1 text-[9px] sm:text-[10px]">
+            <span class="font-bold text-cyan-300 flex items-center gap-1">
+              <i class="fa-solid fa-atom text-purple-400"></i> Reactor de Fusión Base-10
+            </span>
+            <span class="text-slate-400">Banco de Elementos</span>
+          </div>
+
+          <!-- Interactive Fusion Controls -->
+          <div class="grid grid-cols-2 gap-1.5 my-1.5">
+            <!-- Fusion 1: 10 Blue Units -> 1 Green Decade -->
+            <button onclick="fuseUnitsToDecade()" class="group bg-slate-950/90 hover:bg-slate-800 border border-blue-500/40 hover:border-emerald-400 rounded-xl p-1.5 flex items-center justify-between transition-all active:scale-95 shadow">
+              <div class="flex items-center gap-1 text-[9px]">
+                <span class="w-3.5 h-3.5 rounded bg-blue-500 text-white font-black flex items-center justify-center text-[7px]">10🔵</span>
+                <i class="fa-solid fa-arrow-right text-[8px] text-slate-400 group-hover:text-emerald-400"></i>
+                <span class="w-3.5 h-3.5 rounded bg-emerald-500 text-slate-950 font-black flex items-center justify-center text-[7px]">1🟢</span>
+              </div>
+              <span class="text-[9px] font-bold text-emerald-400 font-display">Fusionar Decena</span>
+            </button>
+
+            <!-- Fusion 2: 10 Green Decades -> 1 Red Hundred -->
+            <button onclick="fuseDecadesToHundred()" class="group bg-slate-950/90 hover:bg-slate-800 border border-emerald-500/40 hover:border-red-400 rounded-xl p-1.5 flex items-center justify-between transition-all active:scale-95 shadow">
+              <div class="flex items-center gap-1 text-[9px]">
+                <span class="w-3.5 h-3.5 rounded bg-emerald-500 text-slate-950 font-black flex items-center justify-center text-[7px]">10🟢</span>
+                <i class="fa-solid fa-arrow-right text-[8px] text-slate-400 group-hover:text-red-400"></i>
+                <span class="w-3.5 h-3.5 rounded bg-red-500 text-white font-black flex items-center justify-center text-[7px]">1🔴</span>
+              </div>
+              <span class="text-[9px] font-bold text-red-400 font-display">Fusionar Centena</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3 INPUT SLOTS: CENTENAS 🔴, DECENAS 🟢, UNIDADES 🔵 -->
+        <div class="flex-1 bg-slate-900/80 border border-slate-800 rounded-xl p-2 flex flex-col justify-between backdrop-blur-md">
+          <div class="text-[9px] text-slate-400 font-bold flex items-center justify-between border-b border-slate-800 pb-1">
+            <span>Descompón el número para cerrar los cerrojos de la puerta:</span>
+            <span class="text-amber-400 font-mono text-[8px]">1🔴=100 | 1🟢=10 | 1🔵=1</span>
+          </div>
+
+          <!-- Slots Container -->
+          <div class="grid grid-cols-3 gap-2 my-1">
+            
+            <!-- Centenas Slot (🔴 Rojo) -->
+            <div class="bg-slate-950/90 border-2 border-red-500/50 rounded-xl p-1.5 text-center flex flex-col justify-between shadow">
+              <div class="text-[9px] font-black text-red-400 uppercase flex items-center justify-between">
+                <span>Centenas</span>
+                <span class="text-xs">🔴</span>
+              </div>
+              <div id="dinoValCentena" class="font-display font-black text-2xl sm:text-3xl text-red-400 my-0.5">0</div>
+              <div class="flex items-center justify-center gap-1">
+                <button onclick="adjustDinoInput('centena', -1)" class="w-6 h-6 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs active:scale-90">-</button>
+                <button onclick="adjustDinoInput('centena', 1)" class="w-6 h-6 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-xs active:scale-90">+</button>
+              </div>
+              <div id="dinoCalcCentena" class="text-[8px] text-red-300/70 font-mono mt-0.5">0 x 100 = 0</div>
+            </div>
+
+            <!-- Decenas Slot (🟢 Verde - según especificación de Doydo) -->
+            <div class="bg-slate-950/90 border-2 border-emerald-500/50 rounded-xl p-1.5 text-center flex flex-col justify-between shadow">
+              <div class="text-[9px] font-black text-emerald-400 uppercase flex items-center justify-between">
+                <span>Decenas</span>
+                <span class="text-xs">🟢</span>
+              </div>
+              <div id="dinoValDecena" class="font-display font-black text-2xl sm:text-3xl text-emerald-400 my-0.5">0</div>
+              <div class="flex items-center justify-center gap-1">
+                <button onclick="adjustDinoInput('decena', -1)" class="w-6 h-6 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs active:scale-90">-</button>
+                <button onclick="adjustDinoInput('decena', 1)" class="w-6 h-6 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs active:scale-90">+</button>
+              </div>
+              <div id="dinoCalcDecena" class="text-[8px] text-emerald-300/70 font-mono mt-0.5">0 x 10 = 0</div>
+            </div>
+
+            <!-- Unidades Slot (🔵 Azul - según especificación de Doydo) -->
+            <div class="bg-slate-950/90 border-2 border-blue-500/50 rounded-xl p-1.5 text-center flex flex-col justify-between shadow">
+              <div class="text-[9px] font-black text-blue-400 uppercase flex items-center justify-between">
+                <span>Unidades</span>
+                <span class="text-xs">🔵</span>
+              </div>
+              <div id="dinoValUnidad" class="font-display font-black text-2xl sm:text-3xl text-blue-400 my-0.5">0</div>
+              <div class="flex items-center justify-center gap-1">
+                <button onclick="adjustDinoInput('unidad', -1)" class="w-6 h-6 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs active:scale-90">-</button>
+                <button onclick="adjustDinoInput('unidad', 1)" class="w-6 h-6 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs active:scale-90">+</button>
+              </div>
+              <div id="dinoCalcUnidad" class="text-[8px] text-blue-300/70 font-mono mt-0.5">0 x 1 = 0</div>
+            </div>
+
+          </div>
+
+          <!-- Total Built & Confirmation Button -->
+          <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
+            <div class="bg-slate-950 px-2.5 py-1.5 rounded-xl border border-slate-800 text-center">
+              <div class="text-[7px] text-slate-400 uppercase">Total Ingresado</div>
+              <div id="dinoCurrentTotal" class="font-display font-black text-sm text-cyan-300">0</div>
+            </div>
+
+            <button id="btnDinoSubmit" onclick="checkDinoContainmentCode()" class="flex-1 bg-gradient-to-r from-red-600 via-rose-600 to-red-500 hover:from-red-500 hover:to-rose-400 text-white font-display font-black text-xs sm:text-sm py-2 px-3 rounded-xl shadow-lg shadow-red-600/40 transition-all transform active:scale-95 flex items-center justify-center gap-2 border border-red-400/40">
+              <i class="fa-solid fa-lock text-sm"></i>
+              <span>¡CERRAR COMPUERTA DE TITANIO! 💥</span>
+            </button>
+
+            <button onclick="resetDinoInputs()" class="px-2 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs border border-slate-700 transition-all" title="Limpiar Casillas">
+              <i class="fa-solid fa-rotate-left"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Dino Bottom Instruction Dialog -->
+    <div class="bg-slate-900/95 border border-red-500/40 rounded-xl p-2 flex items-center justify-between gap-2 shrink-0">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-red-600 to-sky-500 flex items-center justify-center text-sm shadow">
+          🤖
+        </div>
+        <p id="dinoAraBotSpeech" class="text-[10px] sm:text-xs text-slate-200 font-medium">
+          ¡Doydo, el T-Rex quiere escapar! Ingresa el código <span class="text-amber-300 font-bold font-mono">378</span> poniendo 3 Centenas 🔴, 7 Decenas 🟢 y 8 Unidades 🔵.
+        </p>
+      </div>
+      <div id="dinoLevelFeedback" class="text-[10px] font-bold text-emerald-400"></div>
+    </div>
+
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 🏆 MODAL DE VICTORIA FINAL & LECCIÓN SECRETA DE ARA BOT                     -->
+  <!-- ========================================================================= -->
+  <div id="secretLessonModal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3">
+    <div class="bg-slate-900 border-2 border-cyan-400 rounded-3xl p-5 max-w-lg w-full shadow-2xl relative overflow-hidden text-center">
+      
+      <!-- Top Glowing Aura -->
+      <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-cyan-500/20 blur-3xl pointer-events-none"></div>
+
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-400 mx-auto flex items-center justify-center text-3xl shadow-lg glow-blue-neon mb-2 animate-bounce-soft">
+        🤖
+      </div>
+
+      <h2 class="font-display font-black text-xl sm:text-2xl text-white">
+        ¡MISIÓN CUMPLIDA, DOYDO! 🎉
+      </h2>
+      <p class="text-xs text-cyan-300 font-semibold mb-3">
+        El T-Rex ha quedado totalmente asegurado en las 9 compuertas.
+      </p>
+
+      <!-- Secret Lesson Pedagogy Box -->
+      <div class="bg-slate-950/90 border border-slate-800 rounded-2xl p-3 text-left my-2 space-y-2">
+        <div class="font-display font-black text-xs text-amber-300 uppercase flex items-center gap-1.5 border-b border-slate-800 pb-1.5">
+          <i class="fa-solid fa-key text-amber-400"></i> La Lección Secreta de ARA BOT:
+        </div>
+
+        <div class="flex items-center gap-2 bg-blue-950/40 p-2 rounded-xl border border-blue-800/40">
+          <span class="w-6 h-6 rounded-lg bg-blue-500 text-white font-black text-xs flex items-center justify-center shrink-0">🔵</span>
+          <div class="text-[11px] text-slate-200">
+            <strong>Unidades:</strong> Valen <span class="text-blue-300 font-bold">1</span> (sin ceros).
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 bg-emerald-950/40 p-2 rounded-xl border border-emerald-800/40">
+          <span class="w-6 h-6 rounded-lg bg-emerald-500 text-slate-950 font-black text-xs flex items-center justify-center shrink-0">🟢</span>
+          <div class="text-[11px] text-slate-200">
+            <strong>Decenas:</strong> Se les agrega <span class="text-emerald-300 font-bold">UN CERO</span> (<span class="font-mono text-emerald-400">10</span>).
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 bg-red-950/40 p-2 rounded-xl border border-red-800/40">
+          <span class="w-6 h-6 rounded-lg bg-red-500 text-white font-black text-xs flex items-center justify-center shrink-0">🔴</span>
+          <div class="text-[11px] text-slate-200">
+            <strong>Centenas:</strong> Se les agregan <span class="text-red-300 font-bold">DOS CEROS</span> (<span class="font-mono text-red-400">100</span>).
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 mt-4">
+        <button onclick="restartDinoGame()" class="flex-1 py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700">
+          <i class="fa-solid fa-rotate-left mr-1"></i> Jugar de Nuevo
+        </button>
+        <button onclick="showScreen('screen-profile'); closeSecretLesson();" class="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-slate-950 font-display font-black text-xs shadow-lg glow-blue-neon">
+          <i class="fa-solid fa-house mr-1"></i> Menú Principal
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 🚀 MODAL CELEBRACIÓN DESPEGUE COHETE (NONIA)                                -->
+  <!-- ========================================================================= -->
+  <div id="rocketLaunchModal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3">
+    <div class="bg-slate-900 border-2 border-rose-500 rounded-3xl p-5 max-w-md w-full shadow-2xl text-center relative overflow-hidden">
+      
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-rose-600 via-pink-600 to-amber-400 mx-auto flex items-center justify-center text-3xl shadow-lg glow-pink mb-2 animate-bounce">
+        🚀
+      </div>
+
+      <h2 class="font-display font-black text-xl sm:text-2xl text-white">
+        ¡DESPEGUE EXITOSO, ROMINA! 🌌
+      </h2>
+      <p id="rocketModalValText" class="text-xs text-rose-300 font-semibold my-1">
+        Has alcanzado una altitud de 0 metros.
+      </p>
+
+      <!-- Pedagogical Breakdown -->
+      <div id="rocketModalDecompBox" class="bg-slate-950 border border-slate-800 rounded-xl p-3 my-3 text-xs font-mono text-slate-200 text-left space-y-1">
+        <!-- Filled by JS -->
+      </div>
+
+      <button onclick="closeRocketLaunchModal()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-display font-black text-xs shadow-lg glow-pink">
+        ¡Continuar Explorando!
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- ⚙️ MODAL: CONFIGURAR SALTO NUMÉRICO (+1 A +100)                             -->
+  <!-- ========================================================================= -->
+  <div id="stepModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 max-w-xs w-full shadow-2xl">
+      <h3 class="text-xs font-extrabold text-cyan-400 mb-1 flex items-center gap-1.5">
+        <i class="fa-solid fa-sliders"></i> Salto Numérico de Serie
+      </h3>
+      <p class="text-[11px] text-slate-400 mb-3">Elige cuánto incrementará la suma en cada clic:</p>
+      
+      <div class="grid grid-cols-3 gap-1.5 mb-3">
+        <button onclick="setRocketStep(1)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+1</button>
+        <button onclick="setRocketStep(2)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+2</button>
+        <button onclick="setRocketStep(5)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+5</button>
+        <button onclick="setRocketStep(10)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+10</button>
+        <button onclick="setRocketStep(50)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+50</button>
+        <button onclick="setRocketStep(100)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+100</button>
+      </div>
+
+      <button onclick="closeStepModal()" class="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl border border-slate-700">
+        Cerrar
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 💻 JAVASCRIPT: LÓGICA INTEGRADA, AUDIO SYNTH Y MÁQUINA DE ESTADOS         -->
+  <!-- ========================================================================= -->
+  <script>
+    /* =========================================================================
+       1. GLOBAL STATE & NAVIGATION
+       ========================================================================= */
+    const appState = {
+      currentScreen: 'screen-profile',
+      audioMuted: false,
+      audioCtx: null,
+      
+      // Rocket Game (Nonia)
+      rocket: {
+        currentValue: 0,
+        stepValue: 5,
+        maxAltitude: 10000,
+        hasPlayedFusion: { decena: false, centena: false, millar: false }
+      },
+
+      // Dino Lab Game (Doydo)
+      dino: {
+        currentLevelIndex: 0,
+        levels: [
+          { level: 1, code: 378, c: 3, d: 7, u: 8, hint: "Tutorial: 3 Centenas 🔴 (300), 7 Decenas 🟢 (70) y 8 Unidades 🔵 (8)" },
+          { level: 2, code: 642, c: 6, d: 4, u: 2, hint: "6 Centenas (600) + 4 Decenas (40) + 2 Unidades (2)" },
+          { level: 3, code: 195, c: 1, d: 9, u: 5, hint: "1 Centena (100) + 9 Decenas (90) + 5 Unidades (5)" },
+          { level: 4, code: 814, c: 8, d: 1, u: 4, hint: "8 Centenas (800) + 1 Decena (10) + 4 Unidades (4)" },
+          { level: 5, code: 250, c: 2, d: 5, u: 0, hint: "¡Atención! 2 Centenas (200), 5 Decenas (50) y 0 Unidades (0)" },
+          { level: 6, code: 937, c: 9, d: 3, u: 7, hint: "9 Centenas (900) + 3 Decenas (30) + 7 Unidades (7)" },
+          { level: 7, code: 409, c: 4, d: 0, u: 9, hint: "¡Cuidado con el cero! 4 Centenas (400), 0 Decenas (0) y 9 Unidades (9)" },
+          { level: 8, code: 763, c: 7, d: 6, u: 3, hint: "7 Centenas (700) + 6 Decenas (60) + 3 Unidades (3)" },
+          { level: 9, code: 581, c: 5, d: 8, u: 1, hint: "¡Última puerta! 5 Centenas (500) + 8 Decenas (80) + 1 Unidad (1)" }
+        ],
+        inputC: 0,
+        inputD: 0,
+        inputU: 0,
+        isDoorClosed: false
+      },
+
+      deferredPwaPrompt: null
+    };
+
+    /* Screen Transition */
+    function showScreen(screenId) {
+      initAudio();
+      appState.currentScreen = screenId;
+      
+      const screens = ['screen-profile', 'screen-rocket', 'screen-dino'];
+      screens.forEach(s => {
+        const el = document.getElementById(s);
+        if (s === screenId) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+
+      // Show/Hide Global Profile Button
+      const btnGlobal = document.getElementById('btnGlobalProfile');
+      if (screenId === 'screen-profile') {
+        btnGlobal.classList.add('hidden');
+      } else {
+        btnGlobal.classList.remove('hidden');
+      }
+
+      if (screenId === 'screen-rocket') {
+        updateRocketUI();
+      } else if (screenId === 'screen-dino') {
+        loadDinoLevel(appState.dino.currentLevelIndex);
+      }
+    }
+
+    function launchProfile(profile) {
+      if (profile === 'nonia') {
+        playFanfareSound();
+        showScreen('screen-rocket');
+      } else if (profile === 'doydo') {
+        playAlarmSound();
+        showScreen('screen-dino');
+      }
+    }
+
+    /* =========================================================================
+       2. WEB AUDIO SYNTHESIZER (100% OFFLINE)
+       ========================================================================= */
+    function initAudio() {
+      if (!appState.audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        appState.audioCtx = new AudioContext();
+      }
+      if (appState.audioCtx.state === 'suspended') {
+        appState.audioCtx.resume();
+      }
+    }
+
+    function toggleMute() {
+      appState.audioMuted = !appState.audioMuted;
+      const icon = document.getElementById('audioIcon');
+      if (appState.audioMuted) {
+        icon.className = 'fa-solid fa-volume-xmark text-xs text-rose-400';
+      } else {
+        icon.className = 'fa-solid fa-volume-high text-xs text-cyan-400';
+        playClickSound();
+      }
+    }
+
+    function playClickSound() {
+      if (appState.audioMuted) return;
+      initAudio();
+      const ctx = appState.audioCtx;
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(600, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.05);
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.05);
+    }
+
+    function playBipSound(index) {
+      if (appState.audioMuted) return;
+      initAudio();
+      const ctx = appState.audioCtx;
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const pitch = 480 + (index * 45);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(pitch, ctx.currentTime);
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.08);
+    }
+
+    function playAlarmSound() {
+      if (appState.audioMuted) return;
+      initAudio();
+      const ctx = appState.audioCtx;
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(650, now);
+      osc.frequency.linearRampToValueAtTime(880, now + 0.2);
+      osc.frequency.linearRampToValueAtTime(650, now + 0.4);
+      gain.gain.setValueAtTime(0.15, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.45);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.45);
+    }
+
+    function playTrexRoarSound() {
+      if (appState.audioMuted) return;
+      initAudio();
+      const ctx = appState.audioCtx;
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      // Sub oscillator for dinosaur growl
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(95, now);
+      osc.frequency.exponentialRampToValueAtTime(45, now + 0.6);
+      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.6);
+    }
+
+    function playTitaniumDoorSlamSound() {
+      if (appState.audioMuted) return;
+      initAudio();
+      const ctx = appState.audioCtx;
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(140, now);
+      osc.frequency.exponentialRampToValueAtTime(30, now + 0.3);
+      gain.gain.setValueAtTime(0.4, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.35);
+    }
+
+    function playFusionSound(type) {
+      if (appState.audioMuted) return;
+      initAudio();
+      const ctx = appState.audioCtx;
+      if (!ctx) return;
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      if (type === 'decena') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.3);
+      } else {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(150, now);
+        osc.frequency.exponentialRampToValueAtTime(1200, now + 0.4);
+      }
+      gain.gain.setValueAtTime(0.25, now);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.4);
+    }
+
+    function playFanfareSound() {
+      if (appState.audioMuted) return;
+      initAudio();
+      const ctx = appState.audioCtx;
+      if (!ctx) return;
+      const notes = [440, 554, 659, 880];
+      notes.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + (idx * 0.1));
+        gain.gain.setValueAtTime(0.2, ctx.currentTime + (idx * 0.1));
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (idx * 0.1) + 0.25);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + (idx * 0.1));
+        osc.stop(ctx.currentTime + (idx * 0.1) + 0.25);
+      });
+    }
+
+    /* =========================================================================
+       3. CANVAS PARTICLE SYSTEM
+       ========================================================================= */
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function triggerParticleBurst(x, y, color, count = 20) {
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: x || window.innerWidth / 2,
+          y: y || window.innerHeight / 2,
+          vx: (Math.random() - 0.5) * 8,
+          vy: (Math.random() - 0.5) * 8,
+          radius: Math.random() * 3.5 + 1.5,
+          color: color || '#22c55e',
+          alpha: 1,
+          life: 0.92 + Math.random() * 0.05
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, idx) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha *= p.life;
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        if (p.alpha < 0.05) particles.splice(idx, 1);
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    /* =========================================================================
+       4. JUEGO 1: EL COHETE NUMÉRICO (NONIA - ROMINA)
+       ========================================================================= */
+    function executeRocketStepAdd() {
+      initAudio();
+      appState.rocket.currentValue += appState.rocket.stepValue;
+
+      // Portal Visual Trigger
+      const portal = document.getElementById('rocketMagicPortal');
+      portal.style.opacity = '1';
+      triggerParticleBurst(window.innerWidth * 0.6, window.innerHeight * 0.5, '#f43f5e', 15);
+
+      const bips = Math.min(appState.rocket.stepValue, 10);
+      for (let i = 0; i < bips; i++) {
+        setTimeout(() => {
+          playBipSound(i);
+          triggerParticleBurst(window.innerWidth * 0.6 + (i * 6), window.innerHeight * 0.5, '#22c55e', 4);
+        }, i * 50);
+      }
+
+      setTimeout(() => {
+        portal.style.opacity = '0';
+      }, bips * 50 + 100);
+
+      updateRocketUI();
+    }
+
+    function resetRocketCounter() {
+      playClickSound();
+      appState.rocket.currentValue = 0;
+      appState.rocket.hasPlayedFusion = { decena: false, centena: false, millar: false };
+      updateRocketUI();
+    }
+
+    function updateRocketUI() {
+      const val = appState.rocket.currentValue;
+      const millares = Math.floor(val / 1000) % 10;
+      const centenas = Math.floor(val / 100) % 10;
+      const decenas = Math.floor(val / 10) % 10;
+      const unidades = val % 10;
+
+      document.getElementById('rocketValMillar').innerText = millares;
+      document.getElementById('rocketValCentena').innerText = centenas;
+      document.getElementById('rocketValDecena').innerText = decenas;
+      document.getElementById('rocketValUnidad').innerText = unidades;
+
+      document.getElementById('rocketLabelMillarSub').innerText = `${millares}x1000`;
+      document.getElementById('rocketLabelCentenaSub').innerText = `${centenas}x100`;
+      document.getElementById('rocketLabelDecenaSub').innerText = `${decenas}x10`;
+      document.getElementById('rocketLabelUnidadSub').innerText = `${unidades}x1`;
+
+      document.getElementById('rocketDisplayTotal').innerText = val;
+      document.getElementById('rocketEquationText').innerText = 
+        `${val} = (${millares}×1000) + (${centenas}×100) + (${decenas}×10) + (${unidades}×1)`;
+
+      const pct = Math.min(100, Math.round((val / appState.rocket.maxAltitude) * 100));
+      document.getElementById('rocketProgressFill').style.height = `${pct}%`;
+      document.getElementById('rocketAvatar').style.bottom = `${pct}%`;
+      document.getElementById('rocketAltitudePct').innerText = `${pct}%`;
+
+      renderRocketBlocks(millares, centenas, decenas, unidades);
+    }
+
+    function renderRocketBlocks(m, c, d, u) {
+      const uContainer = document.getElementById('factoryUnidades');
+      const dContainer = document.getElementById('factoryDecenas');
+      const cContainer = document.getElementById('factoryCentenas');
+      const mContainer = document.getElementById('factoryMillares');
+      const emptyHint = document.getElementById('rocketEmptyHint');
+
+      uContainer.innerHTML = '';
+      dContainer.innerHTML = '';
+      cContainer.innerHTML = '';
+      mContainer.innerHTML = '';
+
+      emptyHint.style.display = (m + c + d + u) === 0 ? 'flex' : 'none';
+
+      // Millares Cubes
+      for (let i = 0; i < m; i++) {
+        const cube = document.createElement('div');
+        cube.className = 'w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-300 border border-amber-200 shadow flex items-center justify-center font-display font-black text-[9px] sm:text-[10px] text-amber-950';
+        cube.innerText = '1000';
+        mContainer.appendChild(cube);
+      }
+
+      // Centenas Plates
+      for (let i = 0; i < c; i++) {
+        const plate = document.createElement('div');
+        plate.className = 'w-6 h-6 sm:w-7 sm:h-7 rounded bg-gradient-to-tr from-red-600 via-red-500 to-rose-400 border border-red-300 shadow flex items-center justify-center font-display font-bold text-[8px] sm:text-[9px] text-white';
+        plate.innerText = '100';
+        cContainer.appendChild(plate);
+      }
+      if (c > 0 && !appState.rocket.hasPlayedFusion.centena) {
+        playFusionSound('centena');
+        triggerParticleBurst(window.innerWidth * 0.65, window.innerHeight * 0.5, '#ef4444', 20);
+        appState.rocket.hasPlayedFusion.centena = true;
+      }
+
+      // Decenas Bars
+      for (let i = 0; i < d; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'w-2.5 sm:w-3 h-6 sm:h-7 rounded bg-gradient-to-b from-blue-400 to-blue-600 border border-blue-300 shadow-sm flex items-center justify-center text-[7px] font-bold text-white';
+        bar.innerText = '10';
+        dContainer.appendChild(bar);
+      }
+      if (d > 0 && !appState.rocket.hasPlayedFusion.decena) {
+        playFusionSound('decena');
+        triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.5, '#3b82f6', 20);
+        appState.rocket.hasPlayedFusion.decena = true;
+      }
+
+      // Unidades Cubes
+      for (let i = 0; i < u; i++) {
+        const unit = document.createElement('div');
+        unit.className = 'w-3 h-3 rounded bg-emerald-500 border border-emerald-300 shadow-sm animate-pulse';
+        uContainer.appendChild(unit);
+      }
+    }
+
+    function triggerRocketLaunchCelebration() {
+      const val = appState.rocket.currentValue;
+      if (val === 0) {
+        alert("¡Primero suma combustible al cohete para despegar!");
+        return;
+      }
+      playFanfareSound();
+      triggerParticleBurst(window.innerWidth / 2, window.innerHeight / 2, '#f43f5e', 40);
+      triggerParticleBurst(window.innerWidth / 2, window.innerHeight / 2, '#eab308', 40);
+
+      const modal = document.getElementById('rocketLaunchModal');
+      document.getElementById('rocketModalValText').innerText = `¡Has alcanzado una altitud de ${val} metros con ARA BOT!`;
+      
+      const m = Math.floor(val / 1000);
+      const c = Math.floor((val % 1000) / 100);
+      const d = Math.floor((val % 100) / 10);
+      const u = val % 10;
+
+      document.getElementById('rocketModalDecompBox').innerHTML = `
+        <div class="text-amber-400 font-bold">🟡 ${m} Millares (${m * 1000})</div>
+        <div class="text-red-400 font-bold">🔴 ${c} Centenas (${c * 100})</div>
+        <div class="text-blue-400 font-bold">🔵 ${d} Decenas (${d * 10})</div>
+        <div class="text-emerald-400 font-bold">🟢 ${u} Unidades (${u * 1})</div>
+      `;
+      modal.classList.remove('hidden');
+    }
+
+    function closeRocketLaunchModal() {
+      document.getElementById('rocketLaunchModal').classList.add('hidden');
+    }
+
+    function openStepModal() { document.getElementById('stepModal').classList.remove('hidden'); }
+    function closeStepModal() { document.getElementById('stepModal').classList.add('hidden'); }
+    function setRocketStep(val) {
+      appState.rocket.stepValue = val;
+      document.getElementById('btnRocketAddText').innerText = `🚀 ¡SUMAR +${val}!`;
+      document.getElementById('headerStepLabel').innerText = `${val}`;
+      document.getElementById('rocketCurrentStepBadge').innerText = `+${val}`;
+      closeStepModal();
+    }
+
+    function startRocketTutorial() {
+      document.getElementById('rocketAraBotSpeech').innerText = 
+        "¡Excelente Romina! Cada vez que sumas, cargamos el propulsor del cohete. 10 verdes 🟢 se convierten en 1 azul 🔵, 10 azules en 1 roja 🔴, y 10 rojas en 1 amarilla 🟡.";
+    }
+
+    function showRocketChallenge() {
+      const target = (Math.floor(Math.random() * 5) + 1) * 100 + (Math.floor(Math.random() * 9) + 1) * 10;
+      document.getElementById('rocketAraBotSpeech').innerHTML = 
+        `🎯 <strong>Reto de Romina:</strong> ¡Llega al número <span class="text-amber-300 font-bold font-mono">${target}</span> usando saltos de +10 o +5!`;
+    }
+
+    /* =========================================================================
+       5. JUEGO 2: LABORATORIO DINOSAURIO - ESCAPE DEL T-REX (DOYDO - RICARDO)
+       ========================================================================= */
+    function loadDinoLevel(index) {
+      if (index >= appState.dino.levels.length) {
+        showSecretLesson();
+        return;
+      }
+      appState.dino.currentLevelIndex = index;
+      appState.dino.isDoorClosed = false;
+      const currentLvl = appState.dino.levels[index];
+
+      document.getElementById('dinoCurrentLevelLabel').innerText = `${index + 1} / 9`;
+      document.getElementById('dinoTargetCode').innerText = currentLvl.code;
+      document.getElementById('dinoAraBotSpeech').innerHTML = 
+        `¡Doydo, peligro en puerta ${index + 1}! Código <span class="text-amber-300 font-mono font-bold">${currentLvl.code}</span>. ${currentLvl.hint}`;
+      document.getElementById('dinoLevelFeedback').innerText = '';
+
+      // Reset door state
+      const door = document.getElementById('titaniumBlastDoor');
+      door.classList.add('hidden');
+
+      // Reset inputs
+      resetDinoInputs(false);
+    }
+
+    function adjustDinoInput(type, delta) {
+      playClickSound();
+      if (type === 'centena') {
+        appState.dino.inputC = Math.max(0, Math.min(9, appState.dino.inputC + delta));
+      } else if (type === 'decena') {
+        appState.dino.inputD = Math.max(0, Math.min(9, appState.dino.inputD + delta));
+      } else if (type === 'unidad') {
+        appState.dino.inputU = Math.max(0, Math.min(9, appState.dino.inputU + delta));
+      }
+      updateDinoInputsUI();
+    }
+
+    function resetDinoInputs(playSound = true) {
+      if (playSound) playClickSound();
+      appState.dino.inputC = 0;
+      appState.dino.inputD = 0;
+      appState.dino.inputU = 0;
+      updateDinoInputsUI();
+    }
+
+    function updateDinoInputsUI() {
+      const c = appState.dino.inputC;
+      const d = appState.dino.inputD;
+      const u = appState.dino.inputU;
+      const total = (c * 100) + (d * 10) + u;
+
+      document.getElementById('dinoValCentena').innerText = c;
+      document.getElementById('dinoValDecena').innerText = d;
+      document.getElementById('dinoValUnidad').innerText = u;
+
+      document.getElementById('dinoCalcCentena').innerText = `${c} x 100 = ${c * 100}`;
+      document.getElementById('dinoCalcDecena').innerText = `${d} x 10 = ${d * 10}`;
+      document.getElementById('dinoCalcUnidad').innerText = `${u} x 1 = ${u * 1}`;
+
+      document.getElementById('dinoCurrentTotal').innerText = total;
+    }
+
+    function fuseUnitsToDecade() {
+      playFusionSound('decena');
+      triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.35, '#22c55e', 25);
+      appState.dino.inputD = Math.min(9, appState.dino.inputD + 1);
+      updateDinoInputsUI();
+    }
+
+    function fuseDecadesToHundred() {
+      playFusionSound('centena');
+      triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.35, '#ef4444', 25);
+      appState.dino.inputC = Math.min(9, appState.dino.inputC + 1);
+      updateDinoInputsUI();
+    }
+
+    function checkDinoContainmentCode() {
+      const lvl = appState.dino.levels[appState.dino.currentLevelIndex];
+      const c = appState.dino.inputC;
+      const d = appState.dino.inputD;
+      const u = appState.dino.inputU;
+      const total = (c * 100) + (d * 10) + u;
+
+      if (total === lvl.code && c === lvl.c && d === lvl.d && u === lvl.u) {
+        // Slam blast door shut in T-Rex's face!
+        playTitaniumDoorSlamSound();
+        triggerParticleBurst(window.innerWidth * 0.3, window.innerHeight * 0.5, '#ef4444', 40);
+        triggerParticleBurst(window.innerWidth * 0.3, window.innerHeight * 0.5, '#22c55e', 30);
+
+        const door = document.getElementById('titaniumBlastDoor');
+        door.classList.remove('hidden');
+
+        document.getElementById('dinoLevelFeedback').className = 'text-[10px] font-bold text-emerald-400';
+        document.getElementById('dinoLevelFeedback').innerText = `¡COMPUERTA ${appState.dino.currentLevelIndex + 1} SELLADA! 💥`;
+
+        setTimeout(() => {
+          if (appState.dino.currentLevelIndex + 1 < appState.dino.levels.length) {
+            loadDinoLevel(appState.dino.currentLevelIndex + 1);
+          } else {
+            showSecretLesson();
+          }
+        }, 1600);
+
+      } else {
+        // Incorrect Code Alert
+        playAlarmSound();
+        playTrexRoarSound();
+        document.getElementById('dinoLevelFeedback').className = 'text-[10px] font-bold text-rose-400';
+        document.getElementById('dinoLevelFeedback').innerText = `¡CÓDIGO INCORRECTO (${total})! El T-Rex empuja la puerta.`;
+      }
+    }
+
+    function showSecretLesson() {
+      playFanfareSound();
+      triggerParticleBurst(window.innerWidth / 2, window.innerHeight / 2, '#38bdf8', 50);
+      triggerParticleBurst(window.innerWidth / 2, window.innerHeight / 2, '#22c55e', 50);
+      document.getElementById('secretLessonModal').classList.remove('hidden');
+    }
+
+    function closeSecretLesson() {
+      document.getElementById('secretLessonModal').classList.add('hidden');
+    }
+
+    function restartDinoGame() {
+      closeSecretLesson();
+      loadDinoLevel(0);
+    }
+
+    function startDinoTutorial() {
+      document.getElementById('dinoAraBotSpeech').innerHTML = 
+        `⚠️ <strong>Protocolo de Emergencia Doydo:</strong> Mira el código de 3 cifras. El primer número son las Centenas 🔴, el segundo las Decenas 🟢 y el tercero las Unidades 🔵.`;
+    }
+
+    /* =========================================================================
+       6. PWA SERVICE WORKER & INSTALLATION ENGINE
+       ========================================================================= */
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {
+          // Fallback inline worker
+          const swCode = `
+            const CACHE_NAME = 'ara-bot-pwa-v2';
+            self.addEventListener('install', e => {
+              e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(['./', './index.html'])));
+              self.skipWaiting();
+            });
+            self.addEventListener('activate', e => { e.waitUntil(self.clients.claim()); });
+            self.addEventListener('fetch', e => {
+              e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+            });
+          `;
+          const blob = new Blob([swCode], { type: 'text/javascript' });
+          navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
+        });
+      });
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      appState.deferredPwaPrompt = e;
+      document.getElementById('pwaInstallBanner').classList.remove('hidden');
+    });
+
+    function triggerPwaInstall() {
+      if (appState.deferredPwaPrompt) {
+        appState.deferredPwaPrompt.prompt();
+        appState.deferredPwaPrompt.userChoice.then(() => {
+          appState.deferredPwaPrompt = null;
+          closePwaBanner();
+        });
+      }
+    }
+
+    function closePwaBanner() {
+      document.getElementById('pwaInstallBanner').classList.add('hidden');
+    }
+
+    // Initialize on first interaction
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.addEventListener('click', () => initAudio(), { once: true });
+      updateRocketUI();
+      updateDinoInputsUI();
+    });
+  </script>
+</body>
+</html>
