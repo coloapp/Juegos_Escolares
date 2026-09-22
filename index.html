@@ -227,17 +227,36 @@
     </div>
   </div>
 
-  <!-- FLOATING GLOBAL BUTTON: CAMBIAR PERFIL & AUDIO MUTE -->
-  <aside class="fixed top-2 right-2 z-50 flex items-center gap-2">
-    <!-- Sound FX Toggle -->
-    <button id="btnAudioToggle" onclick="toggleMute()" class="w-9 h-9 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 text-cyan-400 flex items-center justify-center shadow-lg backdrop-blur-md transition-all active:scale-95" title="Activar / Silenciar Sonido">
-      <i id="audioIcon" class="fa-solid fa-volume-high text-xs"></i>
-    </button>
+  <!-- RETRACTABLE / EXPANDABLE GLOBAL FLOATING CONTROL DOCK -->
+  <aside id="globalNavDock" class="hidden fixed top-2 right-2 z-50 flex items-center gap-1.5 transition-all duration-300">
+    
+    <!-- Expanded Drawer Menu -->
+    <div id="dockExpandedMenu" class="hidden items-center gap-1.5 bg-slate-900/95 border border-cyan-500/50 rounded-2xl p-1 shadow-2xl backdrop-blur-xl animate-bounce-soft">
+      <!-- Change Profile Button -->
+      <button onclick="showScreen('screen-profile'); collapseNavDock();" class="h-8 px-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:brightness-110 text-white font-display font-bold text-xs flex items-center gap-1.5 shadow-md border border-cyan-300/40 active:scale-95 transition-all">
+        <i class="fa-solid fa-house"></i>
+        <span>Cambiar Perfil</span>
+      </button>
 
-    <!-- Global Home Profile Switcher Button -->
-    <button id="btnGlobalProfile" onclick="showScreen('screen-profile')" class="hidden h-9 px-3 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:brightness-110 text-white font-display font-bold text-xs flex items-center gap-1.5 shadow-xl shadow-indigo-500/20 border border-cyan-300/40 backdrop-blur-md transition-all active:scale-95">
-      <i class="fa-solid fa-house"></i>
-      <span class="hidden sm:inline">Cambiar Perfil</span>
+      <!-- Sound Toggle Button -->
+      <button id="btnAudioToggle" onclick="toggleMute()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-cyan-400 flex items-center justify-center shadow transition-all active:scale-95" title="Activar / Silenciar Sonido">
+        <i id="audioIcon" class="fa-solid fa-volume-high text-xs"></i>
+      </button>
+
+      <!-- Fullscreen Toggle Button -->
+      <button onclick="toggleFullScreen()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white flex items-center justify-center shadow transition-all active:scale-95" title="Pantalla Completa">
+        <i class="fa-solid fa-expand text-xs"></i>
+      </button>
+
+      <!-- Collapse Button -->
+      <button onclick="collapseNavDock()" class="w-8 h-8 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-all" title="Retraer Menú">
+        <i class="fa-solid fa-xmark text-xs"></i>
+      </button>
+    </div>
+
+    <!-- Main Retractable Floating Trigger Bubble -->
+    <button id="btnDockTrigger" onclick="toggleNavDock()" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-500 hover:scale-105 border-2 border-cyan-300/60 text-white flex items-center justify-center shadow-xl shadow-cyan-500/30 backdrop-blur-md transition-all active:scale-95" title="Menú / Cambiar Perfil">
+      <i id="dockTriggerIcon" class="fa-solid fa-house text-xs"></i>
     </button>
   </aside>
 
@@ -346,9 +365,13 @@
   <section id="screen-rocket" class="hidden flex-1 flex flex-col justify-between p-2 sm:p-3 w-full h-full relative z-20 overflow-hidden">
     
     <!-- Top HUD Header -->
-    <header class="h-11 bg-slate-900/90 border border-slate-800 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg backdrop-blur-md">
-      <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-rose-600 to-pink-500 flex items-center justify-center shadow-md">
+    <header class="h-11 bg-slate-900/90 border border-slate-800 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg backdrop-blur-md pr-12">
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <button onclick="showScreen('screen-profile')" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-rose-950/80 border border-slate-700 hover:border-rose-500/50 text-rose-300 flex items-center gap-1 text-[11px] font-bold transition-all active:scale-95" title="Volver al Selector de Perfil">
+          <i class="fa-solid fa-arrow-left text-[10px]"></i>
+          <span class="hidden sm:inline">Perfiles</span>
+        </button>
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-rose-600 to-pink-500 flex items-center justify-center shadow-md shrink-0">
           <i class="fa-solid fa-rocket text-xs text-white"></i>
         </div>
         <div>
@@ -534,24 +557,28 @@
   <section id="screen-dino" class="hidden flex-1 flex flex-col justify-between p-2 sm:p-3 w-full h-full relative z-20 overflow-hidden">
     
     <!-- Red Alert Header HUD -->
-    <header class="h-11 bg-slate-900/95 border-2 border-red-500/60 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg shadow-red-950/50 backdrop-blur-md animate-alarm-blink">
-      <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-lg bg-red-600 text-white flex items-center justify-center shadow-lg animate-pulse">
+    <header class="h-11 bg-slate-900/95 border-2 border-red-500/60 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg shadow-red-950/50 backdrop-blur-md animate-alarm-blink pr-12">
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <button onclick="showScreen('screen-profile')" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-sky-950/80 border border-slate-700 hover:border-sky-500/50 text-sky-300 flex items-center gap-1 text-[11px] font-bold transition-all active:scale-95" title="Volver al Selector de Perfil">
+          <i class="fa-solid fa-arrow-left text-[10px]"></i>
+          <span class="hidden sm:inline">Perfiles</span>
+        </button>
+        <div class="w-7 h-7 rounded-lg bg-red-600 text-white flex items-center justify-center shadow-lg animate-pulse shrink-0">
           <i class="fa-solid fa-triangle-exclamation text-xs"></i>
         </div>
         <div>
           <h2 class="font-display font-black text-xs text-red-400 uppercase tracking-wide leading-none">
-            ¡Alarma de Contención Nivel Alfa!
+            ¡Alarma Nivel Alfa!
           </h2>
-          <p class="text-[8px] text-slate-300">Doydo: Laboratorio Dinosaurio • Escape del T-Rex 🦖</p>
+          <p class="text-[8px] text-slate-300">Doydo: Laboratorio T-Rex 🦖</p>
         </div>
       </div>
 
       <!-- Level Tracker Badges -->
-      <div class="flex items-center gap-2">
-        <div class="bg-slate-950/90 border border-red-500/50 px-2 py-0.5 rounded-lg flex items-center gap-1.5">
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <div class="bg-slate-950/90 border border-red-500/50 px-2 py-0.5 rounded-lg flex items-center gap-1">
           <span class="text-[8px] text-slate-400 font-bold">Puerta:</span>
-          <span id="dinoCurrentLevelLabel" class="font-display font-black text-xs text-amber-300">1 / 9</span>
+          <span id="dinoCurrentLevelLabel" class="font-display font-black text-xs text-amber-300">1/9</span>
         </div>
         <button onclick="startDinoTutorial()" class="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 flex items-center justify-center text-xs" title="Instrucciones de Emergencia">
           <i class="fa-solid fa-robot"></i>
@@ -905,6 +932,7 @@
     /* Screen Transition */
     function showScreen(screenId) {
       initAudio();
+      collapseNavDock();
       appState.currentScreen = screenId;
       
       const screens = ['screen-profile', 'screen-rocket', 'screen-dino'];
@@ -917,18 +945,58 @@
         }
       });
 
-      // Show/Hide Global Profile Button
-      const btnGlobal = document.getElementById('btnGlobalProfile');
+      // Show/Hide Global Retractable Floating Dock
+      const dock = document.getElementById('globalNavDock');
       if (screenId === 'screen-profile') {
-        btnGlobal.classList.add('hidden');
+        dock.classList.add('hidden');
       } else {
-        btnGlobal.classList.remove('hidden');
+        dock.classList.remove('hidden');
       }
 
       if (screenId === 'screen-rocket') {
         updateRocketUI();
       } else if (screenId === 'screen-dino') {
         loadDinoLevel(appState.dino.currentLevelIndex);
+      }
+    }
+
+    /* Retractable Dock Logic */
+    let isDockExpanded = false;
+    function toggleNavDock() {
+      playClickSound();
+      isDockExpanded = !isDockExpanded;
+      const menu = document.getElementById('dockExpandedMenu');
+      const triggerIcon = document.getElementById('dockTriggerIcon');
+      if (isDockExpanded) {
+        menu.classList.remove('hidden');
+        menu.classList.add('flex');
+        triggerIcon.className = 'fa-solid fa-chevron-right text-xs';
+      } else {
+        collapseNavDock();
+      }
+    }
+
+    function collapseNavDock() {
+      isDockExpanded = false;
+      const menu = document.getElementById('dockExpandedMenu');
+      const triggerIcon = document.getElementById('dockTriggerIcon');
+      if (menu) {
+        menu.classList.add('hidden');
+        menu.classList.remove('flex');
+      }
+      if (triggerIcon) {
+        triggerIcon.className = 'fa-solid fa-house text-xs';
+      }
+    }
+
+    function toggleFullScreen() {
+      playClickSound();
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        }
       }
     }
 
