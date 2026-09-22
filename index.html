@@ -262,6 +262,34 @@
       border-color: #22c55e !important;
       box-shadow: 0 0 20px rgba(34, 197, 94, 0.7), inset 0 0 12px rgba(34, 197, 94, 0.4) !important;
     }
+
+    /* Big Holographic Security Digits */
+    .digit-unlocked {
+      background: rgba(15, 23, 42, 0.85);
+      border: 2px dashed rgba(100, 116, 139, 0.5);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .digit-locked-red {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.35) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+      border: 2px solid #ef4444 !important;
+      box-shadow: 0 0 30px rgba(239, 68, 68, 0.9), inset 0 0 15px rgba(239, 68, 68, 0.5) !important;
+      transform: scale(1.04);
+    }
+
+    .digit-locked-green {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.35) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+      border: 2px solid #22c55e !important;
+      box-shadow: 0 0 30px rgba(34, 197, 94, 0.9), inset 0 0 15px rgba(34, 197, 94, 0.5) !important;
+      transform: scale(1.04);
+    }
+
+    .digit-locked-blue {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.35) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+      border: 2px solid #38bdf8 !important;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.9), inset 0 0 15px rgba(56, 189, 248, 0.5) !important;
+      transform: scale(1.04);
+    }
   </style>
 </head>
 
@@ -648,60 +676,73 @@
       </div>
     </header>
 
-    <!-- TOP HOLOGRAPHIC SECURITY LOCK PODS (Visual Code Verification) -->
-    <div class="grid grid-cols-3 gap-2 my-1 shrink-0">
-      
-      <!-- Centenas Lock Pod 🔴 -->
-      <div id="podCentena" class="bg-slate-900/90 border-2 border-red-500/40 rounded-xl p-1.5 flex items-center justify-between transition-all duration-300 backdrop-blur-md shadow">
-        <div class="flex items-center gap-1.5">
-          <span class="w-6 h-6 rounded-lg bg-red-950/80 border border-red-500 flex items-center justify-center text-xs text-red-400 font-bold">🔴</span>
-          <div>
-            <div class="text-[8px] text-slate-400 font-bold uppercase">Centenas (x100)</div>
-            <div class="font-display font-black text-xs sm:text-sm text-red-400 leading-none flex items-center gap-1">
-              <span id="podCentenaCount">0</span> / <span id="podCentenaTarget">3</span>
-              <span id="podCentenaVal" class="text-[9px] font-mono text-slate-400">(0)</span>
-            </div>
-          </div>
-        </div>
-        <div id="podCentenaLock" class="w-6 h-6 rounded-lg bg-slate-950 border border-slate-700 flex items-center justify-center text-xs text-slate-500">
-          <i class="fa-solid fa-lock-open"></i>
-        </div>
+    <!-- 🚨 MASTER SECURITY CODE DISPLAY (CÓDIGO DE CONTENCIÓN EN GRANDE) -->
+    <div class="bg-slate-900/90 border-2 border-red-500/40 rounded-2xl p-2 my-1 shadow-2xl backdrop-blur-md shrink-0">
+      <div class="flex items-center justify-between text-[9px] font-extrabold uppercase border-b border-slate-800 pb-1 mb-1.5 text-slate-400">
+        <span class="flex items-center gap-1.5 text-red-400">
+          <i class="fa-solid fa-key text-amber-400"></i> Código de Contención de Seguridad:
+        </span>
+        <span id="masterCodeStatusText" class="font-mono font-black text-amber-300">BLOQUEA LOS 3 PUESTOS</span>
       </div>
 
-      <!-- Decenas Lock Pod 🟢 -->
-      <div id="podDecena" class="bg-slate-900/90 border-2 border-emerald-500/40 rounded-xl p-1.5 flex items-center justify-between transition-all duration-300 backdrop-blur-md shadow">
-        <div class="flex items-center gap-1.5">
-          <span class="w-6 h-6 rounded-lg bg-emerald-950/80 border border-emerald-500 flex items-center justify-center text-xs text-emerald-400 font-bold">🟢</span>
-          <div>
-            <div class="text-[8px] text-slate-400 font-bold uppercase">Decenas (x10)</div>
-            <div class="font-display font-black text-xs sm:text-sm text-emerald-400 leading-none flex items-center gap-1">
-              <span id="podDecenaCount">0</span> / <span id="podDecenaTarget">7</span>
-              <span id="podDecenaVal" class="text-[9px] font-mono text-slate-400">(0)</span>
-            </div>
+      <!-- THE 3 BIG DIGIT HOLOGRAPHIC BLOCKS -->
+      <div class="grid grid-cols-3 gap-2 sm:gap-3">
+        
+        <!-- BIG CENTENAS 🔴 -->
+        <div id="bigDigitCentenaBox" class="digit-unlocked rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-lg">
+          <div class="w-full flex items-center justify-between text-[9px] font-black text-red-400 uppercase">
+            <span>Centenas (x100)</span>
+            <span id="bigLockCentenaIcon" class="text-xs">🔓</span>
+          </div>
+          
+          <!-- Massive Digit Display -->
+          <div id="bigDigitCentena" class="font-display font-black text-3xl sm:text-4xl text-slate-400 my-0.5 tracking-wider">
+            3
+          </div>
+
+          <div class="w-full flex items-center justify-between text-[8px] font-mono mt-0.5">
+            <span id="bigProgressCentena" class="text-slate-400 font-bold">0 / 3 🔴</span>
+            <span id="bigValCentena" class="bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800 text-slate-400 font-bold">0</span>
           </div>
         </div>
-        <div id="podDecenaLock" class="w-6 h-6 rounded-lg bg-slate-950 border border-slate-700 flex items-center justify-center text-xs text-slate-500">
-          <i class="fa-solid fa-lock-open"></i>
-        </div>
-      </div>
 
-      <!-- Unidades Lock Pod 🔵 -->
-      <div id="podUnidad" class="bg-slate-900/90 border-2 border-blue-500/40 rounded-xl p-1.5 flex items-center justify-between transition-all duration-300 backdrop-blur-md shadow">
-        <div class="flex items-center gap-1.5">
-          <span class="w-6 h-6 rounded-lg bg-blue-950/80 border border-blue-500 flex items-center justify-center text-xs text-blue-400 font-bold">🔵</span>
-          <div>
-            <div class="text-[8px] text-slate-400 font-bold uppercase">Unidades (x1)</div>
-            <div class="font-display font-black text-xs sm:text-sm text-blue-400 leading-none flex items-center gap-1">
-              <span id="podUnidadCount">0</span> / <span id="podUnidadTarget">8</span>
-              <span id="podUnidadVal" class="text-[9px] font-mono text-slate-400">(0)</span>
-            </div>
+        <!-- BIG DECENAS 🟢 -->
+        <div id="bigDigitDecenaBox" class="digit-unlocked rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-lg">
+          <div class="w-full flex items-center justify-between text-[9px] font-black text-emerald-400 uppercase">
+            <span>Decenas (x10)</span>
+            <span id="bigLockDecenaIcon" class="text-xs">🔓</span>
+          </div>
+          
+          <!-- Massive Digit Display -->
+          <div id="bigDigitDecena" class="font-display font-black text-3xl sm:text-4xl text-slate-400 my-0.5 tracking-wider">
+            7
+          </div>
+
+          <div class="w-full flex items-center justify-between text-[8px] font-mono mt-0.5">
+            <span id="bigProgressDecena" class="text-slate-400 font-bold">0 / 7 🟢</span>
+            <span id="bigValDecena" class="bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800 text-slate-400 font-bold">0</span>
           </div>
         </div>
-        <div id="podUnidadLock" class="w-6 h-6 rounded-lg bg-slate-950 border border-slate-700 flex items-center justify-center text-xs text-slate-500">
-          <i class="fa-solid fa-lock-open"></i>
-        </div>
-      </div>
 
+        <!-- BIG UNIDADES 🔵 -->
+        <div id="bigDigitUnidadBox" class="digit-unlocked rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-lg">
+          <div class="w-full flex items-center justify-between text-[9px] font-black text-blue-400 uppercase">
+            <span>Unidades (x1)</span>
+            <span id="bigLockUnidadIcon" class="text-xs">🔓</span>
+          </div>
+          
+          <!-- Massive Digit Display -->
+          <div id="bigDigitUnidad" class="font-display font-black text-3xl sm:text-4xl text-slate-400 my-0.5 tracking-wider">
+            8
+          </div>
+
+          <div class="w-full flex items-center justify-between text-[8px] font-mono mt-0.5">
+            <span id="bigProgressUnidad" class="text-slate-400 font-bold">0 / 8 🔵</span>
+            <span id="bigValUnidad" class="bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800 text-slate-400 font-bold">0</span>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <!-- MAIN GAMEPLAY WORKSPACE GRID -->
@@ -1481,6 +1522,7 @@
        5. JUEGO 2: LABORATORIO DINOSAURIO - COMANDANTE DE ESCUDOS (DOYDO)
        ========================================================================= */
     let draggedGuardType = null;
+    let prevLockStates = { c: false, d: false, u: false };
 
     function loadDinoLevel(index) {
       if (index >= appState.dino.levels.length) {
@@ -1489,13 +1531,17 @@
       }
       appState.dino.currentLevelIndex = index;
       appState.dino.isDoorClosed = false;
+      prevLockStates = { c: false, d: false, u: false };
       const currentLvl = appState.dino.levels[index];
 
       document.getElementById('dinoCurrentLevelLabel').innerText = `${index + 1} / 9`;
-      document.getElementById('podCentenaTarget').innerText = currentLvl.c;
-      document.getElementById('podDecenaTarget').innerText = currentLvl.d;
-      document.getElementById('podUnidadTarget').innerText = currentLvl.u;
+      
+      // Initialize Big Security Digits
+      document.getElementById('bigDigitCentena').innerText = currentLvl.c;
+      document.getElementById('bigDigitDecena').innerText = currentLvl.d;
+      document.getElementById('bigDigitUnidad').innerText = currentLvl.u;
 
+      document.getElementById('masterCodeStatusText').innerText = `BLOQUEA CÓDIGO ${currentLvl.code}`;
       document.getElementById('dinoAraBotSpeech').innerHTML = 
         `¡Comandante Doydo, puerta ${index + 1}! Código <span class="text-amber-300 font-mono font-bold">${currentLvl.code}</span>: Despliega ${currentLvl.c}🔴 Centenas, ${currentLvl.d}🟢 Decenas y ${currentLvl.u}🔵 Unidades.`;
       document.getElementById('dinoLevelFeedback').innerText = '';
@@ -1618,7 +1664,6 @@
         appState.dino.inputD = Math.min(9, appState.dino.inputD + 1);
         updateDinoTacticalUI();
       } else if (appState.dino.inputU > 0) {
-        // Automatically converts units up to 10 if commander presses fusion
         playFusionSound('decena');
         triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.5, '#22c55e', 20);
         appState.dino.inputU = 0;
@@ -1649,14 +1694,6 @@
       const d = appState.dino.inputD;
       const u = appState.dino.inputU;
 
-      // Update Pod counts and values
-      document.getElementById('podCentenaCount').innerText = c;
-      document.getElementById('podCentenaVal').innerText = `(${c * 100})`;
-      document.getElementById('podDecenaCount').innerText = d;
-      document.getElementById('podDecenaVal').innerText = `(${d * 10})`;
-      document.getElementById('podUnidadCount').innerText = u;
-      document.getElementById('podUnidadVal').innerText = `(${u * 1})`;
-
       // Update Dropzone Counts
       document.getElementById('labelCentenaCount').innerText = `${c} Búnkers (${c * 100})`;
       document.getElementById('labelDecenaCount').innerText = `${d} Escuadrones (${d * 10})`;
@@ -1672,13 +1709,95 @@
       const isDLocked = (d === lvl.d);
       const isULocked = (u === lvl.u);
 
-      updatePodLockUI('podCentena', 'podCentenaLock', isCLocked, '🔴');
-      updatePodLockUI('podDecena', 'podDecenaLock', isDLocked, '🟢');
-      updatePodLockUI('podUnidad', 'podUnidadLock', isULocked, '🔵');
+      // --- BIG CENTENAS DIGIT UPDATE ---
+      const boxC = document.getElementById('bigDigitCentenaBox');
+      const digitC = document.getElementById('bigDigitCentena');
+      const iconC = document.getElementById('bigLockCentenaIcon');
+      const progC = document.getElementById('bigProgressCentena');
+      const valC = document.getElementById('bigValCentena');
+      
+      progC.innerText = `${c} / ${lvl.c} 🔴`;
+      valC.innerText = `${c * 100}`;
 
-      // Auto-Trigger Victory when all 3 pods match the code!
+      if (isCLocked) {
+        boxC.className = 'digit-locked-red rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-xl';
+        digitC.className = 'font-display font-black text-3xl sm:text-4xl text-white my-0.5 tracking-wider drop-shadow-[0_0_12px_rgba(239,68,68,1)]';
+        iconC.innerText = '🔒';
+        valC.className = 'bg-red-950 px-1.5 py-0.2 rounded border border-red-500 text-red-300 font-extrabold shadow';
+        if (!prevLockStates.c) {
+          playFusionSound('centena');
+          triggerParticleBurst(window.innerWidth * 0.35, window.innerHeight * 0.2, '#ef4444', 20);
+          prevLockStates.c = true;
+        }
+      } else {
+        boxC.className = 'digit-unlocked rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-lg';
+        digitC.className = 'font-display font-black text-3xl sm:text-4xl text-slate-400 my-0.5 tracking-wider';
+        iconC.innerText = '🔓';
+        valC.className = 'bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800 text-slate-400 font-bold';
+        prevLockStates.c = false;
+      }
+
+      // --- BIG DECENAS DIGIT UPDATE ---
+      const boxD = document.getElementById('bigDigitDecenaBox');
+      const digitD = document.getElementById('bigDigitDecena');
+      const iconD = document.getElementById('bigLockDecenaIcon');
+      const progD = document.getElementById('bigProgressDecena');
+      const valD = document.getElementById('bigValDecena');
+
+      progD.innerText = `${d} / ${lvl.d} 🟢`;
+      valD.innerText = `${d * 10}`;
+
+      if (isDLocked) {
+        boxD.className = 'digit-locked-green rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-xl';
+        digitD.className = 'font-display font-black text-3xl sm:text-4xl text-white my-0.5 tracking-wider drop-shadow-[0_0_12px_rgba(34,197,94,1)]';
+        iconD.innerText = '🔒';
+        valD.className = 'bg-emerald-950 px-1.5 py-0.2 rounded border border-emerald-500 text-emerald-300 font-extrabold shadow';
+        if (!prevLockStates.d) {
+          playFusionSound('decena');
+          triggerParticleBurst(window.innerWidth * 0.5, window.innerHeight * 0.2, '#22c55e', 20);
+          prevLockStates.d = true;
+        }
+      } else {
+        boxD.className = 'digit-unlocked rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-lg';
+        digitD.className = 'font-display font-black text-3xl sm:text-4xl text-slate-400 my-0.5 tracking-wider';
+        iconD.innerText = '🔓';
+        valD.className = 'bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800 text-slate-400 font-bold';
+        prevLockStates.d = false;
+      }
+
+      // --- BIG UNIDADES DIGIT UPDATE ---
+      const boxU = document.getElementById('bigDigitUnidadBox');
+      const digitU = document.getElementById('bigDigitUnidad');
+      const iconU = document.getElementById('bigLockUnidadIcon');
+      const progU = document.getElementById('bigProgressUnidad');
+      const valU = document.getElementById('bigValUnidad');
+
+      progU.innerText = `${u} / ${lvl.u} 🔵`;
+      valU.innerText = `${u * 1}`;
+
+      if (isULocked) {
+        boxU.className = 'digit-locked-blue rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-xl';
+        digitU.className = 'font-display font-black text-3xl sm:text-4xl text-white my-0.5 tracking-wider drop-shadow-[0_0_12px_rgba(56,189,248,1)]';
+        iconU.innerText = '🔒';
+        valU.className = 'bg-sky-950 px-1.5 py-0.2 rounded border border-cyan-400 text-cyan-300 font-extrabold shadow';
+        if (!prevLockStates.u) {
+          playFanfareSound();
+          triggerParticleBurst(window.innerWidth * 0.65, window.innerHeight * 0.2, '#38bdf8', 20);
+          prevLockStates.u = true;
+        }
+      } else {
+        boxU.className = 'digit-unlocked rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-lg';
+        digitU.className = 'font-display font-black text-3xl sm:text-4xl text-slate-400 my-0.5 tracking-wider';
+        iconU.innerText = '🔓';
+        valU.className = 'bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800 text-slate-400 font-bold';
+        prevLockStates.u = false;
+      }
+
+      // Auto-Trigger Victory when all 3 digits match the code!
       if (isCLocked && isDLocked && isULocked && !appState.dino.isDoorClosed) {
         appState.dino.isDoorClosed = true;
+        document.getElementById('masterCodeStatusText').innerText = `¡CÓDIGO SELLADO! ¡BLOQUEO AUTOMÁTICO!`;
+        document.getElementById('masterCodeStatusText').className = `font-mono font-black text-emerald-400 animate-pulse`;
         triggerDinoVictory();
       }
     }
