@@ -200,6 +200,68 @@
       border-radius: 16px;
       transition: all 0.3s ease;
     }
+
+    /* Tactical Guard Shields Neon Pulsing */
+    .shield-pulse-blue {
+      animation: shieldPulseBlue 2.4s infinite ease-in-out;
+    }
+    .shield-pulse-green {
+      animation: shieldPulseGreen 2.4s infinite ease-in-out;
+    }
+    .shield-pulse-red {
+      animation: shieldPulseRed 2.4s infinite ease-in-out;
+    }
+
+    @keyframes shieldPulseBlue {
+      0%, 100% {
+        box-shadow: 0 0 6px rgba(56, 189, 248, 0.4), inset 0 0 4px rgba(56, 189, 248, 0.2);
+        opacity: 0.82;
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.95), inset 0 0 10px rgba(56, 189, 248, 0.6);
+        opacity: 1;
+        transform: scale(1.06);
+      }
+    }
+
+    @keyframes shieldPulseGreen {
+      0%, 100% {
+        box-shadow: 0 0 6px rgba(34, 197, 94, 0.4), inset 0 0 4px rgba(34, 197, 94, 0.2);
+        opacity: 0.82;
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(34, 197, 94, 0.95), inset 0 0 10px rgba(34, 197, 94, 0.6);
+        opacity: 1;
+        transform: scale(1.06);
+      }
+    }
+
+    @keyframes shieldPulseRed {
+      0%, 100% {
+        box-shadow: 0 0 6px rgba(239, 68, 68, 0.4), inset 0 0 4px rgba(239, 68, 68, 0.2);
+        opacity: 0.82;
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.95), inset 0 0 10px rgba(239, 68, 68, 0.6);
+        opacity: 1;
+        transform: scale(1.06);
+      }
+    }
+
+    .dropzone-hover {
+      border-color: #38bdf8 !important;
+      background-color: rgba(14, 165, 233, 0.25) !important;
+      transform: scale(1.02);
+    }
+
+    .pod-locked {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+      border-color: #22c55e !important;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.7), inset 0 0 12px rgba(34, 197, 94, 0.4) !important;
+    }
   </style>
 </head>
 
@@ -564,13 +626,13 @@
           <span class="hidden sm:inline">Perfiles</span>
         </button>
         <div class="w-7 h-7 rounded-lg bg-red-600 text-white flex items-center justify-center shadow-lg animate-pulse shrink-0">
-          <i class="fa-solid fa-triangle-exclamation text-xs"></i>
+          <i class="fa-solid fa-shield-halved text-xs"></i>
         </div>
         <div>
           <h2 class="font-display font-black text-xs text-red-400 uppercase tracking-wide leading-none">
-            ¡Alarma Nivel Alfa!
+            ¡Comandante Doydo: Alarma T-Rex!
           </h2>
-          <p class="text-[8px] text-slate-300">Doydo: Laboratorio T-Rex 🦖</p>
+          <p class="text-[8px] text-slate-300">Despliega guardias y escudos para sellar las 9 compuertas 🦖</p>
         </div>
       </div>
 
@@ -586,172 +648,192 @@
       </div>
     </header>
 
-    <!-- Main Dinosaur Lab Viewport (Zero-Scroll Flex Grid) -->
-    <div class="flex-1 grid grid-cols-12 gap-2 my-1.5 overflow-hidden">
+    <!-- TOP HOLOGRAPHIC SECURITY LOCK PODS (Visual Code Verification) -->
+    <div class="grid grid-cols-3 gap-2 my-1 shrink-0">
       
-      <!-- LEFT COL: T-REX CONTAINMENT CHAMBER & BLAST GATE (Cols 1-5) -->
-      <div class="col-span-12 sm:col-span-5 bg-slate-900/85 border border-red-500/30 rounded-xl p-2.5 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
+      <!-- Centenas Lock Pod 🔴 -->
+      <div id="podCentena" class="bg-slate-900/90 border-2 border-red-500/40 rounded-xl p-1.5 flex items-center justify-between transition-all duration-300 backdrop-blur-md shadow">
+        <div class="flex items-center gap-1.5">
+          <span class="w-6 h-6 rounded-lg bg-red-950/80 border border-red-500 flex items-center justify-center text-xs text-red-400 font-bold">🔴</span>
+          <div>
+            <div class="text-[8px] text-slate-400 font-bold uppercase">Centenas (x100)</div>
+            <div class="font-display font-black text-xs sm:text-sm text-red-400 leading-none flex items-center gap-1">
+              <span id="podCentenaCount">0</span> / <span id="podCentenaTarget">3</span>
+              <span id="podCentenaVal" class="text-[9px] font-mono text-slate-400">(0)</span>
+            </div>
+          </div>
+        </div>
+        <div id="podCentenaLock" class="w-6 h-6 rounded-lg bg-slate-950 border border-slate-700 flex items-center justify-center text-xs text-slate-500">
+          <i class="fa-solid fa-lock-open"></i>
+        </div>
+      </div>
+
+      <!-- Decenas Lock Pod 🟢 -->
+      <div id="podDecena" class="bg-slate-900/90 border-2 border-emerald-500/40 rounded-xl p-1.5 flex items-center justify-between transition-all duration-300 backdrop-blur-md shadow">
+        <div class="flex items-center gap-1.5">
+          <span class="w-6 h-6 rounded-lg bg-emerald-950/80 border border-emerald-500 flex items-center justify-center text-xs text-emerald-400 font-bold">🟢</span>
+          <div>
+            <div class="text-[8px] text-slate-400 font-bold uppercase">Decenas (x10)</div>
+            <div class="font-display font-black text-xs sm:text-sm text-emerald-400 leading-none flex items-center gap-1">
+              <span id="podDecenaCount">0</span> / <span id="podDecenaTarget">7</span>
+              <span id="podDecenaVal" class="text-[9px] font-mono text-slate-400">(0)</span>
+            </div>
+          </div>
+        </div>
+        <div id="podDecenaLock" class="w-6 h-6 rounded-lg bg-slate-950 border border-slate-700 flex items-center justify-center text-xs text-slate-500">
+          <i class="fa-solid fa-lock-open"></i>
+        </div>
+      </div>
+
+      <!-- Unidades Lock Pod 🔵 -->
+      <div id="podUnidad" class="bg-slate-900/90 border-2 border-blue-500/40 rounded-xl p-1.5 flex items-center justify-between transition-all duration-300 backdrop-blur-md shadow">
+        <div class="flex items-center gap-1.5">
+          <span class="w-6 h-6 rounded-lg bg-blue-950/80 border border-blue-500 flex items-center justify-center text-xs text-blue-400 font-bold">🔵</span>
+          <div>
+            <div class="text-[8px] text-slate-400 font-bold uppercase">Unidades (x1)</div>
+            <div class="font-display font-black text-xs sm:text-sm text-blue-400 leading-none flex items-center gap-1">
+              <span id="podUnidadCount">0</span> / <span id="podUnidadTarget">8</span>
+              <span id="podUnidadVal" class="text-[9px] font-mono text-slate-400">(0)</span>
+            </div>
+          </div>
+        </div>
+        <div id="podUnidadLock" class="w-6 h-6 rounded-lg bg-slate-950 border border-slate-700 flex items-center justify-center text-xs text-slate-500">
+          <i class="fa-solid fa-lock-open"></i>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MAIN GAMEPLAY WORKSPACE GRID -->
+    <div class="flex-1 grid grid-cols-12 gap-2 my-0.5 overflow-hidden">
+      
+      <!-- LEFT COL: TACTICAL DINOSAUR ARENA & SQUAD EMITTER (Cols 1-5) -->
+      <div class="col-span-12 sm:col-span-5 bg-slate-900/85 border border-red-500/30 rounded-xl p-2 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
         
-        <!-- Top Chamber Info -->
         <div class="flex items-center justify-between text-[9px] font-bold border-b border-slate-800 pb-1">
-          <span class="text-rose-400 flex items-center gap-1"><i class="fa-solid fa-shield-virus"></i> Jaula de Titanio</span>
-          <span id="dinoThreatLevel" class="text-red-400 bg-red-950/80 border border-red-800 px-1.5 py-0.2 rounded font-mono animate-pulse">PELIGRO: 98%</span>
+          <span class="text-rose-400 flex items-center gap-1"><i class="fa-solid fa-satellite-dish"></i> Radar de Contención</span>
+          <span id="dinoThreatLevel" class="text-red-400 bg-red-950/80 border border-red-800 px-1.5 py-0.2 rounded font-mono animate-pulse">ALERTA ALFA</span>
         </div>
 
-        <!-- Visual T-Rex & Titanium Door Cage Canvas -->
-        <div class="flex-1 relative my-1 bg-gradient-to-b from-slate-950 via-slate-900 to-red-950/40 rounded-lg border border-slate-800 flex items-center justify-center overflow-hidden">
+        <!-- Visual T-Rex Radar Arena with Circling Guard Shields -->
+        <div id="dinoRadarArena" class="flex-1 relative my-1 bg-gradient-to-b from-slate-950 via-slate-900 to-red-950/40 rounded-lg border border-slate-800 flex items-center justify-center overflow-hidden min-h-[135px]">
           
-          <!-- Warning Strip Background -->
-          <div class="absolute inset-0 opacity-10 pointer-events-none" style="background: repeating-linear-gradient(45deg, #ef4444, #ef4444 10px, transparent 10px, transparent 20px);"></div>
+          <!-- Concentric Radar Rings -->
+          <div class="absolute w-36 h-36 rounded-full border border-cyan-500/20 pointer-events-none animate-ping opacity-20"></div>
+          <div class="absolute w-28 h-28 rounded-full border border-red-500/30 pointer-events-none"></div>
+          <div class="absolute w-16 h-16 rounded-full border border-sky-400/40 pointer-events-none"></div>
 
-          <!-- T-Rex SVG Animated Avatar -->
-          <div id="trexAvatar" class="relative z-10 flex flex-col items-center animate-trex-roar">
-            <div class="text-5xl sm:text-6xl filter drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]">🦖</div>
-            <div class="text-[9px] font-display font-black text-red-400 bg-black/80 px-2 py-0.5 rounded-full border border-red-600 mt-1">
-              T-REX FURIOSO
+          <!-- T-Rex SVG Avatar -->
+          <div id="trexAvatar" class="relative z-10 flex flex-col items-center animate-trex-roar cursor-pointer" onclick="playTrexRoarSound()" title="¡T-Rex Furioso!">
+            <div class="text-4xl sm:text-5xl filter drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]">🦖</div>
+            <div class="text-[8px] font-display font-black text-red-400 bg-black/80 px-2 py-0.5 rounded-full border border-red-600 -mt-1">
+              T-REX
             </div>
           </div>
 
-          <!-- Laser Grid Lines -->
-          <div class="absolute inset-0 flex justify-around pointer-events-none opacity-40">
-            <div class="w-0.5 h-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></div>
-            <div class="w-0.5 h-full bg-red-500 shadow-[0_0_8px_#ef4444]"></div>
-            <div class="w-0.5 h-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></div>
+          <!-- Pulsing Blue Guard Shields in the Arena -->
+          <div id="arenaShieldsPool" class="absolute inset-0 pointer-events-none p-2 flex flex-wrap items-center justify-around">
+            <!-- Dynamic pulsing guards rendered by JS -->
           </div>
 
-          <!-- Titanium Blast Door Overlay (Slams down on correct answer) -->
+          <!-- Titanium Blast Door Overlay -->
           <div id="titaniumBlastDoor" class="hidden absolute inset-0 z-30 titanium-gate flex flex-col items-center justify-center p-3 animate-slam-door">
             <div class="w-12 h-12 rounded-full bg-slate-900 border-2 border-emerald-400 flex items-center justify-center text-emerald-400 text-2xl shadow-lg glow-green">
               <i class="fa-solid fa-lock"></i>
             </div>
-            <div class="font-display font-black text-sm sm:text-base text-emerald-300 mt-1 uppercase tracking-wider text-center">
-              ¡PUERTA DE TITANIO BLOQUEADA!
+            <div class="font-display font-black text-xs sm:text-sm text-emerald-300 mt-1 uppercase tracking-wider text-center">
+              ¡COMPUERTA DE TITANIO CERRADA! 💥
             </div>
-            <div class="text-[9px] text-slate-300 font-mono">Contención al 100%</div>
+            <div class="text-[8px] text-slate-300 font-mono">T-Rex Contenido al 100%</div>
           </div>
 
         </div>
 
-        <!-- Target Code Display -->
-        <div class="bg-slate-950 border-2 border-red-500/50 rounded-xl p-2 text-center">
-          <div class="text-[8px] text-slate-400 uppercase font-bold">Código de Seguridad Requerido</div>
-          <div class="flex items-center justify-center gap-2 mt-0.5">
-            <span class="text-xs text-red-400 font-bold">CÓDIGO:</span>
-            <span id="dinoTargetCode" class="font-display font-black text-xl sm:text-2xl text-amber-300 tracking-widest font-mono bg-red-950/60 px-3 py-0.5 rounded-lg border border-red-700/60">
-              378
-            </span>
+        <!-- Quick Deploy & Fusion Dispatcher Controls -->
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-1.5 space-y-1">
+          <div class="text-[8px] text-slate-400 font-bold uppercase flex items-center justify-between">
+            <span>Despachar al Puesto (Arrastra o Toca):</span>
+            <span class="text-cyan-400 font-mono">Comandante Doydo</span>
+          </div>
+
+          <!-- 3 Quick Dispatch Buttons (Click or Drag from here!) -->
+          <div class="grid grid-cols-3 gap-1">
+            <button onclick="dispatchGuard('unidad')" draggable="true" ondragstart="handleDragStart(event, 'unidad')" class="py-1 px-1.5 rounded-lg bg-blue-950/80 hover:bg-blue-900 border border-blue-500/50 text-blue-300 text-[9px] font-bold flex items-center justify-center gap-1 active:scale-95 shadow cursor-grab shield-pulse-blue" title="Despachar 1 Guardia Azul (Unidad)">
+              <span>🛡️</span><span>+1 🔵</span>
+            </button>
+            <button onclick="dispatchGuard('decena')" draggable="true" ondragstart="handleDragStart(event, 'decena')" class="py-1 px-1.5 rounded-lg bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-500/50 text-emerald-300 text-[9px] font-bold flex items-center justify-center gap-1 active:scale-95 shadow cursor-grab shield-pulse-green" title="Despachar 1 Escuadrón Verde (Decena)">
+              <span>🛡️</span><span>+10 🟢</span>
+            </button>
+            <button onclick="dispatchGuard('centena')" draggable="true" ondragstart="handleDragStart(event, 'centena')" class="py-1 px-1.5 rounded-lg bg-red-950/80 hover:bg-red-900 border border-red-500/50 text-red-300 text-[9px] font-bold flex items-center justify-center gap-1 active:scale-95 shadow cursor-grab shield-pulse-red" title="Despachar 1 Búnker Rojo (Centena)">
+              <span>🏰</span><span>+100 🔴</span>
+            </button>
+          </div>
+
+          <!-- Fusion Reactor Mini Strip -->
+          <div class="grid grid-cols-2 gap-1 pt-0.5 border-t border-slate-800">
+            <button onclick="fuseUnitsToDecade()" class="py-0.5 px-1 rounded bg-slate-900 hover:bg-slate-800 border border-blue-500/30 text-emerald-400 text-[8px] font-bold flex items-center justify-center gap-1 active:scale-95">
+              <span>⚡ 10🔵 ➔ 1🟢</span>
+            </button>
+            <button onclick="fuseDecadesToHundred()" class="py-0.5 px-1 rounded bg-slate-900 hover:bg-slate-800 border border-emerald-500/30 text-red-400 text-[8px] font-bold flex items-center justify-center gap-1 active:scale-95">
+              <span>⚡ 10🟢 ➔ 1🔴</span>
+            </button>
           </div>
         </div>
 
       </div>
 
-      <!-- RIGHT COL: REACTOR DE FUSIÓN BASE-10 & SECURITY KEYPAD (Cols 6-12) -->
+      <!-- RIGHT COL: 3 COMMAND POST DROPZONES (Cols 6-12) -->
       <div class="col-span-12 sm:col-span-7 flex flex-col gap-1.5 justify-between overflow-hidden">
         
-        <!-- BASE-10 FUSION REACTOR PANEL -->
-        <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-2 flex flex-col justify-between backdrop-blur-md">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-1 text-[9px] sm:text-[10px]">
-            <span class="font-bold text-cyan-300 flex items-center gap-1">
-              <i class="fa-solid fa-atom text-purple-400"></i> Reactor de Fusión Base-10
+        <!-- Puesto 1: Centenas 🔴 (Búnkers de 100) -->
+        <div id="dropzoneCentena" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event, 'centena')" ondrop="handleDrop(event, 'centena')" class="flex-1 bg-slate-900/80 border-2 border-red-500/30 rounded-xl p-1.5 flex flex-col justify-between backdrop-blur-md transition-all duration-300 min-h-[58px]">
+          <div class="flex items-center justify-between text-[9px] font-bold border-b border-slate-800/80 pb-0.5">
+            <span class="text-red-400 flex items-center gap-1">
+              <i class="fa-solid fa-shield"></i> Puesto Centenas 🔴 (Búnkers de 100)
             </span>
-            <span class="text-slate-400">Banco de Elementos</span>
+            <div class="flex items-center gap-1.5">
+              <span id="labelCentenaCount" class="font-mono text-red-300 font-bold bg-slate-950 px-1.5 py-0.2 rounded border border-red-900">0 Búnkers</span>
+              <button onclick="clearPost('centena')" class="text-slate-500 hover:text-red-400 text-[8px] px-1" title="Vaciar puesto">✕</button>
+            </div>
           </div>
-
-          <!-- Interactive Fusion Controls -->
-          <div class="grid grid-cols-2 gap-1.5 my-1.5">
-            <!-- Fusion 1: 10 Blue Units -> 1 Green Decade -->
-            <button onclick="fuseUnitsToDecade()" class="group bg-slate-950/90 hover:bg-slate-800 border border-blue-500/40 hover:border-emerald-400 rounded-xl p-1.5 flex items-center justify-between transition-all active:scale-95 shadow">
-              <div class="flex items-center gap-1 text-[9px]">
-                <span class="w-3.5 h-3.5 rounded bg-blue-500 text-white font-black flex items-center justify-center text-[7px]">10🔵</span>
-                <i class="fa-solid fa-arrow-right text-[8px] text-slate-400 group-hover:text-emerald-400"></i>
-                <span class="w-3.5 h-3.5 rounded bg-emerald-500 text-slate-950 font-black flex items-center justify-center text-[7px]">1🟢</span>
-              </div>
-              <span class="text-[9px] font-bold text-emerald-400 font-display">Fusionar Decena</span>
-            </button>
-
-            <!-- Fusion 2: 10 Green Decades -> 1 Red Hundred -->
-            <button onclick="fuseDecadesToHundred()" class="group bg-slate-950/90 hover:bg-slate-800 border border-emerald-500/40 hover:border-red-400 rounded-xl p-1.5 flex items-center justify-between transition-all active:scale-95 shadow">
-              <div class="flex items-center gap-1 text-[9px]">
-                <span class="w-3.5 h-3.5 rounded bg-emerald-500 text-slate-950 font-black flex items-center justify-center text-[7px]">10🟢</span>
-                <i class="fa-solid fa-arrow-right text-[8px] text-slate-400 group-hover:text-red-400"></i>
-                <span class="w-3.5 h-3.5 rounded bg-red-500 text-white font-black flex items-center justify-center text-[7px]">1🔴</span>
-              </div>
-              <span class="text-[9px] font-bold text-red-400 font-display">Fusionar Centena</span>
-            </button>
+          <!-- Centenas Formations -->
+          <div id="rowCentenas" class="flex-1 my-0.5 bg-slate-950/90 rounded-lg border border-slate-800 p-1 flex items-center gap-1.5 overflow-x-auto custom-scroll">
+            <div class="text-slate-600 text-[8px] italic w-full text-center pointer-events-none">Arrastra o despacha búnkers rojos 🔴 aquí...</div>
           </div>
         </div>
 
-        <!-- 3 INPUT SLOTS: CENTENAS 🔴, DECENAS 🟢, UNIDADES 🔵 -->
-        <div class="flex-1 bg-slate-900/80 border border-slate-800 rounded-xl p-2 flex flex-col justify-between backdrop-blur-md">
-          <div class="text-[9px] text-slate-400 font-bold flex items-center justify-between border-b border-slate-800 pb-1">
-            <span>Descompón el número para cerrar los cerrojos de la puerta:</span>
-            <span class="text-amber-400 font-mono text-[8px]">1🔴=100 | 1🟢=10 | 1🔵=1</span>
+        <!-- Puesto 2: Decenas 🟢 (Escuadrones de 10) -->
+        <div id="dropzoneDecena" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event, 'decena')" ondrop="handleDrop(event, 'decena')" class="flex-1 bg-slate-900/80 border-2 border-emerald-500/30 rounded-xl p-1.5 flex flex-col justify-between backdrop-blur-md transition-all duration-300 min-h-[58px]">
+          <div class="flex items-center justify-between text-[9px] font-bold border-b border-slate-800/80 pb-0.5">
+            <span class="text-emerald-400 flex items-center gap-1">
+              <i class="fa-solid fa-shield"></i> Puesto Decenas 🟢 (Escuadrones de 10)
+            </span>
+            <div class="flex items-center gap-1.5">
+              <span id="labelDecenaCount" class="font-mono text-emerald-300 font-bold bg-slate-950 px-1.5 py-0.2 rounded border border-emerald-900">0 Escuadrones</span>
+              <button onclick="clearPost('decena')" class="text-slate-500 hover:text-emerald-400 text-[8px] px-1" title="Vaciar puesto">✕</button>
+            </div>
           </div>
-
-          <!-- Slots Container -->
-          <div class="grid grid-cols-3 gap-2 my-1">
-            
-            <!-- Centenas Slot (🔴 Rojo) -->
-            <div class="bg-slate-950/90 border-2 border-red-500/50 rounded-xl p-1.5 text-center flex flex-col justify-between shadow">
-              <div class="text-[9px] font-black text-red-400 uppercase flex items-center justify-between">
-                <span>Centenas</span>
-                <span class="text-xs">🔴</span>
-              </div>
-              <div id="dinoValCentena" class="font-display font-black text-2xl sm:text-3xl text-red-400 my-0.5">0</div>
-              <div class="flex items-center justify-center gap-1">
-                <button onclick="adjustDinoInput('centena', -1)" class="w-6 h-6 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs active:scale-90">-</button>
-                <button onclick="adjustDinoInput('centena', 1)" class="w-6 h-6 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-xs active:scale-90">+</button>
-              </div>
-              <div id="dinoCalcCentena" class="text-[8px] text-red-300/70 font-mono mt-0.5">0 x 100 = 0</div>
-            </div>
-
-            <!-- Decenas Slot (🟢 Verde - según especificación de Doydo) -->
-            <div class="bg-slate-950/90 border-2 border-emerald-500/50 rounded-xl p-1.5 text-center flex flex-col justify-between shadow">
-              <div class="text-[9px] font-black text-emerald-400 uppercase flex items-center justify-between">
-                <span>Decenas</span>
-                <span class="text-xs">🟢</span>
-              </div>
-              <div id="dinoValDecena" class="font-display font-black text-2xl sm:text-3xl text-emerald-400 my-0.5">0</div>
-              <div class="flex items-center justify-center gap-1">
-                <button onclick="adjustDinoInput('decena', -1)" class="w-6 h-6 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs active:scale-90">-</button>
-                <button onclick="adjustDinoInput('decena', 1)" class="w-6 h-6 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs active:scale-90">+</button>
-              </div>
-              <div id="dinoCalcDecena" class="text-[8px] text-emerald-300/70 font-mono mt-0.5">0 x 10 = 0</div>
-            </div>
-
-            <!-- Unidades Slot (🔵 Azul - según especificación de Doydo) -->
-            <div class="bg-slate-950/90 border-2 border-blue-500/50 rounded-xl p-1.5 text-center flex flex-col justify-between shadow">
-              <div class="text-[9px] font-black text-blue-400 uppercase flex items-center justify-between">
-                <span>Unidades</span>
-                <span class="text-xs">🔵</span>
-              </div>
-              <div id="dinoValUnidad" class="font-display font-black text-2xl sm:text-3xl text-blue-400 my-0.5">0</div>
-              <div class="flex items-center justify-center gap-1">
-                <button onclick="adjustDinoInput('unidad', -1)" class="w-6 h-6 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs active:scale-90">-</button>
-                <button onclick="adjustDinoInput('unidad', 1)" class="w-6 h-6 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs active:scale-90">+</button>
-              </div>
-              <div id="dinoCalcUnidad" class="text-[8px] text-blue-300/70 font-mono mt-0.5">0 x 1 = 0</div>
-            </div>
-
+          <!-- Decenas Formations -->
+          <div id="rowDecenas" class="flex-1 my-0.5 bg-slate-950/90 rounded-lg border border-slate-800 p-1 flex items-center gap-1.5 overflow-x-auto custom-scroll">
+            <div class="text-slate-600 text-[8px] italic w-full text-center pointer-events-none">Arrastra o despacha escuadrones verdes 🟢 aquí...</div>
           </div>
+        </div>
 
-          <!-- Total Built & Confirmation Button -->
-          <div class="flex items-center gap-2 pt-1 border-t border-slate-800">
-            <div class="bg-slate-950 px-2.5 py-1.5 rounded-xl border border-slate-800 text-center">
-              <div class="text-[7px] text-slate-400 uppercase">Total Ingresado</div>
-              <div id="dinoCurrentTotal" class="font-display font-black text-sm text-cyan-300">0</div>
+        <!-- Puesto 3: Unidades 🔵 (Guardias de 1) -->
+        <div id="dropzoneUnidad" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event, 'unidad')" ondrop="handleDrop(event, 'unidad')" class="flex-1 bg-slate-900/80 border-2 border-blue-500/30 rounded-xl p-1.5 flex flex-col justify-between backdrop-blur-md transition-all duration-300 min-h-[58px]">
+          <div class="flex items-center justify-between text-[9px] font-bold border-b border-slate-800/80 pb-0.5">
+            <span class="text-blue-400 flex items-center gap-1">
+              <i class="fa-solid fa-shield"></i> Puesto Unidades 🔵 (Guardias de 1)
+            </span>
+            <div class="flex items-center gap-1.5">
+              <span id="labelUnidadCount" class="font-mono text-blue-300 font-bold bg-slate-950 px-1.5 py-0.2 rounded border border-blue-900">0 Guardias</span>
+              <button onclick="clearPost('unidad')" class="text-slate-500 hover:text-blue-400 text-[8px] px-1" title="Vaciar puesto">✕</button>
             </div>
-
-            <button id="btnDinoSubmit" onclick="checkDinoContainmentCode()" class="flex-1 bg-gradient-to-r from-red-600 via-rose-600 to-red-500 hover:from-red-500 hover:to-rose-400 text-white font-display font-black text-xs sm:text-sm py-2 px-3 rounded-xl shadow-lg shadow-red-600/40 transition-all transform active:scale-95 flex items-center justify-center gap-2 border border-red-400/40">
-              <i class="fa-solid fa-lock text-sm"></i>
-              <span>¡CERRAR COMPUERTA DE TITANIO! 💥</span>
-            </button>
-
-            <button onclick="resetDinoInputs()" class="px-2 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs border border-slate-700 transition-all" title="Limpiar Casillas">
-              <i class="fa-solid fa-rotate-left"></i>
-            </button>
           </div>
-
+          <!-- Unidades Formations -->
+          <div id="rowUnidades" class="flex-1 my-0.5 bg-slate-950/90 rounded-lg border border-slate-800 p-1 flex items-center gap-1 overflow-x-auto custom-scroll">
+            <div class="text-slate-600 text-[8px] italic w-full text-center pointer-events-none">Arrastra o despacha guardias azules 🔵 aquí...</div>
+          </div>
         </div>
 
       </div>
@@ -761,14 +843,14 @@
     <!-- Dino Bottom Instruction Dialog -->
     <div class="bg-slate-900/95 border border-red-500/40 rounded-xl p-2 flex items-center justify-between gap-2 shrink-0">
       <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-red-600 to-sky-500 flex items-center justify-center text-sm shadow">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-red-600 to-sky-500 flex items-center justify-center text-sm shadow shrink-0">
           🤖
         </div>
         <p id="dinoAraBotSpeech" class="text-[10px] sm:text-xs text-slate-200 font-medium">
-          ¡Doydo, el T-Rex quiere escapar! Ingresa el código <span class="text-amber-300 font-bold font-mono">378</span> poniendo 3 Centenas 🔴, 7 Decenas 🟢 y 8 Unidades 🔵.
+          ¡Doydo, toma los guardias y llena los 3 puestos de mando para sellar la compuerta!
         </p>
       </div>
-      <div id="dinoLevelFeedback" class="text-[10px] font-bold text-emerald-400"></div>
+      <div id="dinoLevelFeedback" class="text-[10px] font-bold text-emerald-400 shrink-0"></div>
     </div>
 
   </section>
@@ -1396,8 +1478,10 @@
     }
 
     /* =========================================================================
-       5. JUEGO 2: LABORATORIO DINOSAURIO - ESCAPE DEL T-REX (DOYDO - RICARDO)
+       5. JUEGO 2: LABORATORIO DINOSAURIO - COMANDANTE DE ESCUDOS (DOYDO)
        ========================================================================= */
+    let draggedGuardType = null;
+
     function loadDinoLevel(index) {
       if (index >= appState.dino.levels.length) {
         showSecretLesson();
@@ -1408,104 +1492,267 @@
       const currentLvl = appState.dino.levels[index];
 
       document.getElementById('dinoCurrentLevelLabel').innerText = `${index + 1} / 9`;
-      document.getElementById('dinoTargetCode').innerText = currentLvl.code;
+      document.getElementById('podCentenaTarget').innerText = currentLvl.c;
+      document.getElementById('podDecenaTarget').innerText = currentLvl.d;
+      document.getElementById('podUnidadTarget').innerText = currentLvl.u;
+
       document.getElementById('dinoAraBotSpeech').innerHTML = 
-        `¡Doydo, peligro en puerta ${index + 1}! Código <span class="text-amber-300 font-mono font-bold">${currentLvl.code}</span>. ${currentLvl.hint}`;
+        `¡Comandante Doydo, puerta ${index + 1}! Código <span class="text-amber-300 font-mono font-bold">${currentLvl.code}</span>: Despliega ${currentLvl.c}🔴 Centenas, ${currentLvl.d}🟢 Decenas y ${currentLvl.u}🔵 Unidades.`;
       document.getElementById('dinoLevelFeedback').innerText = '';
 
       // Reset door state
       const door = document.getElementById('titaniumBlastDoor');
       door.classList.add('hidden');
 
-      // Reset inputs
-      resetDinoInputs(false);
-    }
-
-    function adjustDinoInput(type, delta) {
-      playClickSound();
-      if (type === 'centena') {
-        appState.dino.inputC = Math.max(0, Math.min(9, appState.dino.inputC + delta));
-      } else if (type === 'decena') {
-        appState.dino.inputD = Math.max(0, Math.min(9, appState.dino.inputD + delta));
-      } else if (type === 'unidad') {
-        appState.dino.inputU = Math.max(0, Math.min(9, appState.dino.inputU + delta));
-      }
-      updateDinoInputsUI();
-    }
-
-    function resetDinoInputs(playSound = true) {
-      if (playSound) playClickSound();
+      // Reset input amounts
       appState.dino.inputC = 0;
       appState.dino.inputD = 0;
       appState.dino.inputU = 0;
-      updateDinoInputsUI();
+
+      renderArenaGuards();
+      updateDinoTacticalUI();
     }
 
-    function updateDinoInputsUI() {
-      const c = appState.dino.inputC;
-      const d = appState.dino.inputD;
-      const u = appState.dino.inputU;
-      const total = (c * 100) + (d * 10) + u;
+    function renderArenaGuards() {
+      const pool = document.getElementById('arenaShieldsPool');
+      if (!pool) return;
+      pool.innerHTML = '';
+      
+      // Spawn tactical patrol shields around the T-Rex
+      const positions = [
+        { top: '10%', left: '15%' },
+        { top: '15%', right: '15%' },
+        { bottom: '15%', left: '20%' },
+        { bottom: '10%', right: '20%' },
+        { top: '50%', left: '8%' },
+        { top: '50%', right: '8%' }
+      ];
 
-      document.getElementById('dinoValCentena').innerText = c;
-      document.getElementById('dinoValDecena').innerText = d;
-      document.getElementById('dinoValUnidad').innerText = u;
+      positions.forEach((pos, idx) => {
+        const shield = document.createElement('div');
+        shield.className = 'absolute pointer-events-auto cursor-pointer text-xs p-1 rounded-full bg-sky-950/80 border border-cyan-400/80 shadow-lg shield-pulse-blue transition-all transform hover:scale-125 active:scale-95';
+        shield.style.top = pos.top || 'auto';
+        shield.style.left = pos.left || 'auto';
+        shield.style.right = pos.right || 'auto';
+        shield.style.bottom = pos.bottom || 'auto';
+        shield.innerHTML = '🛡️';
+        shield.title = 'Toca para enviar guardia azul a la base';
+        shield.onclick = () => dispatchGuard('unidad');
+        shield.draggable = true;
+        shield.ondragstart = (e) => handleDragStart(e, 'unidad');
+        pool.appendChild(shield);
+      });
+    }
 
-      document.getElementById('dinoCalcCentena').innerText = `${c} x 100 = ${c * 100}`;
-      document.getElementById('dinoCalcDecena').innerText = `${d} x 10 = ${d * 10}`;
-      document.getElementById('dinoCalcUnidad').innerText = `${u} x 1 = ${u * 1}`;
+    /* Drag and Drop Handlers */
+    function handleDragStart(e, type) {
+      draggedGuardType = type;
+      if (e.dataTransfer) {
+        e.dataTransfer.setData('text/plain', type);
+      }
+    }
 
-      document.getElementById('dinoCurrentTotal').innerText = total;
+    function handleDragOver(e) {
+      e.preventDefault();
+      const dropzone = e.currentTarget;
+      if (dropzone) dropzone.classList.add('dropzone-hover');
+    }
+
+    function handleDragLeave(e, type) {
+      const dropzone = e.currentTarget;
+      if (dropzone) dropzone.classList.remove('dropzone-hover');
+    }
+
+    function handleDrop(e, targetType) {
+      e.preventDefault();
+      const dropzone = e.currentTarget;
+      if (dropzone) dropzone.classList.remove('dropzone-hover');
+
+      const incomingType = e.dataTransfer ? e.dataTransfer.getData('text/plain') : draggedGuardType;
+      if (incomingType === targetType) {
+        dispatchGuard(targetType);
+      } else {
+        playAlarmSound();
+      }
+    }
+
+    function dispatchGuard(type) {
+      initAudio();
+      playClickSound();
+
+      if (type === 'centena') {
+        appState.dino.inputC = Math.min(9, appState.dino.inputC + 1);
+        triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.35, '#ef4444', 12);
+      } else if (type === 'decena') {
+        appState.dino.inputD = Math.min(9, appState.dino.inputD + 1);
+        triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.5, '#22c55e', 12);
+      } else if (type === 'unidad') {
+        appState.dino.inputU = Math.min(10, appState.dino.inputU + 1);
+        triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.65, '#38bdf8', 12);
+      }
+
+      updateDinoTacticalUI();
+    }
+
+    function removeGuard(type) {
+      playClickSound();
+      if (type === 'centena') appState.dino.inputC = Math.max(0, appState.dino.inputC - 1);
+      else if (type === 'decena') appState.dino.inputD = Math.max(0, appState.dino.inputD - 1);
+      else if (type === 'unidad') appState.dino.inputU = Math.max(0, appState.dino.inputU - 1);
+      updateDinoTacticalUI();
+    }
+
+    function clearPost(type) {
+      playClickSound();
+      if (type === 'centena') appState.dino.inputC = 0;
+      else if (type === 'decena') appState.dino.inputD = 0;
+      else if (type === 'unidad') appState.dino.inputU = 0;
+      updateDinoTacticalUI();
     }
 
     function fuseUnitsToDecade() {
-      playFusionSound('decena');
-      triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.35, '#22c55e', 25);
-      appState.dino.inputD = Math.min(9, appState.dino.inputD + 1);
-      updateDinoInputsUI();
+      if (appState.dino.inputU >= 10) {
+        playFusionSound('decena');
+        triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.5, '#22c55e', 25);
+        appState.dino.inputU -= 10;
+        appState.dino.inputD = Math.min(9, appState.dino.inputD + 1);
+        updateDinoTacticalUI();
+      } else if (appState.dino.inputU > 0) {
+        // Automatically converts units up to 10 if commander presses fusion
+        playFusionSound('decena');
+        triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.5, '#22c55e', 20);
+        appState.dino.inputU = 0;
+        appState.dino.inputD = Math.min(9, appState.dino.inputD + 1);
+        updateDinoTacticalUI();
+      }
     }
 
     function fuseDecadesToHundred() {
-      playFusionSound('centena');
-      triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.35, '#ef4444', 25);
-      appState.dino.inputC = Math.min(9, appState.dino.inputC + 1);
-      updateDinoInputsUI();
+      if (appState.dino.inputD >= 10) {
+        playFusionSound('centena');
+        triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.35, '#ef4444', 25);
+        appState.dino.inputD -= 10;
+        appState.dino.inputC = Math.min(9, appState.dino.inputC + 1);
+        updateDinoTacticalUI();
+      } else if (appState.dino.inputD > 0) {
+        playFusionSound('centena');
+        triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.35, '#ef4444', 20);
+        appState.dino.inputD = 0;
+        appState.dino.inputC = Math.min(9, appState.dino.inputC + 1);
+        updateDinoTacticalUI();
+      }
     }
 
-    function checkDinoContainmentCode() {
+    function updateDinoTacticalUI() {
       const lvl = appState.dino.levels[appState.dino.currentLevelIndex];
       const c = appState.dino.inputC;
       const d = appState.dino.inputD;
       const u = appState.dino.inputU;
-      const total = (c * 100) + (d * 10) + u;
 
-      if (total === lvl.code && c === lvl.c && d === lvl.d && u === lvl.u) {
-        // Slam blast door shut in T-Rex's face!
-        playTitaniumDoorSlamSound();
-        triggerParticleBurst(window.innerWidth * 0.3, window.innerHeight * 0.5, '#ef4444', 40);
-        triggerParticleBurst(window.innerWidth * 0.3, window.innerHeight * 0.5, '#22c55e', 30);
+      // Update Pod counts and values
+      document.getElementById('podCentenaCount').innerText = c;
+      document.getElementById('podCentenaVal').innerText = `(${c * 100})`;
+      document.getElementById('podDecenaCount').innerText = d;
+      document.getElementById('podDecenaVal').innerText = `(${d * 10})`;
+      document.getElementById('podUnidadCount').innerText = u;
+      document.getElementById('podUnidadVal').innerText = `(${u * 1})`;
 
-        const door = document.getElementById('titaniumBlastDoor');
-        door.classList.remove('hidden');
+      // Update Dropzone Counts
+      document.getElementById('labelCentenaCount').innerText = `${c} Búnkers (${c * 100})`;
+      document.getElementById('labelDecenaCount').innerText = `${d} Escuadrones (${d * 10})`;
+      document.getElementById('labelUnidadCount').innerText = `${u} Guardias (${u * 1})`;
 
-        document.getElementById('dinoLevelFeedback').className = 'text-[10px] font-bold text-emerald-400';
-        document.getElementById('dinoLevelFeedback').innerText = `¡COMPUERTA ${appState.dino.currentLevelIndex + 1} SELLADA! 💥`;
+      // Render Visual Guard Elements into Dropzones
+      renderPostElements('rowCentenas', c, 'centena');
+      renderPostElements('rowDecenas', d, 'decena');
+      renderPostElements('rowUnidades', u, 'unidad');
 
-        setTimeout(() => {
-          if (appState.dino.currentLevelIndex + 1 < appState.dino.levels.length) {
-            loadDinoLevel(appState.dino.currentLevelIndex + 1);
-          } else {
-            showSecretLesson();
-          }
-        }, 1600);
+      // Check Column Locks
+      const isCLocked = (c === lvl.c);
+      const isDLocked = (d === lvl.d);
+      const isULocked = (u === lvl.u);
 
-      } else {
-        // Incorrect Code Alert
-        playAlarmSound();
-        playTrexRoarSound();
-        document.getElementById('dinoLevelFeedback').className = 'text-[10px] font-bold text-rose-400';
-        document.getElementById('dinoLevelFeedback').innerText = `¡CÓDIGO INCORRECTO (${total})! El T-Rex empuja la puerta.`;
+      updatePodLockUI('podCentena', 'podCentenaLock', isCLocked, '🔴');
+      updatePodLockUI('podDecena', 'podDecenaLock', isDLocked, '🟢');
+      updatePodLockUI('podUnidad', 'podUnidadLock', isULocked, '🔵');
+
+      // Auto-Trigger Victory when all 3 pods match the code!
+      if (isCLocked && isDLocked && isULocked && !appState.dino.isDoorClosed) {
+        appState.dino.isDoorClosed = true;
+        triggerDinoVictory();
       }
+    }
+
+    function updatePodLockUI(podId, lockId, isLocked, symbol) {
+      const pod = document.getElementById(podId);
+      const lock = document.getElementById(lockId);
+      if (!pod || !lock) return;
+
+      if (isLocked) {
+        pod.classList.add('pod-locked');
+        lock.className = 'w-6 h-6 rounded-lg bg-emerald-950 border border-emerald-400 flex items-center justify-center text-xs text-emerald-300 shadow';
+        lock.innerHTML = '<i class="fa-solid fa-lock animate-bounce"></i>';
+      } else {
+        pod.classList.remove('pod-locked');
+        lock.className = 'w-6 h-6 rounded-lg bg-slate-950 border border-slate-700 flex items-center justify-center text-xs text-slate-500';
+        lock.innerHTML = '<i class="fa-solid fa-lock-open"></i>';
+      }
+    }
+
+    function renderPostElements(containerId, count, type) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+
+      if (count === 0) {
+        const hint = document.createElement('div');
+        hint.className = 'text-slate-600 text-[8px] italic w-full text-center pointer-events-none py-1';
+        hint.innerText = type === 'centena' ? 'Arrastra o despacha búnkers rojos 🔴 aquí...' :
+                         type === 'decena' ? 'Arrastra o despacha escuadrones verdes 🟢 aquí...' :
+                         'Arrastra o despacha guardias azules 🔵 aquí...';
+        container.appendChild(hint);
+        return;
+      }
+
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('button');
+        el.title = 'Toca para regresar 1 elemento al campo';
+        el.onclick = () => removeGuard(type);
+
+        if (type === 'centena') {
+          el.className = 'px-2 py-1 rounded-lg bg-gradient-to-tr from-red-600 to-rose-500 border border-red-300 text-white font-display font-black text-[9px] shadow-md flex items-center gap-1 shrink-0 shield-pulse-red active:scale-90';
+          el.innerHTML = '<span>🏰</span><span>100</span>';
+        } else if (type === 'decena') {
+          el.className = 'px-1.5 py-1 rounded-lg bg-gradient-to-tr from-emerald-600 to-teal-500 border border-emerald-300 text-slate-950 font-display font-black text-[9px] shadow-md flex items-center gap-1 shrink-0 shield-pulse-green active:scale-90';
+          el.innerHTML = '<span>🛡️</span><span>10</span>';
+        } else {
+          el.className = 'w-6 h-6 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 border border-blue-200 text-white font-display font-black text-[8px] shadow flex items-center justify-center shrink-0 shield-pulse-blue active:scale-90';
+          el.innerHTML = '🛡️';
+        }
+        container.appendChild(el);
+      }
+    }
+
+    function triggerDinoVictory() {
+      // Titanium blast door slams down
+      playTitaniumDoorSlamSound();
+      triggerParticleBurst(window.innerWidth * 0.3, window.innerHeight * 0.5, '#ef4444', 40);
+      triggerParticleBurst(window.innerWidth * 0.3, window.innerHeight * 0.5, '#22c55e', 40);
+
+      const door = document.getElementById('titaniumBlastDoor');
+      door.classList.remove('hidden');
+
+      const feedback = document.getElementById('dinoLevelFeedback');
+      feedback.className = 'text-[10px] font-bold text-emerald-400';
+      feedback.innerText = `¡PUERTA ${appState.dino.currentLevelIndex + 1} SELLADA! 💥`;
+
+      setTimeout(() => {
+        if (appState.dino.currentLevelIndex + 1 < appState.dino.levels.length) {
+          loadDinoLevel(appState.dino.currentLevelIndex + 1);
+        } else {
+          showSecretLesson();
+        }
+      }, 1600);
     }
 
     function showSecretLesson() {
@@ -1526,7 +1773,7 @@
 
     function startDinoTutorial() {
       document.getElementById('dinoAraBotSpeech').innerHTML = 
-        `⚠️ <strong>Protocolo de Emergencia Doydo:</strong> Mira el código de 3 cifras. El primer número son las Centenas 🔴, el segundo las Decenas 🟢 y el tercero las Unidades 🔵.`;
+        `⚠️ <strong>Guía Táctica Doydo:</strong> Toma guardias azules 🔵, escuadrones verdes 🟢 o búnkers rojos 🔴 y arrástralos a sus puestos. ¡Al completar los números, la compuerta se cierra sola!`;
     }
 
     /* =========================================================================
@@ -1577,7 +1824,9 @@
     window.addEventListener('DOMContentLoaded', () => {
       document.body.addEventListener('click', () => initAudio(), { once: true });
       updateRocketUI();
-      updateDinoInputsUI();
+      if (typeof updateDinoTacticalUI === 'function') {
+        updateDinoTacticalUI();
+      }
     });
   </script>
 </body>
