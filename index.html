@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   
-  <title>ARA BOT de Mate | Patio Interactivo, Cohete & Dinosaurio</title>
+  <title>ARA BOT de Mate | Mundo Interactivo Toca Boca, Cohete & Luchadores Z</title>
   
   <!-- PWA & Mobile Metas -->
   <meta name="theme-color" content="#020617">
@@ -12,32 +12,25 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="ARA BOT Mate">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="description" content="PWA educativa interactiva estilo Avatar World / Toca Boca con ARA BOT: El Cohete Numérico (3.° Grado), Laboratorio Dinosaurio (2.° Grado) y El Cañón de Sumas Rápidas (Luchadores Z).">
-
-  <!-- Anti-Cache Directives -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
+  <meta name="description" content="PWA educativa interactiva de mundo abierto estilo Toca Boca / Avatar World con ARA BOT: El Cohete Numérico, Laboratorio Dinosaurio y El Cañón de Sumas Rápidas.">
 
   <!-- Manifest Link -->
   <link rel="manifest" href="manifest.json" id="manifestPlaceholder">
   <script>
     try {
       const manifestObj = {
-        name: "ARA BOT de Mate: Patio, Cohete, Dinosaurio & Luchadores Z",
+        name: "ARA BOT de Mate: Mundo Toca Boca, Cohete & Luchadores Z",
         short_name: "ARA BOT Mate",
-        description: "Aprende matemáticas y valor posicional con Nonina y Doydo.",
+        description: "Mundo abierto interactivo tipo Toca Life con Nonina y Doydo.",
         start_url: "./index.html",
         display: "standalone",
         background_color: "#020617",
         theme_color: "#0f172a",
-        icons: [
-          {
-            src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text y='.9em' font-size='70' x='15'>🤖</text></svg>",
-            sizes: "192x192 512x512",
-            type: "image/svg+xml"
-          }
-        ]
+        icons: [{
+          src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text y='.9em' font-size='70' x='15'>🤖</text></svg>",
+          sizes: "192x192 512x512",
+          type: "image/svg+xml"
+        }]
       };
       const blob = new Blob([JSON.stringify(manifestObj)], { type: 'application/json' });
       document.getElementById('manifestPlaceholder').setAttribute('href', URL.createObjectURL(blob));
@@ -64,85 +57,31 @@
             display: ['Outfit', 'sans-serif'],
           },
           colors: {
-            nonina: {
-              DEFAULT: '#f43f5e',
-              glow: '#fb7185',
-              dark: '#881337',
-              light: '#ffe4e6'
-            },
-            doydo: {
-              DEFAULT: '#0284c7',
-              glow: '#38bdf8',
-              dark: '#082f49',
-              light: '#e0f2fe'
-            },
-            zfighter: {
-              DEFAULT: '#f59e0b',
-              glow: '#fbbf24',
-              red: '#ef4444',
-              purple: '#8b5cf6'
-            },
-            unidad: '#22c55e',   /* Green 🟢 */
-            decena: '#3b82f6',   /* Blue 🔵 */
-            centena: '#ef4444',  /* Red 🔴 */
-            millar: '#eab308',   /* Gold 🟡 */
-            dinodark: '#090d16',
+            nonina: { DEFAULT: '#f43f5e', glow: '#fb7185', dark: '#881337', light: '#ffe4e6' },
+            doydo: { DEFAULT: '#0284c7', glow: '#38bdf8', dark: '#082f49', light: '#e0f2fe' },
+            zfighter: { DEFAULT: '#f59e0b', glow: '#fbbf24', red: '#ef4444', purple: '#8b5cf6' },
+            unidad: '#22c55e', decena: '#3b82f6', centena: '#ef4444', millar: '#eab308',
           },
           animation: {
-            'pulse-fast': 'pulse 0.8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             'bounce-soft': 'bounceSoft 2s infinite',
             'float': 'float 3s ease-in-out infinite',
             'float-delay': 'float 3.5s ease-in-out 1s infinite',
             'portal-spin': 'portalSpin 4s linear infinite',
-            'radar': 'radarSweep 4s linear infinite',
             'alarm-blink': 'alarmBlink 1s infinite alternate',
             'slam-door': 'slamDoor 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
             'trex-roar': 'trexShake 0.5s ease-in-out infinite',
             'bot-shake': 'botShake 0.4s ease-in-out',
-            'avatar-bob': 'avatarBob 0.6s ease-in-out infinite alternate',
-            'hex-glow': 'hexGlow 2.5s ease-in-out infinite',
+            'eat-chomp': 'eatChomp 0.3s ease-in-out 2',
           },
           keyframes: {
-            bounceSoft: {
-              '0%, 100%': { transform: 'translateY(-2%)' },
-              '50%': { transform: 'translateY(2%)' },
-            },
-            float: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-8px)' },
-            },
-            avatarBob: {
-              '0%': { transform: 'translateY(0px)' },
-              '100%': { transform: 'translateY(-4px)' }
-            },
-            portalSpin: {
-              '0%': { transform: 'translate(-50%, -50%) rotate(0deg) scale(0.95)' },
-              '50%': { transform: 'translate(-50%, -50%) rotate(180deg) scale(1.05)' },
-              '100%': { transform: 'translate(-50%, -50%) rotate(360deg) scale(0.95)' }
-            },
-            alarmBlink: {
-              '0%': { backgroundColor: 'rgba(239, 68, 68, 0.05)', borderColor: 'rgba(239, 68, 68, 0.2)' },
-              '100%': { backgroundColor: 'rgba(239, 68, 68, 0.35)', borderColor: 'rgba(239, 68, 68, 0.9)', boxShadow: '0 0 35px rgba(239, 68, 68, 0.6)' }
-            },
-            slamDoor: {
-              '0%': { transform: 'translateY(-100%)', opacity: '0.2' },
-              '80%': { transform: 'translateY(5%)', opacity: '1' },
-              '100%': { transform: 'translateY(0%)', opacity: '1' }
-            },
-            trexShake: {
-              '0%, 100%': { transform: 'translate(0, 0) rotate(0deg) scale(1)' },
-              '25%': { transform: 'translate(-4px, 3px) rotate(-2deg) scale(1.03)' },
-              '75%': { transform: 'translate(4px, -3px) rotate(2deg) scale(1.05)' }
-            },
-            botShake: {
-              '0%, 100%': { transform: 'translateX(0)' },
-              '20%, 60%': { transform: 'translateX(-8px) rotate(-3deg)' },
-              '40%, 80%': { transform: 'translateX(8px) rotate(3deg)' }
-            },
-            hexGlow: {
-              '0%, 100%': { filter: 'drop-shadow(0 0 10px rgba(56, 189, 248, 0.5))' },
-              '50%': { filter: 'drop-shadow(0 0 25px rgba(244, 63, 94, 0.8))' }
-            }
+            bounceSoft: { '0%, 100%': { transform: 'translateY(-2%)' }, '50%': { transform: 'translateY(2%)' } },
+            float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-8px)' } },
+            portalSpin: { '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' }, '100%': { transform: 'translate(-50%, -50%) rotate(360deg)' } },
+            alarmBlink: { '0%': { backgroundColor: 'rgba(239, 68, 68, 0.05)' }, '100%': { backgroundColor: 'rgba(239, 68, 68, 0.35)', boxShadow: '0 0 30px rgba(239, 68, 68, 0.6)' } },
+            slamDoor: { '0%': { transform: 'translateY(-100%)', opacity: '0.2' }, '100%': { transform: 'translateY(0%)', opacity: '1' } },
+            trexShake: { '0%, 100%': { transform: 'scale(1) rotate(0deg)' }, '50%': { transform: 'scale(1.08) rotate(3deg)' } },
+            botShake: { '0%, 100%': { transform: 'translateX(0)' }, '25%, 75%': { transform: 'translateX(-8px)' }, '50%': { transform: 'translateX(8px)' } },
+            eatChomp: { '0%, 100%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.25) rotate(-5deg)' } }
           }
         }
       }
@@ -150,7 +89,7 @@
   </script>
 
   <style>
-    /* Global Zero-Scroll Constraint */
+    /* Zero-Scroll Vertical Constraint */
     html, body {
       height: 100%;
       height: 100dvh;
@@ -169,30 +108,13 @@
     .glow-blue-neon { box-shadow: 0 0 25px rgba(56, 189, 248, 0.6), inset 0 0 15px rgba(2, 132, 199, 0.3); }
     .glow-gold { box-shadow: 0 0 25px rgba(245, 158, 11, 0.6), inset 0 0 15px rgba(251, 191, 36, 0.3); }
     .glow-green { box-shadow: 0 0 16px rgba(34, 197, 94, 0.5); }
-    .glow-blue { box-shadow: 0 0 16px rgba(59, 130, 246, 0.5); }
     .glow-red { box-shadow: 0 0 16px rgba(239, 68, 68, 0.5); }
 
-    /* Custom Scrollbar for inner boxes */
-    .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
-    .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); border-radius: 4px; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: rgba(56, 189, 248, 0.4); border-radius: 4px; }
-    .custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(56, 189, 248, 0.8); }
+    /* Custom Hidden Scrollbar for Panoramic World */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Hexagon Shape Styling */
-    .hexagon-card {
-      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .hexagon-card:hover {
-      transform: scale(1.06) translateY(-4px);
-    }
-
-    /* Avatar Walking Effect */
-    .avatar-walking {
-      animation: avatarBob 0.25s infinite alternate ease-in-out;
-    }
-
-    /* Speech Bubble Triangle */
+    /* Speech Bubble */
     .speech-bubble::after {
       content: '';
       position: absolute;
@@ -206,23 +128,19 @@
       width: 0;
     }
 
-    /* Pulsing Shields */
-    .shield-pulse-blue { box-shadow: 0 0 15px rgba(59, 130, 246, 0.7); }
-    .shield-pulse-green { box-shadow: 0 0 15px rgba(34, 197, 94, 0.7); }
-    .shield-pulse-red { box-shadow: 0 0 15px rgba(239, 68, 68, 0.7); }
-
-    .pod-locked {
-      border-color: #22c55e !important;
-      box-shadow: 0 0 25px rgba(34, 197, 94, 0.5) !important;
+    /* Draggable Item Style */
+    .world-item {
+      position: absolute;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+      transition: transform 0.15s ease-out;
+      z-index: 25;
     }
-    .digit-unlocked {
-      background: rgba(15, 23, 42, 0.95);
-      border: 2px solid rgba(56, 189, 248, 0.4);
-    }
-    .digit-locked {
-      background: rgba(22, 101, 52, 0.35);
-      border: 2px solid #22c55e;
-      box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+    .world-item:active {
+      cursor: grabbing;
+      transform: scale(1.18);
+      z-index: 40 !important;
     }
 
     /* Laser beam pulse */
@@ -231,430 +149,607 @@
       50% { width: 100%; opacity: 1; box-shadow: 0 0 20px #38bdf8, 0 0 40px #f43f5e; }
       100% { width: 100%; opacity: 0; }
     }
-    .laser-active {
-      animation: laserBeam 0.4s ease-out forwards;
-    }
+    .laser-active { animation: laserBeam 0.4s ease-out forwards; }
   </style>
 </head>
 
 <body class="w-full h-full relative overflow-hidden bg-slate-950 font-sans flex flex-col justify-between select-none">
 
-  <!-- Background Particle & Playground Canvas -->
-  <canvas id="bgCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
-
   <!-- ========================================================================= -->
   <!-- 🏠 GLOBAL RETRACTABLE FLOATING CONTROL DOCK                               -->
   <!-- ========================================================================= -->
   <aside id="globalNavDock" class="fixed top-2 right-2 z-50 flex items-center gap-1.5 transition-all duration-300">
-    
     <!-- Expanded Drawer Menu -->
     <div id="dockExpandedMenu" class="hidden items-center gap-1.5 bg-slate-900/95 border border-cyan-500/50 rounded-2xl p-1 shadow-2xl backdrop-blur-xl animate-bounce-soft">
-      
-      <!-- Go to Playground Button -->
-      <button onclick="goToPlayground()" class="h-8 px-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:brightness-110 text-white font-display font-bold text-xs flex items-center gap-1.5 shadow-md border border-cyan-300/40 active:scale-95 transition-all" title="Regresar al Patio de Juegos">
+      <button onclick="goToPlayground()" class="h-8 px-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:brightness-110 text-white font-display font-bold text-xs flex items-center gap-1.5 shadow-md border border-cyan-300/40 active:scale-95 transition-all">
         <i class="fa-solid fa-house"></i>
-        <span>Patio Escolar</span>
+        <span>Mundo Toca Boca</span>
       </button>
 
-      <!-- Change Profile Modal -->
-      <button onclick="openProfileSelectorModal()" class="h-8 px-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-pink-300 hover:text-white flex items-center gap-1 text-xs font-bold shadow transition-all active:scale-95" title="Cambiar Perfil">
-        <i class="fa-solid fa-users"></i>
-        <span class="hidden sm:inline">Perfiles</span>
-      </button>
-
-      <!-- Sound Toggle Button -->
-      <button id="btnAudioToggle" onclick="toggleMute()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-cyan-400 flex items-center justify-center shadow transition-all active:scale-95" title="Activar / Silenciar Sonido">
+      <button id="btnAudioToggle" onclick="toggleMute()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-cyan-400 flex items-center justify-center shadow transition-all active:scale-95" title="Sonido">
         <i id="audioIcon" class="fa-solid fa-volume-high text-xs"></i>
       </button>
 
-      <!-- Fullscreen Toggle Button -->
       <button onclick="toggleFullScreen()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white flex items-center justify-center shadow transition-all active:scale-95" title="Pantalla Completa">
         <i class="fa-solid fa-expand text-xs"></i>
       </button>
 
-      <!-- Collapse Button -->
-      <button onclick="collapseNavDock()" class="w-8 h-8 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-all" title="Retraer Menú">
+      <button onclick="collapseNavDock()" class="w-8 h-8 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-all">
         <i class="fa-solid fa-xmark text-xs"></i>
       </button>
     </div>
 
-    <!-- Main Retractable Floating Trigger Bubble -->
-    <button id="btnDockTrigger" onclick="toggleNavDock()" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-500 hover:scale-105 border-2 border-cyan-300/70 text-white flex items-center justify-center shadow-xl shadow-cyan-500/30 backdrop-blur-md transition-all active:scale-95" title="Menú de Navegación">
-      <i id="dockTriggerIcon" class="fa-solid fa-house text-sm"></i>
+    <!-- Main Trigger Bubble -->
+    <button id="btnDockTrigger" onclick="toggleNavDock()" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-500 hover:scale-105 border-2 border-cyan-300/70 text-white flex items-center justify-center shadow-xl shadow-cyan-500/30 backdrop-blur-md transition-all active:scale-95" title="Menú">
+      <i id="dockTriggerIcon" class="fa-solid fa-bars text-sm"></i>
     </button>
   </aside>
 
   <!-- ========================================================================= -->
-  <!-- 🏫 PANTALLA 1: PATIO INTERACTIVO ABIERTO (TOCA BOCA / AVATAR WORLD)       -->
+  <!-- 🏫 PANTALLA PRINCIPAL: MUNDO PANORÁMICO DESPLAZABLE (TOCA BOCA WORLD)    -->
   <!-- ========================================================================= -->
   <section id="screen-playground" class="flex-1 flex flex-col justify-between w-full h-full relative z-20 overflow-hidden">
     
-    <!-- 🌌 TOP SKY AREA: PORTALES DEL CIELO Y MENÚS FLOTANTES -->
-    <header class="w-full px-3 pt-2 pb-1.5 flex items-center justify-between shrink-0 z-30 pointer-events-none">
+    <!-- 🧭 TOP MINIMAP / ROOM QUICK SWITCHER BAR -->
+    <header class="w-full px-2 pt-2 pb-1 flex items-center justify-between shrink-0 z-30 pointer-events-none">
       
-      <!-- Top Left: Brand & ARA BOT Status -->
-      <div class="pointer-events-auto flex items-center gap-2 bg-slate-900/90 border border-slate-800/90 rounded-2xl px-3 py-1.5 backdrop-blur-md shadow-lg">
-        <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-sm shadow-md animate-pulse">
+      <!-- Brand Pill -->
+      <div class="pointer-events-auto flex items-center gap-1.5 bg-slate-900/90 border border-slate-800 rounded-2xl px-2.5 py-1 backdrop-blur-md shadow-lg">
+        <div class="w-6 h-6 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-xs shadow animate-pulse">
           🤖
         </div>
         <div>
-          <h1 class="font-display font-black text-xs sm:text-sm text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-300 to-rose-400 leading-none">
-            ARA BOT <span class="text-white">de Mate</span>
-          </h1>
-          <p class="text-[9px] text-slate-400">Patio Interactivo • Toca o arrastra los avatares</p>
+          <span class="font-display font-black text-xs text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-300 to-rose-400">
+            ARA BOT <span class="text-white">World</span>
+          </span>
         </div>
       </div>
 
-      <!-- Top Sky Portals (Nonina & Doydo) -->
-      <div class="pointer-events-auto flex items-center gap-2 sm:gap-3 pr-10 sm:pr-12">
-        
-        <!-- 🌸 PORTAL ROSA DEL CIELO (NONINA - 3.er Grado) -->
-        <button onclick="openNoninaMenu()" class="group relative px-3 py-1.5 rounded-2xl bg-slate-900/90 hover:bg-rose-950/80 border-2 border-rose-500/60 hover:border-rose-400 text-white flex items-center gap-2 shadow-xl hover:glow-pink transition-all transform hover:scale-105 active:scale-95 backdrop-blur-md">
-          <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-rose-600 to-pink-500 flex items-center justify-center shadow-md animate-bounce-soft">
-            <span class="text-xs">🚀</span>
-          </div>
-          <div class="text-left">
-            <div class="text-[8px] font-black uppercase text-rose-300 leading-none">3.er Grado</div>
-            <div class="font-display font-black text-xs text-white group-hover:text-rose-200">NONINA 🌸</div>
-          </div>
-          <span class="hidden md:inline text-[9px] bg-rose-950 px-1.5 py-0.5 rounded border border-rose-700 text-rose-300">Cohete</span>
+      <!-- Quick Room Switcher Tabs (Scroll Helpers) -->
+      <nav class="pointer-events-auto flex items-center gap-1 bg-slate-900/90 border border-slate-800 p-1 rounded-2xl backdrop-blur-md shadow-xl overflow-x-auto no-scrollbar max-w-[62vw] sm:max-w-none pr-10 sm:pr-12">
+        <button onclick="scrollToRoom(0)" id="roomTab0" class="room-tab px-2.5 py-1 rounded-xl bg-slate-800 text-cyan-300 hover:text-white text-[10px] font-bold flex items-center gap-1 transition-all">
+          <span>🏫</span><span class="hidden sm:inline">Aula</span>
         </button>
-
-        <!-- 💙 PORTAL AZUL DEL CIELO (DOYDO - 2.º Grado) -->
-        <button onclick="openDoydoMenu()" class="group relative px-3 py-1.5 rounded-2xl bg-slate-900/90 hover:bg-sky-950/80 border-2 border-sky-500/60 hover:border-sky-400 text-white flex items-center gap-2 shadow-xl hover:glow-blue-neon transition-all transform hover:scale-105 active:scale-95 backdrop-blur-md">
-          <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-sky-600 via-cyan-400 to-blue-500 flex items-center justify-center shadow-md animate-bounce-soft">
-            <span class="text-xs">🦖</span>
-          </div>
-          <div class="text-left">
-            <div class="text-[8px] font-black uppercase text-sky-300 leading-none">2.º Grado</div>
-            <div class="font-display font-black text-xs text-white group-hover:text-sky-200">DOYDO 💙</div>
-          </div>
-          <span class="hidden md:inline text-[9px] bg-sky-950 px-1.5 py-0.5 rounded border border-sky-700 text-sky-300">2 Juegos ⬢</span>
+        <button onclick="scrollToRoom(1)" id="roomTab1" class="room-tab px-2.5 py-1 rounded-xl bg-slate-800 text-emerald-300 hover:text-white text-[10px] font-bold flex items-center gap-1 transition-all">
+          <span>🧪🦖</span><span class="hidden sm:inline">Lab Dino</span>
         </button>
+        <button onclick="scrollToRoom(2)" id="roomTab2" class="room-tab px-2.5 py-1 rounded-xl bg-slate-800 text-amber-300 hover:text-white text-[10px] font-bold flex items-center gap-1 transition-all">
+          <span>☕⭐</span><span class="hidden sm:inline">Plaza</span>
+        </button>
+        <button onclick="scrollToRoom(3)" id="roomTab3" class="room-tab px-2.5 py-1 rounded-xl bg-slate-800 text-rose-300 hover:text-white text-[10px] font-bold flex items-center gap-1 transition-all">
+          <span>🥊⚡</span><span class="hidden sm:inline">Dojo Z</span>
+        </button>
+        <button onclick="scrollToRoom(4)" id="roomTab4" class="room-tab px-2.5 py-1 rounded-xl bg-slate-800 text-purple-300 hover:text-white text-[10px] font-bold flex items-center gap-1 transition-all">
+          <span>🚀🌌</span><span class="hidden sm:inline">Cohete</span>
+        </button>
+      </nav>
 
-      </div>
     </header>
 
-    <!-- 🌳 MAIN INTERACTIVE PLAYGROUND STAGE (TOCA BOCA OPEN WORLD) -->
-    <main id="playgroundStage" class="flex-1 w-full h-full relative cursor-crosshair overflow-hidden touch-none" onclick="handlePlaygroundClick(event)">
+    <!-- 🗺️ HORIZONTAL SCROLLING OPEN WORLD STAGE (5 CONNECTED ROOMS) -->
+    <main id="panoramicWorld" class="flex-1 w-full h-full relative overflow-x-auto overflow-y-hidden no-scrollbar flex items-stretch touch-pan-x cursor-grab active:cursor-grabbing select-none" onscroll="handleWorldScroll(event)">
       
-      <!-- Target Movement Pulse Indicator (RPG Click Destination) -->
-      <div id="moveTargetIndicator" class="absolute w-8 h-8 -ml-4 -mt-4 rounded-full border-2 border-cyan-400 pointer-events-none opacity-0 transition-opacity duration-300 scale-75 animate-ping z-10"></div>
-
-      <!-- 📋 PROPS INTERACTIVOS DEL PATIO -->
-      
-      <!-- Prop 1: Pizarra Holográfica Cuántica -->
-      <div id="propWhiteboard" onclick="interactWithProp('board', event)" class="absolute top-[18%] left-[8%] sm:left-[12%] z-10 cursor-pointer group transform hover:scale-110 transition-transform">
-        <div class="bg-slate-900/90 border-2 border-cyan-500/60 rounded-2xl p-2 sm:p-2.5 shadow-xl backdrop-blur-md flex flex-col items-center glow-blue-neon">
-          <div class="flex items-center gap-1 text-[8px] sm:text-[9px] font-bold text-cyan-300 mb-1">
-            <i class="fa-solid fa-calculator"></i> Pizarra Cuántica
-          </div>
-          <div id="boardText" class="font-display font-black text-sm sm:text-base text-amber-300 bg-slate-950 px-2 py-0.5 rounded border border-slate-800">
-            5 + 5 = 10 ✨
-          </div>
-          <span class="text-[7px] text-slate-400 mt-0.5">¡Tócame para un reto!</span>
-        </div>
+      <!-- Parallax Cyber Stars Background (Stretches across all rooms) -->
+      <div class="absolute inset-0 w-[500vw] min-w-[4000px] h-full pointer-events-none z-0 bg-gradient-to-b from-slate-950 via-indigo-950/40 to-slate-950">
+        <canvas id="bgStarsCanvas" class="w-full h-full"></canvas>
       </div>
 
-      <!-- Prop 2: Mascota Cyber-Dino Bebé -->
-      <div id="propDinoPet" onclick="interactWithProp('dinoPet', event)" class="absolute top-[48%] left-[15%] sm:left-[22%] z-10 cursor-pointer group transform hover:scale-125 transition-all text-center">
-        <div class="text-3xl sm:text-4xl animate-bounce-soft filter drop-shadow-[0_0_12px_rgba(34,197,94,0.8)]">
-          🦖
-        </div>
-        <div class="bg-slate-900/90 border border-emerald-500/50 text-emerald-300 text-[8px] font-bold px-1.5 py-0.2 rounded-full shadow">
-          Rexi Bebé
-        </div>
-      </div>
-
-      <!-- Prop 3: Sintetizador Musical Cuántico -->
-      <div id="propSynth" onclick="interactWithProp('synth', event)" class="absolute top-[22%] right-[10%] sm:right-[15%] z-10 cursor-pointer group transform hover:scale-110 transition-transform">
-        <div class="bg-slate-900/90 border-2 border-purple-500/60 rounded-2xl p-2 shadow-xl backdrop-blur-md flex flex-col items-center">
-          <div class="flex items-center gap-1 text-[8px] sm:text-[9px] font-bold text-purple-300 mb-1">
-            <i class="fa-solid fa-music"></i> Sintetizador Z
-          </div>
-          <div class="flex items-center gap-1 bg-slate-950 p-1 rounded-lg border border-purple-900">
-            <span class="w-3 h-6 bg-rose-500 rounded-sm"></span>
-            <span class="w-3 h-6 bg-amber-500 rounded-sm"></span>
-            <span class="w-3 h-6 bg-emerald-500 rounded-sm"></span>
-            <span class="w-3 h-6 bg-sky-500 rounded-sm"></span>
-            <span class="w-3 h-6 bg-indigo-500 rounded-sm"></span>
-          </div>
-          <span class="text-[7px] text-slate-400 mt-0.5">¡Tocar Notas! 🎵</span>
-        </div>
-      </div>
-
-      <!-- Prop 4: Fuente de Gemas Matemáticas -->
-      <div id="propFountain" onclick="interactWithProp('fountain', event)" class="absolute top-[42%] right-[18%] sm:right-[26%] z-10 cursor-pointer group transform hover:scale-125 transition-all text-center">
-        <div class="text-3xl sm:text-4xl animate-pulse filter drop-shadow-[0_0_15px_rgba(245,158,11,0.9)]">
-          💎
-        </div>
-        <div class="bg-slate-900/90 border border-amber-500/50 text-amber-300 text-[8px] font-bold px-1.5 py-0.2 rounded-full shadow">
-          Fuente Base-10
-        </div>
-      </div>
-
-      <!-- Prop 5: ARA BOT Paseante -->
-      <div id="propAraBot" onclick="interactWithProp('araBot', event)" class="absolute top-[32%] left-[45%] z-10 cursor-pointer group transform hover:scale-125 transition-all text-center animate-float">
-        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-600 p-0.5 flex items-center justify-center shadow-lg shadow-cyan-500/40 glow-blue-neon">
-          <div class="w-full h-full rounded-2xl bg-slate-950 flex items-center justify-center text-xl sm:text-2xl">
-            🤖
-          </div>
-        </div>
-        <div class="bg-slate-900/90 border border-cyan-400/50 text-cyan-300 text-[8px] font-black px-2 py-0.2 rounded-full shadow mt-1">
-          ARA BOT
-        </div>
-      </div>
-
-      <!-- 🌸 AVATAR INTERACTIVO: NONINA (ROMINA - 3.er GRADO) -->
-      <div id="avatarNonina" 
-           class="absolute z-20 cursor-grab active:cursor-grabbing transition-all duration-300 ease-out flex flex-col items-center select-none"
-           style="top: 60%; left: 35%;"
-           onmousedown="startAvatarDrag(event, 'nonina')"
-           ontouchstart="startAvatarDrag(event, 'nonina')"
-           onclick="selectAvatar('nonina', event)">
+      <!-- ===================================================================== -->
+      <!-- ROOM 1: 🏫 AULA CUÁNTICA / ESCUELA DE MATEMÁTICAS                     -->
+      <!-- ===================================================================== -->
+      <section id="room0" class="relative w-[100vw] min-w-[800px] h-full flex flex-col justify-between p-4 shrink-0 border-r-4 border-dashed border-cyan-500/20 z-10">
         
-        <!-- Speech Bubble (Nonina) -->
-        <div id="bubbleNonina" class="speech-bubble mb-1 bg-slate-900/95 border border-rose-400/70 text-rose-200 text-[9px] font-bold px-2 py-1 rounded-xl shadow-xl backdrop-blur-md opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
-          ¡Hola! ¡Lista para despegar el Cohete! 🚀
+        <!-- Room Banner Header -->
+        <div class="flex items-center justify-between pointer-events-none">
+          <div class="bg-slate-900/90 border-2 border-cyan-500/50 rounded-2xl px-3 py-1 text-cyan-300 font-display font-black text-xs shadow-lg glow-blue-neon">
+            🏫 Aula Cuántica • Escuela Matemática
+          </div>
+          <span class="text-[9px] text-slate-400 bg-slate-900/80 px-2 py-0.5 rounded-full">Desliza ➔ para explorar</span>
         </div>
 
-        <!-- SVG Vector Character: Nonina (Cute Cyber-School Girl Style) -->
+        <!-- Interactive Classroom Props -->
+        <div class="flex-1 relative w-full h-full my-1">
+          
+          <!-- Pizarra Interactiva con Tizas -->
+          <div onclick="interactRoomProp('board', event)" class="absolute top-[12%] left-[10%] bg-slate-900/95 border-2 border-cyan-400/60 rounded-2xl p-3 shadow-2xl cursor-pointer hover:scale-105 transition-transform glow-blue-neon max-w-xs">
+            <div class="flex items-center justify-between text-[9px] font-bold text-cyan-300 mb-1">
+              <span><i class="fa-solid fa-chalkboard mr-1"></i> Pizarra Cuántica</span>
+              <span class="text-[8px] text-amber-300 font-mono">Toca para calcular</span>
+            </div>
+            <div id="classroomBoardText" class="font-display font-black text-base sm:text-lg text-emerald-300 bg-slate-950 px-3 py-1 rounded-xl border border-slate-800 text-center shadow-inner">
+              8 + 7 = 15 ✨
+            </div>
+            <div class="flex items-center justify-center gap-2 mt-1.5 text-xs">
+              <span>🖍️</span><span>📏</span><span>📐</span>
+            </div>
+          </div>
+
+          <!-- Estante de Libros Numéricos & Mochila -->
+          <div onclick="interactRoomProp('backpack', event)" class="absolute top-[14%] right-[15%] bg-slate-900/90 border border-purple-500/50 rounded-2xl p-2.5 shadow-xl cursor-pointer hover:scale-105 transition-transform text-center">
+            <div class="text-3xl">🎒</div>
+            <div class="text-[9px] font-bold text-purple-300 mt-0.5">Mochila Mágica</div>
+            <div class="text-[7px] text-slate-400">¡Tócame para abrir!</div>
+          </div>
+
+          <!-- Pupitres Escolares para Sentar Avatares -->
+          <div class="absolute bottom-[24%] left-[18%] bg-slate-900/80 border border-slate-700 rounded-2xl p-3 shadow-xl flex items-center gap-3">
+            <div class="text-center">
+              <div class="text-2xl">🪑</div>
+              <span class="text-[7px] text-slate-400">Pupitre 1</span>
+            </div>
+            <div class="w-16 h-8 bg-amber-900/40 rounded-lg border border-amber-600/40 flex items-center justify-center text-[8px] font-bold text-amber-200">
+              Mesa 📖
+            </div>
+          </div>
+
+          <div class="absolute bottom-[24%] right-[22%] bg-slate-900/80 border border-slate-700 rounded-2xl p-3 shadow-xl flex items-center gap-3">
+            <div class="w-16 h-8 bg-amber-900/40 rounded-lg border border-amber-600/40 flex items-center justify-center text-[8px] font-bold text-amber-200">
+              Mesa ✏️
+            </div>
+            <div class="text-center">
+              <div class="text-2xl">🪑</div>
+              <span class="text-[7px] text-slate-400">Pupitre 2</span>
+            </div>
+          </div>
+
+          <!-- Puerta Neón hacia la Siguiente Zona -->
+          <div onclick="scrollToRoom(1)" class="absolute bottom-[20%] right-[3%] cursor-pointer group flex flex-col items-center">
+            <div class="w-16 h-28 rounded-t-full bg-gradient-to-b from-cyan-500 to-indigo-700 p-1 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform glow-blue-neon">
+              <div class="w-full h-full rounded-t-full bg-slate-950 flex flex-col items-center justify-center">
+                <span class="text-xl">➔</span>
+                <span class="text-[7px] font-black text-cyan-300">LAB DINO</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- ROOM 2: 🧪🦖 LABORATORIO DINOSAURIO & BIO-ROBÓTICA                     -->
+      <!-- ===================================================================== -->
+      <section id="room1" class="relative w-[100vw] min-w-[800px] h-full flex flex-col justify-between p-4 shrink-0 border-r-4 border-dashed border-emerald-500/20 z-10 bg-emerald-950/10">
+        
+        <div class="flex items-center justify-between pointer-events-none">
+          <div class="bg-slate-900/90 border-2 border-emerald-500/50 rounded-2xl px-3 py-1 text-emerald-300 font-display font-black text-xs shadow-lg glow-green">
+            🧪🦖 Laboratorio Dinosaurio • Hábitat Rexi
+          </div>
+          <!-- Sky Portal to Full Dino Game -->
+          <button onclick="launchDinoFromMenu()" class="pointer-events-auto px-3 py-1 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-display font-black text-xs shadow-lg flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-all">
+            <i class="fa-solid fa-play"></i> <span>Misión T-Rex 9 Puertas</span>
+          </button>
+        </div>
+
+        <div class="flex-1 relative w-full h-full my-1">
+          
+          <!-- Jaula & Hábitat del Rexi Bebé -->
+          <div onclick="interactRoomProp('dinoPet', event)" class="absolute top-[14%] left-[12%] bg-slate-900/90 border-2 border-emerald-500/60 rounded-2xl p-3 shadow-2xl cursor-pointer hover:scale-110 transition-transform text-center glow-green">
+            <div class="text-4xl animate-bounce-soft filter drop-shadow-[0_0_12px_rgba(34,197,94,0.8)]">🦖</div>
+            <div class="text-[9px] font-black text-emerald-300 mt-1">Rexi el Dino Bebé</div>
+            <div class="text-[7px] text-slate-400">¡Toca para acariciar o alimentar!</div>
+          </div>
+
+          <!-- Mesa de Fórmulas y Tubos de Ensayo Base-10 -->
+          <div onclick="interactRoomProp('potion', event)" class="absolute top-[16%] right-[16%] bg-slate-900/90 border border-emerald-400/50 rounded-2xl p-3 shadow-xl cursor-pointer hover:scale-105 transition-transform">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-2xl animate-pulse">🧪</span>
+              <span class="text-2xl animate-bounce">🧬</span>
+              <span class="text-2xl">🔬</span>
+            </div>
+            <div class="text-[8px] font-bold text-emerald-300 text-center">Reactor Base-10</div>
+            <div class="text-[7px] text-slate-400 text-center">10🔵 = 1🟢 | 10🟢 = 1🔴</div>
+          </div>
+
+          <!-- Incubadora de Huevos Dino -->
+          <div onclick="interactRoomProp('dinoEgg', event)" class="absolute bottom-[24%] left-[25%] bg-slate-900/80 border border-amber-500/40 rounded-2xl p-2.5 shadow-xl cursor-pointer hover:scale-110 transition-transform text-center">
+            <div class="text-3xl">🥚</div>
+            <div class="text-[8px] font-bold text-amber-300 mt-0.5">Huevo Incubadora</div>
+          </div>
+
+          <!-- Estación de Mando Robot -->
+          <div class="absolute bottom-[22%] right-[20%] bg-slate-900/80 border border-cyan-500/40 rounded-2xl p-3 shadow-xl flex items-center gap-2">
+            <span class="text-3xl">🖥️</span>
+            <div>
+              <div class="text-[8px] font-bold text-cyan-300">Terminal Bio-Robot</div>
+              <div class="text-[7px] text-slate-400">Seguridad: 100% OK</div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- ROOM 3: ☕⭐ PLAZA CENTRAL & CAFETERÍA CÓSMICA                         -->
+      <!-- ===================================================================== -->
+      <section id="room2" class="relative w-[100vw] min-w-[800px] h-full flex flex-col justify-between p-4 shrink-0 border-r-4 border-dashed border-amber-500/20 z-10 bg-amber-950/10">
+        
+        <div class="flex items-center justify-between pointer-events-none">
+          <div class="bg-slate-900/90 border-2 border-amber-500/50 rounded-2xl px-3 py-1 text-amber-300 font-display font-black text-xs shadow-lg glow-gold">
+            ☕⭐ Plaza Central • Cafetería Cósmica & Música
+          </div>
+          <button onclick="triggerQuickDance()" class="pointer-events-auto px-3 py-1 rounded-xl bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 text-white font-display font-black text-xs shadow-lg flex items-center gap-1 hover:scale-105 active:scale-95 transition-all">
+            <i class="fa-solid fa-music"></i> <span>¡Fiesta de Baile!</span>
+          </button>
+        </div>
+
+        <div class="flex-1 relative w-full h-full my-1">
+          
+          <!-- Fuente de Gemas Matemáticas -->
+          <div onclick="interactRoomProp('fountain', event)" class="absolute top-[12%] left-[45%] -translate-x-1/2 bg-slate-900/90 border-2 border-amber-400/60 rounded-3xl p-3 shadow-2xl cursor-pointer hover:scale-110 transition-transform text-center glow-gold">
+            <div class="text-4xl animate-pulse filter drop-shadow-[0_0_15px_rgba(245,158,11,0.9)]">💎</div>
+            <div class="text-[9px] font-black text-amber-300 mt-1">Fuente Base-10</div>
+            <div class="text-[7px] text-slate-400">¡Tócame para lluvia de gemas!</div>
+          </div>
+
+          <!-- Sintetizador Musical Z -->
+          <div onclick="interactRoomProp('synth', event)" class="absolute top-[14%] left-[10%] bg-slate-900/90 border border-purple-500/50 rounded-2xl p-2.5 shadow-xl cursor-pointer hover:scale-105 transition-transform text-center">
+            <div class="flex items-center justify-center gap-1 mb-1">
+              <span class="w-3 h-7 bg-rose-500 rounded-sm"></span>
+              <span class="w-3 h-7 bg-amber-500 rounded-sm"></span>
+              <span class="w-3 h-7 bg-emerald-500 rounded-sm"></span>
+              <span class="w-3 h-7 bg-sky-500 rounded-sm"></span>
+            </div>
+            <div class="text-[8px] font-bold text-purple-300">Teclado Synth Z 🎹</div>
+            <div class="text-[7px] text-slate-400">¡Toca notas musicales!</div>
+          </div>
+
+          <!-- Mesa de Cafetería con Meriendas -->
+          <div class="absolute bottom-[24%] left-[15%] bg-slate-900/90 border border-slate-700 rounded-3xl p-3 shadow-xl flex items-center gap-3">
+            <div class="text-2xl">🪑</div>
+            <div class="bg-amber-950/60 border border-amber-500/40 rounded-2xl p-2 text-center">
+              <div class="flex items-center gap-1.5 text-xl">
+                <span>🍕</span><span>🍩</span><span>🧃</span>
+              </div>
+              <span class="text-[7px] text-amber-300 font-bold">Mesa de Meriendas</span>
+            </div>
+            <div class="text-2xl">🪑</div>
+          </div>
+
+          <!-- Máquina Expendedora Galáctica -->
+          <div onclick="interactRoomProp('vending', event)" class="absolute top-[15%] right-[10%] bg-slate-900/90 border-2 border-cyan-500/50 rounded-2xl p-2.5 shadow-xl cursor-pointer hover:scale-105 transition-transform text-center">
+            <div class="text-3xl">🧃</div>
+            <div class="text-[8px] font-black text-cyan-300 mt-0.5">Expendedora Z</div>
+            <div class="text-[7px] text-slate-400">¡Bocadillos gratis!</div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- ROOM 4: 🥊⚡ DOJO Z / GIMNASIO GALÁCTICO                               -->
+      <!-- ===================================================================== -->
+      <section id="room3" class="relative w-[100vw] min-w-[800px] h-full flex flex-col justify-between p-4 shrink-0 border-r-4 border-dashed border-rose-500/20 z-10 bg-rose-950/10">
+        
+        <div class="flex items-center justify-between pointer-events-none">
+          <div class="bg-slate-900/90 border-2 border-amber-500/50 rounded-2xl px-3 py-1 text-amber-300 font-display font-black text-xs shadow-lg glow-gold">
+            🥊⚡ Dojo Z • Entrenamiento de Luchadores
+          </div>
+          <!-- Sky Portal to Cannon Game -->
+          <button onclick="launchCannonFromMenu()" class="pointer-events-auto px-3 py-1 rounded-xl bg-gradient-to-r from-amber-500 via-rose-600 to-purple-600 text-white font-display font-black text-xs shadow-lg flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-all">
+            <i class="fa-solid fa-bolt"></i> <span>Misión Cañón de Sumas Z</span>
+          </button>
+        </div>
+
+        <div class="flex-1 relative w-full h-full my-1">
+          
+          <!-- Saco de Boxeo Interactivo -->
+          <div onclick="interactRoomProp('punchingBag', event)" class="absolute top-[14%] left-[12%] cursor-pointer group text-center">
+            <div id="punchingBagVisual" class="text-5xl group-hover:scale-110 transition-transform filter drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]">
+              🥊
+            </div>
+            <div class="bg-slate-900/90 border border-rose-500/50 text-rose-300 text-[8px] font-bold px-2 py-0.5 rounded-full shadow mt-1">
+              Saco de Golpe Z
+            </div>
+          </div>
+
+          <!-- Robot Sparring Dummy -->
+          <div onclick="interactRoomProp('sparringBot', event)" class="absolute top-[14%] right-[16%] cursor-pointer group text-center">
+            <div class="text-5xl animate-bounce-soft filter drop-shadow-[0_0_15px_rgba(245,158,11,0.8)]">
+              🤖
+            </div>
+            <div class="bg-slate-900/90 border border-amber-500/50 text-amber-300 text-[8px] font-bold px-2 py-0.5 rounded-full shadow mt-1">
+              Robot Sparring 50⚡
+            </div>
+          </div>
+
+          <!-- Podio de Trofeos y Medallas Z -->
+          <div class="absolute bottom-[24%] left-[45%] -translate-x-1/2 bg-slate-900/90 border border-slate-700 rounded-3xl p-3 shadow-xl flex items-end justify-center gap-2">
+            <div class="text-center">
+              <div class="text-xl">🥈</div>
+              <div class="w-10 h-8 bg-slate-800 rounded-t-lg text-[8px] font-bold text-slate-300 flex items-center justify-center">2.º</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl animate-bounce">🏆</div>
+              <div class="w-12 h-14 bg-amber-600 rounded-t-lg text-[9px] font-black text-slate-950 flex items-center justify-center">1.er 👑</div>
+            </div>
+            <div class="text-center">
+              <div class="text-xl">🥉</div>
+              <div class="w-10 h-6 bg-amber-900 rounded-t-lg text-[8px] font-bold text-amber-300 flex items-center justify-center">3.º</div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- ROOM 5: 🚀🌌 ESTACIÓN DE LANZAMIENTO DEL COHETE                       -->
+      <!-- ===================================================================== -->
+      <section id="room4" class="relative w-[100vw] min-w-[800px] h-full flex flex-col justify-between p-4 shrink-0 z-10 bg-purple-950/10">
+        
+        <div class="flex items-center justify-between pointer-events-none">
+          <div class="bg-slate-900/90 border-2 border-rose-500/50 rounded-2xl px-3 py-1 text-rose-300 font-display font-black text-xs shadow-lg glow-pink">
+            🚀🌌 Estación Espacial • Plataforma de Despegue
+          </div>
+          <!-- Sky Portal to Rocket Game -->
+          <button onclick="launchRocketFromMenu()" class="pointer-events-auto px-3 py-1 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-display font-black text-xs shadow-lg flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-all">
+            <i class="fa-solid fa-rocket"></i> <span>Misión Cohete +5</span>
+          </button>
+        </div>
+
+        <div class="flex-1 relative w-full h-full my-1">
+          
+          <!-- Torre de Lanzamiento del Cohete -->
+          <div onclick="interactRoomProp('rocketLaunchpad', event)" class="absolute top-[10%] left-[15%] bg-slate-900/90 border-2 border-rose-500/60 rounded-3xl p-4 shadow-2xl cursor-pointer hover:scale-105 transition-transform text-center glow-pink">
+            <div class="text-5xl animate-bounce-soft filter drop-shadow-[0_0_20px_rgba(244,63,94,0.9)]">🚀</div>
+            <div class="text-[9px] font-black text-rose-300 mt-1">Cohete Numérico</div>
+            <div class="text-[7px] text-slate-400">¡Tócame para volar a la órbita!</div>
+          </div>
+
+          <!-- Telescopio Astronómico -->
+          <div onclick="interactRoomProp('telescope', event)" class="absolute top-[14%] right-[18%] bg-slate-900/90 border border-cyan-400/50 rounded-2xl p-3 shadow-xl cursor-pointer hover:scale-110 transition-transform text-center">
+            <div class="text-3xl">🔭</div>
+            <div class="text-[8px] font-bold text-cyan-300 mt-0.5">Telescopio Estelar</div>
+            <div class="text-[7px] text-slate-400">Constelaciones 10,000 ✨</div>
+          </div>
+
+          <!-- Consola de Cuenta Regresiva -->
+          <div class="absolute bottom-[24%] left-[45%] -translate-x-1/2 bg-slate-900/90 border border-slate-700 rounded-2xl p-3 shadow-xl flex items-center gap-3">
+            <div class="text-3xl">🛸</div>
+            <div>
+              <div class="text-[9px] font-bold text-amber-300">Radar de Órbita</div>
+              <div class="text-[7px] text-slate-400">Salto: +5 por ignición</div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- 🧍 DYNAMIC MOVABLE CHARACTERS LAYER                                   -->
+      <!-- ===================================================================== -->
+
+      <!-- NONINA 🌸 (Romina - 3.er Grado) -->
+      <div id="avatarNonina" 
+           class="world-item flex flex-col items-center select-none"
+           style="top: 55%; left: 350px;"
+           onmousedown="startTocaDrag(event, 'avatarNonina')"
+           ontouchstart="startTocaDrag(event, 'avatarNonina')"
+           onclick="tapAvatar('nonina', event)">
+        
+        <div id="bubbleNonina" class="speech-bubble mb-1 bg-slate-900/95 border border-rose-400/70 text-rose-200 text-[9px] font-bold px-2 py-1 rounded-xl shadow-xl backdrop-blur-md opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+          ¡Hola! ¡Soy Nonina de 3.er Grado! 🌸
+        </div>
+
         <div class="relative w-16 h-20 sm:w-20 sm:h-24 filter drop-shadow-[0_8px_12px_rgba(0,0,0,0.6)]">
           <svg viewBox="0 0 100 120" class="w-full h-full">
-            <!-- Shadow -->
             <ellipse cx="50" cy="115" rx="30" ry="6" fill="rgba(0,0,0,0.4)" />
-            <!-- Legs & Shoes -->
             <rect x="36" y="85" width="10" height="20" rx="4" fill="#334155" />
             <rect x="54" y="85" width="10" height="20" rx="4" fill="#334155" />
             <ellipse cx="40" cy="108" rx="8" ry="4" fill="#f43f5e" />
             <ellipse cx="60" cy="108" rx="8" ry="4" fill="#f43f5e" />
-            <!-- Skirt / Dress -->
             <polygon points="30,85 70,85 75,70 25,70" fill="#be123c" />
             <rect x="28" y="55" width="44" height="20" rx="6" fill="#f43f5e" />
-            <!-- Cyber Star Badge -->
             <circle cx="50" cy="65" r="5" fill="#fef08a" />
-            <!-- Head & Face -->
             <circle cx="50" cy="38" r="22" fill="#fed7aa" />
-            <!-- Hair (Cute Ponytail & Bow) -->
             <path d="M 28 35 Q 50 14 72 35 Q 50 20 28 35 Z" fill="#78350f" />
             <circle cx="72" cy="24" r="10" fill="#78350f" />
-            <!-- Pink Glowing Neon Bow -->
             <circle cx="68" cy="24" r="5" fill="#fb7185" />
-            <!-- Eyes & Blush -->
             <ellipse cx="42" cy="38" rx="3" ry="4" fill="#1e293b" />
             <ellipse cx="58" cy="38" rx="3" ry="4" fill="#1e293b" />
             <circle cx="43" cy="36" r="1" fill="#ffffff" />
             <circle cx="59" cy="36" r="1" fill="#ffffff" />
             <ellipse cx="37" cy="44" rx="3" ry="1.5" fill="#f43f5e" opacity="0.6" />
             <ellipse cx="63" cy="44" rx="3" ry="1.5" fill="#f43f5e" opacity="0.6" />
-            <!-- Smile -->
             <path d="M 45 44 Q 50 49 55 44" stroke="#78350f" stroke-width="2" fill="none" stroke-linecap="round" />
           </svg>
         </div>
 
-        <!-- Name Tag Badge -->
-        <div class="mt-0.5 px-2 py-0.5 rounded-full bg-slate-900/90 border border-rose-500/60 text-rose-300 font-display font-black text-[9px] shadow-lg flex items-center gap-1">
-          <span>🌸 NONINA</span>
-          <span class="text-[7px] text-rose-400/80">(Romina)</span>
+        <div class="mt-0.5 px-2 py-0.5 rounded-full bg-slate-900/90 border border-rose-500/60 text-rose-300 font-display font-black text-[9px] shadow-lg">
+          🌸 Nonina
         </div>
       </div>
 
-      <!-- 💙 AVATAR INTERACTIVO: DOYDO (RICARDO - 2.º GRADO) -->
+      <!-- DOYDO 💙 (Ricardo - 2.º Grado) -->
       <div id="avatarDoydo" 
-           class="absolute z-20 cursor-grab active:cursor-grabbing transition-all duration-300 ease-out flex flex-col items-center select-none"
-           style="top: 60%; left: 55%;"
-           onmousedown="startAvatarDrag(event, 'doydo')"
-           ontouchstart="startAvatarDrag(event, 'doydo')"
-           onclick="selectAvatar('doydo', event)">
+           class="world-item flex flex-col items-center select-none"
+           style="top: 55%; left: 520px;"
+           onmousedown="startTocaDrag(event, 'avatarDoydo')"
+           ontouchstart="startTocaDrag(event, 'avatarDoydo')"
+           onclick="tapAvatar('doydo', event)">
         
-        <!-- Speech Bubble (Doydo) -->
         <div id="bubbleDoydo" class="speech-bubble mb-1 bg-slate-900/95 border border-sky-400/70 text-sky-200 text-[9px] font-bold px-2 py-1 rounded-xl shadow-xl backdrop-blur-md opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
           ¡Soy Doydo! ¡A vencer robots y T-Rex! ⚡
         </div>
 
-        <!-- SVG Vector Character: Doydo (Cute Cyber-Cool Boy Style) -->
         <div class="relative w-16 h-20 sm:w-20 sm:h-24 filter drop-shadow-[0_8px_12px_rgba(0,0,0,0.6)]">
           <svg viewBox="0 0 100 120" class="w-full h-full">
-            <!-- Shadow -->
             <ellipse cx="50" cy="115" rx="30" ry="6" fill="rgba(0,0,0,0.4)" />
-            <!-- Legs & Shoes -->
             <rect x="36" y="85" width="10" height="20" rx="4" fill="#1e293b" />
             <rect x="54" y="85" width="10" height="20" rx="4" fill="#1e293b" />
             <ellipse cx="40" cy="108" rx="8" ry="4" fill="#0284c7" />
             <ellipse cx="60" cy="108" rx="8" ry="4" fill="#0284c7" />
-            <!-- Sporty Cyber Jacket -->
             <rect x="26" y="55" width="48" height="32" rx="7" fill="#0284c7" />
             <polygon points="46,55 54,55 50,87" fill="#38bdf8" />
-            <!-- Lightning Bolt Badge -->
             <polygon points="50,60 46,70 51,70 48,80 56,68 51,68" fill="#facc15" />
-            <!-- Head & Face -->
             <circle cx="50" cy="38" r="22" fill="#fed7aa" />
-            <!-- Cyber Cap / Blue Hair -->
             <path d="M 28 35 Q 50 10 72 35 L 78 33 Q 50 18 24 35 Z" fill="#0369a1" />
             <rect x="25" y="24" width="50" height="10" rx="5" fill="#38bdf8" />
-            <!-- Eyes & Visor Glow -->
             <ellipse cx="42" cy="38" rx="3.5" ry="4" fill="#0f172a" />
             <ellipse cx="58" cy="38" rx="3.5" ry="4" fill="#0f172a" />
             <circle cx="43" cy="36" r="1.2" fill="#38bdf8" />
             <circle cx="59" cy="36" r="1.2" fill="#38bdf8" />
-            <!-- Smile -->
             <path d="M 44 44 Q 50 49 56 44" stroke="#0369a1" stroke-width="2.5" fill="none" stroke-linecap="round" />
           </svg>
         </div>
 
-        <!-- Name Tag Badge -->
-        <div class="mt-0.5 px-2 py-0.5 rounded-full bg-slate-900/90 border border-sky-500/60 text-sky-300 font-display font-black text-[9px] shadow-lg flex items-center gap-1">
-          <span>💙 DOYDO</span>
-          <span class="text-[7px] text-sky-400/80">(Ricardo)</span>
+        <div class="mt-0.5 px-2 py-0.5 rounded-full bg-slate-900/90 border border-sky-500/60 text-sky-300 font-display font-black text-[9px] shadow-lg">
+          💙 Doydo
         </div>
       </div>
+
+      <!-- ARA BOT 🤖 (Robot Paseante) -->
+      <div id="avatarAraBot" 
+           class="world-item flex flex-col items-center select-none"
+           style="top: 52%; left: 430px;"
+           onmousedown="startTocaDrag(event, 'avatarAraBot')"
+           ontouchstart="startTocaDrag(event, 'avatarAraBot')"
+           onclick="tapAvatar('araBot', event)">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-indigo-600 p-0.5 shadow-xl glow-blue-neon animate-float">
+          <div class="w-full h-full rounded-2xl bg-slate-950 flex items-center justify-center text-2xl">🤖</div>
+        </div>
+        <div class="text-[8px] font-black text-cyan-300 bg-slate-900/90 px-1.5 py-0.2 rounded-full mt-0.5 border border-cyan-500/40">ARA BOT</div>
+      </div>
+
+      <!-- SPAWNED OBJECTS CONTAINER -->
+      <div id="worldSpawnedItemsLayer"></div>
 
     </main>
 
-    <!-- 📢 BOTTOM ARA BOT LIVE HUD CHAT -->
-    <footer class="h-12 sm:h-14 bg-slate-900/95 border-t border-slate-800 px-3 flex items-center justify-between gap-2 shrink-0 z-30 backdrop-blur-md">
-      <div class="flex items-center gap-2 overflow-hidden">
-        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-sm shadow shrink-0">
+    <!-- 🧰 BOTTOM BAR: TOCA BOCA INVENTORY DRAWER & ARA BOT CHAT -->
+    <footer class="h-14 sm:h-16 bg-slate-900/95 border-t border-slate-800 px-3 flex items-center justify-between gap-2 shrink-0 z-30 backdrop-blur-md">
+      
+      <!-- Drawer Opener Button (Mochila / Inventario) -->
+      <button onclick="toggleTocaDrawer()" class="px-3 py-2 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 text-white font-display font-black text-xs sm:text-sm shadow-xl flex items-center gap-2 hover:scale-105 active:scale-95 transition-all border border-cyan-300/40 shrink-0">
+        <span class="text-base sm:text-lg">🎒</span>
+        <span class="hidden xs:inline">Cajón de Objetos</span>
+      </button>
+
+      <!-- Live Dialogue Message -->
+      <div class="flex-1 flex items-center gap-2 overflow-hidden mx-2">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-xs shadow shrink-0">
           🤖
         </div>
         <p id="playgroundAraSpeech" class="text-[10px] sm:text-xs text-slate-300 font-medium truncate">
-          ¡Hola exploradores! Toca cualquier lugar para que caminen Nonina y Doydo, o abre sus portales del cielo.
+          ¡Desliza a los lados para explorar el mundo Toca Boca! Abre la mochila para sacar comida y juguetes.
         </p>
       </div>
 
-      <div class="flex items-center gap-1.5 shrink-0">
-        <button onclick="triggerQuickDance()" class="px-2.5 py-1.5 rounded-xl bg-indigo-600/80 hover:bg-indigo-500 text-white font-bold text-[10px] sm:text-xs flex items-center gap-1 shadow active:scale-95 transition-all">
-          <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
-          <span>¡Bailar!</span>
+      <!-- Arrow Scroll Buttons (Desktop/Tablet Helpers) -->
+      <div class="flex items-center gap-1 shrink-0">
+        <button onclick="panWorld(-400)" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 flex items-center justify-center text-xs font-bold active:scale-90" title="Desplazar a la Izquierda">
+          ◀
+        </button>
+        <button onclick="panWorld(400)" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 flex items-center justify-center text-xs font-bold active:scale-90" title="Desplazar a la Derecha">
+          ▶
         </button>
       </div>
+
     </footer>
 
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- 🔮 MODAL 1: MENÚ DE DOYDO (HEXÁGONOS FLOTANTES MÁGICOS NEÓN ⬢)             -->
-  <!-- ========================================================================= -->
-  <div id="doydoMenuModal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-fade-in">
-    <div class="bg-slate-900/95 border-2 border-sky-500/50 rounded-3xl p-4 sm:p-6 max-w-lg w-full shadow-2xl relative overflow-hidden text-center glow-blue-neon">
+    <!-- ======================================================================= -->
+    <!-- 🧰 SLIDE-UP TOCA BOCA DRAWER / INVENTORY TRAY                           -->
+    <!-- ======================================================================= -->
+    <div id="tocaDrawer" class="hidden absolute bottom-16 inset-x-2 sm:inset-x-6 z-40 bg-slate-900/95 border-2 border-cyan-500/60 rounded-3xl p-3 shadow-2xl backdrop-blur-xl animate-bounce-soft glow-blue-neon">
       
-      <!-- Close Button -->
-      <button onclick="closeDoydoMenu()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-all">
-        <i class="fa-solid fa-xmark text-sm"></i>
-      </button>
-
-      <!-- Title -->
-      <div class="inline-flex items-center gap-1.5 bg-sky-950/80 border border-sky-600/60 px-3 py-1 rounded-full text-sky-300 text-[10px] font-black uppercase mb-2">
-        <span>💙 Centro Táctico de Doydo (Ricardo - 2.° Grado)</span>
-      </div>
-      <h2 class="font-display font-black text-xl sm:text-2xl text-white">
-        Hexágonos Flotantes Mágicos <span class="text-sky-400">Neón ⬢</span>
-      </h2>
-      <p class="text-xs text-slate-300 mt-0.5 mb-4">
-        Selecciona tu misión matemática de combate o escape:
-      </p>
-
-      <!-- Floating Hexagons Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-2">
-        
-        <!-- 🟢 HEXÁGONO 1: LABORATORIO DINOSAURIO ESCAPE DEL T-REX -->
-        <div onclick="launchDinoFromMenu()" class="cursor-pointer group relative bg-gradient-to-b from-slate-900 to-emerald-950/70 border-2 border-emerald-500/60 hover:border-emerald-400 rounded-3xl p-4 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.03] shadow-xl hover:glow-green animate-float">
-          <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 p-0.5 flex items-center justify-center shadow-lg shadow-emerald-600/50 mb-2">
-            <div class="w-full h-full rounded-2xl bg-slate-950 flex items-center justify-center text-3xl">
-              🦖
-            </div>
-          </div>
-          <h3 class="font-display font-black text-sm sm:text-base text-emerald-300 leading-tight">
-            Laboratorio Dinosaurio: Escape del T-Rex
-          </h3>
-          <p class="text-[10px] text-slate-300 mt-1 leading-snug">
-            Descomposición Base-10, 9 compuertas, reactor de fusión (10🔵➔1🟢 / 10🟢➔1🔴) y lección secreta.
-          </p>
-          <button class="mt-3 w-full py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-display font-black text-xs shadow flex items-center justify-center gap-1.5">
-            <span>¡Jugar Laboratorio!</span>
-            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      <!-- Drawer Header & Tabs -->
+      <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2">
+        <div class="flex items-center gap-1.5">
+          <button onclick="switchDrawerTab('items')" id="tabBtnItems" class="px-3 py-1 rounded-xl bg-cyan-500 text-slate-950 font-display font-black text-xs shadow">
+            🧸 Objetos & Comida
+          </button>
+          <button onclick="switchDrawerTab('characters')" id="tabBtnChars" class="px-3 py-1 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-display font-black text-xs">
+            👥 Personajes
           </button>
         </div>
-
-        <!-- 🔴🔵 HEXÁGONO 2: EL CAÑÓN DE SUMAS RÁPIDAS (LUCHADORES Z) -->
-        <div onclick="launchCannonFromMenu()" class="cursor-pointer group relative bg-gradient-to-b from-slate-900 to-blue-950/70 border-2 border-amber-500/60 hover:border-rose-400 rounded-3xl p-4 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.03] shadow-xl hover:glow-gold animate-float-delay">
-          <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 p-0.5 flex items-center justify-center shadow-lg shadow-amber-500/50 mb-2">
-            <div class="w-full h-full rounded-2xl bg-slate-950 flex items-center justify-center text-3xl">
-              🥊
-            </div>
-          </div>
-          <h3 class="font-display font-black text-sm sm:text-base text-amber-300 leading-tight">
-            El Cañón de Sumas RÁPIDAS (Luchadores Z)
-          </h3>
-          <p class="text-[10px] text-slate-300 mt-1 leading-snug">
-            Combate contra robots descontrolados con fuerzas hasta 50 ⚡, Modos Rápido/Estrategia y explosión de tuercas ⚙️💥.
-          </p>
-          <button class="mt-3 w-full py-2 rounded-xl bg-gradient-to-r from-amber-500 via-rose-600 to-purple-600 text-white font-display font-black text-xs shadow flex items-center justify-center gap-1.5">
-            <span>¡Cargar Cañón Z!</span>
-            <i class="fa-solid fa-bolt text-[10px]"></i>
-          </button>
-        </div>
-
+        <button onclick="toggleTocaDrawer()" class="w-6 h-6 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-xs">
+          ✕
+        </button>
       </div>
 
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- 🌸 MODAL 2: MENÚ DE NONINA (MÓDULOS DE 3.er GRADO)                         -->
-  <!-- ========================================================================= -->
-  <div id="noninaMenuModal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-fade-in">
-    <div class="bg-slate-900/95 border-2 border-rose-500/50 rounded-3xl p-4 sm:p-6 max-w-md w-full shadow-2xl relative overflow-hidden text-center glow-pink">
-      
-      <!-- Close Button -->
-      <button onclick="closeNoninaMenu()" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-all">
-        <i class="fa-solid fa-xmark text-sm"></i>
-      </button>
-
-      <!-- Title -->
-      <div class="inline-flex items-center gap-1.5 bg-rose-950/80 border border-rose-600/60 px-3 py-1 rounded-full text-rose-300 text-[10px] font-black uppercase mb-2">
-        <span>🌸 Estación Espacial de Nonina (Romina - 3.er Grado)</span>
+      <!-- TAB 1: OBJETOS, COMIDA & JUGUETES -->
+      <div id="drawerTabItems" class="flex items-center gap-2 overflow-x-auto py-1 no-scrollbar">
+        <!-- Food items that can be eaten -->
+        <button onclick="spawnItemToWorld('🍕', 'Pizza Galáctica', 'food')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Pizza para comer">
+          <span class="text-3xl">🍕</span>
+          <span class="text-[8px] text-slate-300 mt-0.5">Pizza</span>
+        </button>
+        <button onclick="spawnItemToWorld('🍩', 'Dona Neón', 'food')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Dona para comer">
+          <span class="text-3xl">🍩</span>
+          <span class="text-[8px] text-slate-300 mt-0.5">Dona</span>
+        </button>
+        <button onclick="spawnItemToWorld('🧃', 'Jugo de Estrellas', 'food')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Jugo para beber">
+          <span class="text-3xl">🧃</span>
+          <span class="text-[8px] text-slate-300 mt-0.5">Jugo</span>
+        </button>
+        <button onclick="spawnItemToWorld('🍦', 'Helado de Plasma', 'food')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Helado">
+          <span class="text-3xl">🍦</span>
+          <span class="text-[8px] text-slate-300 mt-0.5">Helado</span>
+        </button>
+        <!-- Accessories & Toys -->
+        <button onclick="spawnItemToWorld('🕶️', 'Gafas Cyber', 'accessory')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Gafas">
+          <span class="text-3xl">🕶️</span>
+          <span class="text-[8px] text-slate-300 mt-0.5">Gafas</span>
+        </button>
+        <button onclick="spawnItemToWorld('👑', 'Corona de Estrellas', 'accessory')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Corona">
+          <span class="text-3xl">👑</span>
+          <span class="text-[8px] text-slate-300 mt-0.5">Corona</span>
+        </button>
+        <button onclick="spawnItemToWorld('📱', 'Calculadora Z', 'toy')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Calculadora">
+          <span class="text-3xl">📱</span>
+          <span class="text-[8px] text-slate-300 mt-0.5">Cálculo</span>
+        </button>
+        <button onclick="spawnItemToWorld('🏆', 'Trofeo Z', 'toy')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Trofeo">
+          <span class="text-3xl">🏆</span>
+          <span class="text-[8px] text-slate-300 mt-0.5">Trofeo</span>
+        </button>
+        <button onclick="spawnItemToWorld('⚽', 'Pelota Saltarina', 'toy')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Pelota">
+          <span class="text-3xl">⚽</span>
+          <span class="text-[8px] text-slate-300 mt-0.5">Pelota</span>
+        </button>
       </div>
-      <h2 class="font-display font-black text-xl sm:text-2xl text-white">
-        Misión de <span class="text-rose-400">3.er Grado 🚀</span>
-      </h2>
-      <p class="text-xs text-slate-300 mt-0.5 mb-4">
-        Conteo por saltos, odómetro espacial y valor posicional:
-      </p>
 
-      <!-- Single Highlight Card -->
-      <div onclick="launchRocketFromMenu()" class="cursor-pointer group relative bg-gradient-to-b from-slate-900 to-rose-950/70 border-2 border-rose-500/60 hover:border-rose-400 rounded-3xl p-5 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-[1.02] shadow-xl hover:glow-pink">
-        <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-rose-600 to-pink-400 p-1 flex items-center justify-center shadow-lg shadow-rose-600/50 mb-3 animate-bounce-soft">
-          <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-4xl">
-            🚀
-          </div>
-        </div>
-        <h3 class="font-display font-black text-lg text-rose-300">
-          El Cohete Numérico
-        </h3>
-        <p class="text-xs text-slate-300 mt-1 leading-relaxed">
-          Series numéricas de 5 en 5, odómetro de 4 cifras (Millares 🟡, Centenas 🔴, Decenas 🔵, Unidades 🟢) y despegue a la estratosfera.
-        </p>
-        <button class="mt-4 w-full py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-display font-black text-xs shadow flex items-center justify-center gap-2">
-          <span>¡Iniciar Vuelo Espacial!</span>
-          <i class="fa-solid fa-arrow-right text-xs"></i>
+      <!-- TAB 2: PERSONAJES -->
+      <div id="drawerTabChars" class="hidden items-center gap-3 overflow-x-auto py-1 no-scrollbar">
+        <button onclick="teleportCharacter('avatarNonina')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-rose-950/80 border border-rose-500/50 flex flex-col items-center hover:scale-105 transition-all">
+          <span class="text-3xl">🌸</span>
+          <span class="text-[9px] font-bold text-rose-300 mt-0.5">Nonina</span>
+        </button>
+        <button onclick="teleportCharacter('avatarDoydo')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-sky-950/80 border border-sky-500/50 flex flex-col items-center hover:scale-105 transition-all">
+          <span class="text-3xl">💙</span>
+          <span class="text-[9px] font-bold text-sky-300 mt-0.5">Doydo</span>
+        </button>
+        <button onclick="teleportCharacter('avatarAraBot')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-indigo-950/80 border border-cyan-500/50 flex flex-col items-center hover:scale-105 transition-all">
+          <span class="text-3xl">🤖</span>
+          <span class="text-[9px] font-bold text-cyan-300 mt-0.5">ARA BOT</span>
+        </button>
+        <button onclick="spawnNewPet('🐱', 'Gatito Cyber')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-purple-950/80 border border-purple-500/50 flex flex-col items-center hover:scale-105 transition-all">
+          <span class="text-3xl">🐱</span>
+          <span class="text-[9px] font-bold text-purple-300 mt-0.5">Gato Bot</span>
+        </button>
+        <button onclick="spawnNewPet('🐶', 'Perrito Mech')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-amber-950/80 border border-amber-500/50 flex flex-col items-center hover:scale-105 transition-all">
+          <span class="text-3xl">🐶</span>
+          <span class="text-[9px] font-bold text-amber-300 mt-0.5">Mech Pup</span>
         </button>
       </div>
 
     </div>
-  </div>
+
+  </section>
 
   <!-- ========================================================================= -->
   <!-- 🥊 PANTALLA 2: EL CAÑÓN DE SUMAS RÁPIDAS (LUCHADORES Z) - 2.° GRADO        -->
   <!-- ========================================================================= -->
   <section id="screen-cannon" class="hidden flex-1 flex flex-col justify-between p-2 sm:p-3 w-full h-full relative z-20 overflow-hidden">
-    
-    <!-- Top HUD Header -->
     <header class="h-11 bg-slate-900/95 border border-amber-500/50 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg backdrop-blur-md pr-12">
       <div class="flex items-center gap-1.5 sm:gap-2">
-        <button onclick="goToPlayground()" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-amber-950/80 border border-slate-700 hover:border-amber-500/50 text-amber-300 flex items-center gap-1 text-[11px] font-bold transition-all active:scale-95" title="Regresar al Patio">
+        <button onclick="goToPlayground()" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-amber-950/80 border border-slate-700 hover:border-amber-500/50 text-amber-300 flex items-center gap-1 text-[11px] font-bold transition-all active:scale-95">
           <i class="fa-solid fa-arrow-left text-[10px]"></i>
-          <span class="hidden sm:inline">Patio</span>
+          <span class="hidden sm:inline">Mundo Toca Boca</span>
         </button>
         <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center shadow shrink-0">
           <i class="fa-solid fa-bolt text-xs text-white"></i>
@@ -667,12 +762,10 @@
         </div>
       </div>
 
-      <!-- Mode & Combo Badges -->
       <div class="flex items-center gap-1.5 sm:gap-2">
         <button onclick="openCannonModeModal()" id="cannonModeBadge" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-amber-500/40 text-amber-300 font-display font-black text-[10px] flex items-center gap-1">
           <i class="fa-solid fa-sliders text-[9px]"></i><span id="cannonModeLabel">⚡ Modo Rápido</span>
         </button>
-        
         <div class="bg-slate-950 px-2 py-0.5 rounded-lg border border-purple-500/50 flex items-center gap-1">
           <span class="text-[8px] text-purple-300 font-bold">Combo:</span>
           <span id="cannonComboVal" class="font-display font-black text-xs text-yellow-400">x1</span>
@@ -680,13 +773,9 @@
       </div>
     </header>
 
-    <!-- Main Combat Arena (Single Screen Zero-Scroll) -->
+    <!-- Combat Workspace -->
     <div class="flex-1 grid grid-cols-12 gap-2 my-1.5 overflow-hidden">
-      
-      <!-- LEFT COL: ROBOT DESCONTROLADO (COLS 1-6) -->
       <div class="col-span-12 sm:col-span-6 bg-slate-900/85 border border-slate-800 rounded-2xl p-2.5 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
-        
-        <!-- Top Status Bar -->
         <div class="flex items-center justify-between border-b border-slate-800 pb-1 text-[9px] font-bold">
           <div class="flex items-center gap-1.5 text-rose-400">
             <i class="fa-solid fa-robot"></i>
@@ -698,36 +787,22 @@
           </div>
         </div>
 
-        <!-- Combat Robot Visual Avatar -->
         <div class="flex-1 flex flex-col items-center justify-center relative my-1">
-          
-          <!-- Nuts, Bolts & Sparks Particle Explosion Layer -->
           <div id="cannonSparkContainer" class="absolute inset-0 pointer-events-none z-20 flex items-center justify-center"></div>
-
-          <!-- Laser Beam Line -->
           <div id="cannonLaserBeam" class="hidden absolute left-0 top-1/2 -translate-y-1/2 h-2 bg-gradient-to-r from-amber-400 via-rose-500 to-cyan-400 rounded-full z-15"></div>
 
-          <!-- Robot Character Visual -->
           <div id="robotCombatAvatar" class="relative flex flex-col items-center transform transition-transform duration-200">
-            <!-- Overcharge Smoke / Aura -->
             <div class="absolute -top-6 w-24 h-24 rounded-full bg-red-500/20 blur-xl animate-pulse"></div>
-            
-            <!-- Robot Emoji / Graphics -->
             <div id="robotVisualGraphic" class="text-6xl sm:text-7xl filter drop-shadow-[0_0_15px_rgba(239,68,68,0.8)] animate-bounce-soft">
               🤖
             </div>
-
-            <!-- Target Energy Badge (Fuerza hasta 50 ⚡) -->
             <div class="mt-2 bg-slate-950/95 border-2 border-amber-400 rounded-xl px-3 py-1 shadow-lg flex items-center gap-2 glow-gold">
               <span class="text-[9px] font-black uppercase text-amber-300">Fuerza Enemiga:</span>
-              <span id="robotTargetEnergy" class="font-display font-black text-xl sm:text-2xl text-amber-400 font-mono">
-                38 ⚡
-              </span>
+              <span id="robotTargetEnergy" class="font-display font-black text-xl sm:text-2xl text-amber-400 font-mono">38 ⚡</span>
             </div>
           </div>
         </div>
 
-        <!-- Robot Health / Shield Progress Bar -->
         <div class="bg-slate-950 border border-slate-800 rounded-xl p-1.5">
           <div class="flex items-center justify-between text-[8px] font-bold text-slate-400 mb-1">
             <span>Carga de Neutralización:</span>
@@ -737,32 +812,21 @@
             <div id="cannonEnergyBarFill" class="h-full bg-gradient-to-r from-cyan-500 via-amber-400 to-emerald-400 rounded-full transition-all duration-300" style="width: 0%;"></div>
           </div>
         </div>
-
       </div>
 
-      <!-- RIGHT COL: EL CAÑÓN DE SUMAS & PANEL DE TIRO (COLS 7-12) -->
       <div class="col-span-12 sm:col-span-6 flex flex-col justify-between gap-1.5 overflow-hidden">
-        
-        <!-- CALCULATION TARGET QUESTION HUD -->
         <div class="bg-slate-900/85 border border-slate-800 rounded-2xl p-2.5 backdrop-blur-md text-center">
           <div class="text-[9px] font-black text-amber-300 uppercase tracking-wide mb-1">
-            <i class="fa-solid fa-crosshairs mr-1"></i> ¡Calcula el Disparo Z para Neutralizar la Fuerza!
+            <i class="fa-solid fa-crosshairs mr-1"></i> ¡Calcula el Disparo Z!
           </div>
           <div id="cannonEquationPrompt" class="font-display font-black text-base sm:text-lg text-white bg-slate-950 py-1 px-2 rounded-xl border border-slate-800 shadow-inner">
             ¿Qué proyectil suma exactamente <span class="text-amber-400">38 ⚡</span>?
           </div>
         </div>
 
-        <!-- DYNAMIC FIRING AMMUNITION CONTROLS (OPCIONES DE SUMA O CARGAS) -->
         <div id="cannonAmmoGrid" class="flex-1 bg-slate-900/85 border border-slate-800 rounded-2xl p-2 sm:p-3 flex flex-col justify-between backdrop-blur-md min-h-[140px]">
-          
-          <div id="cannonOptionsContainer" class="grid grid-cols-2 gap-2 my-auto">
-            <!-- Dynamic option buttons injected via JS -->
-          </div>
-
-          <!-- Rapid Power Boost Buttons (Descomposición Táctica) -->
+          <div id="cannonOptionsContainer" class="grid grid-cols-2 gap-2 my-auto"></div>
           <div id="cannonTacticalCharges" class="hidden flex-col gap-1.5">
-            <div class="text-[9px] text-slate-400 text-center font-bold">Carga acumulativa de plasma:</div>
             <div class="grid grid-cols-4 gap-1">
               <button onclick="addCannonCharge(10)" class="py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-display font-black text-xs shadow border border-blue-400/40 active:scale-95">+10 🔵</button>
               <button onclick="addCannonCharge(5)" class="py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-display font-black text-xs shadow border border-purple-400/40 active:scale-95">+5 🟣</button>
@@ -770,742 +834,258 @@
               <button onclick="addCannonCharge(1)" class="py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-display font-black text-xs shadow border border-amber-400/40 active:scale-95">+1 🟡</button>
             </div>
             <div class="flex items-center gap-1.5 pt-1">
-              <button onclick="fireCannonTactical()" class="flex-1 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-rose-600 to-purple-600 text-white font-display font-black text-xs shadow-lg active:scale-95">
-                ¡DISPARAR FUEGO Z! 💥
-              </button>
-              <button onclick="resetCannonTacticalCharge()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700">
-                Borrar
-              </button>
+              <button onclick="fireCannonTactical()" class="flex-1 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-rose-600 to-purple-600 text-white font-display font-black text-xs shadow-lg active:scale-95">¡DISPARAR FUEGO Z! 💥</button>
+              <button onclick="resetCannonTacticalCharge()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700">Borrar</button>
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
 
-    <!-- Bottom Dialogue Banner with ARA BOT -->
     <footer class="bg-slate-900/90 border border-slate-800 rounded-xl p-2 flex items-center justify-between gap-2 shrink-0">
       <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-amber-500 to-rose-600 flex items-center justify-center text-sm shadow">
-          🤖
-        </div>
-        <p id="cannonAraBotSpeech" class="text-[10px] sm:text-xs text-slate-300 font-medium truncate">
-          ¡Apunta y dispara Doydo! Suma rápido para sobrecargar los circuitos del robot descontrolado.
-        </p>
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-amber-500 to-rose-600 flex items-center justify-center text-sm shadow">🤖</div>
+        <p id="cannonAraBotSpeech" class="text-[10px] sm:text-xs text-slate-300 font-medium truncate">¡Apunta y dispara Doydo! Suma rápido para neutralizar al robot.</p>
       </div>
       <button onclick="hintCannonMath()" class="shrink-0 px-2 py-1 rounded-lg bg-amber-600/80 hover:bg-amber-500 text-white text-[10px] font-bold shadow">
         <i class="fa-solid fa-lightbulb text-yellow-300 mr-1"></i>Pista
       </button>
     </footer>
-
   </section>
 
   <!-- ========================================================================= -->
   <!-- 🚀 PANTALLA 3: NONINA (ROMINA) - EL COHETE NUMÉRICO (3.° GRADO)            -->
   <!-- ========================================================================= -->
   <section id="screen-rocket" class="hidden flex-1 flex flex-col justify-between p-2 sm:p-3 w-full h-full relative z-20 overflow-hidden">
-    
-    <!-- Top HUD Header -->
     <header class="h-11 bg-slate-900/90 border border-slate-800 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg backdrop-blur-md pr-12">
       <div class="flex items-center gap-1.5 sm:gap-2">
-        <button onclick="goToPlayground()" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-rose-950/80 border border-slate-700 hover:border-rose-500/50 text-rose-300 flex items-center gap-1 text-[11px] font-bold transition-all active:scale-95" title="Regresar al Patio">
+        <button onclick="goToPlayground()" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-rose-950/80 border border-slate-700 hover:border-rose-500/50 text-rose-300 flex items-center gap-1 text-[11px] font-bold transition-all active:scale-95">
           <i class="fa-solid fa-arrow-left text-[10px]"></i>
-          <span class="hidden sm:inline">Patio</span>
+          <span class="hidden sm:inline">Mundo Toca Boca</span>
         </button>
         <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-rose-600 to-pink-500 flex items-center justify-center shadow-md shrink-0">
           <i class="fa-solid fa-rocket text-xs text-white"></i>
         </div>
         <div>
-          <h2 class="font-display font-black text-xs text-rose-300 leading-none">
-            Nonina: <span class="text-white font-medium">El Cohete Numérico</span>
-          </h2>
+          <h2 class="font-display font-black text-xs text-rose-300 leading-none">Nonina: <span class="text-white font-medium">El Cohete Numérico</span></h2>
           <p class="text-[8px] text-slate-400">3.° Grado • Conteo por Saltos & Base-10</p>
         </div>
       </div>
-
       <div class="flex items-center gap-1.5">
-        <!-- Step Increment Switcher -->
-        <button onclick="openStepModal()" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-rose-500/40 text-rose-300 font-display font-black text-[11px] flex items-center gap-1" title="Cambiar salto numérico">
+        <button onclick="openStepModal()" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-rose-500/40 text-rose-300 font-display font-black text-[11px] flex items-center gap-1">
           <i class="fa-solid fa-plus text-[9px]"></i><span id="headerStepLabel">5</span>
-        </button>
-
-        <!-- Rocket Tutorial Guide -->
-        <button onclick="startRocketTutorial()" class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center justify-center text-xs" title="Explicación ARA BOT">
-          <i class="fa-solid fa-robot"></i>
         </button>
       </div>
     </header>
 
-    <!-- Main Game Workspace Grid (Single Screen Zero-Scroll) -->
     <div class="flex-1 grid grid-cols-12 gap-2 my-1.5 overflow-hidden">
-      
-      <!-- LEFT COL: ROCKET ALTITUDE HUD & LAUNCHPAD (Cols 1-3) -->
       <div class="col-span-3 sm:col-span-2 bg-slate-900/80 border border-slate-800 rounded-xl p-2 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
-        
         <div class="flex items-center justify-between text-[9px] font-bold text-slate-400">
-          <span class="hidden sm:inline"><i class="fa-solid fa-gauge-high text-cyan-400"></i> Altura</span>
-          <span id="rocketAltitudePct" class="text-cyan-300 bg-cyan-950 border border-cyan-800 px-1 py-0.2 rounded font-mono text-[9px] mx-auto sm:mx-0">0%</span>
+          <span class="hidden sm:inline">Altura</span>
+          <span id="rocketAltitudePct" class="text-cyan-300 bg-cyan-950 border border-cyan-800 px-1 py-0.2 rounded font-mono text-[9px]">0%</span>
         </div>
-
-        <!-- Vertical Gauge -->
         <div class="flex-1 relative my-1 bg-slate-950/90 rounded-lg border border-slate-800 flex items-end p-1 overflow-hidden">
-          <div class="absolute inset-0 flex flex-col justify-between p-1 pointer-events-none opacity-20 text-[7px] font-mono text-cyan-300">
-            <div class="border-b border-cyan-500/50 w-full flex justify-between"><span>10,000 M</span></div>
-            <div class="border-b border-cyan-500/30 w-full flex justify-between"><span>5,000 M</span></div>
-            <div class="border-b border-cyan-500/50 w-full flex justify-between"><span>BASE 0</span></div>
-          </div>
-
-          <div id="rocketProgressFill" class="w-full bg-gradient-to-t from-indigo-900 via-rose-600 to-cyan-400 rounded transition-all duration-300 relative" style="height: 0%;">
-            <div class="absolute top-0 inset-x-0 h-0.5 bg-cyan-200 shadow-[0_0_8px_#22d3ee]"></div>
-          </div>
-
-          <!-- Rocket Avatar Icon -->
+          <div id="rocketProgressFill" class="w-full bg-gradient-to-t from-indigo-900 via-rose-600 to-cyan-400 rounded transition-all duration-300 relative" style="height: 0%;"></div>
           <div id="rocketAvatar" class="absolute left-1/2 -translate-x-1/2 transition-all duration-300 flex flex-col items-center" style="bottom: 0%;">
-            <div id="rocketFlame" class="w-2.5 h-3.5 bg-gradient-to-b from-amber-400 via-rose-500 to-transparent rounded-full animate-bounce opacity-90 -mt-1"></div>
             <div class="text-xl sm:text-2xl filter drop-shadow-[0_0_8px_rgba(244,63,94,0.9)] transform -rotate-45">🚀</div>
           </div>
         </div>
-
         <div class="bg-slate-950 border border-slate-800 rounded-lg p-1 text-center">
           <div class="text-[7px] text-slate-400 uppercase font-semibold">Valor Total</div>
           <div id="rocketDisplayTotal" class="font-display font-black text-sm sm:text-base text-rose-300 leading-tight">0</div>
         </div>
       </div>
 
-      <!-- RIGHT COL: ODOMETER VALUES & BASE-10 FACTORY (Cols 4-12) -->
       <div class="col-span-9 sm:col-span-10 flex flex-col gap-1.5 justify-between overflow-hidden">
-        
-        <!-- ODOMETER PLACE VALUE CARDS -->
         <div class="grid grid-cols-4 gap-1 sm:gap-1.5 bg-slate-900/70 border border-slate-800 rounded-xl p-1.5 backdrop-blur-md">
-          
-          <!-- Millar (🟡) -->
-          <div class="bg-slate-950/90 border border-amber-500/30 rounded-lg p-1 text-center flex flex-col justify-between shadow">
-            <div class="flex items-center justify-between text-[8px] sm:text-[9px] font-bold text-amber-400 uppercase">
-              <span>Millar</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 glow-gold"></span>
-            </div>
+          <div class="bg-slate-950/90 border border-amber-500/30 rounded-lg p-1 text-center">
+            <div class="text-[8px] font-bold text-amber-400">Millar (🟡)</div>
             <div id="rocketValMillar" class="font-display font-black text-xl sm:text-3xl text-amber-400 my-0.5">0</div>
-            <div id="rocketLabelMillarSub" class="text-[7px] sm:text-[8px] text-amber-300/70 font-mono bg-amber-950/40 rounded py-0.2 border border-amber-800/30">0x1000</div>
           </div>
-
-          <!-- Centena (🔴) -->
-          <div class="bg-slate-950/90 border border-red-500/30 rounded-lg p-1 text-center flex flex-col justify-between shadow">
-            <div class="flex items-center justify-between text-[8px] sm:text-[9px] font-bold text-red-400 uppercase">
-              <span>Centena</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-red-500 glow-red"></span>
-            </div>
+          <div class="bg-slate-950/90 border border-red-500/30 rounded-lg p-1 text-center">
+            <div class="text-[8px] font-bold text-red-400">Centena (🔴)</div>
             <div id="rocketValCentena" class="font-display font-black text-xl sm:text-3xl text-red-400 my-0.5">0</div>
-            <div id="rocketLabelCentenaSub" class="text-[7px] sm:text-[8px] text-red-300/70 font-mono bg-red-950/40 rounded py-0.2 border border-red-800/30">0x100</div>
           </div>
-
-          <!-- Decena (🔵) -->
-          <div class="bg-slate-950/90 border border-blue-500/30 rounded-lg p-1 text-center flex flex-col justify-between shadow">
-            <div class="flex items-center justify-between text-[8px] sm:text-[9px] font-bold text-blue-400 uppercase">
-              <span>Decena</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-blue-500 glow-blue"></span>
-            </div>
+          <div class="bg-slate-950/90 border border-blue-500/30 rounded-lg p-1 text-center">
+            <div class="text-[8px] font-bold text-blue-400">Decena (🔵)</div>
             <div id="rocketValDecena" class="font-display font-black text-xl sm:text-3xl text-blue-400 my-0.5">0</div>
-            <div id="rocketLabelDecenaSub" class="text-[7px] sm:text-[8px] text-blue-300/70 font-mono bg-blue-950/40 rounded py-0.2 border border-blue-800/30">0x10</div>
           </div>
-
-          <!-- Unidad (🟢) -->
-          <div class="bg-slate-950/90 border border-emerald-500/30 rounded-lg p-1 text-center flex flex-col justify-between shadow">
-            <div class="flex items-center justify-between text-[8px] sm:text-[9px] font-bold text-emerald-400 uppercase">
-              <span>Unidad</span>
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 glow-green"></span>
-            </div>
+          <div class="bg-slate-950/90 border border-emerald-500/30 rounded-lg p-1 text-center">
+            <div class="text-[8px] font-bold text-emerald-400">Unidad (🟢)</div>
             <div id="rocketValUnidad" class="font-display font-black text-xl sm:text-3xl text-emerald-400 my-0.5">0</div>
-            <div id="rocketLabelUnidadSub" class="text-[7px] sm:text-[8px] text-emerald-300/70 font-mono bg-emerald-950/40 rounded py-0.2 border border-emerald-800/30">0x1</div>
           </div>
-
         </div>
 
-        <!-- VISUAL BASE-10 BLOCK FACTORY & PORTAL -->
-        <div class="flex-1 bg-slate-900/70 border border-slate-800 rounded-xl p-2 flex flex-col justify-between relative overflow-hidden backdrop-blur-md min-h-[140px]">
-          
-          <!-- Portal Graphic Effect -->
-          <div id="rocketMagicPortal" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 rounded-full bg-gradient-to-r from-purple-600/30 via-pink-600/30 to-cyan-500/30 pointer-events-none opacity-0 transition-opacity duration-300 animate-portal-spin z-10"></div>
-
-          <div class="flex items-center justify-between border-b border-slate-800 pb-1 text-[9px] sm:text-[10px]">
-            <div class="flex items-center gap-1.5">
-              <span class="font-bold text-slate-300"><i class="fa-solid fa-cubes text-rose-400"></i> Fábrica Base-10:</span>
-              <span id="rocketEquationText" class="font-mono text-cyan-300 bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800">
-                0 = 0 + 0 + 0 + 0
-              </span>
-            </div>
-            <div class="text-slate-400">
-              Salto actual: <span id="rocketCurrentStepBadge" class="font-bold text-amber-400 bg-amber-950/60 px-1.5 py-0.2 rounded border border-amber-800/50">+5</span>
-            </div>
-          </div>
-
-          <!-- Base-10 Block Canvas Container -->
-          <div id="rocketBlocksContainer" class="flex-1 my-1 bg-slate-950/90 rounded-lg border border-slate-800/80 p-2 overflow-y-auto custom-scroll flex flex-wrap content-start gap-1.5 relative">
+        <div class="flex-1 bg-slate-900/70 border border-slate-800 rounded-xl p-2 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
+          <div id="rocketBlocksContainer" class="flex-1 my-1 bg-slate-950/90 rounded-lg border border-slate-800 p-2 overflow-y-auto custom-scroll flex flex-wrap content-start gap-1.5 relative">
             <div id="factoryMillares" class="flex flex-wrap gap-1.5 items-center"></div>
             <div id="factoryCentenas" class="flex flex-wrap gap-1.5 items-center"></div>
             <div id="factoryDecenas" class="flex flex-wrap gap-1 items-center"></div>
             <div id="factoryUnidades" class="flex flex-wrap gap-1 items-center"></div>
-
-            <div id="rocketEmptyHint" class="absolute inset-0 flex items-center justify-center text-slate-500 text-xs italic pointer-events-none p-2 text-center">
-              Toca <span class="text-emerald-400 font-bold mx-1">🚀 ¡SUMAR +5!</span> para cargar combustible al cohete espacial...
-            </div>
           </div>
-
-          <!-- Action Buttons -->
           <div class="flex items-center gap-1.5 pt-0.5">
-            <button id="btnRocketAdd" onclick="executeRocketStepAdd()" class="flex-1 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-display font-black text-xs sm:text-sm py-2 px-3 rounded-xl shadow-lg shadow-emerald-600/30 transition-all transform active:scale-95 flex items-center justify-center gap-2 border border-emerald-400/40">
-              <i class="fa-solid fa-circle-plus text-sm animate-bounce"></i>
-              <span id="btnRocketAddText">🚀 ¡SUMAR +5!</span>
+            <button id="btnRocketAdd" onclick="executeRocketStepAdd()" class="flex-1 bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-display font-black text-xs sm:text-sm py-2 px-3 rounded-xl shadow-lg active:scale-95">
+              🚀 ¡SUMAR +5!
             </button>
-
-            <!-- Manual Launch Trigger -->
-            <button onclick="triggerRocketLaunchCelebration()" class="px-3 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-display font-black text-xs border border-rose-400/40 shadow-lg shadow-rose-600/20 transition-all flex items-center gap-1.5 active:scale-95" title="¡Despegar Cohete!">
-              <i class="fa-solid fa-fire"></i>
-              <span>¡Despegar!</span>
+            <button onclick="triggerRocketLaunchCelebration()" class="px-3 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-display font-black text-xs shadow-lg active:scale-95">
+              ¡Despegar!
             </button>
-
-            <button onclick="resetRocketCounter()" class="px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs border border-slate-700 transition-all flex items-center gap-1" title="Reiniciar a Cero">
-              <i class="fa-solid fa-rotate-left"></i>
-              <span class="hidden sm:inline">Borrar</span>
+            <button onclick="resetRocketCounter()" class="px-2.5 py-2 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs">
+              Borrar
             </button>
           </div>
-
         </div>
-
       </div>
-
     </div>
-
-    <!-- Bottom Dialogue Banner with ARA BOT -->
-    <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2 flex items-center justify-between gap-2 shrink-0">
-      <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-600 to-rose-500 flex items-center justify-center text-sm shadow">
-          🤖
-        </div>
-        <p id="rocketAraBotSpeech" class="text-[10px] sm:text-xs text-slate-300 font-medium truncate">
-          ¡Hola Romina! Salta de 5 en 5 para construir números de 4 cifras (Millares 🟡). Al llegar a 10 unidades, ¡se fusionan en 1 decena!
-        </p>
-      </div>
-      <button onclick="showRocketChallenge()" class="shrink-0 px-2 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-bold shadow">
-        <i class="fa-solid fa-brain mr-1 text-amber-300"></i>Reto
-      </button>
-    </div>
-
   </section>
 
   <!-- ========================================================================= -->
   <!-- 🦖 PANTALLA 4: DOYDO (RICARDO) - LABORATORIO DINOSAURIO (2.° GRADO)        -->
   <!-- ========================================================================= -->
   <section id="screen-dino" class="hidden flex-1 flex flex-col justify-between p-2 sm:p-3 w-full h-full relative z-20 overflow-hidden">
-    
-    <!-- Red Alert Header HUD -->
-    <header class="h-11 bg-slate-900/95 border-2 border-red-500/60 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg shadow-red-950/50 backdrop-blur-md animate-alarm-blink pr-12">
+    <header class="h-11 bg-slate-900/95 border-2 border-red-500/60 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg pr-12">
       <div class="flex items-center gap-1.5 sm:gap-2">
-        <button onclick="goToPlayground()" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-sky-950/80 border border-slate-700 hover:border-sky-500/50 text-sky-300 flex items-center gap-1 text-[11px] font-bold transition-all active:scale-95" title="Regresar al Patio">
+        <button onclick="goToPlayground()" class="h-7 px-2 rounded-lg bg-slate-800 text-sky-300 flex items-center gap-1 text-[11px] font-bold">
           <i class="fa-solid fa-arrow-left text-[10px]"></i>
-          <span class="hidden sm:inline">Patio</span>
+          <span class="hidden sm:inline">Mundo Toca Boca</span>
         </button>
-        <div class="w-7 h-7 rounded-lg bg-red-600 text-white flex items-center justify-center shadow-lg animate-pulse shrink-0">
-          <i class="fa-solid fa-shield-halved text-xs"></i>
-        </div>
-        <div>
-          <h2 class="font-display font-black text-xs text-red-400 uppercase tracking-wide leading-none">
-            ¡Comandante Doydo: Alarma T-Rex!
-          </h2>
-          <p class="text-[8px] text-slate-300">Despliega guardias y escudos para sellar las 9 compuertas 🦖</p>
-        </div>
+        <h2 class="font-display font-black text-xs text-red-400 uppercase">Alarma T-Rex 🦖</h2>
       </div>
-
-      <!-- Level Tracker Badges -->
-      <div class="flex items-center gap-1.5 sm:gap-2">
-        <div class="bg-slate-950/90 border border-red-500/50 px-2 py-0.5 rounded-lg flex items-center gap-1">
-          <span class="text-[8px] text-slate-400 font-bold">Puerta:</span>
-          <span id="dinoCurrentLevelLabel" class="font-display font-black text-xs text-amber-300">1/9</span>
-        </div>
-        <button onclick="startDinoTutorial()" class="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 flex items-center justify-center text-xs" title="Instrucciones de Emergencia">
-          <i class="fa-solid fa-robot"></i>
-        </button>
+      <div class="bg-slate-950/90 border border-red-500/50 px-2 py-0.5 rounded-lg text-amber-300 font-black text-xs">
+        Puerta: <span id="dinoCurrentLevelLabel">1/9</span>
       </div>
     </header>
 
-    <!-- 🚨 MASTER SECURITY CODE DISPLAY (CÓDIGO DE CONTENCIÓN EN GRANDE) -->
-    <div class="bg-slate-900/90 border-2 border-red-500/40 rounded-2xl p-2 my-1 shadow-2xl backdrop-blur-md shrink-0">
-      <div class="flex items-center justify-between text-[9px] font-extrabold uppercase border-b border-slate-800 pb-1 mb-1.5 text-slate-400">
-        <span class="flex items-center gap-1.5 text-red-400">
-          <i class="fa-solid fa-key text-amber-400"></i> Código de Contención de Seguridad:
-        </span>
-        <span id="masterCodeStatusText" class="font-mono font-black text-amber-300">BLOQUEA LOS 3 PUESTOS</span>
+    <div class="grid grid-cols-3 gap-2 sm:gap-3 bg-slate-900/90 border-2 border-red-500/40 rounded-2xl p-2 my-1 shadow-2xl">
+      <div id="bigDigitCentenaBox" class="bg-slate-950 border border-slate-800 rounded-xl p-2 text-center">
+        <div class="text-[9px] font-black text-red-400">Centenas (x100) 🔴</div>
+        <div id="bigDigitCentena" class="font-display font-black text-3xl text-slate-400">3</div>
+        <div id="bigProgressCentena" class="text-[8px] font-mono text-slate-400">0 / 3</div>
       </div>
-
-      <!-- THE 3 BIG DIGIT HOLOGRAPHIC BLOCKS -->
-      <div class="grid grid-cols-3 gap-2 sm:gap-3">
-        
-        <!-- BIG CENTENAS 🔴 -->
-        <div id="bigDigitCentenaBox" class="digit-unlocked rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-lg">
-          <div class="w-full flex items-center justify-between text-[9px] font-black text-red-400 uppercase">
-            <span>Centenas (x100)</span>
-            <span id="bigLockCentenaIcon" class="text-xs">🔓</span>
-          </div>
-          
-          <div id="bigDigitCentena" class="font-display font-black text-3xl sm:text-4xl text-slate-400 my-0.5 tracking-wider">
-            3
-          </div>
-
-          <div class="w-full flex items-center justify-between text-[8px] font-mono mt-0.5">
-            <span id="bigProgressCentena" class="text-slate-400 font-bold">0 / 3 🔴</span>
-            <span id="bigValCentena" class="bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800 text-slate-400 font-bold">0</span>
-          </div>
-        </div>
-
-        <!-- BIG DECENAS 🟢 -->
-        <div id="bigDigitDecenaBox" class="digit-unlocked rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-lg">
-          <div class="w-full flex items-center justify-between text-[9px] font-black text-emerald-400 uppercase">
-            <span>Decenas (x10)</span>
-            <span id="bigLockDecenaIcon" class="text-xs">🔓</span>
-          </div>
-          
-          <div id="bigDigitDecena" class="font-display font-black text-3xl sm:text-4xl text-slate-400 my-0.5 tracking-wider">
-            7
-          </div>
-
-          <div class="w-full flex items-center justify-between text-[8px] font-mono mt-0.5">
-            <span id="bigProgressDecena" class="text-slate-400 font-bold">0 / 7 🟢</span>
-            <span id="bigValDecena" class="bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800 text-slate-400 font-bold">0</span>
-          </div>
-        </div>
-
-        <!-- BIG UNIDADES 🔵 -->
-        <div id="bigDigitUnidadBox" class="digit-unlocked rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-lg">
-          <div class="w-full flex items-center justify-between text-[9px] font-black text-blue-400 uppercase">
-            <span>Unidades (x1)</span>
-            <span id="bigLockUnidadIcon" class="text-xs">🔓</span>
-          </div>
-          
-          <div id="bigDigitUnidad" class="font-display font-black text-3xl sm:text-4xl text-slate-400 my-0.5 tracking-wider">
-            8
-          </div>
-
-          <div class="w-full flex items-center justify-between text-[8px] font-mono mt-0.5">
-            <span id="bigProgressUnidad" class="text-slate-400 font-bold">0 / 8 🔵</span>
-            <span id="bigValUnidad" class="bg-slate-950 px-1.5 py-0.2 rounded border border-slate-800 text-slate-400 font-bold">0</span>
-          </div>
-        </div>
-
+      <div id="bigDigitDecenaBox" class="bg-slate-950 border border-slate-800 rounded-xl p-2 text-center">
+        <div class="text-[9px] font-black text-emerald-400">Decenas (x10) 🟢</div>
+        <div id="bigDigitDecena" class="font-display font-black text-3xl text-slate-400">7</div>
+        <div id="bigProgressDecena" class="text-[8px] font-mono text-slate-400">0 / 7</div>
+      </div>
+      <div id="bigDigitUnidadBox" class="bg-slate-950 border border-slate-800 rounded-xl p-2 text-center">
+        <div class="text-[9px] font-black text-blue-400">Unidades (x1) 🔵</div>
+        <div id="bigDigitUnidad" class="font-display font-black text-3xl text-slate-400">8</div>
+        <div id="bigProgressUnidad" class="text-[8px] font-mono text-slate-400">0 / 8</div>
       </div>
     </div>
 
-    <!-- MAIN GAMEPLAY WORKSPACE GRID -->
     <div class="flex-1 grid grid-cols-12 gap-2 my-0.5 overflow-hidden">
-      
-      <!-- LEFT COL: T-REX SURVEILLANCE CAM & EMERGENCY REACTOR (COLS 1-4) -->
-      <div class="col-span-12 sm:col-span-4 bg-slate-900/90 border border-slate-800 rounded-2xl p-2 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
-        
-        <!-- Surveillance Screen Header -->
-        <div class="flex items-center justify-between text-[8px] font-bold text-red-400 border-b border-slate-800 pb-1">
-          <span class="flex items-center gap-1"><i class="fa-solid fa-video animate-pulse"></i> CÁMARA BÚNKER</span>
-          <span id="dinoDangerLevelText" class="text-red-500 font-mono">¡PELIGRO EXTREMO!</span>
-        </div>
-
-        <!-- T-Rex Camera View -->
-        <div class="flex-1 relative my-1 bg-slate-950 rounded-xl border border-red-500/30 overflow-hidden flex flex-col items-center justify-center p-2 min-h-[90px]">
-          <div class="absolute top-1 left-1.5 text-[7px] font-mono text-red-500/60 uppercase">CAM-09 // T-REX ENCLOSURE</div>
-          
-          <!-- Titanium Blast Door Overlay (Closed on victory) -->
-          <div id="titaniumBlastDoor" class="hidden absolute inset-0 bg-slate-800 border-4 border-emerald-500 z-30 flex flex-col items-center justify-center shadow-2xl animate-slam-door">
+      <div class="col-span-12 sm:col-span-4 bg-slate-900/90 border border-slate-800 rounded-2xl p-2 flex flex-col justify-between relative overflow-hidden">
+        <div class="flex-1 relative bg-slate-950 rounded-xl border border-red-500/30 flex flex-col items-center justify-center p-2">
+          <div id="titaniumBlastDoor" class="hidden absolute inset-0 bg-slate-800 border-4 border-emerald-500 z-30 flex flex-col items-center justify-center animate-slam-door">
             <div class="text-2xl">🔒</div>
-            <div class="font-display font-black text-xs text-emerald-400 uppercase tracking-widest mt-1">COMPUERTA SELLADA</div>
+            <div class="text-xs text-emerald-400 font-black">COMPUERTA SELLADA</div>
           </div>
-
-          <!-- T-Rex Monster -->
-          <div id="trexAvatarGraphic" class="text-5xl sm:text-6xl animate-trex-roar filter drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]">
-            🦖
-          </div>
-          <div class="text-[8px] text-red-400 font-bold tracking-wider mt-1 animate-pulse">
-            ROARRRR! ¡SELLEN EL LABORATORIO!
-          </div>
+          <div class="text-5xl animate-trex-roar">🦖</div>
         </div>
-
-        <!-- FUSION REACTOR BASE-10 (10🔵 -> 1🟢 / 10🟢 -> 1🔴) -->
-        <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-1.5 text-center">
-          <div class="text-[8px] font-black uppercase text-cyan-300 mb-1 flex items-center justify-between">
-            <span><i class="fa-solid fa-atom text-cyan-400"></i> Reactor Base-10</span>
-            <span class="text-[7px] text-slate-500">Regla Mágica SEP</span>
-          </div>
-          <div class="grid grid-cols-2 gap-1 text-[8px] font-bold">
-            <div class="bg-slate-900 border border-blue-500/30 p-1 rounded-lg text-blue-300">
-              10 Azules 🔵 = 1 Verde 🟢
-            </div>
-            <div class="bg-slate-900 border border-emerald-500/30 p-1 rounded-lg text-emerald-300">
-              10 Verdes 🟢 = 1 Rojo 🔴
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- RIGHT COL: THE 3 SECURITY DROP PODS (COLS 5-12) -->
-      <div class="col-span-12 sm:col-span-8 flex flex-col gap-1.5 justify-between overflow-hidden">
-        
-        <!-- PUESTO 1: BÚNKER DE CENTENAS (🔴 x100) -->
-        <div id="podCentena" class="flex-1 bg-slate-900/80 border-2 border-red-500/30 rounded-xl p-1.5 flex flex-col justify-between relative transition-all">
-          <div class="flex items-center justify-between text-[9px] font-black text-red-400 border-b border-red-900/30 pb-0.5">
-            <span class="flex items-center gap-1"><i class="fa-solid fa-building-shield"></i> PUESTO CENTENAS (x100)</span>
-            <div class="flex items-center gap-1">
-              <span id="podCentenaStatus" class="font-mono text-[8px] text-slate-400">0 / 3</span>
-              <div id="podCentenaLock" class="w-5 h-5 rounded bg-slate-950 border border-slate-700 flex items-center justify-center text-[9px] text-slate-500">
-                <i class="fa-solid fa-lock-open"></i>
-              </div>
-            </div>
-          </div>
-          <div id="podCentenaSlots" class="flex-1 my-0.5 flex flex-wrap items-center gap-1 p-1 bg-slate-950/70 rounded-lg min-h-[34px] overflow-y-auto custom-scroll"></div>
-          <div class="flex items-center gap-1 pt-0.5">
-            <button onclick="dispatchGuard('centena')" class="flex-1 py-1 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-[9px] shadow active:scale-95 flex items-center justify-center gap-1">
-              <i class="fa-solid fa-plus text-[8px]"></i> <span>+1 Búnker Rojo 🔴 (100)</span>
-            </button>
-            <button onclick="clearPod('centena')" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 text-[8px] font-bold">
-              Vaciar
-            </button>
-          </div>
+      <div class="col-span-12 sm:col-span-8 flex flex-col gap-1.5 justify-between">
+        <div class="flex-1 bg-slate-900/80 border border-red-500/30 rounded-xl p-1.5 flex items-center justify-between">
+          <span class="text-xs font-bold text-red-400">Puesto Centenas 🔴</span>
+          <button onclick="dispatchGuard('centena')" class="py-1 px-3 rounded-lg bg-red-600 text-white font-bold text-xs">+1 Búnker (100)</button>
         </div>
-
-        <!-- PUESTO 2: ESCUADRÓN DE DECENAS (🟢 x10) -->
-        <div id="podDecena" class="flex-1 bg-slate-900/80 border-2 border-emerald-500/30 rounded-xl p-1.5 flex flex-col justify-between relative transition-all">
-          <div class="flex items-center justify-between text-[9px] font-black text-emerald-400 border-b border-emerald-900/30 pb-0.5">
-            <span class="flex items-center gap-1"><i class="fa-solid fa-users-gear"></i> PUESTO DECENAS (x10)</span>
-            <div class="flex items-center gap-1">
-              <span id="podDecenaStatus" class="font-mono text-[8px] text-slate-400">0 / 7</span>
-              <div id="podDecenaLock" class="w-5 h-5 rounded bg-slate-950 border border-slate-700 flex items-center justify-center text-[9px] text-slate-500">
-                <i class="fa-solid fa-lock-open"></i>
-              </div>
-            </div>
-          </div>
-          <div id="podDecenaSlots" class="flex-1 my-0.5 flex flex-wrap items-center gap-1 p-1 bg-slate-950/70 rounded-lg min-h-[34px] overflow-y-auto custom-scroll"></div>
-          <div class="flex items-center gap-1 pt-0.5">
-            <button onclick="dispatchGuard('decena')" class="flex-1 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[9px] shadow active:scale-95 flex items-center justify-center gap-1">
-              <i class="fa-solid fa-plus text-[8px]"></i> <span>+1 Escuadrón Verde 🟢 (10)</span>
-            </button>
-            <button onclick="clearPod('decena')" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 text-[8px] font-bold">
-              Vaciar
-            </button>
-          </div>
+        <div class="flex-1 bg-slate-900/80 border border-emerald-500/30 rounded-xl p-1.5 flex items-center justify-between">
+          <span class="text-xs font-bold text-emerald-400">Puesto Decenas 🟢</span>
+          <button onclick="dispatchGuard('decena')" class="py-1 px-3 rounded-lg bg-emerald-600 text-slate-950 font-bold text-xs">+1 Escuadrón (10)</button>
         </div>
-
-        <!-- PUESTO 3: GUARDIAS DE UNIDADES (🔵 x1) -->
-        <div id="podUnidad" class="flex-1 bg-slate-900/80 border-2 border-blue-500/30 rounded-xl p-1.5 flex flex-col justify-between relative transition-all">
-          <div class="flex items-center justify-between text-[9px] font-black text-blue-400 border-b border-blue-900/30 pb-0.5">
-            <span class="flex items-center gap-1"><i class="fa-solid fa-shield"></i> PUESTO UNIDADES (x1)</span>
-            <div class="flex items-center gap-1">
-              <span id="podUnidadStatus" class="font-mono text-[8px] text-slate-400">0 / 8</span>
-              <div id="podUnidadLock" class="w-5 h-5 rounded bg-slate-950 border border-slate-700 flex items-center justify-center text-[9px] text-slate-500">
-                <i class="fa-solid fa-lock-open"></i>
-              </div>
-            </div>
-          </div>
-          <div id="podUnidadSlots" class="flex-1 my-0.5 flex flex-wrap items-center gap-1 p-1 bg-slate-950/70 rounded-lg min-h-[34px] overflow-y-auto custom-scroll"></div>
-          <div class="flex items-center gap-1 pt-0.5">
-            <button onclick="dispatchGuard('unidad')" class="flex-1 py-1 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-[9px] shadow active:scale-95 flex items-center justify-center gap-1">
-              <i class="fa-solid fa-plus text-[8px]"></i> <span>+1 Guardia Azul 🔵 (1)</span>
-            </button>
-            <button onclick="clearPod('unidad')" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 text-[8px] font-bold">
-              Vaciar
-            </button>
-          </div>
+        <div class="flex-1 bg-slate-900/80 border border-blue-500/30 rounded-xl p-1.5 flex items-center justify-between">
+          <span class="text-xs font-bold text-blue-400">Puesto Unidades 🔵</span>
+          <button onclick="dispatchGuard('unidad')" class="py-1 px-3 rounded-lg bg-blue-600 text-white font-bold text-xs">+1 Guardia (1)</button>
         </div>
-
-      </div>
-
-    </div>
-
-    <!-- Bottom Dialogue Banner with ARA BOT -->
-    <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-2 flex items-center justify-between gap-2 shrink-0">
-      <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-sky-500 to-red-600 flex items-center justify-center text-sm shadow">
-          🤖
-        </div>
-        <p id="dinoAraBotSpeech" class="text-[10px] sm:text-xs text-slate-300 font-medium truncate">
-          ¡Doydo, activa los 3 puestos de seguridad! Mira el código de contención arriba para colocar las centenas, decenas y unidades exactas.
-        </p>
-      </div>
-      <div id="dinoLevelFeedback" class="text-[10px] font-bold text-amber-400 shrink-0">
-        Puerta Activa
       </div>
     </div>
-
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 🎓 MODAL: LECCIÓN SECRETA DE LOS CEROS (SEP & VALOR POSICIONAL)             -->
-  <!-- ========================================================================= -->
-  <div id="secretLessonModal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3">
-    <div class="bg-slate-900 border-2 border-cyan-500/60 rounded-3xl p-4 sm:p-6 max-w-md w-full shadow-2xl text-center glow-blue-neon">
-      <div class="w-14 h-14 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400 flex items-center justify-center text-2xl mx-auto mb-2 animate-bounce">
-        🌟
-      </div>
-      <h3 class="font-display font-black text-lg sm:text-xl text-cyan-300">
-        ¡Lección Secreta de ARA BOT!
-      </h3>
-      <p class="text-xs text-slate-300 mt-1 mb-3">
-        ¿Qué pasa cuando un número tiene un <strong class="text-amber-400">CERO</strong> en las Decenas o Unidades?
-      </p>
-
-      <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-left text-xs text-slate-300 space-y-2 mb-4">
-        <div class="flex items-start gap-2">
-          <span class="text-base">🛡️</span>
-          <div>
-            <strong class="text-emerald-400">El Cero como Guardián de Lugar:</strong>
-            <p class="text-[11px] text-slate-400">En números como <span class="text-amber-300 font-bold">409</span> o <span class="text-amber-300 font-bold">250</span>, el cero indica que esa casilla está vacía, pero guarda el lugar para que las centenas sigan valiendo cientos.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <button onclick="closeSecretLesson(); restartDinoGame();" class="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-display font-black text-xs shadow-lg">
-          ¡Volver a Jugar!
-        </button>
-        <button onclick="goToPlayground(); closeSecretLesson();" class="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 text-slate-950 font-display font-black text-xs shadow-lg glow-blue-neon">
-          🏠 Regresar al Patio
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- ⚙️ MODAL: CONFIGURAR SALTO NUMÉRICO (+1 A +100)                             -->
-  <!-- ========================================================================= -->
-  <div id="stepModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 max-w-xs w-full shadow-2xl">
-      <h3 class="text-xs font-extrabold text-cyan-400 mb-1 flex items-center gap-1.5">
-        <i class="fa-solid fa-sliders"></i> Salto Numérico de Serie
-      </h3>
-      <p class="text-[11px] text-slate-400 mb-3">Elige cuánto incrementará la suma en cada clic:</p>
-      
-      <div class="grid grid-cols-3 gap-1.5 mb-3">
-        <button onclick="setRocketStep(1)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+1</button>
-        <button onclick="setRocketStep(2)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+2</button>
-        <button onclick="setRocketStep(5)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+5</button>
-        <button onclick="setRocketStep(10)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+10</button>
-        <button onclick="setRocketStep(50)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+50</button>
-        <button onclick="setRocketStep(100)" class="p-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-white font-display font-black text-xs border border-slate-700">+100</button>
-      </div>
-
-      <button onclick="closeStepModal()" class="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold rounded-xl border border-slate-700">
-        Cerrar
-      </button>
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- 🥊 MODAL: SELECCIÓN DE MODO DE COMBATE Z (RÁPIDO VS ESTRATEGIA)             -->
-  <!-- ========================================================================= -->
-  <div id="cannonModeModal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-slate-900 border-2 border-amber-500/60 rounded-3xl p-4 sm:p-6 max-w-sm w-full shadow-2xl text-center glow-gold">
-      <div class="w-12 h-12 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400 flex items-center justify-center text-2xl mx-auto mb-2">
-        ⚡
-      </div>
-      <h3 class="font-display font-black text-lg text-white">
-        Elige tu Modo de Combate Z
-      </h3>
-      <p class="text-xs text-slate-300 mt-1 mb-4">
-        ¿Cómo deseas enfrentar a los robots descontrolados?
-      </p>
-
-      <div class="flex flex-col gap-2.5 mb-4">
-        <!-- Mode 1: Rapid / Reflexes -->
-        <button onclick="selectCannonMode('rapid')" class="p-3 rounded-2xl bg-slate-800/90 hover:bg-amber-950/80 border-2 border-amber-500/50 hover:border-amber-400 text-left flex items-center gap-3 transition-all active:scale-95">
-          <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center text-xl shrink-0 font-black">
-            ⚡
-          </div>
-          <div>
-            <div class="font-display font-black text-xs text-amber-300">Modo Rápido (Reflejos Z)</div>
-            <div class="text-[10px] text-slate-300">Temporizador de sobrecarga, ¡dispara antes de que ataque!</div>
-          </div>
-        </button>
-
-        <!-- Mode 2: Strategy / Base-10 Decomposition -->
-        <button onclick="selectCannonMode('strategy')" class="p-3 rounded-2xl bg-slate-800/90 hover:bg-purple-950/80 border-2 border-purple-500/50 hover:border-purple-400 text-left flex items-center gap-3 transition-all active:scale-95">
-          <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center text-xl shrink-0 font-black">
-            🧠
-          </div>
-          <div>
-            <div class="font-display font-black text-xs text-purple-300">Modo Estrategia (Descomposición)</div>
-            <div class="text-[10px] text-slate-300">Sin límite de tiempo, arma la carga exacta con +10, +5, +2, +1.</div>
-          </div>
-        </button>
-      </div>
-
-      <button onclick="closeCannonModeModal()" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs font-bold rounded-xl border border-slate-700">
-        Volver a la batalla
-      </button>
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- 💻 JAVASCRIPT: MOTOR COMPLETO INTEGRADO, MUNDO ABIERTO Y AUDIO SYNTH       -->
+  <!-- 💻 JAVASCRIPT: MOTOR TOCA BOCA MUNDO DESPLAZABLE, ITEMS Y AUDIO            -->
   <!-- ========================================================================= -->
   <script>
-    /* =========================================================================
-       1. GLOBAL STATE & NAVIGATION
-       ========================================================================= */
+    /* Global State */
     const appState = {
       currentScreen: 'screen-playground',
       audioMuted: false,
       audioCtx: null,
-      selectedAvatar: 'nonina', // 'nonina' or 'doydo'
-      isDraggingAvatar: false,
-      draggedAvatarId: null,
-      
-      // Playground Avatars Position
-      avatarPositions: {
-        nonina: { x: 35, y: 58 },
-        doydo: { x: 55, y: 58 }
-      },
+      currentRoomIndex: 0,
+      activeDragItem: null,
+      dragOffset: { x: 0, y: 0 },
+      spawnedItemCount: 0,
 
-      // Rocket Game (Nonina)
-      rocket: {
-        currentValue: 0,
-        stepValue: 5,
-        maxAltitude: 10000,
-        hasPlayedFusion: { decena: false, centena: false, millar: false }
-      },
+      // Rocket
+      rocket: { currentValue: 0, stepValue: 5, maxAltitude: 10000 },
 
-      // Dino Lab Game (Doydo)
+      // Dino
       dino: {
         currentLevelIndex: 0,
         levels: [
-          { level: 1, code: 378, c: 3, d: 7, u: 8, hint: "3 Centenas 🔴 (300), 7 Decenas 🟢 (70) y 8 Unidades 🔵 (8)" },
-          { level: 2, code: 642, c: 6, d: 4, u: 2, hint: "6 Centenas (600) + 4 Decenas (40) + 2 Unidades (2)" },
-          { level: 3, code: 195, c: 1, d: 9, u: 5, hint: "1 Centena (100) + 9 Decenas (90) + 5 Unidades (5)" },
-          { level: 4, code: 814, c: 8, d: 1, u: 4, hint: "8 Centenas (800) + 1 Decena (10) + 4 Unidades (4)" },
-          { level: 5, code: 250, c: 2, d: 5, u: 0, hint: "¡Atención! 2 Centenas (200), 5 Decenas (50) y 0 Unidades (0)" },
-          { level: 6, code: 937, c: 9, d: 3, u: 7, hint: "9 Centenas (900) + 3 Decenas (30) + 7 Unidades (7)" },
-          { level: 7, code: 409, c: 4, d: 0, u: 9, hint: "¡Cuidado con el cero! 4 Centenas (400), 0 Decenas (0) y 9 Unidades (9)" },
-          { level: 8, code: 763, c: 7, d: 6, u: 3, hint: "7 Centenas (700) + 6 Decenas (60) + 3 Unidades (3)" },
-          { level: 9, code: 581, c: 5, d: 8, u: 1, hint: "¡Última puerta! 5 Centenas (500) + 8 Decenas (80) + 1 Unidad (1)" }
+          { level: 1, code: 378, c: 3, d: 7, u: 8 },
+          { level: 2, code: 642, c: 6, d: 4, u: 2 },
+          { level: 3, code: 195, c: 1, d: 9, u: 5 },
+          { level: 4, code: 814, c: 8, d: 1, u: 4 },
+          { level: 5, code: 250, c: 2, d: 5, u: 0 },
+          { level: 6, code: 937, c: 9, d: 3, u: 7 },
+          { level: 7, code: 409, c: 4, d: 0, u: 9 },
+          { level: 8, code: 763, c: 7, d: 6, u: 3 },
+          { level: 9, code: 581, c: 5, d: 8, u: 1 }
         ],
-        inputC: 0,
-        inputD: 0,
-        inputU: 0,
-        isDoorClosed: false
+        inputC: 0, inputD: 0, inputU: 0, isDoorClosed: false
       },
 
-      // Z Fighters Cannon Game (Doydo)
+      // Z Cannon
       cannon: {
-        mode: 'rapid', // 'rapid' or 'strategy'
+        mode: 'rapid',
         currentEnemyIndex: 0,
         combo: 1,
         tacticalCharge: 0,
-        timerInterval: null,
         timeRemaining: 12,
+        timerInterval: null,
         enemies: [
-          { name: 'Robot Chispas Z-1', energy: 18, emoji: '🤖', prompt: '¿Qué proyectil suma 18 ⚡?', options: ['10 + 8', '9 + 7', '12 + 4', '15 + 5'], correct: '10 + 8' },
-          { name: 'Cyber-Bípode Z-2', energy: 25, emoji: '🦾', prompt: '¿Qué proyectil suma 25 ⚡?', options: ['20 + 5', '18 + 6', '12 + 11', '14 + 10'], correct: '20 + 5' },
-          { name: 'Mecha-Titan Z-3', energy: 34, emoji: '🦿', prompt: '¿Qué proyectil suma 34 ⚡?', options: ['30 + 4', '25 + 7', '20 + 12', '19 + 13'], correct: '30 + 4' },
-          { name: 'Electro-Destructor Z-4', energy: 42, emoji: '👾', prompt: '¿Qué proyectil suma 42 ⚡?', options: ['40 + 2', '35 + 5', '22 + 18', '29 + 11'], correct: '40 + 2' },
-          { name: 'Mega-Bot Alfa Z-5', energy: 50, emoji: '🛸', prompt: '¡Gran Jefe! ¿Qué proyectil suma 50 ⚡?', options: ['25 + 25', '30 + 18', '40 + 8', '22 + 27'], correct: '25 + 25' }
+          { name: 'Robot Chispas Z-1', energy: 18, emoji: '🤖', options: ['10 + 8', '9 + 7', '12 + 4', '15 + 5'], correct: '10 + 8' },
+          { name: 'Cyber-Bípode Z-2', energy: 25, emoji: '🦾', options: ['20 + 5', '18 + 6', '12 + 11', '14 + 10'], correct: '20 + 5' },
+          { name: 'Mecha-Titan Z-3', energy: 34, emoji: '🦿', options: ['30 + 4', '25 + 7', '20 + 12', '19 + 13'], correct: '30 + 4' },
+          { name: 'Electro-Destructor Z-4', energy: 42, emoji: '👾', options: ['40 + 2', '35 + 5', '22 + 18', '29 + 11'], correct: '40 + 2' },
+          { name: 'Mega-Bot Alfa Z-5', energy: 50, emoji: '🛸', options: ['25 + 25', '30 + 18', '40 + 8', '22 + 27'], correct: '25 + 25' }
         ]
-      },
-
-      deferredPwaPrompt: null
+      }
     };
 
-    /* Screen Transition */
+    /* Screen Manager */
     function showScreen(screenId) {
       initAudio();
       collapseNavDock();
       appState.currentScreen = screenId;
-      
-      const screens = ['screen-playground', 'screen-rocket', 'screen-dino', 'screen-cannon'];
-      screens.forEach(s => {
+      ['screen-playground', 'screen-rocket', 'screen-dino', 'screen-cannon'].forEach(s => {
         const el = document.getElementById(s);
-        if (el) {
-          if (s === screenId) {
-            el.classList.remove('hidden');
-          } else {
-            el.classList.add('hidden');
-          }
-        }
+        if (el) el.classList.toggle('hidden', s !== screenId);
       });
-
-      if (screenId === 'screen-rocket') {
-        updateRocketUI();
-      } else if (screenId === 'screen-dino') {
-        loadDinoLevel(appState.dino.currentLevelIndex);
-      } else if (screenId === 'screen-cannon') {
-        loadCannonEnemy(appState.cannon.currentEnemyIndex);
-      }
+      if (screenId === 'screen-rocket') updateRocketUI();
+      if (screenId === 'screen-dino') loadDinoLevel(appState.dino.currentLevelIndex);
+      if (screenId === 'screen-cannon') loadCannonEnemy(appState.cannon.currentEnemyIndex);
     }
 
     function goToPlayground() {
       playClickSound();
-      if (appState.cannon.timerInterval) {
-        clearInterval(appState.cannon.timerInterval);
-      }
+      if (appState.cannon.timerInterval) clearInterval(appState.cannon.timerInterval);
       showScreen('screen-playground');
     }
 
-    /* Retractable Dock Logic */
-    let isDockExpanded = false;
-    function toggleNavDock() {
-      playClickSound();
-      isDockExpanded = !isDockExpanded;
-      const menu = document.getElementById('dockExpandedMenu');
-      const triggerIcon = document.getElementById('dockTriggerIcon');
-      if (isDockExpanded) {
-        menu.classList.remove('hidden');
-        menu.classList.add('flex');
-        triggerIcon.className = 'fa-solid fa-chevron-right text-xs';
-      } else {
-        collapseNavDock();
-      }
-    }
-
-    function collapseNavDock() {
-      isDockExpanded = false;
-      const menu = document.getElementById('dockExpandedMenu');
-      const triggerIcon = document.getElementById('dockTriggerIcon');
-      if (menu) {
-        menu.classList.add('hidden');
-        menu.classList.remove('flex');
-      }
-      if (triggerIcon) {
-        triggerIcon.className = 'fa-solid fa-house text-sm';
-      }
-    }
-
-    function toggleFullScreen() {
-      playClickSound();
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(() => {});
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen().catch(() => {});
-        }
-      }
-    }
-
-    /* =========================================================================
-       2. WEB AUDIO SYNTHESIZER (100% OFFLINE)
-       ========================================================================= */
+    /* Web Audio Synthesizer (100% Offline) */
     function initAudio() {
       if (!appState.audioCtx) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        appState.audioCtx = new AudioContext();
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        appState.audioCtx = new AudioCtx();
       }
-      if (appState.audioCtx.state === 'suspended') {
-        appState.audioCtx.resume();
-      }
+      if (appState.audioCtx.state === 'suspended') appState.audioCtx.resume();
     }
 
     function toggleMute() {
       appState.audioMuted = !appState.audioMuted;
-      const icon = document.getElementById('audioIcon');
-      if (appState.audioMuted) {
-        icon.className = 'fa-solid fa-volume-xmark text-xs text-rose-400';
-      } else {
-        icon.className = 'fa-solid fa-volume-high text-xs text-cyan-400';
-        playClickSound();
-      }
+      document.getElementById('audioIcon').className = appState.audioMuted ? 'fa-solid fa-volume-xmark text-xs text-rose-400' : 'fa-solid fa-volume-high text-xs text-cyan-400';
     }
 
     function playTone(freq, type = 'sine', duration = 0.1, gainVal = 0.15) {
@@ -1525,173 +1105,171 @@
       } catch(e) {}
     }
 
-    function playClickSound() {
-      playTone(587.33, 'sine', 0.08, 0.1);
+    function playClickSound() { playTone(587.33, 'sine', 0.08, 0.1); }
+    function playEatSound() {
+      playTone(320, 'triangle', 0.08, 0.25);
+      setTimeout(() => playTone(480, 'triangle', 0.1, 0.25), 80);
+      setTimeout(() => playTone(640, 'sine', 0.12, 0.2), 160);
     }
+    function playLaserSound() { playTone(880, 'sawtooth', 0.2, 0.2); }
+    function playFanfareSound() { [440, 554, 659, 880].forEach((f, i) => setTimeout(() => playTone(f, 'triangle', 0.25, 0.15), i * 90)); }
 
-    function playStepAddSound() {
-      playTone(440, 'triangle', 0.12, 0.2);
-      setTimeout(() => playTone(880, 'triangle', 0.15, 0.2), 60);
-    }
-
-    function playFusionSound() {
-      [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
-        setTimeout(() => playTone(freq, 'square', 0.18, 0.15), idx * 70);
-      });
-    }
-
-    function playAlarmSound() {
-      playTone(300, 'sawtooth', 0.25, 0.25);
-      setTimeout(() => playTone(450, 'sawtooth', 0.3, 0.3), 150);
-    }
-
-    function playLaserSound() {
-      if (appState.audioMuted) return;
-      try {
-        initAudio();
-        const osc = appState.audioCtx.createOscillator();
-        const gain = appState.audioCtx.createGain();
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(880, appState.audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(110, appState.audioCtx.currentTime + 0.25);
-        gain.gain.setValueAtTime(0.2, appState.audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, appState.audioCtx.currentTime + 0.25);
-        osc.connect(gain);
-        gain.connect(appState.audioCtx.destination);
-        osc.start();
-        osc.stop(appState.audioCtx.currentTime + 0.25);
-      } catch(e) {}
-    }
-
-    function playExplosionSound() {
-      if (appState.audioMuted) return;
-      try {
-        initAudio();
-        // Low rumble white-noise simulation
-        const bufferSize = appState.audioCtx.sampleRate * 0.4;
-        const buffer = appState.audioCtx.createBuffer(1, bufferSize, appState.audioCtx.sampleRate);
-        const data = buffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-          data[i] = Math.random() * 2 - 1;
-        }
-        const noise = appState.audioCtx.createBufferSource();
-        noise.buffer = buffer;
-        const gain = appState.audioCtx.createGain();
-        gain.gain.setValueAtTime(0.3, appState.audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, appState.audioCtx.currentTime + 0.4);
-        noise.connect(gain);
-        gain.connect(appState.audioCtx.destination);
-        noise.start();
-      } catch(e) {}
-    }
-
-    function playTitaniumDoorSlamSound() {
-      playTone(150, 'sawtooth', 0.4, 0.35);
-      setTimeout(() => playTone(80, 'square', 0.5, 0.4), 80);
-    }
-
-    function playFanfareSound() {
-      const notes = [440, 554.37, 659.25, 880, 1108.73];
-      notes.forEach((freq, idx) => {
-        setTimeout(() => playTone(freq, 'triangle', 0.3, 0.2), idx * 100);
-      });
-    }
-
-    /* ARA BOT Speech Synthesizer */
     function speakAraBot(text) {
       if ('speechSynthesis' in window && !appState.audioMuted) {
         window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'es-MX';
-        utterance.rate = 1.05;
-        utterance.pitch = 1.2; // Robot tone
-        window.speechSynthesis.speak(utterance);
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'es-MX';
+        u.rate = 1.05;
+        window.speechSynthesis.speak(u);
       }
     }
 
-    /* =========================================================================
-       3. PLAYGROUND INTERACTIVE ENGINE (TOCA BOCA / AVATAR WORLD)
-       ========================================================================= */
-    function handlePlaygroundClick(e) {
-      if (appState.isDraggingAvatar) return;
-      const stage = document.getElementById('playgroundStage');
-      const rect = stage.getBoundingClientRect();
-      const xPct = Math.max(5, Math.min(90, ((e.clientX - rect.left) / rect.width) * 100));
-      const yPct = Math.max(15, Math.min(80, ((e.clientY - rect.top) / rect.height) * 100));
-
-      // Show move destination pulse
-      const pulse = document.getElementById('moveTargetIndicator');
-      pulse.style.left = `${e.clientX - rect.left}px`;
-      pulse.style.top = `${e.clientY - rect.top}px`;
-      pulse.classList.remove('opacity-0');
-      setTimeout(() => pulse.classList.add('opacity-0'), 600);
-
-      // Walk selected avatar towards target
-      moveAvatarTo(appState.selectedAvatar, xPct, yPct);
+    /* Panoramic Scrolling Navigation */
+    function scrollToRoom(idx) {
       playClickSound();
+      appState.currentRoomIndex = idx;
+      const room = document.getElementById(`room${idx}`);
+      if (room) {
+        room.scrollIntoView({ behavior: 'smooth', inline: 'start' });
+      }
+      updateActiveRoomTab(idx);
     }
 
-    function moveAvatarTo(avatarId, xPct, yPct) {
-      const avatarEl = document.getElementById(avatarId === 'nonina' ? 'avatarNonina' : 'avatarDoydo');
-      if (!avatarEl) return;
-      
-      avatarEl.classList.add('avatar-walking');
-      avatarEl.style.left = `${xPct}%`;
-      avatarEl.style.top = `${yPct}%`;
-      appState.avatarPositions[avatarId] = { x: xPct, y: yPct };
-
-      setTimeout(() => {
-        avatarEl.classList.remove('avatar-walking');
-      }, 350);
+    function panWorld(deltaX) {
+      playClickSound();
+      const world = document.getElementById('panoramicWorld');
+      world.scrollBy({ left: deltaX, behavior: 'smooth' });
     }
 
-    function selectAvatar(avatarId, event) {
-      if (event) event.stopPropagation();
-      appState.selectedAvatar = avatarId;
-      playClickSound();
+    function handleWorldScroll() {
+      const world = document.getElementById('panoramicWorld');
+      const idx = Math.round(world.scrollLeft / window.innerWidth);
+      if (idx !== appState.currentRoomIndex && idx >= 0 && idx <= 4) {
+        appState.currentRoomIndex = idx;
+        updateActiveRoomTab(idx);
+      }
+    }
 
-      if (avatarId === 'nonina') {
-        showAvatarBubble('bubbleNonina', '¡Hola! ¡Soy Nonina de 3.° Grado! 🌸');
-        document.getElementById('playgroundAraSpeech').innerText = 'Nonina: "¡Vamos a despegar el Cohete Numérico hacia el espacio!"';
-        speakAraBot('¡Hola Romina! Lista para contar de cinco en cinco.');
+    function updateActiveRoomTab(idx) {
+      for (let i = 0; i <= 4; i++) {
+        const tab = document.getElementById(`roomTab${i}`);
+        if (tab) {
+          if (i === idx) {
+            tab.classList.add('bg-cyan-500', 'text-slate-950', 'shadow-lg');
+            tab.classList.remove('bg-slate-800');
+          } else {
+            tab.classList.remove('bg-cyan-500', 'text-slate-950', 'shadow-lg');
+            tab.classList.add('bg-slate-800');
+          }
+        }
+      }
+    }
+
+    /* Toca Boca Drawer (Mochila / Inventario) */
+    function toggleTocaDrawer() {
+      playClickSound();
+      const drawer = document.getElementById('tocaDrawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function switchDrawerTab(tab) {
+      playClickSound();
+      const itemsTab = document.getElementById('drawerTabItems');
+      const charsTab = document.getElementById('drawerTabChars');
+      const btnItems = document.getElementById('tabBtnItems');
+      const btnChars = document.getElementById('tabBtnChars');
+
+      if (tab === 'items') {
+        itemsTab.classList.remove('hidden');
+        charsTab.classList.add('hidden');
+        btnItems.className = 'px-3 py-1 rounded-xl bg-cyan-500 text-slate-950 font-display font-black text-xs shadow';
+        btnChars.className = 'px-3 py-1 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-display font-black text-xs';
       } else {
-        showAvatarBubble('bubbleDoydo', '¡Soy Doydo! ¡A vencer robots y T-Rex! ⚡');
-        document.getElementById('playgroundAraSpeech').innerText = 'Doydo: "¡Vamos al Laboratorio Dinosaurio o al Cañón de Sumas Z!"';
-        speakAraBot('¡Hola Ricardo! Listo para el laboratorio y el combate.');
+        itemsTab.classList.add('hidden');
+        charsTab.classList.remove('hidden');
+        charsTab.classList.add('flex');
+        btnChars.className = 'px-3 py-1 rounded-xl bg-cyan-500 text-slate-950 font-display font-black text-xs shadow';
+        btnItems.className = 'px-3 py-1 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-display font-black text-xs';
       }
     }
 
-    function showAvatarBubble(bubbleId, text) {
-      const bubble = document.getElementById(bubbleId);
-      if (!bubble) return;
-      bubble.innerText = text;
-      bubble.classList.remove('opacity-0');
-      setTimeout(() => bubble.classList.add('opacity-0'), 2500);
+    /* Spawn Items to World */
+    function spawnItemToWorld(emoji, label, type) {
+      playClickSound();
+      appState.spawnedItemCount++;
+      const world = document.getElementById('panoramicWorld');
+      const layer = document.getElementById('worldSpawnedItemsLayer');
+      
+      const currentScroll = world.scrollLeft;
+      const xPos = currentScroll + (window.innerWidth * 0.4) + (Math.random() * 80 - 40);
+      const yPos = window.innerHeight * 0.6 + (Math.random() * 40 - 20);
+
+      const el = document.createElement('div');
+      const id = `item_${appState.spawnedItemCount}`;
+      el.id = id;
+      el.dataset.type = type;
+      el.className = 'world-item flex flex-col items-center select-none animate-bounce-soft';
+      el.style.left = `${xPos}px`;
+      el.style.top = `${yPos}px`;
+      el.innerHTML = `
+        <div class="text-3xl sm:text-4xl filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">${emoji}</div>
+        <div class="text-[7px] font-bold text-slate-300 bg-slate-900/90 px-1 py-0.2 rounded mt-0.5 border border-slate-700">${label}</div>
+      `;
+
+      el.addEventListener('mousedown', (e) => startTocaDrag(e, id));
+      el.addEventListener('touchstart', (e) => startTocaDrag(e, id));
+      layer.appendChild(el);
+
+      document.getElementById('playgroundAraSpeech').innerText = `¡Nuevo objeto: ${label}! Arrástralo hacia Nonina o Doydo.`;
     }
 
-    /* Drag & Drop for Avatars */
-    function startAvatarDrag(e, avatarId) {
-      appState.isDraggingAvatar = true;
-      appState.draggedAvatarId = avatarId;
-      appState.selectedAvatar = avatarId;
-      
+    function spawnNewPet(emoji, label) {
+      spawnItemToWorld(emoji, label, 'pet');
+    }
+
+    function teleportCharacter(charId) {
+      playFanfareSound();
+      const char = document.getElementById(charId);
+      const world = document.getElementById('panoramicWorld');
+      const targetX = world.scrollLeft + (window.innerWidth * 0.45);
+      char.style.left = `${targetX}px`;
+      char.style.top = `${window.innerHeight * 0.55}px`;
+      toggleTocaDrawer();
+    }
+
+    /* Toca Drag & Drop Engine with Eating & Interaction Physics */
+    function startTocaDrag(e, elementId) {
+      e.preventDefault();
+      const el = document.getElementById(elementId);
+      if (!el) return;
+
+      initAudio();
+      appState.activeDragItem = el;
+      const rect = el.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      appState.dragOffset.x = clientX - rect.left;
+      appState.dragOffset.y = clientY - rect.top;
+
       const onMove = (moveEvt) => {
-        if (!appState.isDraggingAvatar) return;
-        const clientX = moveEvt.touches ? moveEvt.touches[0].clientX : moveEvt.clientX;
-        const clientY = moveEvt.touches ? moveEvt.touches[0].clientY : moveEvt.clientY;
-        const stage = document.getElementById('playgroundStage');
-        const rect = stage.getBoundingClientRect();
-        const xPct = Math.max(5, Math.min(90, ((clientX - rect.left) / rect.width) * 100));
-        const yPct = Math.max(15, Math.min(80, ((clientY - rect.top) / rect.height) * 100));
+        if (!appState.activeDragItem) return;
+        const curX = moveEvt.touches ? moveEvt.touches[0].clientX : moveEvt.clientX;
+        const curY = moveEvt.touches ? moveEvt.touches[0].clientY : moveEvt.clientY;
+        const world = document.getElementById('panoramicWorld');
         
-        const avatarEl = document.getElementById(avatarId === 'nonina' ? 'avatarNonina' : 'avatarDoydo');
-        avatarEl.style.left = `${xPct}%`;
-        avatarEl.style.top = `${yPct}%`;
-        appState.avatarPositions[avatarId] = { x: xPct, y: yPct };
+        const worldX = curX - appState.dragOffset.x + world.scrollLeft;
+        const worldY = Math.max(80, Math.min(window.innerHeight - 100, curY - appState.dragOffset.y));
+
+        appState.activeDragItem.style.left = `${worldX}px`;
+        appState.activeDragItem.style.top = `${worldY}px`;
       };
 
       const onEnd = () => {
-        appState.isDraggingAvatar = false;
+        if (appState.activeDragItem) {
+          checkDropInteractions(appState.activeDragItem);
+          appState.activeDragItem = null;
+        }
         window.removeEventListener('mousemove', onMove);
         window.removeEventListener('mouseup', onEnd);
         window.removeEventListener('touchmove', onMove);
@@ -1700,122 +1278,121 @@
 
       window.addEventListener('mousemove', onMove);
       window.addEventListener('mouseup', onEnd);
-      window.addEventListener('touchmove', onMove);
+      window.addEventListener('touchmove', onMove, { passive: false });
       window.addEventListener('touchend', onEnd);
     }
 
-    /* Playground Props Interactions */
-    function interactWithProp(propType, event) {
-      if (event) event.stopPropagation();
-      playTone(523.25, 'triangle', 0.2, 0.2);
+    function checkDropInteractions(itemEl) {
+      if (itemEl.dataset.type === 'food') {
+        // Check proximity with Nonina and Doydo
+        ['avatarNonina', 'avatarDoydo'].forEach(avatarId => {
+          const avatar = document.getElementById(avatarId);
+          if (avatar && isColliding(itemEl, avatar, 60)) {
+            // Eating animation!
+            playEatSound();
+            avatar.classList.add('animate-eat-chomp');
+            itemEl.remove(); // Consumed!
+            document.getElementById('playgroundAraSpeech').innerText = `¡Ñam ñam! ${avatarId === 'avatarNonina' ? 'Nonina' : 'Doydo'} disfrutó la merienda. 💖`;
+            setTimeout(() => avatar.classList.remove('animate-eat-chomp'), 800);
+          }
+        });
+      }
+    }
 
-      if (propType === 'board') {
-        const eq = ['5 + 5 = 10 ✨', '20 + 20 = 40 🚀', '10 x 10 = 100 💯', '300 + 70 + 8 = 378 🦖'];
-        const chosen = eq[Math.floor(Math.random() * eq.length)];
-        document.getElementById('boardText').innerText = chosen;
-        document.getElementById('playgroundAraSpeech').innerText = `Pizarra Cuántica: "${chosen}"`;
+    function isColliding(el1, el2, threshold = 50) {
+      const r1 = el1.getBoundingClientRect();
+      const r2 = el2.getBoundingClientRect();
+      const dx = (r1.left + r1.width/2) - (r2.left + r2.width/2);
+      const dy = (r1.top + r1.height/2) - (r2.top + r2.height/2);
+      return Math.sqrt(dx*dx + dy*dy) < threshold;
+    }
+
+    function tapAvatar(avatarId) {
+      playTone(523, 'triangle', 0.15, 0.2);
+      if (avatarId === 'nonina') {
+        showBubble('bubbleNonina', '¡Hola! ¡Soy Nonina de 3.° Grado! 🌸');
+        speakAraBot('¡Hola Romina! Lista para jugar.');
+      } else if (avatarId === 'doydo') {
+        showBubble('bubbleDoydo', '¡Soy Doydo! ¡A vencer robots! ⚡');
+        speakAraBot('¡Hola Ricardo! Listo para el combate Z.');
+      }
+    }
+
+    function showBubble(bubbleId, text) {
+      const b = document.getElementById(bubbleId);
+      if (b) {
+        b.innerText = text;
+        b.classList.remove('opacity-0');
+        setTimeout(() => b.classList.add('opacity-0'), 2500);
+      }
+    }
+
+    /* Room Props Interactions */
+    function interactRoomProp(type, event) {
+      if (event) event.stopPropagation();
+      playTone(440, 'sine', 0.15, 0.2);
+
+      if (type === 'board') {
+        const eqs = ['8 + 7 = 15 ✨', '30 + 20 = 50 🚀', '100 + 200 = 300 💯', '5 x 5 = 25 🌟'];
+        const chosen = eqs[Math.floor(Math.random() * eqs.length)];
+        document.getElementById('classroomBoardText').innerText = chosen;
         speakAraBot(chosen);
-      } else if (propType === 'dinoPet') {
-        playTone(350, 'sawtooth', 0.3, 0.2);
-        triggerParticleBurst(event.clientX, event.clientY, '#22c55e', 25);
-        document.getElementById('playgroundAraSpeech').innerText = 'Rexi Bebé: "¡Grrr! ¡Te quiero amigo explorador!"';
-      } else if (propType === 'synth') {
-        const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25];
-        const randomNote = notes[Math.floor(Math.random() * notes.length)];
-        playTone(randomNote, 'sine', 0.3, 0.3);
-        triggerParticleBurst(event.clientX, event.clientY, '#a855f7', 20);
-        document.getElementById('playgroundAraSpeech').innerText = 'Sintetizador Z: ¡Nota musical tocada!';
-      } else if (propType === 'fountain') {
-        playFusionSound();
-        triggerParticleBurst(event.clientX, event.clientY, '#f59e0b', 35);
-        document.getElementById('playgroundAraSpeech').innerText = 'Fuente Base-10: ¡Las gemas doradas representan millares y centenas!';
-      } else if (propType === 'araBot') {
+      } else if (type === 'backpack') {
+        toggleTocaDrawer();
+      } else if (type === 'dinoPet') {
+        playTone(300, 'sawtooth', 0.25, 0.25);
+        document.getElementById('playgroundAraSpeech').innerText = 'Rexi Bebé: "¡Grrr! ¡Vamos al laboratorio Base-10!"';
+      } else if (type === 'synth') {
+        playTone(523.25, 'triangle', 0.2, 0.3);
+      } else if (type === 'fountain') {
         playFanfareSound();
-        document.getElementById('playgroundAraSpeech').innerText = 'ARA BOT: "¡Hola! Estoy listo para enseñarte Matemáticas Divertidas."';
-        speakAraBot('¡Hola exploradores! Elige un portal para jugar.');
+      } else if (type === 'punchingBag') {
+        playTone(180, 'sawtooth', 0.15, 0.3);
+        const bag = document.getElementById('punchingBagVisual');
+        bag.classList.add('animate-ping');
+        setTimeout(() => bag.classList.remove('animate-ping'), 400);
+      } else if (type === 'rocketLaunchpad') {
+        launchRocketFromMenu();
       }
     }
 
     function triggerQuickDance() {
       playFanfareSound();
-      const nonina = document.getElementById('avatarNonina');
-      const doydo = document.getElementById('avatarDoydo');
-      nonina.classList.add('animate-bounce');
-      doydo.classList.add('animate-bounce');
-      triggerParticleBurst(window.innerWidth * 0.4, window.innerHeight * 0.6, '#f43f5e', 30);
-      triggerParticleBurst(window.innerWidth * 0.6, window.innerHeight * 0.6, '#38bdf8', 30);
+      document.getElementById('avatarNonina').classList.add('animate-bounce');
+      document.getElementById('avatarDoydo').classList.add('animate-bounce');
       setTimeout(() => {
-        nonina.classList.remove('animate-bounce');
-        doydo.classList.remove('animate-bounce');
+        document.getElementById('avatarNonina').classList.remove('animate-bounce');
+        document.getElementById('avatarDoydo').classList.remove('animate-bounce');
       }, 1500);
     }
 
-    /* Modals & Sky Portals */
-    function openDoydoMenu() {
-      playClickSound();
-      document.getElementById('doydoMenuModal').classList.remove('hidden');
+    /* Minigame Launchers */
+    function launchDinoFromMenu() { showScreen('screen-dino'); }
+    function launchCannonFromMenu() { showScreen('screen-cannon'); }
+    function launchRocketFromMenu() { showScreen('screen-rocket'); }
+
+    /* Nav Dock */
+    let isDockExpanded = false;
+    function toggleNavDock() {
+      isDockExpanded = !isDockExpanded;
+      document.getElementById('dockExpandedMenu').classList.toggle('hidden', !isDockExpanded);
+      document.getElementById('dockExpandedMenu').classList.toggle('flex', isDockExpanded);
     }
-    function closeDoydoMenu() {
-      playClickSound();
-      document.getElementById('doydoMenuModal').classList.add('hidden');
+    function collapseNavDock() {
+      isDockExpanded = false;
+      document.getElementById('dockExpandedMenu').classList.add('hidden');
+      document.getElementById('dockExpandedMenu').classList.remove('flex');
+    }
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+      else if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
     }
 
-    function openNoninaMenu() {
-      playClickSound();
-      document.getElementById('noninaMenuModal').classList.remove('hidden');
-    }
-    function closeNoninaMenu() {
-      playClickSound();
-      document.getElementById('noninaMenuModal').classList.add('hidden');
-    }
-
-    function launchDinoFromMenu() {
-      closeDoydoMenu();
-      playAlarmSound();
-      showScreen('screen-dino');
-    }
-
-    function launchCannonFromMenu() {
-      closeDoydoMenu();
-      playLaserSound();
-      showScreen('screen-cannon');
-    }
-
-    function launchRocketFromMenu() {
-      closeNoninaMenu();
-      playFanfareSound();
-      showScreen('screen-rocket');
-    }
-
-    function openProfileSelectorModal() {
-      openDoydoMenu();
-    }
-
-    /* =========================================================================
-       4. MINIJUEGO 1: EL CAÑÓN DE SUMAS RÁPIDAS (LUCHADORES Z) - 2.° GRADO
-       ========================================================================= */
-    function openCannonModeModal() {
-      document.getElementById('cannonModeModal').classList.remove('hidden');
-    }
-    function closeCannonModeModal() {
-      document.getElementById('cannonModeModal').classList.add('hidden');
-    }
-
-    function selectCannonMode(mode) {
-      appState.cannon.mode = mode;
-      closeCannonModeModal();
-      document.getElementById('cannonModeLabel').innerText = mode === 'rapid' ? '⚡ Modo Rápido' : '🧠 Modo Estrategia';
-      loadCannonEnemy(appState.cannon.currentEnemyIndex);
-    }
-
+    /* Cannon Minigame Functions */
     function loadCannonEnemy(idx) {
-      if (idx >= appState.cannon.enemies.length) {
-        idx = 0;
-      }
+      if (idx >= appState.cannon.enemies.length) idx = 0;
       appState.cannon.currentEnemyIndex = idx;
-      appState.cannon.tacticalCharge = 0;
       const enemy = appState.cannon.enemies[idx];
-
       document.getElementById('robotNameText').innerText = enemy.name;
       document.getElementById('robotVisualGraphic').innerText = enemy.emoji;
       document.getElementById('robotTargetEnergy').innerText = `${enemy.energy} ⚡`;
@@ -1824,548 +1401,142 @@
       document.getElementById('cannonComboVal').innerText = `x${appState.cannon.combo}`;
       document.getElementById('cannonEquationPrompt').innerHTML = `¿Qué proyectil suma exactamente <span class="text-amber-400 font-mono">${enemy.energy} ⚡</span>?`;
 
-      // Render options or tactical buttons
-      const optionsContainer = document.getElementById('cannonOptionsContainer');
-      const tacticalContainer = document.getElementById('cannonTacticalCharges');
-      
-      if (appState.cannon.mode === 'rapid') {
-        optionsContainer.classList.remove('hidden');
-        tacticalContainer.classList.add('hidden');
-        document.getElementById('cannonTimerBox').classList.remove('hidden');
-        optionsContainer.innerHTML = '';
-        enemy.options.forEach(opt => {
-          const btn = document.createElement('button');
-          btn.className = 'py-3 px-2 rounded-2xl bg-slate-800 hover:bg-amber-600/90 text-white font-display font-black text-sm sm:text-base border-2 border-slate-700 hover:border-amber-400 shadow-lg active:scale-95 transition-all flex items-center justify-center gap-1.5';
-          btn.innerHTML = `<span>⚡</span> <span>${opt}</span>`;
-          btn.onclick = () => fireCannonRapidOption(opt, enemy.correct);
-          optionsContainer.appendChild(btn);
-        });
-        startCannonTimer();
-      } else {
-        optionsContainer.classList.add('hidden');
-        tacticalContainer.classList.remove('hidden');
-        tacticalContainer.classList.add('flex');
-        document.getElementById('cannonTimerBox').classList.add('hidden');
-        if (appState.cannon.timerInterval) clearInterval(appState.cannon.timerInterval);
-      }
-    }
-
-    function startCannonTimer() {
-      if (appState.cannon.timerInterval) clearInterval(appState.cannon.timerInterval);
-      appState.cannon.timeRemaining = 14;
-      document.getElementById('cannonTimerSec').innerText = `${appState.cannon.timeRemaining}s`;
-
-      appState.cannon.timerInterval = setInterval(() => {
-        appState.cannon.timeRemaining--;
-        document.getElementById('cannonTimerSec').innerText = `${appState.cannon.timeRemaining}s`;
-        if (appState.cannon.timeRemaining <= 0) {
-          clearInterval(appState.cannon.timerInterval);
-          appState.cannon.combo = 1;
-          document.getElementById('cannonComboVal').innerText = 'x1';
-          document.getElementById('cannonAraBotSpeech').innerText = '¡El robot atacó! Intenta de nuevo con el cálculo.';
-          playTone(200, 'sawtooth', 0.4, 0.3);
-          loadCannonEnemy(appState.cannon.currentEnemyIndex);
-        }
-      }, 1000);
-    }
-
-    function fireCannonRapidOption(selected, correct) {
-      if (selected === correct) {
-        triggerRobotDefeatAnimation();
-      } else {
-        playTone(220, 'sawtooth', 0.2, 0.3);
-        appState.cannon.combo = 1;
-        document.getElementById('cannonComboVal').innerText = 'x1';
-        document.getElementById('cannonAraBotSpeech').innerText = '¡Casi! Revisa la suma y dispara otra vez.';
-      }
+      const optContainer = document.getElementById('cannonOptionsContainer');
+      optContainer.innerHTML = '';
+      enemy.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'py-3 px-2 rounded-2xl bg-slate-800 hover:bg-amber-600 text-white font-display font-black text-sm border-2 border-slate-700 hover:border-amber-400 shadow-lg';
+        btn.innerHTML = `<span>⚡</span> <span>${opt}</span>`;
+        btn.onclick = () => {
+          if (opt === enemy.correct) {
+            playLaserSound();
+            playFanfareSound();
+            appState.cannon.combo++;
+            document.getElementById('cannonComboVal').innerText = `x${appState.cannon.combo}`;
+            document.getElementById('cannonAraBotSpeech').innerText = `¡GOLPE CRÍTICO Z! ¡${enemy.name} desactivado! ⚙️💥`;
+            setTimeout(() => loadCannonEnemy(idx + 1), 1200);
+          } else {
+            playTone(200, 'sawtooth', 0.2, 0.25);
+            appState.cannon.combo = 1;
+            document.getElementById('cannonComboVal').innerText = 'x1';
+          }
+        };
+        optContainer.appendChild(btn);
+      });
     }
 
     function addCannonCharge(val) {
       appState.cannon.tacticalCharge += val;
-      playStepAddSound();
       const enemy = appState.cannon.enemies[appState.cannon.currentEnemyIndex];
       document.getElementById('cannonEnergySummary').innerText = `${appState.cannon.tacticalCharge} / ${enemy.energy} ⚡`;
-      const pct = Math.min(100, (appState.cannon.tacticalCharge / enemy.energy) * 100);
-      document.getElementById('cannonEnergyBarFill').style.width = `${pct}%`;
+      document.getElementById('cannonEnergyBarFill').style.width = `${Math.min(100, (appState.cannon.tacticalCharge/enemy.energy)*100)}%`;
     }
-
     function resetCannonTacticalCharge() {
       appState.cannon.tacticalCharge = 0;
-      playClickSound();
       const enemy = appState.cannon.enemies[appState.cannon.currentEnemyIndex];
       document.getElementById('cannonEnergySummary').innerText = `0 / ${enemy.energy} ⚡`;
       document.getElementById('cannonEnergyBarFill').style.width = '0%';
     }
-
     function fireCannonTactical() {
       const enemy = appState.cannon.enemies[appState.cannon.currentEnemyIndex];
       if (appState.cannon.tacticalCharge === enemy.energy) {
-        triggerRobotDefeatAnimation();
+        playLaserSound();
+        playFanfareSound();
+        setTimeout(() => loadCannonEnemy(appState.cannon.currentEnemyIndex + 1), 1200);
       } else {
         playTone(200, 'sawtooth', 0.3, 0.3);
-        document.getElementById('cannonAraBotSpeech').innerText = `Cargaste ${appState.cannon.tacticalCharge} ⚡, pero el robot requiere exactamente ${enemy.energy} ⚡.`;
       }
     }
-
-    function triggerRobotDefeatAnimation() {
-      if (appState.cannon.timerInterval) clearInterval(appState.cannon.timerInterval);
-      playLaserSound();
-
-      // Show laser line
-      const laser = document.getElementById('cannonLaserBeam');
-      laser.classList.remove('hidden');
-      laser.classList.add('laser-active');
-
-      setTimeout(() => {
-        laser.classList.add('hidden');
-        laser.classList.remove('laser-active');
-        playExplosionSound();
-        playFanfareSound();
-
-        // Shake robot & explode nuts and bolts
-        const robot = document.getElementById('robotCombatAvatar');
-        robot.classList.add('animate-bot-shake');
-        spawnNutsAndBoltsExplosion();
-
-        appState.cannon.combo++;
-        document.getElementById('cannonComboVal').innerText = `x${appState.cannon.combo}`;
-        document.getElementById('cannonAraBotSpeech').innerText = `¡GOLPE CRÍTICO Z! ¡${appState.cannon.enemies[appState.cannon.currentEnemyIndex].name} desactivado! ⚙️💥`;
-        speakAraBot('¡Excelente disparo! Robot neutralizado.');
-
-        setTimeout(() => {
-          robot.classList.remove('animate-bot-shake');
-          loadCannonEnemy(appState.cannon.currentEnemyIndex + 1);
-        }, 1600);
-      }, 300);
-    }
-
-    function spawnNutsAndBoltsExplosion() {
-      const container = document.getElementById('cannonSparkContainer');
-      container.innerHTML = '';
-      const items = ['⚙️', '🔩', '💥', '✨', '⚡'];
-      for (let i = 0; i < 16; i++) {
-        const el = document.createElement('div');
-        const item = items[Math.floor(Math.random() * items.length)];
-        el.innerText = item;
-        el.className = 'absolute text-xl sm:text-2xl transition-all duration-700 transform pointer-events-none';
-        el.style.left = '50%';
-        el.style.top = '50%';
-        container.appendChild(el);
-
-        const angle = Math.random() * Math.PI * 2;
-        const dist = 60 + Math.random() * 80;
-        setTimeout(() => {
-          el.style.transform = `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px) rotate(${Math.random() * 360}deg) scale(0)`;
-          el.style.opacity = '0';
-        }, 20);
-      }
-    }
-
     function hintCannonMath() {
       const enemy = appState.cannon.enemies[appState.cannon.currentEnemyIndex];
-      document.getElementById('cannonAraBotSpeech').innerText = `Pista ARA BOT: Para formar ${enemy.energy}, busca decenas completas más unidades.`;
-      speakAraBot(`Para formar ${enemy.energy}, piensa en decenas y unidades.`);
+      speakAraBot(`Para formar ${enemy.energy}, busca decenas y unidades.`);
     }
 
-    /* =========================================================================
-       5. MINIJUEGO 2: EL COHETE NUMÉRICO (NONINA - 3.er GRADO)
-       ========================================================================= */
-    function setRocketStep(step) {
-      appState.rocket.stepValue = step;
-      document.getElementById('headerStepLabel').innerText = step;
-      document.getElementById('rocketCurrentStepBadge').innerText = `+${step}`;
-      document.getElementById('btnRocketAddText').innerText = `🚀 ¡SUMAR +${step}!`;
-      closeStepModal();
-      playClickSound();
-    }
-
-    function openStepModal() { document.getElementById('stepModal').classList.remove('hidden'); }
-    function closeStepModal() { document.getElementById('stepModal').classList.add('hidden'); }
-
+    /* Rocket Minigame Functions */
     function executeRocketStepAdd() {
       appState.rocket.currentValue += appState.rocket.stepValue;
-      playStepAddSound();
-      checkRocketFusions();
+      playTone(440, 'triangle', 0.1, 0.2);
       updateRocketUI();
     }
-
     function resetRocketCounter() {
       appState.rocket.currentValue = 0;
-      appState.rocket.hasPlayedFusion = { decena: false, centena: false, millar: false };
-      playClickSound();
       updateRocketUI();
     }
-
-    function checkRocketFusions() {
-      const val = appState.rocket.currentValue;
-      const d = Math.floor((val % 100) / 10);
-      const c = Math.floor((val % 1000) / 100);
-      const m = Math.floor(val / 1000);
-
-      if (d > 0 && !appState.rocket.hasPlayedFusion.decena) {
-        appState.rocket.hasPlayedFusion.decena = true;
-        triggerRocketPortalGlow();
-        playFusionSound();
-      }
-      if (c > 0 && !appState.rocket.hasPlayedFusion.centena) {
-        appState.rocket.hasPlayedFusion.centena = true;
-        triggerRocketPortalGlow();
-        playFusionSound();
-      }
-      if (m > 0 && !appState.rocket.hasPlayedFusion.millar) {
-        appState.rocket.hasPlayedFusion.millar = true;
-        triggerRocketPortalGlow();
-        playFanfareSound();
-      }
-    }
-
-    function triggerRocketPortalGlow() {
-      const portal = document.getElementById('rocketMagicPortal');
-      if (!portal) return;
-      portal.classList.remove('opacity-0');
-      portal.classList.add('opacity-100');
-      setTimeout(() => {
-        portal.classList.remove('opacity-100');
-        portal.classList.add('opacity-0');
-      }, 1000);
-    }
-
     function updateRocketUI() {
       const val = appState.rocket.currentValue;
       const m = Math.floor(val / 1000);
       const c = Math.floor((val % 1000) / 100);
       const d = Math.floor((val % 100) / 10);
       const u = val % 10;
-
-      // Odometer Digits
       document.getElementById('rocketValMillar').innerText = m;
       document.getElementById('rocketValCentena').innerText = c;
       document.getElementById('rocketValDecena').innerText = d;
       document.getElementById('rocketValUnidad').innerText = u;
-
-      document.getElementById('rocketLabelMillarSub').innerText = `${m}x1000 = ${m * 1000}`;
-      document.getElementById('rocketLabelCentenaSub').innerText = `${c}x100 = ${c * 100}`;
-      document.getElementById('rocketLabelDecenaSub').innerText = `${d}x10 = ${d * 10}`;
-      document.getElementById('rocketLabelUnidadSub').innerText = `${u}x1 = ${u}`;
-
       document.getElementById('rocketDisplayTotal').innerText = val.toLocaleString();
-      document.getElementById('rocketEquationText').innerText = `${val} = ${m*1000} + ${c*100} + ${d*10} + ${u}`;
-
-      // Altitude gauge
       const altPct = Math.min(100, Math.round((val / appState.rocket.maxAltitude) * 100));
       document.getElementById('rocketAltitudePct').innerText = `${altPct}%`;
       document.getElementById('rocketProgressFill').style.height = `${altPct}%`;
       document.getElementById('rocketAvatar').style.bottom = `${altPct * 0.85}%`;
-
-      // Blocks container
-      renderRocketBlocks(m, c, d, u);
     }
-
-    function renderRocketBlocks(m, c, d, u) {
-      const hint = document.getElementById('rocketEmptyHint');
-      const mCont = document.getElementById('factoryMillares');
-      const cCont = document.getElementById('factoryCentenas');
-      const dCont = document.getElementById('factoryDecenas');
-      const uCont = document.getElementById('factoryUnidades');
-
-      mCont.innerHTML = ''; cCont.innerHTML = ''; dCont.innerHTML = ''; uCont.innerHTML = '';
-
-      if (m === 0 && c === 0 && d === 0 && u === 0) {
-        hint.classList.remove('hidden');
-        return;
-      }
-      hint.classList.add('hidden');
-
-      for (let i = 0; i < Math.min(m, 10); i++) {
-        const el = document.createElement('div');
-        el.className = 'px-2 py-1 bg-amber-500 text-slate-950 font-display font-black text-[9px] rounded-lg shadow-md flex items-center gap-1 glow-gold';
-        el.innerHTML = '🟡 <span>1000</span>';
-        mCont.appendChild(el);
-      }
-      for (let i = 0; i < Math.min(c, 10); i++) {
-        const el = document.createElement('div');
-        el.className = 'px-2 py-1 bg-red-500 text-white font-display font-black text-[9px] rounded-lg shadow-md flex items-center gap-1 glow-red';
-        el.innerHTML = '🔴 <span>100</span>';
-        cCont.appendChild(el);
-      }
-      for (let i = 0; i < Math.min(d, 10); i++) {
-        const el = document.createElement('div');
-        el.className = 'px-1.5 py-1 bg-blue-500 text-white font-display font-black text-[9px] rounded-lg shadow-md flex items-center gap-1 glow-blue';
-        el.innerHTML = '🔵 <span>10</span>';
-        dCont.appendChild(el);
-      }
-      for (let i = 0; i < Math.min(u, 10); i++) {
-        const el = document.createElement('div');
-        el.className = 'w-5 h-5 bg-emerald-500 text-slate-950 font-display font-black text-[8px] rounded-full shadow flex items-center justify-center glow-green';
-        el.innerText = '🟢';
-        uCont.appendChild(el);
-      }
-    }
-
     function triggerRocketLaunchCelebration() {
       playFanfareSound();
-      triggerParticleBurst(window.innerWidth / 2, window.innerHeight / 2, '#f43f5e', 50);
-      triggerParticleBurst(window.innerWidth / 2, window.innerHeight / 2, '#eab308', 50);
-      document.getElementById('rocketAraBotSpeech').innerText = '¡DESPEGUE EXITOSO! ¡El cohete espacial ha llegado a la órbita de los números!';
-      speakAraBot('¡Despegue exitoso Romina! Excelente misión matemática.');
+      speakAraBot('¡Despegue orbital exitoso Romina!');
     }
 
-    function startRocketTutorial() {
-      document.getElementById('rocketAraBotSpeech').innerText = 'Instrucciones: Toca SUMAR para contar de 5 en 5. Cuando juntas 10 de algo, se convierten en la unidad siguiente.';
-      speakAraBot('Toca el botón verde para sumar cinco.');
-    }
-
-    function showRocketChallenge() {
-      const targets = [25, 50, 100, 250, 500, 1000];
-      const target = targets[Math.floor(Math.random() * targets.length)];
-      document.getElementById('rocketAraBotSpeech').innerText = `Reto ARA BOT: ¡Llega exactamente al número ${target}!`;
-      speakAraBot(`Reto espacial: Construye el número ${target}.`);
-    }
-
-    /* =========================================================================
-       6. MINIJUEGO 3: LABORATORIO DINOSAURIO ESCAPE DEL T-REX (2.° GRADO)
-       ========================================================================= */
+    /* Dino Minigame Functions */
     function loadDinoLevel(idx) {
+      if (idx >= appState.dino.levels.length) idx = 0;
       appState.dino.currentLevelIndex = idx;
       const lvl = appState.dino.levels[idx];
-      appState.dino.inputC = 0;
-      appState.dino.inputD = 0;
-      appState.dino.inputU = 0;
+      appState.dino.inputC = 0; appState.dino.inputD = 0; appState.dino.inputU = 0;
       appState.dino.isDoorClosed = false;
-
       document.getElementById('dinoCurrentLevelLabel').innerText = `${idx + 1}/9`;
       document.getElementById('bigDigitCentena').innerText = lvl.c;
       document.getElementById('bigDigitDecena').innerText = lvl.d;
       document.getElementById('bigDigitUnidad').innerText = lvl.u;
-
+      document.getElementById('bigProgressCentena').innerText = `0 / ${lvl.c}`;
+      document.getElementById('bigProgressDecena').innerText = `0 / ${lvl.d}`;
+      document.getElementById('bigProgressUnidad').innerText = `0 / ${lvl.u}`;
       document.getElementById('titaniumBlastDoor').classList.add('hidden');
-      document.getElementById('masterCodeStatusText').innerText = 'BLOQUEA LOS 3 PUESTOS';
-      document.getElementById('masterCodeStatusText').className = 'font-mono font-black text-amber-300';
-      document.getElementById('dinoAraBotSpeech').innerText = `Puerta ${idx + 1}: ${lvl.hint}`;
-
-      updateDinoTacticalUI();
     }
 
     function dispatchGuard(type) {
       const lvl = appState.dino.levels[appState.dino.currentLevelIndex];
-      playClickSound();
+      playTone(400, 'sine', 0.1, 0.2);
+      if (type === 'centena' && appState.dino.inputC < lvl.c) appState.dino.inputC++;
+      if (type === 'decena' && appState.dino.inputD < lvl.d) appState.dino.inputD++;
+      if (type === 'unidad' && appState.dino.inputU < lvl.u) appState.dino.inputU++;
+      document.getElementById('bigProgressCentena').innerText = `${appState.dino.inputC} / ${lvl.c}`;
+      document.getElementById('bigProgressDecena').innerText = `${appState.dino.inputD} / ${lvl.d}`;
+      document.getElementById('bigProgressUnidad').innerText = `${appState.dino.inputU} / ${lvl.u}`;
 
-      if (type === 'centena') {
-        if (appState.dino.inputC < lvl.c) appState.dino.inputC++;
-      } else if (type === 'decena') {
-        if (appState.dino.inputD < lvl.d) appState.dino.inputD++;
-      } else if (type === 'unidad') {
-        if (appState.dino.inputU < lvl.u) appState.dino.inputU++;
-      }
-      updateDinoTacticalUI();
-    }
-
-    function clearPod(type) {
-      playClickSound();
-      if (type === 'centena') appState.dino.inputC = 0;
-      if (type === 'decena') appState.dino.inputD = 0;
-      if (type === 'unidad') appState.dino.inputU = 0;
-      updateDinoTacticalUI();
-    }
-
-    function updateDinoTacticalUI() {
-      const lvl = appState.dino.levels[appState.dino.currentLevelIndex];
-      const isCLocked = appState.dino.inputC === lvl.c;
-      const isDLocked = appState.dino.inputD === lvl.d;
-      const isULocked = appState.dino.inputU === lvl.u;
-
-      // Centenas Pod
-      document.getElementById('bigProgressCentena').innerText = `${appState.dino.inputC} / ${lvl.c} 🔴`;
-      document.getElementById('bigValCentena').innerText = `${appState.dino.inputC * 100}`;
-      document.getElementById('podCentenaStatus').innerText = `${appState.dino.inputC} / ${lvl.c}`;
-      updatePodLockUI('podCentena', 'podCentenaLock', isCLocked, '🔴');
-      updateBigBoxLock('bigDigitCentenaBox', 'bigLockCentenaIcon', isCLocked);
-      renderPodSlots('podCentenaSlots', appState.dino.inputC, 'centena');
-
-      // Decenas Pod
-      document.getElementById('bigProgressDecena').innerText = `${appState.dino.inputD} / ${lvl.d} 🟢`;
-      document.getElementById('bigValDecena').innerText = `${appState.dino.inputD * 10}`;
-      document.getElementById('podDecenaStatus').innerText = `${appState.dino.inputD} / ${lvl.d}`;
-      updatePodLockUI('podDecena', 'podDecenaLock', isDLocked, '🟢');
-      updateBigBoxLock('bigDigitDecenaBox', 'bigLockDecenaIcon', isDLocked);
-      renderPodSlots('podDecenaSlots', appState.dino.inputD, 'decena');
-
-      // Unidades Pod
-      document.getElementById('bigProgressUnidad').innerText = `${appState.dino.inputU} / ${lvl.u} 🔵`;
-      document.getElementById('bigValUnidad').innerText = `${appState.dino.inputU}`;
-      document.getElementById('podUnidadStatus').innerText = `${appState.dino.inputU} / ${lvl.u}`;
-      updatePodLockUI('podUnidad', 'podUnidadLock', isULocked, '🔵');
-      updateBigBoxLock('bigDigitUnidadBox', 'bigLockUnidadIcon', isULocked);
-      renderPodSlots('podUnidadSlots', appState.dino.inputU, 'unidad');
-
-      if (isCLocked && isDLocked && isULocked && !appState.dino.isDoorClosed) {
+      if (appState.dino.inputC === lvl.c && appState.dino.inputD === lvl.d && appState.dino.inputU === lvl.u && !appState.dino.isDoorClosed) {
         appState.dino.isDoorClosed = true;
-        triggerDinoVictory();
+        playFanfareSound();
+        document.getElementById('titaniumBlastDoor').classList.remove('hidden');
+        setTimeout(() => loadDinoLevel(appState.dino.currentLevelIndex + 1), 1600);
       }
     }
 
-    function updatePodLockUI(podId, lockId, isLocked, symbol) {
-      const pod = document.getElementById(podId);
-      const lock = document.getElementById(lockId);
-      if (!pod || !lock) return;
-      if (isLocked) {
-        pod.classList.add('pod-locked');
-        lock.className = 'w-5 h-5 rounded bg-emerald-950 border border-emerald-400 flex items-center justify-center text-[9px] text-emerald-300';
-        lock.innerHTML = '<i class="fa-solid fa-lock"></i>';
-      } else {
-        pod.classList.remove('pod-locked');
-        lock.className = 'w-5 h-5 rounded bg-slate-950 border border-slate-700 flex items-center justify-center text-[9px] text-slate-500';
-        lock.innerHTML = '<i class="fa-solid fa-lock-open"></i>';
+    /* Starry Background Canvas */
+    const starCanvas = document.getElementById('bgStarsCanvas');
+    if (starCanvas) {
+      const starCtx = starCanvas.getContext('2d');
+      starCanvas.width = 4000;
+      starCanvas.height = 1200;
+      for (let i = 0; i < 200; i++) {
+        starCtx.fillStyle = Math.random() > 0.5 ? '#38bdf8' : '#f43f5e';
+        starCtx.globalAlpha = Math.random() * 0.7 + 0.2;
+        starCtx.beginPath();
+        starCtx.arc(Math.random() * 4000, Math.random() * 1200, Math.random() * 2.5 + 1, 0, Math.PI * 2);
+        starCtx.fill();
       }
     }
 
-    function updateBigBoxLock(boxId, iconId, isLocked) {
-      const box = document.getElementById(boxId);
-      const icon = document.getElementById(iconId);
-      if (!box || !icon) return;
-      if (isLocked) {
-        box.className = 'digit-locked rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-lg';
-        icon.innerText = '🔒';
-      } else {
-        box.className = 'digit-unlocked rounded-xl p-1.5 sm:p-2 text-center flex flex-col items-center justify-between shadow-lg';
-        icon.innerText = '🔓';
-      }
-    }
-
-    function renderPodSlots(containerId, count, type) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      container.innerHTML = '';
-      for (let i = 0; i < count; i++) {
-        const el = document.createElement('div');
-        if (type === 'centena') {
-          el.className = 'px-1.5 py-0.5 rounded bg-red-600 border border-red-300 text-white font-black text-[8px] flex items-center gap-0.5';
-          el.innerHTML = '<span>🔴</span><span>100</span>';
-        } else if (type === 'decena') {
-          el.className = 'px-1 py-0.5 rounded bg-emerald-600 border border-emerald-300 text-slate-950 font-black text-[8px] flex items-center gap-0.5';
-          el.innerHTML = '<span>🟢</span><span>10</span>';
-        } else {
-          el.className = 'w-5 h-5 rounded-full bg-blue-600 border border-blue-200 text-white font-black text-[8px] flex items-center justify-center';
-          el.innerText = '🔵';
-        }
-        container.appendChild(el);
-      }
-    }
-
-    function triggerDinoVictory() {
-      playTitaniumDoorSlamSound();
-      triggerParticleBurst(window.innerWidth * 0.3, window.innerHeight * 0.5, '#ef4444', 40);
-      triggerParticleBurst(window.innerWidth * 0.3, window.innerHeight * 0.5, '#22c55e', 40);
-
-      document.getElementById('titaniumBlastDoor').classList.remove('hidden');
-      document.getElementById('dinoLevelFeedback').innerText = `¡PUERTA ${appState.dino.currentLevelIndex + 1} SELLADA! 💥`;
-
-      setTimeout(() => {
-        if (appState.dino.currentLevelIndex + 1 < appState.dino.levels.length) {
-          loadDinoLevel(appState.dino.currentLevelIndex + 1);
-        } else {
-          showSecretLesson();
-        }
-      }, 1600);
-    }
-
-    function showSecretLesson() {
-      playFanfareSound();
-      document.getElementById('secretLessonModal').classList.remove('hidden');
-    }
-    function closeSecretLesson() {
-      document.getElementById('secretLessonModal').classList.add('hidden');
-    }
-    function restartDinoGame() {
-      closeSecretLesson();
-      loadDinoLevel(0);
-    }
-    function startDinoTutorial() {
-      document.getElementById('dinoAraBotSpeech').innerText = 'Coloca búnkers rojos (100), escuadrones verdes (10) y guardias azules (1) hasta igualar los números del código.';
-      speakAraBot('Coloca los bloques necesarios para cerrar la compuerta.');
-    }
-
-    /* =========================================================================
-       7. CANVAS PARTICLE SYSTEM & CYBER BACKGROUND
-       ========================================================================= */
-    const canvas = document.getElementById('bgCanvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class Particle {
-      constructor(x, y, color) {
-        this.x = x || Math.random() * canvas.width;
-        this.y = y || Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedX = Math.random() * 0.6 - 0.3;
-        this.speedY = Math.random() * 0.6 - 0.3;
-        this.color = color || (Math.random() > 0.5 ? '#38bdf8' : '#f43f5e');
-        this.alpha = Math.random() * 0.6 + 0.2;
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.x > canvas.width) this.x = 0;
-        if (this.y < 0) this.y = canvas.height;
-        if (this.y > canvas.height) this.y = 0;
-      }
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = this.alpha;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
-    }
-
-    for (let i = 0; i < 45; i++) {
-      particles.push(new Particle());
-    }
-
-    function triggerParticleBurst(x, y, color, count = 30) {
-      for (let i = 0; i < count; i++) {
-        const p = new Particle(x, y, color);
-        p.speedX = (Math.random() - 0.5) * 6;
-        p.speedY = (Math.random() - 0.5) * 6;
-        p.size = Math.random() * 3 + 2;
-        particles.push(p);
-      }
-      if (particles.length > 120) {
-        particles.splice(0, particles.length - 120);
-      }
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-
-    /* =========================================================================
-       8. SERVICE WORKER REGISTRATION & INIT
-       ========================================================================= */
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js').catch(() => {});
-      });
-    }
-
+    /* Init */
     window.addEventListener('DOMContentLoaded', () => {
       document.body.addEventListener('click', () => initAudio(), { once: true });
+      updateActiveRoomTab(0);
     });
   </script>
 </body>
