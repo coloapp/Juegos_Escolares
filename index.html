@@ -14,6 +14,11 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="description" content="PWA educativa interactiva de mundo abierto estilo Toca Boca / Avatar World con ARA BOT: El Cohete Numérico, Laboratorio Dinosaurio y El Cañón de Sumas Rápidas.">
 
+  <!-- Anti-Cache Directives for Instant Automatic Updates -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <!-- Manifest Link -->
   <link rel="manifest" href="manifest.json" id="manifestPlaceholder">
   <script>
@@ -155,6 +160,12 @@
 
 <body class="w-full h-full relative overflow-hidden bg-slate-950 font-sans flex flex-col justify-between select-none">
 
+  <!-- 🔔 AUTO-UPDATE LIVE TOAST NOTIFICATION -->
+  <div id="updateToast" class="hidden fixed top-3 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 border-2 border-emerald-400 rounded-2xl px-4 py-2 shadow-2xl backdrop-blur-md flex items-center gap-2 text-emerald-300 font-display font-black text-xs animate-bounce glow-green">
+    <i class="fa-solid fa-cloud-arrow-down text-sm text-emerald-400 animate-pulse"></i>
+    <span id="updateToastText">¡Nueva tarea / juego diario detectado! Actualizando... 🚀</span>
+  </div>
+
   <!-- ========================================================================= -->
   <!-- 🏠 GLOBAL RETRACTABLE FLOATING CONTROL DOCK                               -->
   <!-- ========================================================================= -->
@@ -164,6 +175,12 @@
       <button onclick="goToPlayground()" class="h-8 px-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:brightness-110 text-white font-display font-bold text-xs flex items-center gap-1.5 shadow-md border border-cyan-300/40 active:scale-95 transition-all">
         <i class="fa-solid fa-house"></i>
         <span>Mundo Toca Boca</span>
+      </button>
+
+      <!-- Manual Update / Refresh Button -->
+      <button onclick="forceAppUpdateCheck(true)" class="h-8 px-2 rounded-xl bg-slate-800 hover:bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 flex items-center gap-1 text-xs font-bold shadow transition-all active:scale-95" title="Verificar Nuevas Tareas Diarias">
+        <i class="fa-solid fa-rotate text-xs"></i>
+        <span class="hidden sm:inline">Actualizar</span>
       </button>
 
       <button id="btnAudioToggle" onclick="toggleMute()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-cyan-400 flex items-center justify-center shadow transition-all active:scale-95" title="Sonido">
@@ -1533,10 +1550,116 @@
       }
     }
 
+    /* =========================================================================
+       8. AUTO-UPDATE ENGINE & LIVE REFRESH FOR DAILY HOMEWORK/GAMES
+       ========================================================================= */
+    const CURRENT_CLIENT_VERSION = 'v4.1.0';
+    let isUpdatingApp = false;
+
+    function showUpdateToast(message = '¡Nueva tarea o juego detectado! Actualizando... 🚀') {
+      const toast = document.getElementById('updateToast');
+      const text = document.getElementById('updateToastText');
+      if (toast && text) {
+        text.innerText = message;
+        toast.classList.remove('hidden');
+      }
+    }
+
+    async function checkForAppUpdates(isManual = false) {
+      if (isUpdatingApp) return;
+      try {
+        const res = await fetch(`version.json?t=${Date.now()}`, {
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          const serverVer = data.version;
+          const storedVer = localStorage.getItem('ara_app_version') || CURRENT_CLIENT_VERSION;
+
+          if (serverVer && serverVer !== storedVer) {
+            isUpdatingApp = true;
+            localStorage.setItem('ara_app_version', serverVer);
+            showUpdateToast(`¡Nueva tarea ${serverVer} lista! Actualizando... 🚀`);
+            
+            if ('caches' in window) {
+              const keys = await caches.keys();
+              await Promise.all(keys.map(k => caches.delete(k)));
+            }
+
+            setTimeout(() => {
+              window.location.reload(true);
+            }, 800);
+            return;
+          }
+        }
+      } catch (err) {
+        console.log('[AutoUpdate] Offline or checking failed:', err);
+      }
+
+      if (isManual) {
+        showUpdateToast('✓ ¡Tienes la versión más reciente de tus tareas!');
+        setTimeout(() => {
+          document.getElementById('updateToast')?.classList.add('hidden');
+        }, 2000);
+      }
+    }
+
+    function forceAppUpdateCheck(isManual = false) {
+      playClickSound();
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistration().then(reg => {
+          if (reg) reg.update();
+        });
+      }
+      checkForAppUpdates(isManual);
+    }
+
+    // Register Service Worker with updateViaCache: 'none'
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register(`sw.js?t=${Date.now()}`, { updateViaCache: 'none' })
+          .then((reg) => {
+            reg.update();
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
+              if (newWorker) {
+                newWorker.addEventListener('statechange', () => {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    showUpdateToast('¡Descargando nuevo juego diario! Reiniciando...');
+                    newWorker.postMessage({ action: 'skipWaiting' });
+                  }
+                });
+              }
+            });
+          })
+          .catch((err) => console.log('SW Reg error:', err));
+      });
+
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload(true);
+        }
+      });
+    }
+
+    // Check updates whenever the tab becomes visible or gains focus
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        checkForAppUpdates(false);
+      }
+    });
+    window.addEventListener('focus', () => checkForAppUpdates(false));
+    setInterval(() => checkForAppUpdates(false), 45000);
+
     /* Init */
     window.addEventListener('DOMContentLoaded', () => {
       document.body.addEventListener('click', () => initAudio(), { once: true });
       updateActiveRoomTab(0);
+      localStorage.setItem('ara_app_version', CURRENT_CLIENT_VERSION);
+      setTimeout(() => checkForAppUpdates(false), 2000);
     });
   </script>
 </body>

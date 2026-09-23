@@ -65,9 +65,20 @@ Al tocar el botón flotante 🎒 **"Cajón de Objetos"**, se despliega una bande
 
 ---
 
+## 🔄 4. Motor de Actualización Automática Diaria (Auto-Update Engine)
+
+Para garantizar que los niños y padres siempre vean los nuevos juegos y tareas publicadas diariamente **sin necesidad de limpiar la caché ni presionar Ctrl+Shift+R**:
+- **Estrategia Network-First para Navegación:** El Service Worker (`sw.js`) prioriza siempre la versión más reciente del HTML en la red y solo recurre a la caché local cuando no hay conexión a internet.
+- **Detección Automática con `version.json`:** Al abrir o volver a la pestaña, la aplicación compara la versión con el servidor en segundo plano (`fetch('version.json?t=...')` con `no-store`).
+- **Recarga y Purgado Silencioso:** Si detecta una nueva versión de tareas, purga las cachés antiguas, despliega una notificación flotante (*"¡Nueva tarea diaria detectada! Actualizando... 🚀"*) y recarga la página automáticamente.
+- **Botón Manual en el Menú:** Se incluye el botón 🔄 **"Actualizar"** en el dock flotante para forzar la sincronización instantánea en cualquier momento.
+
+---
+
 ## 🛠️ Especificaciones Técnicas
 
 - **Zero-Scroll Vertical:** `100dvh` fijo con deslizamiento horizontal suave.
 - **100% Offline con Web Audio API:** Sintetizador de sonido poligonal nativo sin dependencias externas pesadas.
 - **Asistente de Voz ARA BOT:** Integración con Web Speech API para lectura de textos y pistas matemáticas.
-- **PWA Instalable:** Service Worker con caché offline instantánea.
+- **PWA Instalable & Auto-Actualizable:** Service Worker con registro `{ updateViaCache: 'none' }` y caché offline inteligente.
+
