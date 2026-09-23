@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-slate-950">
+<html lang="es" class="h-full bg-amber-50 text-slate-900 selection:bg-rose-400 selection:text-white">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   
-  <title>ARA BOT de Mate | Mundo Interactivo Toca Boca, Cohete & Luchadores Z</title>
+  <title>ARA BOT de Mate | Escuela Toca Life World</title>
   
   <!-- PWA & Mobile Metas -->
-  <meta name="theme-color" content="#020617">
+  <meta name="theme-color" content="#fef3c7">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="ARA BOT Mate">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="description" content="PWA educativa interactiva de mundo abierto estilo Toca Boca / Avatar World con ARA BOT: El Cohete Numérico, Laboratorio Dinosaurio y El Cañón de Sumas Rápidas.">
+  <meta name="description" content="PWA educativa estilo Toca Life World / Avatar World con la Escuela de Matemáticas de Nonina y Doydo.">
 
   <!-- Anti-Cache Directives for Instant Automatic Updates -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -24,15 +24,15 @@
   <script>
     try {
       const manifestObj = {
-        name: "ARA BOT de Mate: Mundo Toca Boca, Cohete & Luchadores Z",
+        name: "ARA BOT de Mate: Escuela Toca Life World",
         short_name: "ARA BOT Mate",
-        description: "Mundo abierto interactivo tipo Toca Life con Nonina y Doydo.",
+        description: "Mundo interactivo escolar estilo Toca Boca con Nonina y Doydo.",
         start_url: "./index.html",
         display: "standalone",
-        background_color: "#020617",
-        theme_color: "#0f172a",
+        background_color: "#fef3c7",
+        theme_color: "#f59e0b",
         icons: [{
-          src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text y='.9em' font-size='70' x='15'>🤖</text></svg>",
+          src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23fef3c7'/><text y='.9em' font-size='70' x='15'>🏫</text></svg>",
           sizes: "192x192 512x512",
           type: "image/svg+xml"
         }]
@@ -48,45 +48,52 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Google Fonts: Outfit & Inter -->
+  <!-- Google Fonts: Outfit & Inter & Nunito (Toca Boca Friendly) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
+            sans: ['Nunito', 'sans-serif'],
             display: ['Outfit', 'sans-serif'],
           },
           colors: {
-            nonina: { DEFAULT: '#f43f5e', glow: '#fb7185', dark: '#881337', light: '#ffe4e6' },
-            doydo: { DEFAULT: '#0284c7', glow: '#38bdf8', dark: '#082f49', light: '#e0f2fe' },
-            zfighter: { DEFAULT: '#f59e0b', glow: '#fbbf24', red: '#ef4444', purple: '#8b5cf6' },
-            unidad: '#22c55e', decena: '#3b82f6', centena: '#ef4444', millar: '#eab308',
+            toca: {
+              cream: '#fef3c7',
+              wood: '#b45309',
+              lightwood: '#fde68a',
+              pink: '#fb7185',
+              softpink: '#ffe4e6',
+              blue: '#38bdf8',
+              softblue: '#e0f2fe',
+              green: '#4ade80',
+              softgreen: '#dcfce7',
+              mint: '#a7f3d0',
+              purple: '#c084fc',
+              wallClassroom: '#fffbeb',
+              wallLab: '#f0fdf4',
+              wallCafe: '#fff7ed',
+              wallGym: '#eff6ff',
+              wallSpace: '#faf5ff'
+            }
           },
           animation: {
             'bounce-soft': 'bounceSoft 2s infinite',
             'float': 'float 3s ease-in-out infinite',
-            'float-delay': 'float 3.5s ease-in-out 1s infinite',
-            'portal-spin': 'portalSpin 4s linear infinite',
-            'alarm-blink': 'alarmBlink 1s infinite alternate',
-            'slam-door': 'slamDoor 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
             'trex-roar': 'trexShake 0.5s ease-in-out infinite',
-            'bot-shake': 'botShake 0.4s ease-in-out',
-            'eat-chomp': 'eatChomp 0.3s ease-in-out 2',
+            'slam-door': 'slamDoor 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+            'eat-chomp': 'eatChomp 0.35s ease-in-out 2',
           },
           keyframes: {
-            bounceSoft: { '0%, 100%': { transform: 'translateY(-2%)' }, '50%': { transform: 'translateY(2%)' } },
-            float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-8px)' } },
-            portalSpin: { '0%': { transform: 'translate(-50%, -50%) rotate(0deg)' }, '100%': { transform: 'translate(-50%, -50%) rotate(360deg)' } },
-            alarmBlink: { '0%': { backgroundColor: 'rgba(239, 68, 68, 0.05)' }, '100%': { backgroundColor: 'rgba(239, 68, 68, 0.35)', boxShadow: '0 0 30px rgba(239, 68, 68, 0.6)' } },
-            slamDoor: { '0%': { transform: 'translateY(-100%)', opacity: '0.2' }, '100%': { transform: 'translateY(0%)', opacity: '1' } },
+            bounceSoft: { '0%, 100%': { transform: 'translateY(-3%)' }, '50%': { transform: 'translateY(3%)' } },
+            float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-6px)' } },
             trexShake: { '0%, 100%': { transform: 'scale(1) rotate(0deg)' }, '50%': { transform: 'scale(1.08) rotate(3deg)' } },
-            botShake: { '0%, 100%': { transform: 'translateX(0)' }, '25%, 75%': { transform: 'translateX(-8px)' }, '50%': { transform: 'translateX(8px)' } },
-            eatChomp: { '0%, 100%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.25) rotate(-5deg)' } }
+            slamDoor: { '0%': { transform: 'translateY(-100%)', opacity: '0.2' }, '100%': { transform: 'translateY(0%)', opacity: '1' } },
+            eatChomp: { '0%, 100%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.2) rotate(-6deg)' } }
           }
         }
       }
@@ -105,32 +112,72 @@
       user-select: none;
       -webkit-user-select: none;
       touch-action: manipulation;
-      background-color: #020617;
+      background-color: #fef3c7;
     }
 
-    /* Glow Tokens */
-    .glow-pink { box-shadow: 0 0 25px rgba(244, 63, 94, 0.6), inset 0 0 15px rgba(251, 113, 133, 0.3); }
-    .glow-blue-neon { box-shadow: 0 0 25px rgba(56, 189, 248, 0.6), inset 0 0 15px rgba(2, 132, 199, 0.3); }
-    .glow-gold { box-shadow: 0 0 25px rgba(245, 158, 11, 0.6), inset 0 0 15px rgba(251, 191, 36, 0.3); }
-    .glow-green { box-shadow: 0 0 16px rgba(34, 197, 94, 0.5); }
-    .glow-red { box-shadow: 0 0 16px rgba(239, 68, 68, 0.5); }
+    /* Custom Toca Boca Illustrated Elements */
+    .toca-floor-wood {
+      background-color: #d97706;
+      background-image: repeating-linear-gradient(90deg, #b45309, #b45309 4px, #d97706 4px, #d97706 90px);
+      box-shadow: inset 0 6px 12px rgba(0,0,0,0.15);
+    }
+    .toca-baseboard {
+      background: #78350f;
+      height: 14px;
+      border-top: 3px solid #92400e;
+    }
 
-    /* Custom Hidden Scrollbar for Panoramic World */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    /* Wallpaper Textures */
+    .toca-wall-classroom {
+      background: #fffbeb;
+      background-image: radial-gradient(#fde68a 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+    }
+    .toca-wall-lab {
+      background: #f0fdf4;
+      background-image: radial-gradient(#bbf7d0 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+    }
+    .toca-wall-cafe {
+      background: #fff7ed;
+      background-image: repeating-linear-gradient(0deg, #ffedd5, #ffedd5 20px, #fff7ed 20px, #fff7ed 40px);
+    }
+    .toca-wall-gym {
+      background: #eff6ff;
+      background-image: radial-gradient(#bfdbfe 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+    }
+    .toca-wall-space {
+      background: #faf5ff;
+      background-image: radial-gradient(#e9d5ff 2px, transparent 2px);
+      background-size: 28px 28px;
+    }
 
-    /* Speech Bubble */
-    .speech-bubble::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 6px 6px 0;
-      border-style: solid;
-      border-color: rgba(15, 23, 42, 0.95) transparent;
-      display: block;
-      width: 0;
+    /* Wooden Shelf Styling */
+    .toca-wood-shelf {
+      background: #d97706;
+      border: 3px solid #78350f;
+      border-radius: 8px;
+      box-shadow: 0 6px 0 #78350f, 0 10px 15px rgba(0,0,0,0.1);
+    }
+    .toca-wood-prop {
+      background: #fde68a;
+      border: 3px solid #78350f;
+      border-radius: 14px;
+      box-shadow: 0 5px 0 #78350f;
+    }
+    .toca-chalkboard {
+      background: #14532d;
+      border: 6px solid #b45309;
+      border-radius: 16px;
+      box-shadow: 0 8px 0 #78350f, inset 0 0 20px rgba(0,0,0,0.3);
+    }
+    .toca-window {
+      background: #bae6fd;
+      border: 6px solid #78350f;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: inset 0 0 15px rgba(56,189,248,0.4), 0 6px 0 #78350f;
     }
 
     /* Draggable Item Style */
@@ -144,492 +191,621 @@
     }
     .world-item:active {
       cursor: grabbing;
-      transform: scale(1.18);
+      transform: scale(1.15);
       z-index: 40 !important;
     }
 
-    /* Laser beam pulse */
-    @keyframes laserBeam {
-      0% { width: 0; opacity: 1; }
-      50% { width: 100%; opacity: 1; box-shadow: 0 0 20px #38bdf8, 0 0 40px #f43f5e; }
-      100% { width: 100%; opacity: 0; }
+    /* Speech Bubble */
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -7px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 7px 7px 0;
+      border-style: solid;
+      border-color: #ffffff transparent;
+      display: block;
+      width: 0;
     }
-    .laser-active { animation: laserBeam 0.4s ease-out forwards; }
+
+    /* No Scrollbars */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 
-<body class="w-full h-full relative overflow-hidden bg-slate-950 font-sans flex flex-col justify-between select-none">
+<body class="w-full h-full relative overflow-hidden font-sans flex flex-col justify-between select-none">
 
   <!-- 🔔 AUTO-UPDATE LIVE TOAST NOTIFICATION -->
-  <div id="updateToast" class="hidden fixed top-3 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 border-2 border-emerald-400 rounded-2xl px-4 py-2 shadow-2xl backdrop-blur-md flex items-center gap-2 text-emerald-300 font-display font-black text-xs animate-bounce glow-green">
-    <i class="fa-solid fa-cloud-arrow-down text-sm text-emerald-400 animate-pulse"></i>
-    <span id="updateToastText">¡Nueva tarea / juego diario detectado! Actualizando... 🚀</span>
+  <div id="updateToast" class="hidden fixed top-3 left-1/2 -translate-x-1/2 z-50 bg-amber-400 border-3 border-amber-800 rounded-2xl px-4 py-2 shadow-2xl flex items-center gap-2 text-slate-900 font-display font-black text-xs animate-bounce">
+    <span class="text-base">🚀</span>
+    <span id="updateToastText">¡Nueva tarea / juego escolar detectado! Actualizando...</span>
   </div>
 
   <!-- ========================================================================= -->
-  <!-- 🏠 GLOBAL RETRACTABLE FLOATING CONTROL DOCK                               -->
+  <!-- 🏠 GLOBAL TOCA BOCA FLOATING CONTROL DOCK                                 -->
   <!-- ========================================================================= -->
   <aside id="globalNavDock" class="fixed top-2 right-2 z-50 flex items-center gap-1.5 transition-all duration-300">
     <!-- Expanded Drawer Menu -->
-    <div id="dockExpandedMenu" class="hidden items-center gap-1.5 bg-slate-900/95 border border-cyan-500/50 rounded-2xl p-1 shadow-2xl backdrop-blur-xl animate-bounce-soft">
-      <button onclick="goToPlayground()" class="h-8 px-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:brightness-110 text-white font-display font-bold text-xs flex items-center gap-1.5 shadow-md border border-cyan-300/40 active:scale-95 transition-all">
-        <i class="fa-solid fa-house"></i>
-        <span>Mundo Toca Boca</span>
+    <div id="dockExpandedMenu" class="hidden items-center gap-1.5 bg-white/95 border-3 border-amber-800 rounded-3xl p-1.5 shadow-2xl backdrop-blur-md">
+      <button onclick="goToPlayground()" class="h-8 px-3 rounded-2xl bg-amber-400 hover:bg-amber-300 border-2 border-amber-800 text-slate-900 font-display font-black text-xs flex items-center gap-1.5 shadow active:scale-95 transition-all">
+        <i class="fa-solid fa-school"></i>
+        <span>Escuela Toca</span>
       </button>
 
-      <!-- Manual Update / Refresh Button -->
-      <button onclick="forceAppUpdateCheck(true)" class="h-8 px-2 rounded-xl bg-slate-800 hover:bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 flex items-center gap-1 text-xs font-bold shadow transition-all active:scale-95" title="Verificar Nuevas Tareas Diarias">
-        <i class="fa-solid fa-rotate text-xs"></i>
+      <button onclick="forceAppUpdateCheck(true)" class="h-8 px-2.5 rounded-2xl bg-emerald-400 hover:bg-emerald-300 border-2 border-emerald-800 text-slate-900 flex items-center gap-1 text-xs font-black shadow transition-all active:scale-95" title="Actualizar Tareas">
+        <i class="fa-solid fa-rotate"></i>
         <span class="hidden sm:inline">Actualizar</span>
       </button>
 
-      <button id="btnAudioToggle" onclick="toggleMute()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-cyan-400 flex items-center justify-center shadow transition-all active:scale-95" title="Sonido">
+      <button id="btnAudioToggle" onclick="toggleMute()" class="w-8 h-8 rounded-2xl bg-sky-300 hover:bg-sky-200 border-2 border-sky-800 text-sky-900 flex items-center justify-center shadow transition-all active:scale-95" title="Sonido">
         <i id="audioIcon" class="fa-solid fa-volume-high text-xs"></i>
       </button>
 
-      <button onclick="toggleFullScreen()" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-white flex items-center justify-center shadow transition-all active:scale-95" title="Pantalla Completa">
+      <button onclick="toggleFullScreen()" class="w-8 h-8 rounded-2xl bg-purple-300 hover:bg-purple-200 border-2 border-purple-800 text-purple-900 flex items-center justify-center shadow transition-all active:scale-95" title="Pantalla Completa">
         <i class="fa-solid fa-expand text-xs"></i>
       </button>
 
-      <button onclick="collapseNavDock()" class="w-8 h-8 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-all">
+      <button onclick="collapseNavDock()" class="w-8 h-8 rounded-2xl bg-slate-200 hover:bg-slate-300 text-slate-700 flex items-center justify-center transition-all">
         <i class="fa-solid fa-xmark text-xs"></i>
       </button>
     </div>
 
     <!-- Main Trigger Bubble -->
-    <button id="btnDockTrigger" onclick="toggleNavDock()" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-500 hover:scale-105 border-2 border-cyan-300/70 text-white flex items-center justify-center shadow-xl shadow-cyan-500/30 backdrop-blur-md transition-all active:scale-95" title="Menú">
+    <button id="btnDockTrigger" onclick="toggleNavDock()" class="w-10 h-10 rounded-full bg-amber-400 hover:bg-amber-300 border-3 border-amber-900 text-amber-950 flex items-center justify-center shadow-xl transition-all active:scale-95" title="Menú">
       <i id="dockTriggerIcon" class="fa-solid fa-bars text-sm"></i>
     </button>
   </aside>
 
   <!-- ========================================================================= -->
-  <!-- 🏫 PANTALLA PRINCIPAL: MUNDO PANORÁMICO DESPLAZABLE (TOCA BOCA WORLD)    -->
+  <!-- 🏫 PANTALLA PRINCIPAL: MUNDO ESCUELA TOCA LIFE WORLD                      -->
   <!-- ========================================================================= -->
-  <section id="screen-playground" class="flex-1 flex flex-col justify-between w-full h-full relative z-20 overflow-hidden">
+  <section id="screen-playground" class="flex-1 flex flex-col justify-between w-full h-full relative z-20 overflow-hidden bg-amber-100">
     
     <!-- 🧭 TOP MINIMAP / ROOM QUICK SWITCHER BAR -->
-    <header class="w-full px-2 pt-2 pb-1 flex items-center justify-between shrink-0 z-30 pointer-events-none">
+    <header class="w-full px-3 pt-2 pb-1 flex items-center justify-between shrink-0 z-30 pointer-events-none">
       
-      <!-- Brand Pill -->
-      <div class="pointer-events-auto flex items-center gap-1.5 bg-slate-900/90 border border-slate-800 rounded-2xl px-2.5 py-1 backdrop-blur-md shadow-lg">
-        <div class="w-6 h-6 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-xs shadow animate-pulse">
-          🤖
+      <!-- Brand Logo Pill -->
+      <div class="pointer-events-auto flex items-center gap-2 bg-white/95 border-3 border-amber-800 rounded-3xl px-3 py-1 shadow-lg">
+        <div class="w-7 h-7 rounded-2xl bg-amber-400 border-2 border-amber-800 flex items-center justify-center text-sm shadow animate-bounce-soft">
+          🏫
         </div>
         <div>
-          <span class="font-display font-black text-xs text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-300 to-rose-400">
-            ARA BOT <span class="text-white">World</span>
+          <span class="font-display font-black text-xs sm:text-sm text-amber-950">
+            Escuela <span class="text-rose-500">ARA BOT</span>
           </span>
         </div>
       </div>
 
-      <!-- Quick Room Switcher Tabs (Scroll Helpers) -->
-      <nav class="pointer-events-auto flex items-center gap-1 bg-slate-900/90 border border-slate-800 p-1 rounded-2xl backdrop-blur-md shadow-xl overflow-x-auto no-scrollbar max-w-[62vw] sm:max-w-none pr-10 sm:pr-12">
-        <button onclick="scrollToRoom(0)" id="roomTab0" class="room-tab px-2.5 py-1 rounded-xl bg-slate-800 text-cyan-300 hover:text-white text-[10px] font-bold flex items-center gap-1 transition-all">
-          <span>🏫</span><span class="hidden sm:inline">Aula</span>
+      <!-- Quick Room Switcher Tabs -->
+      <nav class="pointer-events-auto flex items-center gap-1.5 bg-white/95 border-3 border-amber-800 p-1 rounded-3xl shadow-xl overflow-x-auto no-scrollbar max-w-[62vw] sm:max-w-none pr-12">
+        <button onclick="scrollToRoom(0)" id="roomTab0" class="room-tab px-3 py-1 rounded-2xl bg-amber-400 border-2 border-amber-800 text-amber-950 text-xs font-black flex items-center gap-1 shadow transition-all">
+          <span>📚</span><span>Aula</span>
         </button>
-        <button onclick="scrollToRoom(1)" id="roomTab1" class="room-tab px-2.5 py-1 rounded-xl bg-slate-800 text-emerald-300 hover:text-white text-[10px] font-bold flex items-center gap-1 transition-all">
-          <span>🧪🦖</span><span class="hidden sm:inline">Lab Dino</span>
+        <button onclick="scrollToRoom(1)" id="roomTab1" class="room-tab px-3 py-1 rounded-2xl bg-white hover:bg-emerald-100 border-2 border-slate-300 text-emerald-800 text-xs font-black flex items-center gap-1 transition-all">
+          <span>🧪🦖</span><span>Lab Dino</span>
         </button>
-        <button onclick="scrollToRoom(2)" id="roomTab2" class="room-tab px-2.5 py-1 rounded-xl bg-slate-800 text-amber-300 hover:text-white text-[10px] font-bold flex items-center gap-1 transition-all">
-          <span>☕⭐</span><span class="hidden sm:inline">Plaza</span>
+        <button onclick="scrollToRoom(2)" id="roomTab2" class="room-tab px-3 py-1 rounded-2xl bg-white hover:bg-orange-100 border-2 border-slate-300 text-orange-800 text-xs font-black flex items-center gap-1 transition-all">
+          <span>🥪☕</span><span>Cafetería</span>
         </button>
-        <button onclick="scrollToRoom(3)" id="roomTab3" class="room-tab px-2.5 py-1 rounded-xl bg-slate-800 text-rose-300 hover:text-white text-[10px] font-bold flex items-center gap-1 transition-all">
-          <span>🥊⚡</span><span class="hidden sm:inline">Dojo Z</span>
+        <button onclick="scrollToRoom(3)" id="roomTab3" class="room-tab px-3 py-1 rounded-2xl bg-white hover:bg-sky-100 border-2 border-slate-300 text-sky-800 text-xs font-black flex items-center gap-1 transition-all">
+          <span>🥊🏀</span><span>Gimnasio</span>
         </button>
-        <button onclick="scrollToRoom(4)" id="roomTab4" class="room-tab px-2.5 py-1 rounded-xl bg-slate-800 text-purple-300 hover:text-white text-[10px] font-bold flex items-center gap-1 transition-all">
-          <span>🚀🌌</span><span class="hidden sm:inline">Cohete</span>
+        <button onclick="scrollToRoom(4)" id="roomTab4" class="room-tab px-3 py-1 rounded-2xl bg-white hover:bg-purple-100 border-2 border-slate-300 text-purple-800 text-xs font-black flex items-center gap-1 transition-all">
+          <span>🚀🎨</span><span>Observatorio</span>
         </button>
       </nav>
 
     </header>
 
-    <!-- 🗺️ HORIZONTAL SCROLLING OPEN WORLD STAGE (5 CONNECTED ROOMS) -->
+    <!-- 🗺️ HORIZONTAL PANORAMIC SCHOOL ROOMS (5 DETAILED ROOMS) -->
     <main id="panoramicWorld" class="flex-1 w-full h-full relative overflow-x-auto overflow-y-hidden no-scrollbar flex items-stretch touch-pan-x cursor-grab active:cursor-grabbing select-none" onscroll="handleWorldScroll(event)">
       
-      <!-- Parallax Cyber Stars Background (Stretches across all rooms) -->
-      <div class="absolute inset-0 w-[500vw] min-w-[4000px] h-full pointer-events-none z-0 bg-gradient-to-b from-slate-950 via-indigo-950/40 to-slate-950">
-        <canvas id="bgStarsCanvas" class="w-full h-full"></canvas>
-      </div>
-
       <!-- ===================================================================== -->
-      <!-- ROOM 1: 🏫 AULA CUÁNTICA / ESCUELA DE MATEMÁTICAS                     -->
+      <!-- ROOM 1: 📚 SALÓN DE CLASES / AULA ESCOLAR (CLASSROOM)                 -->
       <!-- ===================================================================== -->
-      <section id="room0" class="relative w-[100vw] min-w-[800px] h-full flex flex-col justify-between p-4 shrink-0 border-r-4 border-dashed border-cyan-500/20 z-10">
+      <section id="room0" class="relative w-[100vw] min-w-[850px] h-full flex flex-col justify-between shrink-0 z-10 toca-wall-classroom border-r-6 border-amber-800">
         
-        <!-- Room Banner Header -->
-        <div class="flex items-center justify-between pointer-events-none">
-          <div class="bg-slate-900/90 border-2 border-cyan-500/50 rounded-2xl px-3 py-1 text-cyan-300 font-display font-black text-xs shadow-lg glow-blue-neon">
-            🏫 Aula Cuántica • Escuela Matemática
+        <!-- Room Wall Decor Top -->
+        <div class="p-3 flex items-center justify-between pointer-events-none">
+          <!-- Bunting Banner Flags across ceiling -->
+          <div class="flex items-center gap-2 text-xl filter drop-shadow">
+            <span>🚩</span><span>🟡</span><span>🟢</span><span>🔵</span><span>🔴</span><span>🟣</span>
           </div>
-          <span class="text-[9px] text-slate-400 bg-slate-900/80 px-2 py-0.5 rounded-full">Desliza ➔ para explorar</span>
+          <!-- Cute Clock -->
+          <div class="w-12 h-12 rounded-full bg-white border-3 border-amber-800 flex items-center justify-center text-xl shadow-md">
+            ⏰
+          </div>
         </div>
 
-        <!-- Interactive Classroom Props -->
+        <!-- Middle Classroom Props & Furniture -->
         <div class="flex-1 relative w-full h-full my-1">
           
-          <!-- Pizarra Interactiva con Tizas -->
-          <div onclick="interactRoomProp('board', event)" class="absolute top-[12%] left-[10%] bg-slate-900/95 border-2 border-cyan-400/60 rounded-2xl p-3 shadow-2xl cursor-pointer hover:scale-105 transition-transform glow-blue-neon max-w-xs">
-            <div class="flex items-center justify-between text-[9px] font-bold text-cyan-300 mb-1">
-              <span><i class="fa-solid fa-chalkboard mr-1"></i> Pizarra Cuántica</span>
-              <span class="text-[8px] text-amber-300 font-mono">Toca para calcular</span>
+          <!-- Big Sunny Window -->
+          <div class="toca-window absolute top-[6%] left-[6%] w-48 h-36 flex flex-col justify-between p-2">
+            <div class="flex justify-between items-start">
+              <span class="text-2xl animate-bounce-soft">☁️</span>
+              <span class="text-3xl">☀️</span>
             </div>
-            <div id="classroomBoardText" class="font-display font-black text-base sm:text-lg text-emerald-300 bg-slate-950 px-3 py-1 rounded-xl border border-slate-800 text-center shadow-inner">
+            <div class="text-2xl">🌳🌳</div>
+          </div>
+
+          <!-- Hanging Pendant Lamp -->
+          <div class="absolute top-0 left-[26%] flex flex-col items-center pointer-events-none">
+            <div class="w-1 h-12 bg-amber-900"></div>
+            <div class="w-10 h-7 rounded-t-full bg-amber-400 border-2 border-amber-900 shadow"></div>
+          </div>
+
+          <!-- Big Chalkboard with Math Equations -->
+          <div onclick="interactRoomProp('board', event)" class="toca-chalkboard absolute top-[6%] left-[34%] w-72 p-3.5 cursor-pointer hover:scale-105 transition-transform">
+            <div class="flex items-center justify-between text-[10px] text-amber-200 font-black mb-1">
+              <span>📐 CLASE DE MATES</span>
+              <span class="text-amber-300 font-mono">Toca 🖍️</span>
+            </div>
+            <div id="classroomBoardText" class="font-display font-black text-xl sm:text-2xl text-emerald-300 bg-emerald-950/60 p-2 rounded-xl border border-emerald-500/40 text-center tracking-wider shadow-inner">
               8 + 7 = 15 ✨
             </div>
-            <div class="flex items-center justify-center gap-2 mt-1.5 text-xs">
-              <span>🖍️</span><span>📏</span><span>📐</span>
+            <div class="flex items-center justify-between mt-2 pt-1 border-t border-emerald-800/60 text-xs">
+              <span>🔴 100</span><span>🟢 10</span><span>🔵 1</span>
+              <span>🖍️ 📏 🧮</span>
             </div>
           </div>
 
-          <!-- Estante de Libros Numéricos & Mochila -->
-          <div onclick="interactRoomProp('backpack', event)" class="absolute top-[14%] right-[15%] bg-slate-900/90 border border-purple-500/50 rounded-2xl p-2.5 shadow-xl cursor-pointer hover:scale-105 transition-transform text-center">
-            <div class="text-3xl">🎒</div>
-            <div class="text-[9px] font-bold text-purple-300 mt-0.5">Mochila Mágica</div>
-            <div class="text-[7px] text-slate-400">¡Tócame para abrir!</div>
-          </div>
-
-          <!-- Pupitres Escolares para Sentar Avatares -->
-          <div class="absolute bottom-[24%] left-[18%] bg-slate-900/80 border border-slate-700 rounded-2xl p-3 shadow-xl flex items-center gap-3">
-            <div class="text-center">
-              <div class="text-2xl">🪑</div>
-              <span class="text-[7px] text-slate-400">Pupitre 1</span>
+          <!-- Multi-tier Wooden Bookshelf (Like Toca Boca reference image!) -->
+          <div class="toca-wood-shelf absolute top-[6%] right-[8%] w-44 p-2 flex flex-col gap-2">
+            <!-- Shelf Tier 1 -->
+            <div class="flex items-center justify-around border-b-2 border-amber-900 pb-1 text-2xl">
+              <span title="Planta">🪴</span>
+              <span title="Crayones">🖍️</span>
+              <span title="Coche">🚗</span>
             </div>
-            <div class="w-16 h-8 bg-amber-900/40 rounded-lg border border-amber-600/40 flex items-center justify-center text-[8px] font-bold text-amber-200">
-              Mesa 📖
+            <!-- Shelf Tier 2 -->
+            <div class="flex items-center justify-around border-b-2 border-amber-900 pb-1 text-2xl">
+              <span title="Osito">🧸</span>
+              <span title="Globo">🌍</span>
+              <span title="Honguito">🍄</span>
             </div>
-          </div>
-
-          <div class="absolute bottom-[24%] right-[22%] bg-slate-900/80 border border-slate-700 rounded-2xl p-3 shadow-xl flex items-center gap-3">
-            <div class="w-16 h-8 bg-amber-900/40 rounded-lg border border-amber-600/40 flex items-center justify-center text-[8px] font-bold text-amber-200">
-              Mesa ✏️
-            </div>
-            <div class="text-center">
-              <div class="text-2xl">🪑</div>
-              <span class="text-[7px] text-slate-400">Pupitre 2</span>
+            <!-- Shelf Tier 3 -->
+            <div class="flex items-center justify-around text-2xl">
+              <span title="Libros">📚</span>
+              <span title="Caja de bloques">🧱</span>
             </div>
           </div>
 
-          <!-- Puerta Neón hacia la Siguiente Zona -->
-          <div onclick="scrollToRoom(1)" class="absolute bottom-[20%] right-[3%] cursor-pointer group flex flex-col items-center">
-            <div class="w-16 h-28 rounded-t-full bg-gradient-to-b from-cyan-500 to-indigo-700 p-1 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform glow-blue-neon">
-              <div class="w-full h-full rounded-t-full bg-slate-950 flex flex-col items-center justify-center">
-                <span class="text-xl">➔</span>
-                <span class="text-[7px] font-black text-cyan-300">LAB DINO</span>
-              </div>
+          <!-- Cozy Bear Face Floor Rug (From Reference Image!) -->
+          <div class="absolute bottom-[18%] left-[28%] w-56 h-32 rounded-full bg-amber-100 border-4 border-amber-300 shadow-md flex flex-col items-center justify-center pointer-events-none">
+            <div class="flex items-center gap-8 text-xl">
+              <span>👀</span><span>👀</span>
             </div>
+            <div class="text-sm mt-1">🐽</div>
+          </div>
+
+          <!-- Student Wooden Desks & Chairs -->
+          <div class="toca-wood-prop absolute bottom-[18%] left-[8%] p-3 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-xl bg-amber-400 border-2 border-amber-800 flex items-center justify-center text-lg">🪑</div>
+            <div class="text-center font-black text-amber-950 text-xs">
+              <div>Mesa 1 📓</div>
+              <span class="text-sm">✏️ 🍎</span>
+            </div>
+          </div>
+
+          <div class="toca-wood-prop absolute bottom-[18%] right-[22%] p-3 flex items-center gap-3">
+            <div class="text-center font-black text-amber-950 text-xs">
+              <div>Mesa 2 📐</div>
+              <span class="text-sm">📝 🎒</span>
+            </div>
+            <div class="w-8 h-8 rounded-xl bg-amber-400 border-2 border-amber-800 flex items-center justify-center text-lg">🪑</div>
           </div>
 
         </div>
 
+        <!-- Room Baseboard & Floor -->
+        <div class="w-full h-14 toca-floor-wood flex flex-col justify-between shrink-0">
+          <div class="toca-baseboard w-full"></div>
+        </div>
       </section>
 
       <!-- ===================================================================== -->
-      <!-- ROOM 2: 🧪🦖 LABORATORIO DINOSAURIO & BIO-ROBÓTICA                     -->
+      <!-- ROOM 2: 🧪🦖 LABORATORIO DE CIENCIAS & DINO HÁBITAT                    -->
       <!-- ===================================================================== -->
-      <section id="room1" class="relative w-[100vw] min-w-[800px] h-full flex flex-col justify-between p-4 shrink-0 border-r-4 border-dashed border-emerald-500/20 z-10 bg-emerald-950/10">
+      <section id="room1" class="relative w-[100vw] min-w-[850px] h-full flex flex-col justify-between shrink-0 z-10 toca-wall-lab border-r-6 border-amber-800">
         
-        <div class="flex items-center justify-between pointer-events-none">
-          <div class="bg-slate-900/90 border-2 border-emerald-500/50 rounded-2xl px-3 py-1 text-emerald-300 font-display font-black text-xs shadow-lg glow-green">
-            🧪🦖 Laboratorio Dinosaurio • Hábitat Rexi
+        <div class="p-3 flex items-center justify-between">
+          <div class="bg-white border-3 border-emerald-800 rounded-3xl px-4 py-1.5 shadow-md flex items-center gap-2">
+            <span class="text-xl">🧪</span>
+            <span class="font-display font-black text-xs sm:text-sm text-emerald-950">Laboratorio Dinosaurio Base-10</span>
           </div>
-          <!-- Sky Portal to Full Dino Game -->
-          <button onclick="launchDinoFromMenu()" class="pointer-events-auto px-3 py-1 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-display font-black text-xs shadow-lg flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-all">
+          <!-- Game Launcher Button -->
+          <button onclick="launchDinoFromMenu()" class="px-4 py-1.5 rounded-2xl bg-emerald-400 hover:bg-emerald-300 border-3 border-emerald-900 text-emerald-950 font-display font-black text-xs shadow-lg flex items-center gap-1.5 active:scale-95 transition-all">
             <i class="fa-solid fa-play"></i> <span>Misión T-Rex 9 Puertas</span>
           </button>
         </div>
 
         <div class="flex-1 relative w-full h-full my-1">
           
-          <!-- Jaula & Hábitat del Rexi Bebé -->
-          <div onclick="interactRoomProp('dinoPet', event)" class="absolute top-[14%] left-[12%] bg-slate-900/90 border-2 border-emerald-500/60 rounded-2xl p-3 shadow-2xl cursor-pointer hover:scale-110 transition-transform text-center glow-green">
-            <div class="text-4xl animate-bounce-soft filter drop-shadow-[0_0_12px_rgba(34,197,94,0.8)]">🦖</div>
-            <div class="text-[9px] font-black text-emerald-300 mt-1">Rexi el Dino Bebé</div>
-            <div class="text-[7px] text-slate-400">¡Toca para acariciar o alimentar!</div>
-          </div>
-
-          <!-- Mesa de Fórmulas y Tubos de Ensayo Base-10 -->
-          <div onclick="interactRoomProp('potion', event)" class="absolute top-[16%] right-[16%] bg-slate-900/90 border border-emerald-400/50 rounded-2xl p-3 shadow-xl cursor-pointer hover:scale-105 transition-transform">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="text-2xl animate-pulse">🧪</span>
-              <span class="text-2xl animate-bounce">🧬</span>
-              <span class="text-2xl">🔬</span>
+          <!-- Dino Playpen / Crib Area -->
+          <div onclick="interactRoomProp('dinoPet', event)" class="toca-wood-prop absolute top-[8%] left-[8%] w-60 p-3.5 cursor-pointer hover:scale-105 transition-transform">
+            <div class="flex items-center justify-between border-b-2 border-amber-800 pb-1 mb-2">
+              <span class="text-xs font-black text-emerald-900">🦖 Hábitat Rexi Bebé</span>
+              <span class="text-xs">🌿</span>
             </div>
-            <div class="text-[8px] font-bold text-emerald-300 text-center">Reactor Base-10</div>
-            <div class="text-[7px] text-slate-400 text-center">10🔵 = 1🟢 | 10🟢 = 1🔴</div>
+            <div class="flex items-center justify-center gap-3">
+              <div class="text-5xl animate-bounce-soft">🦖</div>
+              <div class="flex flex-col items-center">
+                <span class="text-2xl">🥚</span>
+                <span class="text-[9px] font-black text-emerald-800">Cuna Dino</span>
+              </div>
+            </div>
+            <div class="mt-2 text-center text-[9px] font-black text-emerald-900 bg-emerald-200/70 py-1 rounded-lg">
+              ¡Toca para alimentar o acariciar!
+            </div>
           </div>
 
-          <!-- Incubadora de Huevos Dino -->
-          <div onclick="interactRoomProp('dinoEgg', event)" class="absolute bottom-[24%] left-[25%] bg-slate-900/80 border border-amber-500/40 rounded-2xl p-2.5 shadow-xl cursor-pointer hover:scale-110 transition-transform text-center">
-            <div class="text-3xl">🥚</div>
-            <div class="text-[8px] font-bold text-amber-300 mt-0.5">Huevo Incubadora</div>
+          <!-- Science Workbench with Bubbling Beakers -->
+          <div onclick="interactRoomProp('potion', event)" class="toca-wood-shelf absolute top-[8%] right-[10%] w-72 p-3.5 cursor-pointer hover:scale-105 transition-transform bg-emerald-100">
+            <div class="flex items-center justify-between border-b-2 border-amber-800 pb-1 mb-2">
+              <span class="text-xs font-black text-emerald-950">🔬 Mesa de Fórmulas Base-10</span>
+              <span class="text-xs">🧬</span>
+            </div>
+            <div class="flex items-center justify-around text-3xl my-1">
+              <span class="animate-bounce">🧪</span>
+              <span class="animate-pulse">🧫</span>
+              <span>🔬</span>
+              <span>🧬</span>
+            </div>
+            <div class="mt-2 text-center text-[10px] font-black text-emerald-950 bg-white p-1.5 rounded-xl border border-emerald-300">
+              10 Azules 🔵 = 1 Verde 🟢 | 10 Verdes 🟢 = 1 Rojo 🔴
+            </div>
           </div>
 
-          <!-- Estación de Mando Robot -->
-          <div class="absolute bottom-[22%] right-[20%] bg-slate-900/80 border border-cyan-500/40 rounded-2xl p-3 shadow-xl flex items-center gap-2">
-            <span class="text-3xl">🖥️</span>
-            <div>
-              <div class="text-[8px] font-bold text-cyan-300">Terminal Bio-Robot</div>
-              <div class="text-[7px] text-slate-400">Seguridad: 100% OK</div>
+          <!-- Terrarium Glass Case -->
+          <div class="toca-wood-prop absolute bottom-[18%] left-[14%] p-3 flex items-center gap-3">
+            <span class="text-3xl">🌿</span>
+            <div class="font-black text-emerald-950 text-xs">
+              <div>Plantas Fósiles 🌱</div>
+              <span class="text-[9px] text-emerald-700">Oxígeno puro</span>
+            </div>
+          </div>
+
+          <!-- Skeleton Model Stand -->
+          <div class="toca-wood-prop absolute bottom-[18%] right-[16%] p-3 flex items-center gap-3">
+            <span class="text-3xl">🦴</span>
+            <div class="font-black text-emerald-950 text-xs">
+              <div>Fósil T-Rex 🦖</div>
+              <span class="text-[9px] text-amber-700">Estatura: 100 Centenas</span>
             </div>
           </div>
 
         </div>
 
+        <div class="w-full h-14 toca-floor-wood flex flex-col justify-between shrink-0">
+          <div class="toca-baseboard w-full"></div>
+        </div>
       </section>
 
       <!-- ===================================================================== -->
-      <!-- ROOM 3: ☕⭐ PLAZA CENTRAL & CAFETERÍA CÓSMICA                         -->
+      <!-- ROOM 3: 🥪☕ CAFETERÍA & COMEDOR ESCOLAR                               -->
       <!-- ===================================================================== -->
-      <section id="room2" class="relative w-[100vw] min-w-[800px] h-full flex flex-col justify-between p-4 shrink-0 border-r-4 border-dashed border-amber-500/20 z-10 bg-amber-950/10">
+      <section id="room2" class="relative w-[100vw] min-w-[850px] h-full flex flex-col justify-between shrink-0 z-10 toca-wall-cafe border-r-6 border-amber-800">
         
-        <div class="flex items-center justify-between pointer-events-none">
-          <div class="bg-slate-900/90 border-2 border-amber-500/50 rounded-2xl px-3 py-1 text-amber-300 font-display font-black text-xs shadow-lg glow-gold">
-            ☕⭐ Plaza Central • Cafetería Cósmica & Música
+        <div class="p-3 flex items-center justify-between">
+          <div class="bg-white border-3 border-amber-800 rounded-3xl px-4 py-1.5 shadow-md flex items-center gap-2">
+            <span class="text-xl">🥪</span>
+            <span class="font-display font-black text-xs sm:text-sm text-amber-950">Cafetería & Merienda Escolar</span>
           </div>
-          <button onclick="triggerQuickDance()" class="pointer-events-auto px-3 py-1 rounded-xl bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 text-white font-display font-black text-xs shadow-lg flex items-center gap-1 hover:scale-105 active:scale-95 transition-all">
-            <i class="fa-solid fa-music"></i> <span>¡Fiesta de Baile!</span>
+          <button onclick="triggerQuickDance()" class="px-4 py-1.5 rounded-2xl bg-amber-400 hover:bg-amber-300 border-3 border-amber-900 text-amber-950 font-display font-black text-xs shadow-lg flex items-center gap-1.5 active:scale-95 transition-all">
+            <i class="fa-solid fa-music"></i> <span>¡Música de Fiesta!</span>
           </button>
         </div>
 
         <div class="flex-1 relative w-full h-full my-1">
           
-          <!-- Fuente de Gemas Matemáticas -->
-          <div onclick="interactRoomProp('fountain', event)" class="absolute top-[12%] left-[45%] -translate-x-1/2 bg-slate-900/90 border-2 border-amber-400/60 rounded-3xl p-3 shadow-2xl cursor-pointer hover:scale-110 transition-transform text-center glow-gold">
-            <div class="text-4xl animate-pulse filter drop-shadow-[0_0_15px_rgba(245,158,11,0.9)]">💎</div>
-            <div class="text-[9px] font-black text-amber-300 mt-1">Fuente Base-10</div>
-            <div class="text-[7px] text-slate-400">¡Tócame para lluvia de gemas!</div>
-          </div>
-
-          <!-- Sintetizador Musical Z -->
-          <div onclick="interactRoomProp('synth', event)" class="absolute top-[14%] left-[10%] bg-slate-900/90 border border-purple-500/50 rounded-2xl p-2.5 shadow-xl cursor-pointer hover:scale-105 transition-transform text-center">
-            <div class="flex items-center justify-center gap-1 mb-1">
-              <span class="w-3 h-7 bg-rose-500 rounded-sm"></span>
-              <span class="w-3 h-7 bg-amber-500 rounded-sm"></span>
-              <span class="w-3 h-7 bg-emerald-500 rounded-sm"></span>
-              <span class="w-3 h-7 bg-sky-500 rounded-sm"></span>
+          <!-- Food Display Case (Vitrina de comida) -->
+          <div class="toca-wood-shelf absolute top-[8%] left-[8%] w-80 p-3 bg-amber-50">
+            <div class="flex items-center justify-between border-b-2 border-amber-800 pb-1 mb-2">
+              <span class="text-xs font-black text-amber-950">🍰 Vitrina de Bocadillos Toca</span>
+              <span class="text-xs">⭐</span>
             </div>
-            <div class="text-[8px] font-bold text-purple-300">Teclado Synth Z 🎹</div>
-            <div class="text-[7px] text-slate-400">¡Toca notas musicales!</div>
+            <div class="grid grid-cols-4 gap-2 text-center text-3xl">
+              <div class="p-1 bg-white rounded-xl border border-amber-300">🍕</div>
+              <div class="p-1 bg-white rounded-xl border border-amber-300">🍩</div>
+              <div class="p-1 bg-white rounded-xl border border-amber-300">🧃</div>
+              <div class="p-1 bg-white rounded-xl border border-amber-300">🍦</div>
+              <div class="p-1 bg-white rounded-xl border border-amber-300">🥪</div>
+              <div class="p-1 bg-white rounded-xl border border-amber-300">🍎</div>
+              <div class="p-1 bg-white rounded-xl border border-amber-300">🥛</div>
+              <div class="p-1 bg-white rounded-xl border border-amber-300">🍓</div>
+            </div>
           </div>
 
-          <!-- Mesa de Cafetería con Meriendas -->
-          <div class="absolute bottom-[24%] left-[15%] bg-slate-900/90 border border-slate-700 rounded-3xl p-3 shadow-xl flex items-center gap-3">
-            <div class="text-2xl">🪑</div>
-            <div class="bg-amber-950/60 border border-amber-500/40 rounded-2xl p-2 text-center">
-              <div class="flex items-center gap-1.5 text-xl">
-                <span>🍕</span><span>🍩</span><span>🧃</span>
+          <!-- Musical Synth Keyboard Stand -->
+          <div onclick="interactRoomProp('synth', event)" class="toca-wood-prop absolute top-[8%] right-[10%] w-60 p-3 cursor-pointer hover:scale-105 transition-transform bg-purple-100">
+            <div class="flex items-center justify-between border-b-2 border-amber-800 pb-1 mb-2">
+              <span class="text-xs font-black text-purple-950">🎹 Teclado Musical Z</span>
+              <span class="text-xs">🎵</span>
+            </div>
+            <div class="flex items-center justify-center gap-1.5 my-1">
+              <span class="w-4 h-9 bg-rose-400 border border-amber-900 rounded-sm"></span>
+              <span class="w-4 h-9 bg-amber-400 border border-amber-900 rounded-sm"></span>
+              <span class="w-4 h-9 bg-emerald-400 border border-amber-900 rounded-sm"></span>
+              <span class="w-4 h-9 bg-sky-400 border border-amber-900 rounded-sm"></span>
+              <span class="w-4 h-9 bg-purple-400 border border-amber-900 rounded-sm"></span>
+            </div>
+            <div class="text-[9px] font-black text-purple-900 text-center mt-1">¡Toca para escuchar notas reales!</div>
+          </div>
+
+          <!-- Cafeteria Dining Table with Chairs -->
+          <div class="toca-wood-prop absolute bottom-[18%] left-[25%] p-3.5 flex items-center gap-4 bg-amber-200">
+            <div class="w-9 h-9 rounded-2xl bg-amber-400 border-2 border-amber-900 flex items-center justify-center text-xl">🪑</div>
+            <div class="text-center font-black text-amber-950">
+              <div class="text-xs">Mesa de Comedor 🍕</div>
+              <div class="flex items-center gap-2 text-lg mt-0.5">
+                <span>🥤</span><span>🧁</span><span>🧃</span>
               </div>
-              <span class="text-[7px] text-amber-300 font-bold">Mesa de Meriendas</span>
             </div>
-            <div class="text-2xl">🪑</div>
-          </div>
-
-          <!-- Máquina Expendedora Galáctica -->
-          <div onclick="interactRoomProp('vending', event)" class="absolute top-[15%] right-[10%] bg-slate-900/90 border-2 border-cyan-500/50 rounded-2xl p-2.5 shadow-xl cursor-pointer hover:scale-105 transition-transform text-center">
-            <div class="text-3xl">🧃</div>
-            <div class="text-[8px] font-black text-cyan-300 mt-0.5">Expendedora Z</div>
-            <div class="text-[7px] text-slate-400">¡Bocadillos gratis!</div>
+            <div class="w-9 h-9 rounded-2xl bg-amber-400 border-2 border-amber-900 flex items-center justify-center text-xl">🪑</div>
           </div>
 
         </div>
 
+        <div class="w-full h-14 toca-floor-wood flex flex-col justify-between shrink-0">
+          <div class="toca-baseboard w-full"></div>
+        </div>
       </section>
 
       <!-- ===================================================================== -->
-      <!-- ROOM 4: 🥊⚡ DOJO Z / GIMNASIO GALÁCTICO                               -->
+      <!-- ROOM 4: 🥊🏀 GIMNASIO ESCOLAR & DOJO Z                                 -->
       <!-- ===================================================================== -->
-      <section id="room3" class="relative w-[100vw] min-w-[800px] h-full flex flex-col justify-between p-4 shrink-0 border-r-4 border-dashed border-rose-500/20 z-10 bg-rose-950/10">
+      <section id="room3" class="relative w-[100vw] min-w-[850px] h-full flex flex-col justify-between shrink-0 z-10 toca-wall-gym border-r-6 border-amber-800">
         
-        <div class="flex items-center justify-between pointer-events-none">
-          <div class="bg-slate-900/90 border-2 border-amber-500/50 rounded-2xl px-3 py-1 text-amber-300 font-display font-black text-xs shadow-lg glow-gold">
-            🥊⚡ Dojo Z • Entrenamiento de Luchadores
+        <div class="p-3 flex items-center justify-between">
+          <div class="bg-white border-3 border-sky-800 rounded-3xl px-4 py-1.5 shadow-md flex items-center gap-2">
+            <span class="text-xl">🥊</span>
+            <span class="font-display font-black text-xs sm:text-sm text-sky-950">Gimnasio Escolar & Dojo Z</span>
           </div>
-          <!-- Sky Portal to Cannon Game -->
-          <button onclick="launchCannonFromMenu()" class="pointer-events-auto px-3 py-1 rounded-xl bg-gradient-to-r from-amber-500 via-rose-600 to-purple-600 text-white font-display font-black text-xs shadow-lg flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-all">
+          <!-- Game Launcher Button -->
+          <button onclick="launchCannonFromMenu()" class="px-4 py-1.5 rounded-2xl bg-amber-400 hover:bg-amber-300 border-3 border-amber-900 text-amber-950 font-display font-black text-xs shadow-lg flex items-center gap-1.5 active:scale-95 transition-all">
             <i class="fa-solid fa-bolt"></i> <span>Misión Cañón de Sumas Z</span>
           </button>
         </div>
 
         <div class="flex-1 relative w-full h-full my-1">
           
-          <!-- Saco de Boxeo Interactivo -->
-          <div onclick="interactRoomProp('punchingBag', event)" class="absolute top-[14%] left-[12%] cursor-pointer group text-center">
-            <div id="punchingBagVisual" class="text-5xl group-hover:scale-110 transition-transform filter drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]">
+          <!-- Basketball Hoop on Wall -->
+          <div class="absolute top-[6%] left-[10%] flex flex-col items-center">
+            <div class="w-20 h-16 bg-white border-4 border-rose-600 rounded-lg flex items-center justify-center shadow-md">
+              <div class="w-8 h-8 border-2 border-rose-600"></div>
+            </div>
+            <div class="w-12 h-6 border-3 border-orange-500 rounded-b-full bg-orange-100/50"></div>
+          </div>
+
+          <!-- Punching Bag Stand -->
+          <div onclick="interactRoomProp('punchingBag', event)" class="absolute top-[6%] left-[32%] cursor-pointer text-center group">
+            <div class="w-1 h-12 bg-slate-700 mx-auto"></div>
+            <div id="punchingBagVisual" class="w-14 h-24 rounded-3xl bg-rose-500 border-4 border-rose-900 shadow-xl flex items-center justify-center text-2xl text-white font-black group-hover:scale-110 transition-transform">
               🥊
             </div>
-            <div class="bg-slate-900/90 border border-rose-500/50 text-rose-300 text-[8px] font-bold px-2 py-0.5 rounded-full shadow mt-1">
-              Saco de Golpe Z
+            <div class="text-[9px] font-black text-rose-900 mt-1 bg-white px-2 py-0.5 rounded-full border border-rose-300">¡Golpea!</div>
+          </div>
+
+          <!-- Trophy Cabinet & Medals -->
+          <div class="toca-wood-shelf absolute top-[6%] right-[12%] w-64 p-3 bg-sky-50">
+            <div class="flex items-center justify-between border-b-2 border-amber-800 pb-1 mb-2">
+              <span class="text-xs font-black text-sky-950">🏆 Vitrina de Campeones Z</span>
+              <span class="text-xs">🥇</span>
+            </div>
+            <div class="flex items-end justify-around text-3xl my-1">
+              <div class="text-center"><span class="text-2xl">🥈</span><div class="w-8 h-6 bg-slate-300 rounded text-[9px] font-black">2.º</div></div>
+              <div class="text-center"><span class="text-4xl animate-bounce">🏆</span><div class="w-10 h-10 bg-amber-400 border border-amber-800 rounded text-[10px] font-black">1.º 👑</div></div>
+              <div class="text-center"><span class="text-2xl">🥉</span><div class="w-8 h-4 bg-amber-700 rounded text-[9px] font-black text-white">3.º</div></div>
             </div>
           </div>
 
-          <!-- Robot Sparring Dummy -->
-          <div onclick="interactRoomProp('sparringBot', event)" class="absolute top-[14%] right-[16%] cursor-pointer group text-center">
-            <div class="text-5xl animate-bounce-soft filter drop-shadow-[0_0_15px_rgba(245,158,11,0.8)]">
-              🤖
-            </div>
-            <div class="bg-slate-900/90 border border-amber-500/50 text-amber-300 text-[8px] font-bold px-2 py-0.5 rounded-full shadow mt-1">
-              Robot Sparring 50⚡
-            </div>
+          <!-- Trampoline from Toca Boca reference image! -->
+          <div class="absolute bottom-[18%] left-[12%] w-36 h-16 rounded-full bg-sky-500 border-4 border-sky-900 shadow-lg flex items-center justify-center text-white font-black text-xs">
+            Trampolín 🤸
           </div>
 
-          <!-- Podio de Trofeos y Medallas Z -->
-          <div class="absolute bottom-[24%] left-[45%] -translate-x-1/2 bg-slate-900/90 border border-slate-700 rounded-3xl p-3 shadow-xl flex items-end justify-center gap-2">
-            <div class="text-center">
-              <div class="text-xl">🥈</div>
-              <div class="w-10 h-8 bg-slate-800 rounded-t-lg text-[8px] font-bold text-slate-300 flex items-center justify-center">2.º</div>
-            </div>
-            <div class="text-center">
-              <div class="text-3xl animate-bounce">🏆</div>
-              <div class="w-12 h-14 bg-amber-600 rounded-t-lg text-[9px] font-black text-slate-950 flex items-center justify-center">1.er 👑</div>
-            </div>
-            <div class="text-center">
-              <div class="text-xl">🥉</div>
-              <div class="w-10 h-6 bg-amber-900 rounded-t-lg text-[8px] font-bold text-amber-300 flex items-center justify-center">3.º</div>
+          <!-- Robot Sparring Training Dummy -->
+          <div class="toca-wood-prop absolute bottom-[18%] right-[18%] p-3 flex items-center gap-3 bg-amber-100">
+            <span class="text-4xl animate-bounce-soft">🤖</span>
+            <div class="font-black text-amber-950 text-xs">
+              <div>Robot Sparring 50⚡</div>
+              <span class="text-[9px] text-amber-700">Fuerza Z máxima</span>
             </div>
           </div>
 
         </div>
 
+        <div class="w-full h-14 toca-floor-wood flex flex-col justify-between shrink-0">
+          <div class="toca-baseboard w-full"></div>
+        </div>
       </section>
 
       <!-- ===================================================================== -->
-      <!-- ROOM 5: 🚀🌌 ESTACIÓN DE LANZAMIENTO DEL COHETE                       -->
+      <!-- ROOM 5: 🚀🎨 TALLER ESPACIAL & OBSERVATORIO ASTRONÓMICO                -->
       <!-- ===================================================================== -->
-      <section id="room4" class="relative w-[100vw] min-w-[800px] h-full flex flex-col justify-between p-4 shrink-0 z-10 bg-purple-950/10">
+      <section id="room4" class="relative w-[100vw] min-w-[850px] h-full flex flex-col justify-between shrink-0 z-10 toca-wall-space">
         
-        <div class="flex items-center justify-between pointer-events-none">
-          <div class="bg-slate-900/90 border-2 border-rose-500/50 rounded-2xl px-3 py-1 text-rose-300 font-display font-black text-xs shadow-lg glow-pink">
-            🚀🌌 Estación Espacial • Plataforma de Despegue
+        <div class="p-3 flex items-center justify-between">
+          <div class="bg-white border-3 border-purple-800 rounded-3xl px-4 py-1.5 shadow-md flex items-center gap-2">
+            <span class="text-xl">🚀</span>
+            <span class="font-display font-black text-xs sm:text-sm text-purple-950">Observatorio Espacial & Cohete</span>
           </div>
-          <!-- Sky Portal to Rocket Game -->
-          <button onclick="launchRocketFromMenu()" class="pointer-events-auto px-3 py-1 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-display font-black text-xs shadow-lg flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-all">
+          <!-- Game Launcher Button -->
+          <button onclick="launchRocketFromMenu()" class="px-4 py-1.5 rounded-2xl bg-rose-400 hover:bg-rose-300 border-3 border-rose-900 text-rose-950 font-display font-black text-xs shadow-lg flex items-center gap-1.5 active:scale-95 transition-all">
             <i class="fa-solid fa-rocket"></i> <span>Misión Cohete +5</span>
           </button>
         </div>
 
         <div class="flex-1 relative w-full h-full my-1">
           
-          <!-- Torre de Lanzamiento del Cohete -->
-          <div onclick="interactRoomProp('rocketLaunchpad', event)" class="absolute top-[10%] left-[15%] bg-slate-900/90 border-2 border-rose-500/60 rounded-3xl p-4 shadow-2xl cursor-pointer hover:scale-105 transition-transform text-center glow-pink">
-            <div class="text-5xl animate-bounce-soft filter drop-shadow-[0_0_20px_rgba(244,63,94,0.9)]">🚀</div>
-            <div class="text-[9px] font-black text-rose-300 mt-1">Cohete Numérico</div>
-            <div class="text-[7px] text-slate-400">¡Tócame para volar a la órbita!</div>
+          <!-- Panoramic Telescope next to Window -->
+          <div class="toca-wood-prop absolute top-[8%] left-[8%] w-64 p-3.5 bg-purple-100">
+            <div class="flex items-center justify-between border-b-2 border-amber-800 pb-1 mb-2">
+              <span class="text-xs font-black text-purple-950">🔭 Telescopio de 10,000M</span>
+              <span class="text-xs">🪐</span>
+            </div>
+            <div class="flex items-center justify-center gap-3 text-4xl">
+              <span>🔭</span>
+              <span>🌌</span>
+              <span>⭐</span>
+            </div>
+            <div class="mt-2 text-center text-[9px] font-black text-purple-900 bg-white p-1 rounded-lg border border-purple-300">
+              Constelaciones de Millares 🟡
+            </div>
           </div>
 
-          <!-- Telescopio Astronómico -->
-          <div onclick="interactRoomProp('telescope', event)" class="absolute top-[14%] right-[18%] bg-slate-900/90 border border-cyan-400/50 rounded-2xl p-3 shadow-xl cursor-pointer hover:scale-110 transition-transform text-center">
-            <div class="text-3xl">🔭</div>
-            <div class="text-[8px] font-bold text-cyan-300 mt-0.5">Telescopio Estelar</div>
-            <div class="text-[7px] text-slate-400">Constelaciones 10,000 ✨</div>
+          <!-- Rocket Model on Launchpad Stand -->
+          <div onclick="interactRoomProp('rocketLaunchpad', event)" class="toca-wood-shelf absolute top-[8%] right-[10%] w-72 p-3.5 cursor-pointer hover:scale-105 transition-transform bg-rose-50">
+            <div class="flex items-center justify-between border-b-2 border-amber-800 pb-1 mb-2">
+              <span class="text-xs font-black text-rose-950">🚀 Cohete Espacial Base-10</span>
+              <span class="text-xs">🔥</span>
+            </div>
+            <div class="flex items-center justify-center gap-3">
+              <div class="text-5xl animate-bounce-soft">🚀</div>
+              <div class="text-left font-black text-rose-900 text-xs">
+                <div>Odómetro +5</div>
+                <div class="text-[9px] text-rose-700">Combustible: 100%</div>
+              </div>
+            </div>
+            <div class="mt-2 text-center text-[9px] font-black text-rose-950 bg-rose-200 p-1 rounded-lg">
+              ¡Toca para despegar a la órbita!
+            </div>
           </div>
 
-          <!-- Consola de Cuenta Regresiva -->
-          <div class="absolute bottom-[24%] left-[45%] -translate-x-1/2 bg-slate-900/90 border border-slate-700 rounded-2xl p-3 shadow-xl flex items-center gap-3">
-            <div class="text-3xl">🛸</div>
-            <div>
-              <div class="text-[9px] font-bold text-amber-300">Radar de Órbita</div>
-              <div class="text-[7px] text-slate-400">Salto: +5 por ignición</div>
+          <!-- Hanging Solar System Mobile from Ceiling -->
+          <div class="absolute top-0 left-[48%] flex flex-col items-center pointer-events-none">
+            <div class="w-1 h-16 bg-amber-900"></div>
+            <div class="flex items-center gap-3 text-2xl -mt-1">
+              <span>🌍</span><span>🌙</span><span>☀️</span><span>🪐</span>
+            </div>
+          </div>
+
+          <!-- Astronaut Bed from Reference Image! -->
+          <div class="toca-wood-prop absolute bottom-[18%] left-[20%] w-52 p-3 bg-white">
+            <div class="w-full h-12 rounded-xl bg-amber-200 border-2 border-amber-600 flex items-center justify-center text-xs font-black text-amber-950">
+              Cama Astronauta 🧸
             </div>
           </div>
 
         </div>
 
+        <div class="w-full h-14 toca-floor-wood flex flex-col justify-between shrink-0">
+          <div class="toca-baseboard w-full"></div>
+        </div>
       </section>
 
       <!-- ===================================================================== -->
-      <!-- 🧍 DYNAMIC MOVABLE CHARACTERS LAYER                                   -->
+      <!-- 🧍 DYNAMIC TOCA BOCA MOVABLE CHARACTERS LAYER                          -->
       <!-- ===================================================================== -->
 
-      <!-- NONINA 🌸 (Romina - 3.er Grado) -->
+      <!-- NONINA 🌸 (Romina - Cute Chibi Toca Style) -->
       <div id="avatarNonina" 
            class="world-item flex flex-col items-center select-none"
-           style="top: 55%; left: 350px;"
+           style="top: 55%; left: 260px;"
            onmousedown="startTocaDrag(event, 'avatarNonina')"
            ontouchstart="startTocaDrag(event, 'avatarNonina')"
            onclick="tapAvatar('nonina', event)">
         
-        <div id="bubbleNonina" class="speech-bubble mb-1 bg-slate-900/95 border border-rose-400/70 text-rose-200 text-[9px] font-bold px-2 py-1 rounded-xl shadow-xl backdrop-blur-md opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
-          ¡Hola! ¡Soy Nonina de 3.er Grado! 🌸
+        <div id="bubbleNonina" class="speech-bubble mb-1 bg-white border-2 border-amber-800 text-rose-600 text-[10px] font-black px-3 py-1 rounded-2xl shadow-xl opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+          ¡Hola! ¡Soy Nonina de 3.° Grado! 🌸
         </div>
 
-        <div class="relative w-16 h-20 sm:w-20 sm:h-24 filter drop-shadow-[0_8px_12px_rgba(0,0,0,0.6)]">
+        <!-- Chibi Character Vector SVG -->
+        <div class="relative w-20 h-24 sm:w-22 sm:h-26 filter drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]">
           <svg viewBox="0 0 100 120" class="w-full h-full">
-            <ellipse cx="50" cy="115" rx="30" ry="6" fill="rgba(0,0,0,0.4)" />
-            <rect x="36" y="85" width="10" height="20" rx="4" fill="#334155" />
-            <rect x="54" y="85" width="10" height="20" rx="4" fill="#334155" />
-            <ellipse cx="40" cy="108" rx="8" ry="4" fill="#f43f5e" />
-            <ellipse cx="60" cy="108" rx="8" ry="4" fill="#f43f5e" />
-            <polygon points="30,85 70,85 75,70 25,70" fill="#be123c" />
-            <rect x="28" y="55" width="44" height="20" rx="6" fill="#f43f5e" />
-            <circle cx="50" cy="65" r="5" fill="#fef08a" />
-            <circle cx="50" cy="38" r="22" fill="#fed7aa" />
-            <path d="M 28 35 Q 50 14 72 35 Q 50 20 28 35 Z" fill="#78350f" />
-            <circle cx="72" cy="24" r="10" fill="#78350f" />
-            <circle cx="68" cy="24" r="5" fill="#fb7185" />
-            <ellipse cx="42" cy="38" rx="3" ry="4" fill="#1e293b" />
-            <ellipse cx="58" cy="38" rx="3" ry="4" fill="#1e293b" />
-            <circle cx="43" cy="36" r="1" fill="#ffffff" />
-            <circle cx="59" cy="36" r="1" fill="#ffffff" />
-            <ellipse cx="37" cy="44" rx="3" ry="1.5" fill="#f43f5e" opacity="0.6" />
-            <ellipse cx="63" cy="44" rx="3" ry="1.5" fill="#f43f5e" opacity="0.6" />
-            <path d="M 45 44 Q 50 49 55 44" stroke="#78350f" stroke-width="2" fill="none" stroke-linecap="round" />
+            <ellipse cx="50" cy="116" rx="26" ry="5" fill="rgba(0,0,0,0.25)" />
+            <!-- Shoes & Legs -->
+            <rect x="36" y="88" width="10" height="18" rx="4" fill="#334155" />
+            <rect x="54" y="88" width="10" height="18" rx="4" fill="#334155" />
+            <ellipse cx="40" cy="108" rx="8" ry="5" fill="#f43f5e" stroke="#881337" stroke-width="2" />
+            <ellipse cx="60" cy="108" rx="8" ry="5" fill="#f43f5e" stroke="#881337" stroke-width="2" />
+            <!-- Skirt & School Uniform -->
+            <polygon points="30,88 70,88 74,72 26,72" fill="#be123c" stroke="#881337" stroke-width="2" />
+            <rect x="28" y="54" width="44" height="22" rx="8" fill="#fb7185" stroke="#881337" stroke-width="2" />
+            <circle cx="50" cy="65" r="5" fill="#fef08a" stroke="#854d0e" stroke-width="1.5" />
+            <!-- Head & Cute Chibi Face -->
+            <circle cx="50" cy="36" r="24" fill="#fed7aa" stroke="#78350f" stroke-width="2.5" />
+            <!-- Hair Ponytail & Cute Bow -->
+            <path d="M 26 34 Q 50 10 74 34 Q 50 18 26 34 Z" fill="#78350f" />
+            <circle cx="74" cy="22" r="11" fill="#78350f" />
+            <circle cx="68" cy="22" r="6" fill="#f43f5e" stroke="#881337" stroke-width="1.5" />
+            <!-- Eyes (Big Toca Cute Dots) & Cheeks -->
+            <circle cx="41" cy="36" r="3.5" fill="#1e293b" />
+            <circle cx="59" cy="36" r="3.5" fill="#1e293b" />
+            <circle cx="42" cy="35" r="1.2" fill="#ffffff" />
+            <circle cx="60" cy="35" r="1.2" fill="#ffffff" />
+            <ellipse cx="35" cy="42" rx="4" ry="2.5" fill="#f43f5e" opacity="0.6" />
+            <ellipse cx="65" cy="42" rx="4" ry="2.5" fill="#f43f5e" opacity="0.6" />
+            <!-- Happy Smile -->
+            <path d="M 44 42 Q 50 48 56 42" stroke="#78350f" stroke-width="2.5" fill="none" stroke-linecap="round" />
           </svg>
         </div>
 
-        <div class="mt-0.5 px-2 py-0.5 rounded-full bg-slate-900/90 border border-rose-500/60 text-rose-300 font-display font-black text-[9px] shadow-lg">
+        <div class="mt-0.5 px-2.5 py-0.5 rounded-full bg-white border-2 border-rose-500 text-rose-600 font-display font-black text-[10px] shadow">
           🌸 Nonina
         </div>
       </div>
 
-      <!-- DOYDO 💙 (Ricardo - 2.º Grado) -->
+      <!-- DOYDO 💙 (Ricardo - Cute Chibi Toca Style) -->
       <div id="avatarDoydo" 
            class="world-item flex flex-col items-center select-none"
-           style="top: 55%; left: 520px;"
+           style="top: 55%; left: 420px;"
            onmousedown="startTocaDrag(event, 'avatarDoydo')"
            ontouchstart="startTocaDrag(event, 'avatarDoydo')"
            onclick="tapAvatar('doydo', event)">
         
-        <div id="bubbleDoydo" class="speech-bubble mb-1 bg-slate-900/95 border border-sky-400/70 text-sky-200 text-[9px] font-bold px-2 py-1 rounded-xl shadow-xl backdrop-blur-md opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
-          ¡Soy Doydo! ¡A vencer robots y T-Rex! ⚡
+        <div id="bubbleDoydo" class="speech-bubble mb-1 bg-white border-2 border-amber-800 text-sky-600 text-[10px] font-black px-3 py-1 rounded-2xl shadow-xl opacity-0 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+          ¡Soy Doydo! ¡A ganar medallas y vencer robots! ⚡
         </div>
 
-        <div class="relative w-16 h-20 sm:w-20 sm:h-24 filter drop-shadow-[0_8px_12px_rgba(0,0,0,0.6)]">
+        <!-- Chibi Character Vector SVG -->
+        <div class="relative w-20 h-24 sm:w-22 sm:h-26 filter drop-shadow-[0_6px_10px_rgba(0,0,0,0.25)]">
           <svg viewBox="0 0 100 120" class="w-full h-full">
-            <ellipse cx="50" cy="115" rx="30" ry="6" fill="rgba(0,0,0,0.4)" />
-            <rect x="36" y="85" width="10" height="20" rx="4" fill="#1e293b" />
-            <rect x="54" y="85" width="10" height="20" rx="4" fill="#1e293b" />
-            <ellipse cx="40" cy="108" rx="8" ry="4" fill="#0284c7" />
-            <ellipse cx="60" cy="108" rx="8" ry="4" fill="#0284c7" />
-            <rect x="26" y="55" width="48" height="32" rx="7" fill="#0284c7" />
-            <polygon points="46,55 54,55 50,87" fill="#38bdf8" />
-            <polygon points="50,60 46,70 51,70 48,80 56,68 51,68" fill="#facc15" />
-            <circle cx="50" cy="38" r="22" fill="#fed7aa" />
-            <path d="M 28 35 Q 50 10 72 35 L 78 33 Q 50 18 24 35 Z" fill="#0369a1" />
-            <rect x="25" y="24" width="50" height="10" rx="5" fill="#38bdf8" />
-            <ellipse cx="42" cy="38" rx="3.5" ry="4" fill="#0f172a" />
-            <ellipse cx="58" cy="38" rx="3.5" ry="4" fill="#0f172a" />
-            <circle cx="43" cy="36" r="1.2" fill="#38bdf8" />
-            <circle cx="59" cy="36" r="1.2" fill="#38bdf8" />
-            <path d="M 44 44 Q 50 49 56 44" stroke="#0369a1" stroke-width="2.5" fill="none" stroke-linecap="round" />
+            <ellipse cx="50" cy="116" rx="26" ry="5" fill="rgba(0,0,0,0.25)" />
+            <!-- Shoes & Pants -->
+            <rect x="36" y="88" width="10" height="18" rx="4" fill="#1e293b" />
+            <rect x="54" y="88" width="10" height="18" rx="4" fill="#1e293b" />
+            <ellipse cx="40" cy="108" rx="8" ry="5" fill="#0284c7" stroke="#082f49" stroke-width="2" />
+            <ellipse cx="60" cy="108" rx="8" ry="5" fill="#0284c7" stroke="#082f49" stroke-width="2" />
+            <!-- Sporty Hoodie -->
+            <rect x="26" y="54" width="48" height="34" rx="8" fill="#0284c7" stroke="#082f49" stroke-width="2" />
+            <polygon points="50,60 45,71 51,71 47,82 56,69 50,69" fill="#facc15" />
+            <!-- Head & Chibi Face -->
+            <circle cx="50" cy="36" r="24" fill="#fed7aa" stroke="#78350f" stroke-width="2.5" />
+            <!-- Blue Cap / Cool Hair -->
+            <path d="M 26 34 Q 50 8 74 34 L 80 32 Q 50 16 22 34 Z" fill="#0369a1" />
+            <rect x="24" y="22" width="52" height="12" rx="6" fill="#38bdf8" stroke="#0369a1" stroke-width="2" />
+            <!-- Eyes & Cheeks -->
+            <circle cx="41" cy="36" r="3.5" fill="#0f172a" />
+            <circle cx="59" cy="36" r="3.5" fill="#0f172a" />
+            <circle cx="42" cy="35" r="1.2" fill="#38bdf8" />
+            <circle cx="60" cy="35" r="1.2" fill="#38bdf8" />
+            <ellipse cx="35" cy="42" rx="4" ry="2.5" fill="#38bdf8" opacity="0.6" />
+            <ellipse cx="65" cy="42" rx="4" ry="2.5" fill="#38bdf8" opacity="0.6" />
+            <!-- Happy Smile -->
+            <path d="M 44 42 Q 50 48 56 42" stroke="#0369a1" stroke-width="2.5" fill="none" stroke-linecap="round" />
           </svg>
         </div>
 
-        <div class="mt-0.5 px-2 py-0.5 rounded-full bg-slate-900/90 border border-sky-500/60 text-sky-300 font-display font-black text-[9px] shadow-lg">
+        <div class="mt-0.5 px-2.5 py-0.5 rounded-full bg-white border-2 border-sky-500 text-sky-600 font-display font-black text-[10px] shadow">
           💙 Doydo
         </div>
       </div>
 
-      <!-- ARA BOT 🤖 (Robot Paseante) -->
+      <!-- ARA BOT 🤖 (Chibi Robot Mascot) -->
       <div id="avatarAraBot" 
            class="world-item flex flex-col items-center select-none"
-           style="top: 52%; left: 430px;"
+           style="top: 52%; left: 350px;"
            onmousedown="startTocaDrag(event, 'avatarAraBot')"
            ontouchstart="startTocaDrag(event, 'avatarAraBot')"
            onclick="tapAvatar('araBot', event)">
-        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-indigo-600 p-0.5 shadow-xl glow-blue-neon animate-float">
-          <div class="w-full h-full rounded-2xl bg-slate-950 flex items-center justify-center text-2xl">🤖</div>
+        <div class="w-14 h-14 rounded-3xl bg-amber-400 border-3 border-amber-900 p-1 shadow-xl flex items-center justify-center animate-float">
+          <div class="w-full h-full rounded-2xl bg-sky-950 flex items-center justify-center text-3xl">🤖</div>
         </div>
-        <div class="text-[8px] font-black text-cyan-300 bg-slate-900/90 px-1.5 py-0.2 rounded-full mt-0.5 border border-cyan-500/40">ARA BOT</div>
+        <div class="text-[9px] font-black text-amber-950 bg-white px-2 py-0.5 rounded-full mt-0.5 border-2 border-amber-800 shadow">ARA BOT</div>
       </div>
 
       <!-- SPAWNED OBJECTS CONTAINER -->
@@ -637,31 +813,31 @@
 
     </main>
 
-    <!-- 🧰 BOTTOM BAR: TOCA BOCA INVENTORY DRAWER & ARA BOT CHAT -->
-    <footer class="h-14 sm:h-16 bg-slate-900/95 border-t border-slate-800 px-3 flex items-center justify-between gap-2 shrink-0 z-30 backdrop-blur-md">
+    <!-- 🎒 BOTTOM BAR: TOCA BOCA INVENTORY DRAWER & ARA BOT CHAT -->
+    <footer class="h-16 sm:h-18 bg-white border-t-4 border-amber-800 px-4 flex items-center justify-between gap-3 shrink-0 z-30 shadow-2xl">
       
       <!-- Drawer Opener Button (Mochila / Inventario) -->
-      <button onclick="toggleTocaDrawer()" class="px-3 py-2 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 text-white font-display font-black text-xs sm:text-sm shadow-xl flex items-center gap-2 hover:scale-105 active:scale-95 transition-all border border-cyan-300/40 shrink-0">
-        <span class="text-base sm:text-lg">🎒</span>
-        <span class="hidden xs:inline">Cajón de Objetos</span>
+      <button onclick="toggleTocaDrawer()" class="px-4 py-2 rounded-2xl bg-amber-400 hover:bg-amber-300 border-3 border-amber-900 text-amber-950 font-display font-black text-xs sm:text-sm shadow-xl flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shrink-0">
+        <span class="text-xl">🎒</span>
+        <span class="hidden xs:inline">Mochila de Objetos</span>
       </button>
 
-      <!-- Live Dialogue Message -->
-      <div class="flex-1 flex items-center gap-2 overflow-hidden mx-2">
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-xs shadow shrink-0">
+      <!-- Live Dialogue Message Box -->
+      <div class="flex-1 flex items-center gap-2 overflow-hidden mx-2 bg-amber-100/70 border-2 border-amber-400 px-3 py-1.5 rounded-2xl shadow-inner">
+        <div class="w-7 h-7 rounded-xl bg-amber-400 border-2 border-amber-800 flex items-center justify-center text-sm shadow shrink-0">
           🤖
         </div>
-        <p id="playgroundAraSpeech" class="text-[10px] sm:text-xs text-slate-300 font-medium truncate">
-          ¡Desliza a los lados para explorar el mundo Toca Boca! Abre la mochila para sacar comida y juguetes.
+        <p id="playgroundAraSpeech" class="text-xs text-amber-950 font-extrabold truncate">
+          ¡Bienvenidos a la Escuela Toca Boca de ARA BOT! Abre la mochila para sacar comida, juguetes y mascotas.
         </p>
       </div>
 
-      <!-- Arrow Scroll Buttons (Desktop/Tablet Helpers) -->
-      <div class="flex items-center gap-1 shrink-0">
-        <button onclick="panWorld(-400)" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 flex items-center justify-center text-xs font-bold active:scale-90" title="Desplazar a la Izquierda">
+      <!-- Arrow Scroll Buttons -->
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button onclick="panWorld(-400)" class="w-9 h-9 rounded-2xl bg-amber-400 hover:bg-amber-300 border-2 border-amber-800 text-amber-950 flex items-center justify-center text-sm font-black active:scale-90 shadow" title="Izquierda">
           ◀
         </button>
-        <button onclick="panWorld(400)" class="w-8 h-8 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 flex items-center justify-center text-xs font-bold active:scale-90" title="Desplazar a la Derecha">
+        <button onclick="panWorld(400)" class="w-9 h-9 rounded-2xl bg-amber-400 hover:bg-amber-300 border-2 border-amber-800 text-amber-950 flex items-center justify-center text-sm font-black active:scale-90 shadow" title="Derecha">
           ▶
         </button>
       </div>
@@ -669,88 +845,101 @@
     </footer>
 
     <!-- ======================================================================= -->
-    <!-- 🧰 SLIDE-UP TOCA BOCA DRAWER / INVENTORY TRAY                           -->
+    <!-- 🎒 SLIDE-UP TOCA BOCA DRAWER / INVENTORY TRAY                           -->
     <!-- ======================================================================= -->
-    <div id="tocaDrawer" class="hidden absolute bottom-16 inset-x-2 sm:inset-x-6 z-40 bg-slate-900/95 border-2 border-cyan-500/60 rounded-3xl p-3 shadow-2xl backdrop-blur-xl animate-bounce-soft glow-blue-neon">
+    <div id="tocaDrawer" class="hidden absolute bottom-20 inset-x-3 sm:inset-x-8 z-40 bg-white border-4 border-amber-800 rounded-3xl p-4 shadow-2xl animate-bounce-soft">
       
       <!-- Drawer Header & Tabs -->
-      <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-2">
-        <div class="flex items-center gap-1.5">
-          <button onclick="switchDrawerTab('items')" id="tabBtnItems" class="px-3 py-1 rounded-xl bg-cyan-500 text-slate-950 font-display font-black text-xs shadow">
+      <div class="flex items-center justify-between border-b-2 border-amber-200 pb-2 mb-3">
+        <div class="flex items-center gap-2">
+          <button onclick="switchDrawerTab('items')" id="tabBtnItems" class="px-4 py-1.5 rounded-2xl bg-amber-400 border-2 border-amber-800 text-amber-950 font-display font-black text-xs shadow">
             🧸 Objetos & Comida
           </button>
-          <button onclick="switchDrawerTab('characters')" id="tabBtnChars" class="px-3 py-1 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-display font-black text-xs">
+          <button onclick="switchDrawerTab('characters')" id="tabBtnChars" class="px-4 py-1.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-display font-black text-xs">
             👥 Personajes
           </button>
         </div>
-        <button onclick="toggleTocaDrawer()" class="w-6 h-6 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-xs">
+        <button onclick="toggleTocaDrawer()" class="w-7 h-7 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-sm font-black">
           ✕
         </button>
       </div>
 
       <!-- TAB 1: OBJETOS, COMIDA & JUGUETES -->
-      <div id="drawerTabItems" class="flex items-center gap-2 overflow-x-auto py-1 no-scrollbar">
-        <!-- Food items that can be eaten -->
-        <button onclick="spawnItemToWorld('🍕', 'Pizza Galáctica', 'food')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Pizza para comer">
+      <div id="drawerTabItems" class="flex items-center gap-3 overflow-x-auto py-1 no-scrollbar">
+        <!-- Delicious Food Items with Eating Physics -->
+        <button onclick="spawnItemToWorld('🍕', 'Pizza', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
           <span class="text-3xl">🍕</span>
-          <span class="text-[8px] text-slate-300 mt-0.5">Pizza</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Pizza</span>
         </button>
-        <button onclick="spawnItemToWorld('🍩', 'Dona Neón', 'food')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Dona para comer">
+        <button onclick="spawnItemToWorld('🍩', 'Dona', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
           <span class="text-3xl">🍩</span>
-          <span class="text-[8px] text-slate-300 mt-0.5">Dona</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Dona</span>
         </button>
-        <button onclick="spawnItemToWorld('🧃', 'Jugo de Estrellas', 'food')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Jugo para beber">
+        <button onclick="spawnItemToWorld('🧃', 'Jugo', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
           <span class="text-3xl">🧃</span>
-          <span class="text-[8px] text-slate-300 mt-0.5">Jugo</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Jugo</span>
         </button>
-        <button onclick="spawnItemToWorld('🍦', 'Helado de Plasma', 'food')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Helado">
+        <button onclick="spawnItemToWorld('🍦', 'Helado', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
           <span class="text-3xl">🍦</span>
-          <span class="text-[8px] text-slate-300 mt-0.5">Helado</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Helado</span>
         </button>
-        <!-- Accessories & Toys -->
-        <button onclick="spawnItemToWorld('🕶️', 'Gafas Cyber', 'accessory')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Gafas">
-          <span class="text-3xl">🕶️</span>
-          <span class="text-[8px] text-slate-300 mt-0.5">Gafas</span>
+        <button onclick="spawnItemToWorld('🥪', 'Sándwich', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
+          <span class="text-3xl">🥪</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Sándwich</span>
         </button>
-        <button onclick="spawnItemToWorld('👑', 'Corona de Estrellas', 'accessory')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Corona">
-          <span class="text-3xl">👑</span>
-          <span class="text-[8px] text-slate-300 mt-0.5">Corona</span>
+        <button onclick="spawnItemToWorld('🍎', 'Manzana', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
+          <span class="text-3xl">🍎</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Manzana</span>
         </button>
-        <button onclick="spawnItemToWorld('📱', 'Calculadora Z', 'toy')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Calculadora">
-          <span class="text-3xl">📱</span>
-          <span class="text-[8px] text-slate-300 mt-0.5">Cálculo</span>
+        <button onclick="spawnItemToWorld('🥛', 'Leche', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
+          <span class="text-3xl">🥛</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Leche</span>
         </button>
-        <button onclick="spawnItemToWorld('🏆', 'Trofeo Z', 'toy')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Trofeo">
+
+        <!-- Toys & Accessories -->
+        <button onclick="spawnItemToWorld('🧸', 'Peluche', 'toy')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
+          <span class="text-3xl">🧸</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Peluche</span>
+        </button>
+        <button onclick="spawnItemToWorld('🖍️', 'Crayones', 'toy')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
+          <span class="text-3xl">🖍️</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Crayones</span>
+        </button>
+        <button onclick="spawnItemToWorld('🏀', 'Balón', 'toy')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
+          <span class="text-3xl">🏀</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Balón</span>
+        </button>
+        <button onclick="spawnItemToWorld('🏆', 'Trofeo', 'toy')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
           <span class="text-3xl">🏆</span>
-          <span class="text-[8px] text-slate-300 mt-0.5">Trofeo</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Trofeo</span>
         </button>
-        <button onclick="spawnItemToWorld('⚽', 'Pelota Saltarina', 'toy')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-slate-700 border border-slate-700 flex flex-col items-center hover:scale-110 active:scale-95 transition-all" title="Pelota">
-          <span class="text-3xl">⚽</span>
-          <span class="text-[8px] text-slate-300 mt-0.5">Pelota</span>
+        <button onclick="spawnItemToWorld('📱', 'Cálculo', 'toy')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all">
+          <span class="text-3xl">📱</span>
+          <span class="text-[9px] font-black text-amber-900 mt-1">Cálculo</span>
         </button>
       </div>
 
       <!-- TAB 2: PERSONAJES -->
       <div id="drawerTabChars" class="hidden items-center gap-3 overflow-x-auto py-1 no-scrollbar">
-        <button onclick="teleportCharacter('avatarNonina')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-rose-950/80 border border-rose-500/50 flex flex-col items-center hover:scale-105 transition-all">
+        <button onclick="teleportCharacter('avatarNonina')" class="shrink-0 p-2.5 rounded-2xl bg-rose-50 hover:bg-rose-100 border-2 border-rose-400 flex flex-col items-center hover:scale-105 transition-all">
           <span class="text-3xl">🌸</span>
-          <span class="text-[9px] font-bold text-rose-300 mt-0.5">Nonina</span>
+          <span class="text-[10px] font-black text-rose-800 mt-1">Nonina</span>
         </button>
-        <button onclick="teleportCharacter('avatarDoydo')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-sky-950/80 border border-sky-500/50 flex flex-col items-center hover:scale-105 transition-all">
+        <button onclick="teleportCharacter('avatarDoydo')" class="shrink-0 p-2.5 rounded-2xl bg-sky-50 hover:bg-sky-100 border-2 border-sky-400 flex flex-col items-center hover:scale-105 transition-all">
           <span class="text-3xl">💙</span>
-          <span class="text-[9px] font-bold text-sky-300 mt-0.5">Doydo</span>
+          <span class="text-[10px] font-black text-sky-800 mt-1">Doydo</span>
         </button>
-        <button onclick="teleportCharacter('avatarAraBot')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-indigo-950/80 border border-cyan-500/50 flex flex-col items-center hover:scale-105 transition-all">
+        <button onclick="teleportCharacter('avatarAraBot')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-400 flex flex-col items-center hover:scale-105 transition-all">
           <span class="text-3xl">🤖</span>
-          <span class="text-[9px] font-bold text-cyan-300 mt-0.5">ARA BOT</span>
+          <span class="text-[10px] font-black text-amber-800 mt-1">ARA BOT</span>
         </button>
-        <button onclick="spawnNewPet('🐱', 'Gatito Cyber')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-purple-950/80 border border-purple-500/50 flex flex-col items-center hover:scale-105 transition-all">
+        <button onclick="spawnNewPet('🐱', 'Gatito')" class="shrink-0 p-2.5 rounded-2xl bg-purple-50 hover:bg-purple-100 border-2 border-purple-400 flex flex-col items-center hover:scale-105 transition-all">
           <span class="text-3xl">🐱</span>
-          <span class="text-[9px] font-bold text-purple-300 mt-0.5">Gato Bot</span>
+          <span class="text-[10px] font-black text-purple-800 mt-1">Gatito</span>
         </button>
-        <button onclick="spawnNewPet('🐶', 'Perrito Mech')" class="shrink-0 p-2 rounded-2xl bg-slate-800/90 hover:bg-amber-950/80 border border-amber-500/50 flex flex-col items-center hover:scale-105 transition-all">
+        <button onclick="spawnNewPet('🐶', 'Perrito')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-400 flex flex-col items-center hover:scale-105 transition-all">
           <span class="text-3xl">🐶</span>
-          <span class="text-[9px] font-bold text-amber-300 mt-0.5">Mech Pup</span>
+          <span class="text-[10px] font-black text-amber-800 mt-1">Perrito</span>
         </button>
       </div>
 
@@ -761,111 +950,64 @@
   <!-- ========================================================================= -->
   <!-- 🥊 PANTALLA 2: EL CAÑÓN DE SUMAS RÁPIDAS (LUCHADORES Z) - 2.° GRADO        -->
   <!-- ========================================================================= -->
-  <section id="screen-cannon" class="hidden flex-1 flex flex-col justify-between p-2 sm:p-3 w-full h-full relative z-20 overflow-hidden">
-    <header class="h-11 bg-slate-900/95 border border-amber-500/50 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg backdrop-blur-md pr-12">
-      <div class="flex items-center gap-1.5 sm:gap-2">
-        <button onclick="goToPlayground()" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-amber-950/80 border border-slate-700 hover:border-amber-500/50 text-amber-300 flex items-center gap-1 text-[11px] font-bold transition-all active:scale-95">
-          <i class="fa-solid fa-arrow-left text-[10px]"></i>
-          <span class="hidden sm:inline">Mundo Toca Boca</span>
+  <section id="screen-cannon" class="hidden flex-1 flex flex-col justify-between p-3 w-full h-full relative z-20 overflow-hidden bg-sky-950 text-white">
+    <header class="h-12 bg-slate-900/95 border-2 border-amber-400 rounded-2xl px-3 flex items-center justify-between shrink-0 shadow-lg pr-14">
+      <div class="flex items-center gap-2">
+        <button onclick="goToPlayground()" class="h-8 px-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow active:scale-95">
+          <i class="fa-solid fa-school"></i>
+          <span>Escuela</span>
         </button>
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center shadow shrink-0">
-          <i class="fa-solid fa-bolt text-xs text-white"></i>
-        </div>
-        <div>
-          <h2 class="font-display font-black text-xs text-amber-300 leading-none">
-            El Cañón de Sumas RÁPIDAS <span class="text-white">Luchadores Z 🥊</span>
-          </h2>
-          <p class="text-[8px] text-slate-400">2.° Grado • Sumas hasta 50 & Cálculo Mental</p>
-        </div>
+        <h2 class="font-display font-black text-xs sm:text-sm text-amber-300">
+          El Cañón de Sumas RÁPIDAS <span class="text-white">Luchadores Z 🥊</span>
+        </h2>
       </div>
-
-      <div class="flex items-center gap-1.5 sm:gap-2">
-        <button onclick="openCannonModeModal()" id="cannonModeBadge" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-amber-500/40 text-amber-300 font-display font-black text-[10px] flex items-center gap-1">
-          <i class="fa-solid fa-sliders text-[9px]"></i><span id="cannonModeLabel">⚡ Modo Rápido</span>
-        </button>
-        <div class="bg-slate-950 px-2 py-0.5 rounded-lg border border-purple-500/50 flex items-center gap-1">
-          <span class="text-[8px] text-purple-300 font-bold">Combo:</span>
-          <span id="cannonComboVal" class="font-display font-black text-xs text-yellow-400">x1</span>
-        </div>
+      <div class="bg-slate-950 px-3 py-1 rounded-xl border border-purple-400 text-amber-300 font-black text-xs">
+        Combo: <span id="cannonComboVal">x1</span>
       </div>
     </header>
 
-    <!-- Combat Workspace -->
-    <div class="flex-1 grid grid-cols-12 gap-2 my-1.5 overflow-hidden">
-      <div class="col-span-12 sm:col-span-6 bg-slate-900/85 border border-slate-800 rounded-2xl p-2.5 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
-        <div class="flex items-center justify-between border-b border-slate-800 pb-1 text-[9px] font-bold">
-          <div class="flex items-center gap-1.5 text-rose-400">
-            <i class="fa-solid fa-robot"></i>
-            <span id="robotNameText">Robot Chispas Z-1</span>
-          </div>
-          <div id="cannonTimerBox" class="flex items-center gap-1 bg-red-950/80 border border-red-800 px-2 py-0.5 rounded text-red-300 font-mono text-[9px]">
-            <i class="fa-solid fa-stopwatch"></i>
-            <span id="cannonTimerSec">12s</span>
-          </div>
+    <div class="flex-1 grid grid-cols-12 gap-3 my-2 overflow-hidden">
+      <div class="col-span-12 sm:col-span-6 bg-slate-900 border-2 border-slate-800 rounded-3xl p-3 flex flex-col justify-between relative overflow-hidden">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-1 text-xs font-black">
+          <span id="robotNameText" class="text-rose-400">Robot Chispas Z-1</span>
+          <span class="text-amber-300">2.° Grado</span>
         </div>
 
-        <div class="flex-1 flex flex-col items-center justify-center relative my-1">
-          <div id="cannonSparkContainer" class="absolute inset-0 pointer-events-none z-20 flex items-center justify-center"></div>
-          <div id="cannonLaserBeam" class="hidden absolute left-0 top-1/2 -translate-y-1/2 h-2 bg-gradient-to-r from-amber-400 via-rose-500 to-cyan-400 rounded-full z-15"></div>
-
-          <div id="robotCombatAvatar" class="relative flex flex-col items-center transform transition-transform duration-200">
-            <div class="absolute -top-6 w-24 h-24 rounded-full bg-red-500/20 blur-xl animate-pulse"></div>
-            <div id="robotVisualGraphic" class="text-6xl sm:text-7xl filter drop-shadow-[0_0_15px_rgba(239,68,68,0.8)] animate-bounce-soft">
-              🤖
-            </div>
-            <div class="mt-2 bg-slate-950/95 border-2 border-amber-400 rounded-xl px-3 py-1 shadow-lg flex items-center gap-2 glow-gold">
-              <span class="text-[9px] font-black uppercase text-amber-300">Fuerza Enemiga:</span>
-              <span id="robotTargetEnergy" class="font-display font-black text-xl sm:text-2xl text-amber-400 font-mono">38 ⚡</span>
+        <div class="flex-1 flex flex-col items-center justify-center relative my-2">
+          <div id="robotCombatAvatar" class="relative flex flex-col items-center">
+            <div id="robotVisualGraphic" class="text-7xl animate-bounce-soft">🤖</div>
+            <div class="mt-2 bg-slate-950 border-2 border-amber-400 rounded-2xl px-4 py-1 shadow-lg flex items-center gap-2">
+              <span class="text-xs font-black text-amber-300">Fuerza:</span>
+              <span id="robotTargetEnergy" class="font-display font-black text-2xl text-amber-400 font-mono">38 ⚡</span>
             </div>
           </div>
         </div>
 
-        <div class="bg-slate-950 border border-slate-800 rounded-xl p-1.5">
-          <div class="flex items-center justify-between text-[8px] font-bold text-slate-400 mb-1">
-            <span>Carga de Neutralización:</span>
-            <span id="cannonEnergySummary" class="text-cyan-300 font-mono">0 / 38 ⚡</span>
-          </div>
-          <div class="w-full h-2.5 bg-slate-900 rounded-full overflow-hidden border border-slate-800">
-            <div id="cannonEnergyBarFill" class="h-full bg-gradient-to-r from-cyan-500 via-amber-400 to-emerald-400 rounded-full transition-all duration-300" style="width: 0%;"></div>
-          </div>
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-2 text-center text-xs text-cyan-300 font-mono">
+          <span id="cannonEnergySummary">Neutraliza con la suma exacta</span>
         </div>
       </div>
 
-      <div class="col-span-12 sm:col-span-6 flex flex-col justify-between gap-1.5 overflow-hidden">
-        <div class="bg-slate-900/85 border border-slate-800 rounded-2xl p-2.5 backdrop-blur-md text-center">
-          <div class="text-[9px] font-black text-amber-300 uppercase tracking-wide mb-1">
-            <i class="fa-solid fa-crosshairs mr-1"></i> ¡Calcula el Disparo Z!
-          </div>
-          <div id="cannonEquationPrompt" class="font-display font-black text-base sm:text-lg text-white bg-slate-950 py-1 px-2 rounded-xl border border-slate-800 shadow-inner">
+      <div class="col-span-12 sm:col-span-6 flex flex-col justify-between gap-2 overflow-hidden">
+        <div class="bg-slate-900 border-2 border-slate-800 rounded-3xl p-3 text-center">
+          <div id="cannonEquationPrompt" class="font-display font-black text-base sm:text-lg text-white">
             ¿Qué proyectil suma exactamente <span class="text-amber-400">38 ⚡</span>?
           </div>
         </div>
 
-        <div id="cannonAmmoGrid" class="flex-1 bg-slate-900/85 border border-slate-800 rounded-2xl p-2 sm:p-3 flex flex-col justify-between backdrop-blur-md min-h-[140px]">
-          <div id="cannonOptionsContainer" class="grid grid-cols-2 gap-2 my-auto"></div>
-          <div id="cannonTacticalCharges" class="hidden flex-col gap-1.5">
-            <div class="grid grid-cols-4 gap-1">
-              <button onclick="addCannonCharge(10)" class="py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-display font-black text-xs shadow border border-blue-400/40 active:scale-95">+10 🔵</button>
-              <button onclick="addCannonCharge(5)" class="py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-display font-black text-xs shadow border border-purple-400/40 active:scale-95">+5 🟣</button>
-              <button onclick="addCannonCharge(2)" class="py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-display font-black text-xs shadow border border-emerald-400/40 active:scale-95">+2 🟢</button>
-              <button onclick="addCannonCharge(1)" class="py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-display font-black text-xs shadow border border-amber-400/40 active:scale-95">+1 🟡</button>
-            </div>
-            <div class="flex items-center gap-1.5 pt-1">
-              <button onclick="fireCannonTactical()" class="flex-1 py-2 rounded-xl bg-gradient-to-r from-amber-500 via-rose-600 to-purple-600 text-white font-display font-black text-xs shadow-lg active:scale-95">¡DISPARAR FUEGO Z! 💥</button>
-              <button onclick="resetCannonTacticalCharge()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold border border-slate-700">Borrar</button>
-            </div>
-          </div>
+        <div id="cannonAmmoGrid" class="flex-1 bg-slate-900 border-2 border-slate-800 rounded-3xl p-3 flex flex-col justify-between">
+          <div id="cannonOptionsContainer" class="grid grid-cols-2 gap-2.5 my-auto"></div>
         </div>
       </div>
     </div>
 
-    <footer class="bg-slate-900/90 border border-slate-800 rounded-xl p-2 flex items-center justify-between gap-2 shrink-0">
+    <footer class="bg-slate-900 border-2 border-slate-800 rounded-2xl p-2.5 flex items-center justify-between gap-2 shrink-0">
       <div class="flex items-center gap-2">
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-amber-500 to-rose-600 flex items-center justify-center text-sm shadow">🤖</div>
-        <p id="cannonAraBotSpeech" class="text-[10px] sm:text-xs text-slate-300 font-medium truncate">¡Apunta y dispara Doydo! Suma rápido para neutralizar al robot.</p>
+        <span class="text-2xl">🤖</span>
+        <p id="cannonAraBotSpeech" class="text-xs text-slate-300 font-bold truncate">¡Suma rápido para desactivar al robot!</p>
       </div>
-      <button onclick="hintCannonMath()" class="shrink-0 px-2 py-1 rounded-lg bg-amber-600/80 hover:bg-amber-500 text-white text-[10px] font-bold shadow">
-        <i class="fa-solid fa-lightbulb text-yellow-300 mr-1"></i>Pista
+      <button onclick="hintCannonMath()" class="px-3 py-1.5 rounded-xl bg-amber-400 text-slate-950 font-black text-xs shadow">
+        💡 Pista
       </button>
     </footer>
   </section>
@@ -873,81 +1015,67 @@
   <!-- ========================================================================= -->
   <!-- 🚀 PANTALLA 3: NONINA (ROMINA) - EL COHETE NUMÉRICO (3.° GRADO)            -->
   <!-- ========================================================================= -->
-  <section id="screen-rocket" class="hidden flex-1 flex flex-col justify-between p-2 sm:p-3 w-full h-full relative z-20 overflow-hidden">
-    <header class="h-11 bg-slate-900/90 border border-slate-800 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg backdrop-blur-md pr-12">
-      <div class="flex items-center gap-1.5 sm:gap-2">
-        <button onclick="goToPlayground()" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-rose-950/80 border border-slate-700 hover:border-rose-500/50 text-rose-300 flex items-center gap-1 text-[11px] font-bold transition-all active:scale-95">
-          <i class="fa-solid fa-arrow-left text-[10px]"></i>
-          <span class="hidden sm:inline">Mundo Toca Boca</span>
+  <section id="screen-rocket" class="hidden flex-1 flex flex-col justify-between p-3 w-full h-full relative z-20 overflow-hidden bg-slate-950 text-white">
+    <header class="h-12 bg-slate-900 border-2 border-rose-500 rounded-2xl px-3 flex items-center justify-between shrink-0 shadow-lg pr-14">
+      <div class="flex items-center gap-2">
+        <button onclick="goToPlayground()" class="h-8 px-3 rounded-xl bg-rose-400 hover:bg-rose-300 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow active:scale-95">
+          <i class="fa-solid fa-school"></i>
+          <span>Escuela</span>
         </button>
-        <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-rose-600 to-pink-500 flex items-center justify-center shadow-md shrink-0">
-          <i class="fa-solid fa-rocket text-xs text-white"></i>
-        </div>
-        <div>
-          <h2 class="font-display font-black text-xs text-rose-300 leading-none">Nonina: <span class="text-white font-medium">El Cohete Numérico</span></h2>
-          <p class="text-[8px] text-slate-400">3.° Grado • Conteo por Saltos & Base-10</p>
-        </div>
+        <h2 class="font-display font-black text-xs sm:text-sm text-rose-300">Nonina: <span class="text-white">El Cohete Numérico</span></h2>
       </div>
-      <div class="flex items-center gap-1.5">
-        <button onclick="openStepModal()" class="h-7 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-rose-500/40 text-rose-300 font-display font-black text-[11px] flex items-center gap-1">
-          <i class="fa-solid fa-plus text-[9px]"></i><span id="headerStepLabel">5</span>
-        </button>
+      <div class="bg-rose-950 px-3 py-1 rounded-xl border border-rose-500 text-rose-300 font-black text-xs">
+        Salto: +5
       </div>
     </header>
 
-    <div class="flex-1 grid grid-cols-12 gap-2 my-1.5 overflow-hidden">
-      <div class="col-span-3 sm:col-span-2 bg-slate-900/80 border border-slate-800 rounded-xl p-2 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
-        <div class="flex items-center justify-between text-[9px] font-bold text-slate-400">
-          <span class="hidden sm:inline">Altura</span>
-          <span id="rocketAltitudePct" class="text-cyan-300 bg-cyan-950 border border-cyan-800 px-1 py-0.2 rounded font-mono text-[9px]">0%</span>
+    <div class="flex-1 grid grid-cols-12 gap-3 my-2 overflow-hidden">
+      <div class="col-span-3 sm:col-span-2 bg-slate-900 border-2 border-slate-800 rounded-3xl p-3 flex flex-col justify-between relative">
+        <div class="text-center font-black text-xs text-cyan-300">Altura: <span id="rocketAltitudePct">0%</span></div>
+        <div class="flex-1 relative my-2 bg-slate-950 rounded-2xl border border-slate-800 flex items-end p-1 overflow-hidden">
+          <div id="rocketProgressFill" class="w-full bg-gradient-to-t from-indigo-900 to-rose-500 rounded-xl transition-all duration-300" style="height: 0%;"></div>
+          <div id="rocketAvatar" class="absolute left-1/2 -translate-x-1/2 transition-all duration-300 text-3xl" style="bottom: 0%;">🚀</div>
         </div>
-        <div class="flex-1 relative my-1 bg-slate-950/90 rounded-lg border border-slate-800 flex items-end p-1 overflow-hidden">
-          <div id="rocketProgressFill" class="w-full bg-gradient-to-t from-indigo-900 via-rose-600 to-cyan-400 rounded transition-all duration-300 relative" style="height: 0%;"></div>
-          <div id="rocketAvatar" class="absolute left-1/2 -translate-x-1/2 transition-all duration-300 flex flex-col items-center" style="bottom: 0%;">
-            <div class="text-xl sm:text-2xl filter drop-shadow-[0_0_8px_rgba(244,63,94,0.9)] transform -rotate-45">🚀</div>
-          </div>
-        </div>
-        <div class="bg-slate-950 border border-slate-800 rounded-lg p-1 text-center">
-          <div class="text-[7px] text-slate-400 uppercase font-semibold">Valor Total</div>
-          <div id="rocketDisplayTotal" class="font-display font-black text-sm sm:text-base text-rose-300 leading-tight">0</div>
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-1 text-center font-black text-rose-300 text-sm">
+          <span id="rocketDisplayTotal">0</span> M
         </div>
       </div>
 
-      <div class="col-span-9 sm:col-span-10 flex flex-col gap-1.5 justify-between overflow-hidden">
-        <div class="grid grid-cols-4 gap-1 sm:gap-1.5 bg-slate-900/70 border border-slate-800 rounded-xl p-1.5 backdrop-blur-md">
-          <div class="bg-slate-950/90 border border-amber-500/30 rounded-lg p-1 text-center">
-            <div class="text-[8px] font-bold text-amber-400">Millar (🟡)</div>
-            <div id="rocketValMillar" class="font-display font-black text-xl sm:text-3xl text-amber-400 my-0.5">0</div>
+      <div class="col-span-9 sm:col-span-10 flex flex-col gap-2 justify-between overflow-hidden">
+        <div class="grid grid-cols-4 gap-2 bg-slate-900 border-2 border-slate-800 rounded-3xl p-2.5 text-center">
+          <div class="bg-slate-950 border border-amber-500/40 rounded-2xl p-1.5">
+            <div class="text-[10px] font-black text-amber-400">Millar 🟡</div>
+            <div id="rocketValMillar" class="font-display font-black text-2xl text-amber-400">0</div>
           </div>
-          <div class="bg-slate-950/90 border border-red-500/30 rounded-lg p-1 text-center">
-            <div class="text-[8px] font-bold text-red-400">Centena (🔴)</div>
-            <div id="rocketValCentena" class="font-display font-black text-xl sm:text-3xl text-red-400 my-0.5">0</div>
+          <div class="bg-slate-950 border border-red-500/40 rounded-2xl p-1.5">
+            <div class="text-[10px] font-black text-red-400">Centena 🔴</div>
+            <div id="rocketValCentena" class="font-display font-black text-2xl text-red-400">0</div>
           </div>
-          <div class="bg-slate-950/90 border border-blue-500/30 rounded-lg p-1 text-center">
-            <div class="text-[8px] font-bold text-blue-400">Decena (🔵)</div>
-            <div id="rocketValDecena" class="font-display font-black text-xl sm:text-3xl text-blue-400 my-0.5">0</div>
+          <div class="bg-slate-950 border border-blue-500/40 rounded-2xl p-1.5">
+            <div class="text-[10px] font-black text-blue-400">Decena 🔵</div>
+            <div id="rocketValDecena" class="font-display font-black text-2xl text-blue-400">0</div>
           </div>
-          <div class="bg-slate-950/90 border border-emerald-500/30 rounded-lg p-1 text-center">
-            <div class="text-[8px] font-bold text-emerald-400">Unidad (🟢)</div>
-            <div id="rocketValUnidad" class="font-display font-black text-xl sm:text-3xl text-emerald-400 my-0.5">0</div>
+          <div class="bg-slate-950 border border-emerald-500/40 rounded-2xl p-1.5">
+            <div class="text-[10px] font-black text-emerald-400">Unidad 🟢</div>
+            <div id="rocketValUnidad" class="font-display font-black text-2xl text-emerald-400">0</div>
           </div>
         </div>
 
-        <div class="flex-1 bg-slate-900/70 border border-slate-800 rounded-xl p-2 flex flex-col justify-between relative overflow-hidden backdrop-blur-md">
-          <div id="rocketBlocksContainer" class="flex-1 my-1 bg-slate-950/90 rounded-lg border border-slate-800 p-2 overflow-y-auto custom-scroll flex flex-wrap content-start gap-1.5 relative">
-            <div id="factoryMillares" class="flex flex-wrap gap-1.5 items-center"></div>
-            <div id="factoryCentenas" class="flex flex-wrap gap-1.5 items-center"></div>
-            <div id="factoryDecenas" class="flex flex-wrap gap-1 items-center"></div>
-            <div id="factoryUnidades" class="flex flex-wrap gap-1 items-center"></div>
+        <div class="flex-1 bg-slate-900 border-2 border-slate-800 rounded-3xl p-3 flex flex-col justify-between">
+          <div id="rocketBlocksContainer" class="flex-1 bg-slate-950 rounded-2xl p-2 overflow-y-auto flex flex-wrap content-start gap-2">
+            <div id="factoryMillares" class="flex flex-wrap gap-1.5"></div>
+            <div id="factoryCentenas" class="flex flex-wrap gap-1.5"></div>
+            <div id="factoryDecenas" class="flex flex-wrap gap-1"></div>
+            <div id="factoryUnidades" class="flex flex-wrap gap-1"></div>
           </div>
-          <div class="flex items-center gap-1.5 pt-0.5">
-            <button id="btnRocketAdd" onclick="executeRocketStepAdd()" class="flex-1 bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-display font-black text-xs sm:text-sm py-2 px-3 rounded-xl shadow-lg active:scale-95">
+          <div class="flex items-center gap-2 pt-2">
+            <button id="btnRocketAdd" onclick="executeRocketStepAdd()" class="flex-1 py-2.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-display font-black text-sm shadow active:scale-95">
               🚀 ¡SUMAR +5!
             </button>
-            <button onclick="triggerRocketLaunchCelebration()" class="px-3 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 text-white font-display font-black text-xs shadow-lg active:scale-95">
+            <button onclick="triggerRocketLaunchCelebration()" class="px-4 py-2.5 rounded-2xl bg-rose-500 text-white font-display font-black text-xs shadow active:scale-95">
               ¡Despegar!
             </button>
-            <button onclick="resetRocketCounter()" class="px-2.5 py-2 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs">
+            <button onclick="resetRocketCounter()" class="px-3 py-2.5 rounded-2xl bg-slate-800 text-slate-300 font-black text-xs">
               Borrar
             </button>
           </div>
@@ -959,71 +1087,70 @@
   <!-- ========================================================================= -->
   <!-- 🦖 PANTALLA 4: DOYDO (RICARDO) - LABORATORIO DINOSAURIO (2.° GRADO)        -->
   <!-- ========================================================================= -->
-  <section id="screen-dino" class="hidden flex-1 flex flex-col justify-between p-2 sm:p-3 w-full h-full relative z-20 overflow-hidden">
-    <header class="h-11 bg-slate-900/95 border-2 border-red-500/60 rounded-xl px-2.5 flex items-center justify-between shrink-0 shadow-lg pr-12">
-      <div class="flex items-center gap-1.5 sm:gap-2">
-        <button onclick="goToPlayground()" class="h-7 px-2 rounded-lg bg-slate-800 text-sky-300 flex items-center gap-1 text-[11px] font-bold">
-          <i class="fa-solid fa-arrow-left text-[10px]"></i>
-          <span class="hidden sm:inline">Mundo Toca Boca</span>
+  <section id="screen-dino" class="hidden flex-1 flex flex-col justify-between p-3 w-full h-full relative z-20 overflow-hidden bg-slate-950 text-white">
+    <header class="h-12 bg-slate-900 border-2 border-red-500 rounded-2xl px-3 flex items-center justify-between shrink-0 shadow-lg pr-14">
+      <div class="flex items-center gap-2">
+        <button onclick="goToPlayground()" class="h-8 px-3 rounded-xl bg-sky-400 hover:bg-sky-300 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow active:scale-95">
+          <i class="fa-solid fa-school"></i>
+          <span>Escuela</span>
         </button>
-        <h2 class="font-display font-black text-xs text-red-400 uppercase">Alarma T-Rex 🦖</h2>
+        <h2 class="font-display font-black text-xs sm:text-sm text-red-400 uppercase">Alarma T-Rex 🦖</h2>
       </div>
-      <div class="bg-slate-950/90 border border-red-500/50 px-2 py-0.5 rounded-lg text-amber-300 font-black text-xs">
+      <div class="bg-red-950 border border-red-500 px-3 py-1 rounded-xl text-amber-300 font-black text-xs">
         Puerta: <span id="dinoCurrentLevelLabel">1/9</span>
       </div>
     </header>
 
-    <div class="grid grid-cols-3 gap-2 sm:gap-3 bg-slate-900/90 border-2 border-red-500/40 rounded-2xl p-2 my-1 shadow-2xl">
-      <div id="bigDigitCentenaBox" class="bg-slate-950 border border-slate-800 rounded-xl p-2 text-center">
-        <div class="text-[9px] font-black text-red-400">Centenas (x100) 🔴</div>
+    <div class="grid grid-cols-3 gap-2 bg-slate-900 border-2 border-red-500/50 rounded-3xl p-2.5 my-2 shadow-2xl">
+      <div class="bg-slate-950 border border-red-500/40 rounded-2xl p-2 text-center">
+        <div class="text-xs font-black text-red-400">Centenas (x100) 🔴</div>
         <div id="bigDigitCentena" class="font-display font-black text-3xl text-slate-400">3</div>
-        <div id="bigProgressCentena" class="text-[8px] font-mono text-slate-400">0 / 3</div>
+        <div id="bigProgressCentena" class="text-[10px] font-mono text-slate-400">0 / 3</div>
       </div>
-      <div id="bigDigitDecenaBox" class="bg-slate-950 border border-slate-800 rounded-xl p-2 text-center">
-        <div class="text-[9px] font-black text-emerald-400">Decenas (x10) 🟢</div>
+      <div class="bg-slate-950 border border-emerald-500/40 rounded-2xl p-2 text-center">
+        <div class="text-xs font-black text-emerald-400">Decenas (x10) 🟢</div>
         <div id="bigDigitDecena" class="font-display font-black text-3xl text-slate-400">7</div>
-        <div id="bigProgressDecena" class="text-[8px] font-mono text-slate-400">0 / 7</div>
+        <div id="bigProgressDecena" class="text-[10px] font-mono text-slate-400">0 / 7</div>
       </div>
-      <div id="bigDigitUnidadBox" class="bg-slate-950 border border-slate-800 rounded-xl p-2 text-center">
-        <div class="text-[9px] font-black text-blue-400">Unidades (x1) 🔵</div>
+      <div class="bg-slate-950 border border-blue-500/40 rounded-2xl p-2 text-center">
+        <div class="text-xs font-black text-blue-400">Unidades (x1) 🔵</div>
         <div id="bigDigitUnidad" class="font-display font-black text-3xl text-slate-400">8</div>
-        <div id="bigProgressUnidad" class="text-[8px] font-mono text-slate-400">0 / 8</div>
+        <div id="bigProgressUnidad" class="text-[10px] font-mono text-slate-400">0 / 8</div>
       </div>
     </div>
 
-    <div class="flex-1 grid grid-cols-12 gap-2 my-0.5 overflow-hidden">
-      <div class="col-span-12 sm:col-span-4 bg-slate-900/90 border border-slate-800 rounded-2xl p-2 flex flex-col justify-between relative overflow-hidden">
-        <div class="flex-1 relative bg-slate-950 rounded-xl border border-red-500/30 flex flex-col items-center justify-center p-2">
+    <div class="flex-1 grid grid-cols-12 gap-3 overflow-hidden">
+      <div class="col-span-12 sm:col-span-4 bg-slate-900 border-2 border-slate-800 rounded-3xl p-3 flex flex-col justify-between relative overflow-hidden">
+        <div class="flex-1 relative bg-slate-950 rounded-2xl border border-red-500/40 flex flex-col items-center justify-center p-2">
           <div id="titaniumBlastDoor" class="hidden absolute inset-0 bg-slate-800 border-4 border-emerald-500 z-30 flex flex-col items-center justify-center animate-slam-door">
-            <div class="text-2xl">🔒</div>
-            <div class="text-xs text-emerald-400 font-black">COMPUERTA SELLADA</div>
+            <div class="text-3xl">🔒</div>
+            <div class="text-xs text-emerald-400 font-black mt-1">COMPUERTA SELLADA</div>
           </div>
-          <div class="text-5xl animate-trex-roar">🦖</div>
+          <div class="text-6xl animate-trex-roar">🦖</div>
         </div>
       </div>
 
-      <div class="col-span-12 sm:col-span-8 flex flex-col gap-1.5 justify-between">
-        <div class="flex-1 bg-slate-900/80 border border-red-500/30 rounded-xl p-1.5 flex items-center justify-between">
-          <span class="text-xs font-bold text-red-400">Puesto Centenas 🔴</span>
-          <button onclick="dispatchGuard('centena')" class="py-1 px-3 rounded-lg bg-red-600 text-white font-bold text-xs">+1 Búnker (100)</button>
+      <div class="col-span-12 sm:col-span-8 flex flex-col gap-2 justify-between">
+        <div class="flex-1 bg-slate-900 border border-red-500/40 rounded-2xl p-2 flex items-center justify-between">
+          <span class="text-xs font-black text-red-400">Puesto Centenas 🔴</span>
+          <button onclick="dispatchGuard('centena')" class="py-1.5 px-3 rounded-xl bg-red-600 text-white font-black text-xs">+1 Búnker (100)</button>
         </div>
-        <div class="flex-1 bg-slate-900/80 border border-emerald-500/30 rounded-xl p-1.5 flex items-center justify-between">
-          <span class="text-xs font-bold text-emerald-400">Puesto Decenas 🟢</span>
-          <button onclick="dispatchGuard('decena')" class="py-1 px-3 rounded-lg bg-emerald-600 text-slate-950 font-bold text-xs">+1 Escuadrón (10)</button>
+        <div class="flex-1 bg-slate-900 border border-emerald-500/40 rounded-2xl p-2 flex items-center justify-between">
+          <span class="text-xs font-black text-emerald-400">Puesto Decenas 🟢</span>
+          <button onclick="dispatchGuard('decena')" class="py-1.5 px-3 rounded-xl bg-emerald-600 text-slate-950 font-black text-xs">+1 Escuadrón (10)</button>
         </div>
-        <div class="flex-1 bg-slate-900/80 border border-blue-500/30 rounded-xl p-1.5 flex items-center justify-between">
-          <span class="text-xs font-bold text-blue-400">Puesto Unidades 🔵</span>
-          <button onclick="dispatchGuard('unidad')" class="py-1 px-3 rounded-lg bg-blue-600 text-white font-bold text-xs">+1 Guardia (1)</button>
+        <div class="flex-1 bg-slate-900 border border-blue-500/40 rounded-2xl p-2 flex items-center justify-between">
+          <span class="text-xs font-black text-blue-400">Puesto Unidades 🔵</span>
+          <button onclick="dispatchGuard('unidad')" class="py-1.5 px-3 rounded-xl bg-blue-600 text-white font-black text-xs">+1 Guardia (1)</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================================================= -->
-  <!-- 💻 JAVASCRIPT: MOTOR TOCA BOCA MUNDO DESPLAZABLE, ITEMS Y AUDIO            -->
+  <!-- 💻 JAVASCRIPT: MOTOR COMPLETO TOCA LIFE WORLD & AUTO-UPDATE                -->
   <!-- ========================================================================= -->
   <script>
-    /* Global State */
     const appState = {
       currentScreen: 'screen-playground',
       audioMuted: false,
@@ -1055,12 +1182,8 @@
 
       // Z Cannon
       cannon: {
-        mode: 'rapid',
         currentEnemyIndex: 0,
         combo: 1,
-        tacticalCharge: 0,
-        timeRemaining: 12,
-        timerInterval: null,
         enemies: [
           { name: 'Robot Chispas Z-1', energy: 18, emoji: '🤖', options: ['10 + 8', '9 + 7', '12 + 4', '15 + 5'], correct: '10 + 8' },
           { name: 'Cyber-Bípode Z-2', energy: 25, emoji: '🦾', options: ['20 + 5', '18 + 6', '12 + 11', '14 + 10'], correct: '20 + 5' },
@@ -1071,7 +1194,7 @@
       }
     };
 
-    /* Screen Manager */
+    /* Screen Transitions */
     function showScreen(screenId) {
       initAudio();
       collapseNavDock();
@@ -1087,7 +1210,6 @@
 
     function goToPlayground() {
       playClickSound();
-      if (appState.cannon.timerInterval) clearInterval(appState.cannon.timerInterval);
       showScreen('screen-playground');
     }
 
@@ -1102,7 +1224,7 @@
 
     function toggleMute() {
       appState.audioMuted = !appState.audioMuted;
-      document.getElementById('audioIcon').className = appState.audioMuted ? 'fa-solid fa-volume-xmark text-xs text-rose-400' : 'fa-solid fa-volume-high text-xs text-cyan-400';
+      document.getElementById('audioIcon').className = appState.audioMuted ? 'fa-solid fa-volume-xmark text-xs text-rose-500' : 'fa-solid fa-volume-high text-xs text-sky-900';
     }
 
     function playTone(freq, type = 'sine', duration = 0.1, gainVal = 0.15) {
@@ -1122,13 +1244,12 @@
       } catch(e) {}
     }
 
-    function playClickSound() { playTone(587.33, 'sine', 0.08, 0.1); }
+    function playClickSound() { playTone(587.33, 'triangle', 0.08, 0.12); }
     function playEatSound() {
       playTone(320, 'triangle', 0.08, 0.25);
       setTimeout(() => playTone(480, 'triangle', 0.1, 0.25), 80);
       setTimeout(() => playTone(640, 'sine', 0.12, 0.2), 160);
     }
-    function playLaserSound() { playTone(880, 'sawtooth', 0.2, 0.2); }
     function playFanfareSound() { [440, 554, 659, 880].forEach((f, i) => setTimeout(() => playTone(f, 'triangle', 0.25, 0.15), i * 90)); }
 
     function speakAraBot(text) {
@@ -1141,14 +1262,12 @@
       }
     }
 
-    /* Panoramic Scrolling Navigation */
+    /* Panoramic School Navigation */
     function scrollToRoom(idx) {
       playClickSound();
       appState.currentRoomIndex = idx;
       const room = document.getElementById(`room${idx}`);
-      if (room) {
-        room.scrollIntoView({ behavior: 'smooth', inline: 'start' });
-      }
+      if (room) room.scrollIntoView({ behavior: 'smooth', inline: 'start' });
       updateActiveRoomTab(idx);
     }
 
@@ -1172,21 +1291,18 @@
         const tab = document.getElementById(`roomTab${i}`);
         if (tab) {
           if (i === idx) {
-            tab.classList.add('bg-cyan-500', 'text-slate-950', 'shadow-lg');
-            tab.classList.remove('bg-slate-800');
+            tab.className = 'room-tab px-3 py-1 rounded-2xl bg-amber-400 border-2 border-amber-800 text-amber-950 text-xs font-black shadow flex items-center gap-1';
           } else {
-            tab.classList.remove('bg-cyan-500', 'text-slate-950', 'shadow-lg');
-            tab.classList.add('bg-slate-800');
+            tab.className = 'room-tab px-3 py-1 rounded-2xl bg-white hover:bg-amber-100 border-2 border-slate-300 text-slate-700 text-xs font-black flex items-center gap-1';
           }
         }
       }
     }
 
-    /* Toca Boca Drawer (Mochila / Inventario) */
+    /* Toca Boca Drawer */
     function toggleTocaDrawer() {
       playClickSound();
-      const drawer = document.getElementById('tocaDrawer');
-      drawer.classList.toggle('hidden');
+      document.getElementById('tocaDrawer').classList.toggle('hidden');
     }
 
     function switchDrawerTab(tab) {
@@ -1199,14 +1315,14 @@
       if (tab === 'items') {
         itemsTab.classList.remove('hidden');
         charsTab.classList.add('hidden');
-        btnItems.className = 'px-3 py-1 rounded-xl bg-cyan-500 text-slate-950 font-display font-black text-xs shadow';
-        btnChars.className = 'px-3 py-1 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-display font-black text-xs';
+        btnItems.className = 'px-4 py-1.5 rounded-2xl bg-amber-400 border-2 border-amber-800 text-amber-950 font-display font-black text-xs shadow';
+        btnChars.className = 'px-4 py-1.5 rounded-2xl bg-slate-100 text-slate-700 font-display font-black text-xs';
       } else {
         itemsTab.classList.add('hidden');
         charsTab.classList.remove('hidden');
         charsTab.classList.add('flex');
-        btnChars.className = 'px-3 py-1 rounded-xl bg-cyan-500 text-slate-950 font-display font-black text-xs shadow';
-        btnItems.className = 'px-3 py-1 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-display font-black text-xs';
+        btnChars.className = 'px-4 py-1.5 rounded-2xl bg-amber-400 border-2 border-amber-800 text-amber-950 font-display font-black text-xs shadow';
+        btnItems.className = 'px-4 py-1.5 rounded-2xl bg-slate-100 text-slate-700 font-display font-black text-xs';
       }
     }
 
@@ -1217,9 +1333,8 @@
       const world = document.getElementById('panoramicWorld');
       const layer = document.getElementById('worldSpawnedItemsLayer');
       
-      const currentScroll = world.scrollLeft;
-      const xPos = currentScroll + (window.innerWidth * 0.4) + (Math.random() * 80 - 40);
-      const yPos = window.innerHeight * 0.6 + (Math.random() * 40 - 20);
+      const xPos = world.scrollLeft + (window.innerWidth * 0.4) + (Math.random() * 80 - 40);
+      const yPos = window.innerHeight * 0.58 + (Math.random() * 40 - 20);
 
       const el = document.createElement('div');
       const id = `item_${appState.spawnedItemCount}`;
@@ -1229,8 +1344,8 @@
       el.style.left = `${xPos}px`;
       el.style.top = `${yPos}px`;
       el.innerHTML = `
-        <div class="text-3xl sm:text-4xl filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">${emoji}</div>
-        <div class="text-[7px] font-bold text-slate-300 bg-slate-900/90 px-1 py-0.2 rounded mt-0.5 border border-slate-700">${label}</div>
+        <div class="text-4xl filter drop-shadow-[0_4px_6px_rgba(0,0,0,0.2)]">${emoji}</div>
+        <div class="text-[8px] font-black text-amber-950 bg-white px-1.5 py-0.2 rounded-full mt-0.5 border border-amber-400 shadow">${label}</div>
       `;
 
       el.addEventListener('mousedown', (e) => startTocaDrag(e, id));
@@ -1240,21 +1355,18 @@
       document.getElementById('playgroundAraSpeech').innerText = `¡Nuevo objeto: ${label}! Arrástralo hacia Nonina o Doydo.`;
     }
 
-    function spawnNewPet(emoji, label) {
-      spawnItemToWorld(emoji, label, 'pet');
-    }
+    function spawnNewPet(emoji, label) { spawnItemToWorld(emoji, label, 'pet'); }
 
     function teleportCharacter(charId) {
       playFanfareSound();
       const char = document.getElementById(charId);
       const world = document.getElementById('panoramicWorld');
-      const targetX = world.scrollLeft + (window.innerWidth * 0.45);
-      char.style.left = `${targetX}px`;
-      char.style.top = `${window.innerHeight * 0.55}px`;
+      char.style.left = `${world.scrollLeft + (window.innerWidth * 0.45)}px`;
+      char.style.top = `${window.innerHeight * 0.52}px`;
       toggleTocaDrawer();
     }
 
-    /* Toca Drag & Drop Engine with Eating & Interaction Physics */
+    /* Drag & Drop with Eating Interactions */
     function startTocaDrag(e, elementId) {
       e.preventDefault();
       const el = document.getElementById(elementId);
@@ -1276,7 +1388,7 @@
         const world = document.getElementById('panoramicWorld');
         
         const worldX = curX - appState.dragOffset.x + world.scrollLeft;
-        const worldY = Math.max(80, Math.min(window.innerHeight - 100, curY - appState.dragOffset.y));
+        const worldY = Math.max(60, Math.min(window.innerHeight - 100, curY - appState.dragOffset.y));
 
         appState.activeDragItem.style.left = `${worldX}px`;
         appState.activeDragItem.style.top = `${worldY}px`;
@@ -1301,22 +1413,20 @@
 
     function checkDropInteractions(itemEl) {
       if (itemEl.dataset.type === 'food') {
-        // Check proximity with Nonina and Doydo
         ['avatarNonina', 'avatarDoydo'].forEach(avatarId => {
           const avatar = document.getElementById(avatarId);
-          if (avatar && isColliding(itemEl, avatar, 60)) {
-            // Eating animation!
+          if (avatar && isColliding(itemEl, avatar, 65)) {
             playEatSound();
             avatar.classList.add('animate-eat-chomp');
-            itemEl.remove(); // Consumed!
-            document.getElementById('playgroundAraSpeech').innerText = `¡Ñam ñam! ${avatarId === 'avatarNonina' ? 'Nonina' : 'Doydo'} disfrutó la merienda. 💖`;
+            itemEl.remove();
+            document.getElementById('playgroundAraSpeech').innerText = `¡Ñam ñam! ${avatarId === 'avatarNonina' ? 'Nonina' : 'Doydo'} comió delicioso. 💖`;
             setTimeout(() => avatar.classList.remove('animate-eat-chomp'), 800);
           }
         });
       }
     }
 
-    function isColliding(el1, el2, threshold = 50) {
+    function isColliding(el1, el2, threshold = 55) {
       const r1 = el1.getBoundingClientRect();
       const r2 = el2.getBoundingClientRect();
       const dx = (r1.left + r1.width/2) - (r2.left + r2.width/2);
@@ -1328,10 +1438,10 @@
       playTone(523, 'triangle', 0.15, 0.2);
       if (avatarId === 'nonina') {
         showBubble('bubbleNonina', '¡Hola! ¡Soy Nonina de 3.° Grado! 🌸');
-        speakAraBot('¡Hola Romina! Lista para jugar.');
+        speakAraBot('¡Hola Romina! Lista para la clase de matemáticas.');
       } else if (avatarId === 'doydo') {
-        showBubble('bubbleDoydo', '¡Soy Doydo! ¡A vencer robots! ⚡');
-        speakAraBot('¡Hola Ricardo! Listo para el combate Z.');
+        showBubble('bubbleDoydo', '¡Soy Doydo! ¡A ganar medallas y vencer robots! ⚡');
+        speakAraBot('¡Hola Ricardo! Listo para los desafíos.');
       }
     }
 
@@ -1344,30 +1454,26 @@
       }
     }
 
-    /* Room Props Interactions */
+    /* Room Props */
     function interactRoomProp(type, event) {
       if (event) event.stopPropagation();
-      playTone(440, 'sine', 0.15, 0.2);
+      playTone(440, 'triangle', 0.15, 0.2);
 
       if (type === 'board') {
-        const eqs = ['8 + 7 = 15 ✨', '30 + 20 = 50 🚀', '100 + 200 = 300 💯', '5 x 5 = 25 🌟'];
+        const eqs = ['8 + 7 = 15 ✨', '25 + 25 = 50 🚀', '100 + 200 = 300 💯', '9 + 6 = 15 🌟', '4 x 5 = 20 🍎'];
         const chosen = eqs[Math.floor(Math.random() * eqs.length)];
         document.getElementById('classroomBoardText').innerText = chosen;
         speakAraBot(chosen);
-      } else if (type === 'backpack') {
-        toggleTocaDrawer();
       } else if (type === 'dinoPet') {
         playTone(300, 'sawtooth', 0.25, 0.25);
-        document.getElementById('playgroundAraSpeech').innerText = 'Rexi Bebé: "¡Grrr! ¡Vamos al laboratorio Base-10!"';
+        document.getElementById('playgroundAraSpeech').innerText = 'Rexi Bebé: "¡Grrr! ¡Te quiero mucho amigo explorador!"';
       } else if (type === 'synth') {
         playTone(523.25, 'triangle', 0.2, 0.3);
-      } else if (type === 'fountain') {
-        playFanfareSound();
       } else if (type === 'punchingBag') {
         playTone(180, 'sawtooth', 0.15, 0.3);
         const bag = document.getElementById('punchingBagVisual');
-        bag.classList.add('animate-ping');
-        setTimeout(() => bag.classList.remove('animate-ping'), 400);
+        bag.classList.add('animate-bounce');
+        setTimeout(() => bag.classList.remove('animate-bounce'), 500);
       } else if (type === 'rocketLaunchpad') {
         launchRocketFromMenu();
       }
@@ -1383,7 +1489,7 @@
       }, 1500);
     }
 
-    /* Minigame Launchers */
+    /* Minigames */
     function launchDinoFromMenu() { showScreen('screen-dino'); }
     function launchCannonFromMenu() { showScreen('screen-cannon'); }
     function launchRocketFromMenu() { showScreen('screen-rocket'); }
@@ -1405,7 +1511,7 @@
       else if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
     }
 
-    /* Cannon Minigame Functions */
+    /* Cannon Minigame */
     function loadCannonEnemy(idx) {
       if (idx >= appState.cannon.enemies.length) idx = 0;
       appState.cannon.currentEnemyIndex = idx;
@@ -1413,8 +1519,6 @@
       document.getElementById('robotNameText').innerText = enemy.name;
       document.getElementById('robotVisualGraphic').innerText = enemy.emoji;
       document.getElementById('robotTargetEnergy').innerText = `${enemy.energy} ⚡`;
-      document.getElementById('cannonEnergySummary').innerText = `0 / ${enemy.energy} ⚡`;
-      document.getElementById('cannonEnergyBarFill').style.width = '0%';
       document.getElementById('cannonComboVal').innerText = `x${appState.cannon.combo}`;
       document.getElementById('cannonEquationPrompt').innerHTML = `¿Qué proyectil suma exactamente <span class="text-amber-400 font-mono">${enemy.energy} ⚡</span>?`;
 
@@ -1422,11 +1526,11 @@
       optContainer.innerHTML = '';
       enemy.options.forEach(opt => {
         const btn = document.createElement('button');
-        btn.className = 'py-3 px-2 rounded-2xl bg-slate-800 hover:bg-amber-600 text-white font-display font-black text-sm border-2 border-slate-700 hover:border-amber-400 shadow-lg';
+        btn.className = 'py-3.5 px-3 rounded-2xl bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-white font-display font-black text-sm sm:text-base border-2 border-slate-700 shadow-lg active:scale-95 transition-all';
         btn.innerHTML = `<span>⚡</span> <span>${opt}</span>`;
         btn.onclick = () => {
           if (opt === enemy.correct) {
-            playLaserSound();
+            playTone(880, 'triangle', 0.2, 0.2);
             playFanfareSound();
             appState.cannon.combo++;
             document.getElementById('cannonComboVal').innerText = `x${appState.cannon.combo}`;
@@ -1442,34 +1546,12 @@
       });
     }
 
-    function addCannonCharge(val) {
-      appState.cannon.tacticalCharge += val;
-      const enemy = appState.cannon.enemies[appState.cannon.currentEnemyIndex];
-      document.getElementById('cannonEnergySummary').innerText = `${appState.cannon.tacticalCharge} / ${enemy.energy} ⚡`;
-      document.getElementById('cannonEnergyBarFill').style.width = `${Math.min(100, (appState.cannon.tacticalCharge/enemy.energy)*100)}%`;
-    }
-    function resetCannonTacticalCharge() {
-      appState.cannon.tacticalCharge = 0;
-      const enemy = appState.cannon.enemies[appState.cannon.currentEnemyIndex];
-      document.getElementById('cannonEnergySummary').innerText = `0 / ${enemy.energy} ⚡`;
-      document.getElementById('cannonEnergyBarFill').style.width = '0%';
-    }
-    function fireCannonTactical() {
-      const enemy = appState.cannon.enemies[appState.cannon.currentEnemyIndex];
-      if (appState.cannon.tacticalCharge === enemy.energy) {
-        playLaserSound();
-        playFanfareSound();
-        setTimeout(() => loadCannonEnemy(appState.cannon.currentEnemyIndex + 1), 1200);
-      } else {
-        playTone(200, 'sawtooth', 0.3, 0.3);
-      }
-    }
     function hintCannonMath() {
       const enemy = appState.cannon.enemies[appState.cannon.currentEnemyIndex];
       speakAraBot(`Para formar ${enemy.energy}, busca decenas y unidades.`);
     }
 
-    /* Rocket Minigame Functions */
+    /* Rocket Minigame */
     function executeRocketStepAdd() {
       appState.rocket.currentValue += appState.rocket.stepValue;
       playTone(440, 'triangle', 0.1, 0.2);
@@ -1500,7 +1582,7 @@
       speakAraBot('¡Despegue orbital exitoso Romina!');
     }
 
-    /* Dino Minigame Functions */
+    /* Dino Minigame */
     function loadDinoLevel(idx) {
       if (idx >= appState.dino.levels.length) idx = 0;
       appState.dino.currentLevelIndex = idx;
@@ -1535,28 +1617,13 @@
       }
     }
 
-    /* Starry Background Canvas */
-    const starCanvas = document.getElementById('bgStarsCanvas');
-    if (starCanvas) {
-      const starCtx = starCanvas.getContext('2d');
-      starCanvas.width = 4000;
-      starCanvas.height = 1200;
-      for (let i = 0; i < 200; i++) {
-        starCtx.fillStyle = Math.random() > 0.5 ? '#38bdf8' : '#f43f5e';
-        starCtx.globalAlpha = Math.random() * 0.7 + 0.2;
-        starCtx.beginPath();
-        starCtx.arc(Math.random() * 4000, Math.random() * 1200, Math.random() * 2.5 + 1, 0, Math.PI * 2);
-        starCtx.fill();
-      }
-    }
-
     /* =========================================================================
-       8. AUTO-UPDATE ENGINE & LIVE REFRESH FOR DAILY HOMEWORK/GAMES
+       AUTO-UPDATE ENGINE
        ========================================================================= */
-    const CURRENT_CLIENT_VERSION = 'v4.1.0';
+    const CURRENT_CLIENT_VERSION = 'v5.0.0';
     let isUpdatingApp = false;
 
-    function showUpdateToast(message = '¡Nueva tarea o juego detectado! Actualizando... 🚀') {
+    function showUpdateToast(message) {
       const toast = document.getElementById('updateToast');
       const text = document.getElementById('updateToastText');
       if (toast && text) {
@@ -1581,45 +1648,34 @@
             isUpdatingApp = true;
             localStorage.setItem('ara_app_version', serverVer);
             showUpdateToast(`¡Nueva tarea ${serverVer} lista! Actualizando... 🚀`);
-            
             if ('caches' in window) {
               const keys = await caches.keys();
               await Promise.all(keys.map(k => caches.delete(k)));
             }
-
-            setTimeout(() => {
-              window.location.reload(true);
-            }, 800);
+            setTimeout(() => window.location.reload(true), 800);
             return;
           }
         }
-      } catch (err) {
-        console.log('[AutoUpdate] Offline or checking failed:', err);
-      }
+      } catch(e) {}
 
       if (isManual) {
-        showUpdateToast('✓ ¡Tienes la versión más reciente de tus tareas!');
-        setTimeout(() => {
-          document.getElementById('updateToast')?.classList.add('hidden');
-        }, 2000);
+        showUpdateToast('✓ ¡Tienes la versión más reciente de la escuela!');
+        setTimeout(() => document.getElementById('updateToast')?.classList.add('hidden'), 2000);
       }
     }
 
     function forceAppUpdateCheck(isManual = false) {
       playClickSound();
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistration().then(reg => {
-          if (reg) reg.update();
-        });
+        navigator.serviceWorker.getRegistration().then(reg => { if (reg) reg.update(); });
       }
       checkForAppUpdates(isManual);
     }
 
-    // Register Service Worker with updateViaCache: 'none'
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register(`sw.js?t=${Date.now()}`, { updateViaCache: 'none' })
-          .then((reg) => {
+          .then(reg => {
             reg.update();
             reg.addEventListener('updatefound', () => {
               const newWorker = reg.installing;
@@ -1632,8 +1688,7 @@
                 });
               }
             });
-          })
-          .catch((err) => console.log('SW Reg error:', err));
+          }).catch(() => {});
       });
 
       let refreshing = false;
@@ -1645,14 +1700,10 @@
       });
     }
 
-    // Check updates whenever the tab becomes visible or gains focus
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') {
-        checkForAppUpdates(false);
-      }
+      if (document.visibilityState === 'visible') checkForAppUpdates(false);
     });
     window.addEventListener('focus', () => checkForAppUpdates(false));
-    setInterval(() => checkForAppUpdates(false), 45000);
 
     /* Init */
     window.addEventListener('DOMContentLoaded', () => {
