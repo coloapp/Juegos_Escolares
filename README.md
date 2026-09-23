@@ -52,8 +52,14 @@ Al tocar el botón flotante 🎒 **"Cajón de Objetos"**, se despliega una bande
   - 👄 *Física de Comer:* Arrastra la comida hacia la boca de Nonina o Doydo para ver la animación de masticar, sonido `ñam ñam` y corazones flotantes.
   - 🕶️ *Accesorios:* Gafas cyber, corona de estrellas, gorras.
   - 📱 *Juguetes:* Calculadora cuántica, trofeo dorado, pelota saltarina.
-- **👥 Pestaña Personajes:**
-  - Invoca o teletransporta a **Nonina 🌸**, **Doydo 💙**, **ARA BOT 🤖**, **Gato Bot 🐱** y **Mech Pup 🐶** a la sala actual.
+- **👥 Pestaña Personajes & Mascotas:**
+  - **Nonina 🌸:** Romina de 3.er Grado con uniforme escolar y lazo rosa.
+  - **Doydo 💙:** Ricardo de 2.º Grado con sudadera deportiva azul y rayo de velocidad.
+  - **Lolita 🐰:** Conejita blanca y tierna con orejitas rosadas y zanahoria preferida.
+  - **Gatita 🐱:** Gata blanca con negro (ojos esmeralda y cascabel).
+  - **Bruno 🐶:** Perro Border Collie con pecho blanco, pelaje negro, pata delantera izquierda blanca y cola con punta blanca.
+  - **ARA BOT 🤖:** Robot asistente matemático flotante.
+  - Invoca o teletransporta a cualquiera de los personajes y mascotas a la sala actual.
 
 ---
 
