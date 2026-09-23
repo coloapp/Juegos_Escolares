@@ -1,8 +1,8 @@
 /**
  * Service Worker: ARA BOT de Mate PWA
- * Caching Strategy: Cache-First for Offline Playability
+ * Caching Strategy: Cache-First for 100% Offline Playability
  */
-const CACHE_NAME = 'ara-bot-pwa-v2.5';
+const CACHE_NAME = 'ara-bot-pwa-v3.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

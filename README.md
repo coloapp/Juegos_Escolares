@@ -5,158 +5,127 @@
 [![Zero Scroll View](https://img.shields.io/badge/Viewport-Single_Screen_Zero--Scroll-a855f7?style=for-the-badge)](#)
 [![Pedagogy](https://img.shields.io/badge/Pedagogía-CPA_Singapur_%7C_SEP_México-ef4444?style=for-the-badge)](#)
 [![Web Audio Synth](https://img.shields.io/badge/Audio-Native_Web_Audio_API-eab308?style=for-the-badge)](#)
-[![License](https://img.shields.io/badge/License-MIT-slate?style=for-the-badge)](#)
+[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub_Pages-0284c7?style=for-the-badge&logo=github)](https://coloapp.github.io/Juegos_Escolares/)
 
-> **Plataforma interactiva de gamificación matemática infantil diseñada para Romina (Nonia) y Ricardo (Doydo). Construida con HTML5, CSS3 moderno (Tailwind CSS), JavaScript Vanilla y Web Audio API sin dependencias externas pesadas.**
+> **Plataforma interactiva de gamificación matemática infantil diseñada con estética Cyberpunk Neón y entorno de mundo abierto estilo Toca Boca / Avatar World para NONINA 🌸 (Romina - 3.er Grado) y DOYDO 💙 (Ricardo - 2.º Grado).**  
+> **Disponible online y 100% offline en [https://coloapp.github.io/Juegos_Escolares/](https://coloapp.github.io/Juegos_Escolares/)**
 
 ---
 
-## 🌟 Visión General
-
-**"ARA BOT de Mate"** es una Progressive Web App (PWA) de alto impacto visual y sensorial con estética **Cyberpunk / Neón Educativo**. Diseñada para ejecutarse en una sola pantalla sin desplazamiento vertical (**Single Screen Zero-Scroll**), permite a los estudiantes de primaria experimentar el valor posicional y la descomposición numérica a través de la experimentación lúdica táctil y auditiva.
+## 🌟 Arquitectura y Flujo de la Experiencia
 
 ```mermaid
 graph TD
-    A[🤖 ARA BOT de Mate] --> B[🎨 Selector de Perfil Neón]
-    B -->|🌸 Círculo Rosa| C[🚀 Nonia: El Cohete Numérico - 3.° Grado]
-    B -->|💙 Círculo Azul| D[🦖 Doydo: Laboratorio Dinosaurio - 2.° Grado]
-    C --> E[🏠 Cambiar Perfil Flotante]
-    D --> E
-    E --> B
+    A[🏫 Patio Interactivo Abierto Estilo Toca Boca] -->|🌸 Portal Rosa del Cielo| B[🌸 Menú de Nonina - 3.er Grado]
+    A -->|💙 Portal Azul del Cielo| C[🔮 Menú de Doydo: Hexágonos Flotantes Neón ⬢]
+    A -->|🕹️ Avatares Interactivos| D[Mover & Arrastrar a Nonina y Doydo por el Patio]
+    A -->|⭐ Props Tocables| E[Pizarra Cuántica, Sintetizador Z, Dino Rexi, Fuente 💎]
+    
+    B --> F[🚀 El Cohete Numérico: Series +5 & Odómetro Base-10]
+    C -->|🟢 Hexágono 1| G[🦖 Laboratorio Dinosaurio: Escape del T-Rex]
+    C -->|🔴🔵 Hexágono 2| H[🥊 El Cañón de Sumas RÁPIDAS: Luchadores Z]
+    
+    F -->|🏠 Botón Global| A
+    G -->|🏠 Botón Global| A
+    H -->|🏠 Botón Global| A
 ```
 
 ---
 
-## 🧠 Enfoque Pedagógico y Didáctico
+## 🎮 1. Entorno Abierto e Interactivo (Mundo 2D estilo Avatar World / Toca Boca)
 
-La aplicación implementa los más altos estándares pedagógicos de la educación matemática contemporánea:
-
-### 1. Modelo CPA (Concreto ➔ Pictórico ➔ Abstracto) de Singapur
-- **Fase Concreta / Manipulativa:** Los niños tocan e interactúan con bloques individuales de unidades, barras de decenas, placas de centenas y cubos de millar.
-- **Fase Pictórica:** El reactor y la fábrica muestran la agrupación física (10 cubos uniéndose en una barra; 10 barras en una placa).
-- **Fase Abstracta:** Se conecta directamente con la expresión numérica formal y la suma posicional:
-  $$\text{Número} = (\text{Millares} \times 1000) + (\text{Centenas} \times 100) + (\text{Decenas} \times 10) + (\text{Unidades} \times 1)$$
-
-### 2. Estilo de Aprendizaje VAK (Visual - Auditivo - Kinestésico)
-- **Visual:** Luces neón, código de colores estandarizado por valor, medidores de altura y compuertas mecánicas.
-- **Auditivo:** Sonidos sintetizados en tiempo real para bips de conteo, alertas de alarma 🚨, rugido del T-Rex 🦖, explosiones de fusión y fanfarrias de victoria.
-- **Kinestésico:** Interacción táctil inmediata, botones reactivos con micro-animaciones y retroalimentación instantánea.
-
-### 3. Alineación Curricular (SEP Primaria)
-- **2.° Grado:** Descomposición de números de 3 cifras hasta 1,000, comprensión del valor del cero intermedio y final (`250`, `409`).
-- **3.er Grado:** Conteo por saltos numéricos (series de 5 en 5, 10 en 10, etc.) y construcción de números hasta los millares ($10,000$).
+El juego inicia en un parque cyber-educativo lleno de vida con fondo dinámico de estrellas y partículas:
+- **Avatares Interactivos (NONINA & DOYDO):**
+  - **NONINA 🌸 (Romina - 3.er Grado):** Estilo cyber-girl con lazo rosa neón, remera con estrella y animaciones de pasos.
+  - **DOYDO 💙 (Ricardo - 2.º Grado):** Estilo cyber-boy deportivo con gorra/pelo azul neón, insignia de rayo y animaciones de pasos.
+  - **Movimiento Libre:** Los niños pueden tocar cualquier área del suelo para que el avatar camine hacia allí con indicador táctil tipo RPG, o arrastrarlos con el dedo / cursor.
+  - **Burbujas de Diálogo y Voz:** Al tocar a los avatares, saltan con alegría, despliegan mensajes y ARA BOT habla en voz alta.
+- **Props Interactivos del Patio:**
+  - 📋 **Pizarra Holográfica Cuántica:** Toca para generar sumas y operaciones matemáticas en vivo.
+  - 🦖 **Mascota Rexi Bebé:** Dinosaurio cibernético que baila y emite rugidos amistosos.
+  - 🎹 **Sintetizador Musical Z:** Toca notas musicales synth reales polifónicas con Web Audio API.
+  - 💎 **Fuente de Gemas Base-10:** Salpica partículas de oro, esmeralda y rubí.
+  - 🤖 **ARA BOT Paseante:** Asistente robótico que acompaña a los niños con consejos didácticos.
 
 ---
 
-## 🎮 Módulos de Juego
+## 🌌 2. Portales del Cielo y Menús Flotantes
 
-### 1. 🎨 Pantalla de Inicio: Selector de Perfil Neón
-- Fondo oscuro cibernético con rejilla y partículas ambientales.
-- **🌸 Círculo Rosa Neón - Nonia (Romina):** Acceso al tablero de 3.er Grado (*El Cohete Numérico*).
-- **💙 Círculo Azul Neón - Doydo (Ricardo):** Acceso al tablero de 2.° Grado (*Laboratorio Dinosaurio: Escape del T-Rex*).
-- **🏠 Botón Global Flotante:** Permite alternar perfiles en cualquier momento sin perder la sesión.
+En la parte superior del escenario flotan los portales galácticos:
 
----
-
-### 2. 🚀 Nonia (Romina): "El Cohete Numérico" (3.° Grado)
-- **Propósito:** Automatizar el conteo en series numéricas y construir la comprensión de números de hasta cuatro cifras.
-- **Componentes:**
-  - **Altímetro Espacial y Cohete:** Medidor vertical que escala de 0% a 100% conforme se acumulan puntos.
-  - **Odómetro Posicional:**
-    - 🟡 **Millar** (Amarillo / Oro)
-    - 🔴 **Centena** (Rojo)
-    - 🔵 **Decena** (Azul)
-    - 🟢 **Unidad** (Verde)
-  - **Fábrica Base-10 con Portal Mágico:** Generación de bloques animados con bips ascendentes al presionar `🚀 ¡SUMAR +5!`.
-  - **Salto Numérico Configurable:** Selector de incrementos (+1, +2, +5, +10, +50, +100).
-  - **Despegue con Partículas:** Animación de fuego y modal de ARA BOT explicando la descomposición posicional del número alcanzado.
+### 💙 Menú de Doydo: Hexágonos Flotantes Mágicos Neón ⬢
+Al tocar el portal azul de Doydo, se despliega el menú con hexágonos animados en CSS (`clip-path` y glow neón):
+1. 🟢 **Hexágono Verde Neón 1:** *"Laboratorio Dinosaurio: Escape del T-Rex 🦖"*
+   - 9 compuertas de seguridad blindadas de titanio.
+   - Código de contención holográfico con números de 3 cifras (Centenas 🔴, Decenas 🟢, Unidades 🔵).
+   - Reactor de fusión Base-10 (10 azules 🔵 ➔ 1 verde 🟢 / 10 verdes 🟢 ➔ 1 rojo 🔴).
+   - Alarma T-Rex interactiva y modal de la **Lección Secreta del Cero**.
+2. 🔴🔵 **Hexágono Rojo/Azul Neón 2:** *"El Cañón de Sumas RÁPIDAS (Luchadores Z) 🥊"*
+   - Combate cibernético contra robots descontrolados con fuerzas hasta 50 ⚡.
+   - Selector inicial de modo: ⚡ **Modo Rápido** (Reflejos Z con temporizador de sobrecarga) vs 🧠 **Modo Estrategia** (Descomposición táctica de plasma con cargas +10, +5, +2, +1).
+   - **¡Efecto visual de explosión de tuercas, engranajes ⚙️, pernos 🔩 y chispas 💥!**
+   - Sistema de rachas Z y combos de puntuación.
 
 ---
 
-### 3. 🦖 Doydo (Ricardo): "Laboratorio Dinosaurio: Escape del T-Rex" (2.° Grado)
-- **Propósito:** Consolidar la descomposición de centenas, decenas y unidades con tareas escolares reales.
-- **Ambientación:** Alarma roja parpadeante 🚨, rugido del T-Rex animado en su jaula de contención y panel de seguridad.
-- **Reactor de Fusión Base-10:**
-  - Botón interactivo para fusionar $10$ Unidades Azules 🔵 ➔ $1$ Decena Verde 🟢.
-  - Botón interactivo para fusionar $10$ Decenas Verdes 🟢 ➔ $1$ Centena Roja 🔴.
-- **Sistema de 9 Puertas de Contención:**
-  | Puerta / Nivel | Código de Seguridad | Descomposición Requerida | Foco Pedagógico |
-  |:---:|:---:|:---:|:---|
-  | **1** | `378` | 3🔴 + 7🟢 + 8🔵 | Tutorial asistido con ARA BOT |
-  | **2** | `642` | 6🔴 + 4🟢 + 2🔵 | Descomposición estándar |
-  | **3** | `195` | 1🔴 + 9🟢 + 5🔵 | Decena alta (90) |
-  | **4** | `814` | 8🔴 + 1🟢 + 4🔵 | Centena alta y decena básica |
-  | **5** | `250` | 2🔴 + 5🟢 + 0🔵 | **¡Cero unidades!** Comprensión del valor posicional nulo |
-  | **6** | `937` | 9🔴 + 3🟢 + 7🔵 | Centena máxima de nivel |
-  | **7** | `409` | 4🔴 + 0🟢 + 9🔵 | **¡Cero decenas!** Reto crítico de valor posicional |
-  | **8** | `763` | 7🔴 + 6🟢 + 3🔵 | Consolidación intermedia |
-  | **9** | `581` | 5🔴 + 8🟢 + 1🔵 | Puerta final de escape |
-- **Animación de Bloqueo:** Al acertar el código, la **Compuerta de Titanio azota con impacto metálico 💥** frente al T-Rex.
-- **La Lección Secreta de ARA BOT:** Al completar los 9 niveles, ARA BOT presenta la regla nemotécnica matemática:
-  - 🔵 **Unidades:** Valen $1$ (sin ceros adicionales).
-  - 🟢 **Decenas:** Se les agrega **UN CERO** ($10$).
-  - 🔴 **Centenas:** Se les agregan **DOS CEROS** ($100$).
+### 🌸 Menú de Nonina: Misión Espacial de 3.er Grado
+Al tocar el portal rosa de Nonina, se activa:
+- 🚀 **"El Cohete Numérico":**
+  - Conteo por saltos en series de 5 en 5 (configurable a +1, +2, +5, +10, +50, +100).
+  - Odómetro posicional de 4 columnas:
+    - 🟡 **Millares** (x1000)
+    - 🔴 **Centenas** (x100)
+    - 🔵 **Decenas** (x10)
+    - 🟢 **Unidades** (x1)
+  - Fábrica visual de bloques Base-10 con portales de compresión.
+  - Altímetro orbital y botón de despegue interestelar con lluvia de estrellas.
 
 ---
 
-## 🔊 Sintetizador Web Audio (100% Offline)
+## 🧠 Enfoque Pedagógico
 
-Toda la experiencia sonora está generada en tiempo real mediante **Web Audio API** nativo, garantizando que el juego no requiera descargar archivos de audio externos:
-- **Sirena de Alarma:** Oscilador de onda de sierra con modulación periódica de frecuencia.
-- **Rugido de T-Rex:** Oscilador sub-grave modulado con decaimiento dinámico.
-- **Impacto de Compuerta de Titanio:** Onda cuadrada con golpe de transitorio y reverberación sintética.
-- **Fusión Base-10:** Arpegios ascendentes en onda triangular/senoidal.
-- **Bips de Conteo:** Pulsos senoidales escalonados por tono.
-
----
-
-## 📱 Instalación como PWA
-
-### En Celulares y Tablets (Android / Chrome)
-1. Abre la aplicación en el navegador Google Chrome.
-2. Toca el botón emergente **"Instalar"** o pulsa los 3 puntos del navegador y selecciona **"Agregar a la pantalla principal"**.
-3. La app se instalará como una aplicación nativa con icono propio y funcionará completamente sin conexión a internet.
-
-### En iPhone y iPad (iOS / Safari)
-1. Abre la aplicación en **Safari**.
-2. Toca el botón **Compartir** (<i class="fa-solid fa-share-from-square"></i>).
-3. Selecciona **"Añadir a la pantalla de inicio"**.
-
-### En Escritorio (Windows / Mac / Linux)
-1. En Chrome o Edge, haz clic en el icono de instalación en la barra de direcciones (`⊕`).
-2. Disfruta de la app en modo ventana independiente sin barras de navegador.
+1. **Modelo CPA (Concreto ➔ Pictórico ➔ Abstracto) de Singapur:**
+   - Manipulación de bloques e interactividad directa con los objetos del patio y los minijuegos.
+   - Comprensión de agrupaciones decimales antes de pasar a la notación numérica abstracta.
+2. **Modelo VAK (Visual - Auditivo - Kinestésico):**
+   - **Visual:** Neón de alta fidelidad, códigos de color consistentes por valor posicional y animaciones vectoriales SVG.
+   - **Auditivo:** Sintetizador Web Audio API para láseres, explosiones metálicas, fanfarrias, pasos y motor de voz ARA BOT.
+   - **Kinestésico:** Arrastre de avatares, pulsos en el suelo y botones táctiles optimizados para dedos infantiles.
+3. **Alineación Curricular SEP México:**
+   - **2.° Grado:** Números hasta 1,000, sumas rápidas hasta 50 y valor posicional con ceros intermedios/finales.
+   - **3.er Grado:** Series numéricas de 5 en 5 y números de 4 cifras hasta los millares.
 
 ---
 
-## 🚀 Despliegue en GitHub Pages
+## 🛠️ Especificaciones Técnicas
 
-Para publicar este proyecto de forma gratuita en GitHub:
-
-1. Crea un repositorio en GitHub (ej. `juegos-escolares-ara-bot`).
-2. Sube los archivos del proyecto:
-   ```bash
-   git add .
-   git commit -m "feat: Lanzamiento PWA ARA BOT de Mate v2.5"
-   git branch -M main
-   git push -u origin main
-   ```
-3. En tu repositorio de GitHub, ve a **Settings** ➔ **Pages**.
-4. En **Build and deployment > Branch**, selecciona `main` y la carpeta `/ (root)`.
-5. Haz clic en **Save**. En unos segundos, tu PWA estará disponible en `https://<tu-usuario>.github.io/<tu-repo>/`.
+- **Tecnología:** HTML5, CSS3 puro (Tailwind CSS, Keyframe Animations, Clip-Path), JavaScript Vanilla (ES6+).
+- **Single-Screen Zero-Scroll View:** Diseñado con `100dvh` y `overflow: hidden`, garantizando una experiencia de juego perfecta en móviles y tablets sin barras de scroll molestas.
+- **100% Offline PWA:** Service Worker (`sw.js`) con estrategia Cache-First y manifiesto PWA instalable en iOS, Android, macOS y Windows.
+- **Web Audio API:** Sintetizador de sonido poligonal nativo sin archivos `.mp3` pesados externos, asegurando carga instantánea y funcionamiento total sin internet.
+- **Asistente de Voz ARA BOT:** Integración con Web Speech API para lectura en voz alta de problemas y felicitaciones.
 
 ---
 
-## 📁 Estructura del Repositorio
+## 🚀 Instalación y Despliegue
 
-```text
-├── index.html          # Aplicación única ejecutable (HTML5, Tailwind, CSS, JS, Web Audio)
-├── manifest.json       # Manifiesto PWA para instalación standalone
-├── sw.js               # Service Worker con caché offline (Cache-First)
-└── README.md           # Documentación pedagógica y técnica completa
+### Probar en Línea
+Visita el enlace oficial en GitHub Pages:  
+👉 **[https://coloapp.github.io/Juegos_Escolares/](https://coloapp.github.io/Juegos_Escolares/)**
+
+### Ejecución Local
+Simplemente abre `index.html` en cualquier navegador moderno o usa un servidor local ligero:
+```bash
+# Con Python
+python -m http.server 8080
+
+# Con Node.js npx
+npx serve .
 ```
 
 ---
 
-## 👨‍👧‍👦 Dedicatoria
+## 📄 Licencia y Créditos
 
-Creado con amor por papá para **Romina (Nonia)** y **Ricardo (Doydo)**, para hacer de sus tareas escolares de matemáticas una aventura cibernética inolvidable. 🚀🦖🤖
+Desarrollado con ❤️ para **Romina (Nonina)** y **Ricardo (Doydo)** en el marco del proyecto escolar **ARA BOT de Mate**.  
+Licencia MIT.

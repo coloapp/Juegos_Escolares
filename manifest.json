@@ -1,7 +1,7 @@
 {
-  "name": "ARA BOT de Mate: Cohete & Dinosaurio",
+  "name": "ARA BOT de Mate: Patio Interactivo, Cohete, Dinosaurio & Luchadores Z",
   "short_name": "ARA BOT Mate",
-  "description": "Progressive Web App interactiva de matemáticas y valor posicional con ARA BOT para 2.° y 3.er grado de primaria.",
+  "description": "PWA educativa estilo Toca Boca/Avatar World con mundo abierto interactivo, El Cohete Numérico, Laboratorio Dinosaurio y El Cañón de Sumas Rápidas.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#020617",
