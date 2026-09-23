@@ -1618,17 +1618,22 @@
     }
 
     /* =========================================================================
-       AUTO-UPDATE ENGINE
+       AUTO-UPDATE ENGINE (CLEAN & LOOP-FREE)
        ========================================================================= */
     const CURRENT_CLIENT_VERSION = 'v5.0.0';
     let isUpdatingApp = false;
 
-    function showUpdateToast(message) {
+    function showUpdateToast(message, autoHideMs = 3000) {
       const toast = document.getElementById('updateToast');
       const text = document.getElementById('updateToastText');
       if (toast && text) {
         text.innerText = message;
         toast.classList.remove('hidden');
+        if (autoHideMs > 0) {
+          setTimeout(() => {
+            toast.classList.add('hidden');
+          }, autoHideMs);
+        }
       }
     }
 
@@ -1647,12 +1652,16 @@
           if (serverVer && serverVer !== storedVer) {
             isUpdatingApp = true;
             localStorage.setItem('ara_app_version', serverVer);
-            showUpdateToast(`¡Nueva tarea ${serverVer} lista! Actualizando... 🚀`);
+            showUpdateToast(`¡Nueva versión escolar ${serverVer} detectada! Actualizando... 🚀`, 0);
+            
             if ('caches' in window) {
               const keys = await caches.keys();
               await Promise.all(keys.map(k => caches.delete(k)));
             }
-            setTimeout(() => window.location.reload(true), 800);
+
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
             return;
           }
         }
@@ -1660,48 +1669,36 @@
 
       if (isManual) {
         showUpdateToast('✓ ¡Tienes la versión más reciente de la escuela!');
-        setTimeout(() => document.getElementById('updateToast')?.classList.add('hidden'), 2000);
       }
     }
 
     function forceAppUpdateCheck(isManual = false) {
       playClickSound();
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistration().then(reg => { if (reg) reg.update(); });
+        navigator.serviceWorker.getRegistration().then(reg => {
+          if (reg) reg.update();
+        });
       }
       checkForAppUpdates(isManual);
     }
 
+    // Clean, stable Service Worker Registration (Fixed URL)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register(`sw.js?t=${Date.now()}`, { updateViaCache: 'none' })
+        navigator.serviceWorker.register('sw.js')
           .then(reg => {
-            reg.update();
-            reg.addEventListener('updatefound', () => {
-              const newWorker = reg.installing;
-              if (newWorker) {
-                newWorker.addEventListener('statechange', () => {
-                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                    showUpdateToast('¡Descargando nuevo juego diario! Reiniciando...');
-                    newWorker.postMessage({ action: 'skipWaiting' });
-                  }
-                });
-              }
-            });
-          }).catch(() => {});
-      });
-
-      let refreshing = false;
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (!refreshing) {
-          refreshing = true;
-          window.location.reload(true);
-        }
+            // Check for updates periodically without reload loop
+            reg.update().catch(() => {});
+          })
+          .catch(() => {});
       });
     }
 
+    // Check updates only when tab gains focus or becomes visible
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') checkForAppUpdates(false);
+      if (document.visibilityState === 'visible') {
+        checkForAppUpdates(false);
+      }
     });
     window.addEventListener('focus', () => checkForAppUpdates(false));
 
@@ -1710,7 +1707,6 @@
       document.body.addEventListener('click', () => initAudio(), { once: true });
       updateActiveRoomTab(0);
       localStorage.setItem('ara_app_version', CURRENT_CLIENT_VERSION);
-      setTimeout(() => checkForAppUpdates(false), 2000);
     });
   </script>
 </body>
