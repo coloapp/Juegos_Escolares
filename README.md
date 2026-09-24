@@ -1,72 +1,92 @@
-# 🤖 ARA BOT de Mate • PWA Mundo Toca Boca & 5 Minijuegos Escolares
+# 🤖 ARA BOT de Mate • PWA Mundo Toca Boca & Juegos Escolares (v5.3.0)
 
 [![PWA Ready](https://img.shields.io/badge/PWA-Ready-22c55e?style=for-the-badge&logo=pwa&logoColor=white)](https://web.dev/progressive-web-apps/)
 [![Offline 100%](https://img.shields.io/badge/Offline-100%25_Supported-3b82f6?style=for-the-badge&logo=offline&logoColor=white)](#)
 [![Zero Scroll Vertical](https://img.shields.io/badge/Viewport-Zero_Scroll_Vertical-a855f7?style=for-the-badge)](#)
 [![Toca Boca World](https://img.shields.io/badge/Sandbox-Toca_Boca_Avatar_World-f43f5e?style=for-the-badge)](#)
-[![5 Minijuegos](https://img.shields.io/badge/Minijuegos-5_Zonas_Temáticas-eab308?style=for-the-badge)](#)
+[![SEP Tareas](https://img.shields.io/badge/SEP_México-2.°_y_3.er_Grado-eab308?style=for-the-badge)](#)
 [![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub_Pages-0284c7?style=for-the-badge&logo=github)](https://coloapp.github.io/Juegos_Escolares/)
 
-> **Plataforma interactiva de mundo abierto estilo Toca Life / Avatar World con desplazamiento horizontal panorámico, cajón de personajes y mascotas (Nonina 🌸, Doydo 💙, Lolita la coneja 🐰, Gatita 🐱, Bruno el Border Collie 🐶 y ARA BOT 🤖), física de comida masticable y 5 minijuegos temáticos dedicados por área.**  
+> **PWA interactiva de mundo abierto escolar estilo Toca Life / Avatar World / Habbo con personajes interactivos arrastrables (Nonina 🌸, Doydo 💙, ARA BOT 🤖, Lolita 🐰 y Bruno 🐶), Rincón de Fotosíntesis 🌿☀️, La Dulcería Mágica de Doña Cecilia 🍬 (resolución de la tarea oficial SEP de 2.° Grado), Menú de Hexágonos Neón ⬢ y minijuegos temáticos.**  
 > **Disponible online y 100% offline en [https://coloapp.github.io/Juegos_Escolares/](https://coloapp.github.io/Juegos_Escolares/)**
 
 ---
 
-## 🗺️ 1. Mundo Panorámico con 5 Minijuegos Dedicados por Área
+## 🏫 1. Mundo Abierto Interactivo (Patio Escolar Panorámico)
+
+El patio cibernético cuenta con desplazamiento horizontal fluido (`touch-pan-x`) y 5 áreas temáticas conectadas:
 
 ```mermaid
 graph LR
-    R1[🏫 Aula: Pizarra Mágica] <--> R2[🧪🦖 Lab Dino: 9 Puertas] <--> R3[🥪☕ Cafetería: Chef Fracciones] <--> R4[🥊⚡ Dojo Z: Cañón de Sumas] <--> R5[🚀🌌 Observatorio: El Cohete]
+    R1[📚 Aula Cuántica: Pizarra Mágica] <--> R2[🌿☀️ Rincón Botánica: Fotosíntesis] <--> R3[🍬🏪 Tiendita: Dulcería Doña Cecilia] <--> R4[🥊⚡ Gimnasio: Cañón Z 50⚡] <--> R5[🚀🌌 Observatorio: Cohete Numérico]
 ```
 
-### 1. 🏫 Aula Cuántica: "El Duelo de la Pizarra Mágica"
-- **Foco Pedagógico:** 1.° a 3.er Grado • Cálculo mental flash, operaciones básicas y tablas de multiplicar.
-- **Mecánicas:** Pizarrón interactivo con tizas de colores, operaciones flash (➕ Sumas, ➖ Restas, ✖️ Tablas), racha de combos 🔥 y estrellas.
-- **Acceso:** Botón en la cabecera del aula o tocando el pizarrón.
+### 🌿☀️ Rincón de Botánica (Misión Fotosíntesis)
+- **Foco Pedagógico:** Ciencias Naturales y Biología Primaria.
+- **Mecánica Interactiva:** Experimento interactivo donde el alumno riega la planta con la regadera mágica 💧 y la expone a la luz solar nutritiva ☀️ para completar la reacción química:  
+  $$\text{Agua } (\text{H}_2\text{O}) + \text{Luz Solar} + \text{Dióxido de Carbono } (\text{CO}_2) \longrightarrow \text{Glucosa } (\text{Nutrientes 🍯}) + \text{Oxígeno } (\text{O}_2 \text{ 🫧})$$
+- Genera partículas de oxígeno y energía vegetal con retroalimentación inmediata de ARA BOT 🤖.
 
-### 2. 🧪🦖 Lab Dino & Bio-Robótica: "Laboratorio Dinosaurio (Escape del T-Rex)"
-- **Foco Pedagógico:** 2.° Grado • Descomposición de centenas, decenas y unidades (C, D, U) y valor del cero.
-- **Mecánicas:** **9 Puertas de contención reales** (`378, 642, 195, 814, 250, 937, 409, 763, 581`), 3 búnkers tácticos con auto-bloqueo 🔒, reactor de fusión Base-10 (10 azules ➔ 1 verde, 10 verdes ➔ 1 rojo), azote de compuerta de titanio 💥, rugido del T-Rex y la Lección Secreta del Cero de ARA BOT.
-- **Acceso:** Botón en la cabecera o tocando la jaula/mesa del dinosaurio.
-
-### 3. 🥪☕ Cafetería Escolar: "La Cafetería Fraccionaria & Máquina de Bocadillos"
-- **Foco Pedagógico:** 2.° y 3.er Grado • Fracciones visuales (1/2, 1/4, 2/4, 3/4) y conteo de dinero en monedas ($10, $5, $1).
-- **Mecánicas:** Clientes en mesa (Nonina, Doydo, Lolita, Gatita, Bruno) solicitan porciones de pizza o compras en máquina expendedora, con estrellas de chef y comida servida.
-- **Acceso:** Botón en la cabecera o tocando la vitrina de bocadillos.
-
-### 4. 🥊⚡ Gimnasio & Dojo Z: "El Cañón de Sumas RÁPIDAS (Luchadores Z)"
-- **Foco Pedagógico:** 2.° Grado • Sumas hasta 50⚡ y pensamiento táctico.
-- **Mecánicas:** Modos **⚡ Rápido** (proyectiles cronometrados) y **🧠 Estrategia** (cañón de carga táctica +10, +5, +1), robots enemigos (Chispas, Bípode, Titán, Alfa), combo multiplier y explosión de tuercas ⚙️💥.
-- **Acceso:** Botón en la cabecera o tocando el saco de boxeo/dummy.
-
-### 5. 🚀🌌 Observatorio Espacial: "El Cohete Numérico"
-- **Foco Pedagógico:** 3.er Grado • Series de 5 en 5, valor posicional de 4 cifras (M, C, D, U).
-- **Mecánicas:** Odómetro de 4 cifras (🟡 Millar, 🔴 Centena, 🔵 Decena, 🟢 Unidad), altímetro espacial a 10,000 M, selector de saltos (+1, +2, +5, +10, +50, +100), fábrica Base-10 con portal mágico de partículas y despegue con desglose posicional de ARA BOT.
-- **Acceso:** Botón en la cabecera o tocando el cohete de lanzamiento.
+### 🍬🏪 Puesto de Dulces de Doña Cecilia
+- Puesto físico en el patio para entrar directamente al taller y minijuego de conteo y empaque.
 
 ---
 
-## 🎒 2. Cajón de Inventario, Mascotas & Física Toca Boca
+## 🌌 2. Menú de Juegos de Doydo (Hexágonos Flotantes Neón ⬢)
 
-- **🧸 Objetos & Comida:** Zanahoria 🥕, Pescadito 🐟, Huesito 🍖, Pizza 🍕, Dona 🍩, Jugo 🧃, Helado 🍦, Peluche 🧸, Balón 🏀.
-- **👄 Física de Comer:** Arrastra la comida hacia cualquier personaje o mascota para ver la animación de masticar, sonido 'ñam ñam' y corazones flotantes.
-- **🐾 Mascotas & Personajes:**
-  - **Nonina 🌸:** Romina de 3.er Grado.
-  - **Doydo 💙:** Ricardo de 2.º Grado.
-  - **Lolita 🐰:** Conejita blanca y tierna.
-  - **Gatita 🐱:** Gata blanca con negro y ojos esmeralda.
-  - **Bruno 🐶:** Perro Border Collie (pecho blanco, pelaje negro, pata delantera izquierda blanca).
-  - **ARA BOT 🤖:** Robot asistente matemático.
+Modal holográfico con hexágonos táctiles para **2.° Grado (Ricardo / Doydo)**:
+
+### 🟢 Hexágono 1: "Laboratorio Dinosaurio (Escape del T-Rex 🦖)"
+- **Foco:** Descomposición Base-10 (Centenas 🔴, Decenas 🟢, Unidades 🔵) y el Valor Posicional del Cero.
+- **Mecánica:** 9 Puertas de contención (`378, 642, 195, 814, 250, 937, 409, 763, 581`), 3 búnkers con auto-bloqueo 🔒, compuertas de titanio 💥 y reactor de fusión Base-10.
+
+### 🔴🔵 Hexágono 2: "El Cañón de Sumas RÁPIDAS (Luchadores Z) 🥊"
+- **Foco:** Sumas y cálculo mental rápido con fuerzas hasta 50⚡.
+- **Mecánica:** Modos ⚡ Rápido y 🧠 Estrategia (cargas de +10, +5, +1), enemigos robóticos (Chispas Z-1, Cyber-Bípode Z-2, Mecha-Titan Z-3, Electro-Destructor Z-4, Mega-Bot Alfa Z-5) y explosión de tuercas ⚙️💥.
+
+### 🟡 Hexágono 3 (NUEVO): "La Dulcería Mágica de Doña Cecilia 🍬"
+- **Foco:** Descomposición, empaque y agrupación en Unidades, Decenas y Centenas (Basado en la Tarea SEP 2.° Grado).
+- **Mecánica de Empaque Base-10:**
+  - $1$ Dulce suelto 🍬 = $1$ Unidad (🔵 Azul).
+  - $10$ Dulces sueltos 🍬 $\rightarrow$ $1$ Bolsa 🛍️ ($10$ / Decena - 🟢 Verde).
+  - $10$ Bolsas 🛍️ $\rightarrow$ $1$ Caja 📦 ($100$ / Centena - 🟡 Amarillo Oro).
+- **Los 4 Ejercicios de la Tarea SEP:**
+  1. *Contar Empacados (Don Ramón):* "3 Cajas y 6 Bolsas" $\rightarrow 3 \times 100 + 6 \times 10 = \mathbf{360 \text{ dulces}}$.
+  2. *Descomponer Número (Pedido 520):* "Pedido de 520 dulces" $\rightarrow \mathbf{5 \text{ Cajas y } 2 \text{ Bolsas}}$.
+  3. *Agrupar Decenas (Pedido 45 Bolsas):* "Recibe 45 bolsas" $\rightarrow 45 \text{ bolsas} = \mathbf{4 \text{ Cajas y } 5 \text{ Bolsas (450 dulces)}}$.
+  4. *Conteo de Bodega:* "Tiene 6 Cajas y 15 Bolsas" $\rightarrow 600 + 150 = \mathbf{750 \text{ dulces en total}}$.
+- **Asistencia con Código de Colores ARA BOT 🤖:** Centenas/Cajas (🟡 Amarillo), Decenas/Bolsas (🟢 Verde), Unidades/Dulces (🔵 Azul) para evitar confusiones de lectura.
 
 ---
 
-## 🔄 3. Actualización Automática Diaria (Network-First)
+## 🚀 3. Menú de Juegos de Nonina (3.er Grado)
 
-- Detección automática en segundo plano mediante `version.json` sin recargas en bucle.
-- Purgado de caché y actualización instantánea con notificación flotante.
+Modal para **Romina / Nonina**:
+- 🌸 **El Cohete Numérico 🚀:** Series de 5 en 5, odómetro de 4 cifras (🟡 Millares, 🔴 Centenas, 🔵 Decenas, 🟢 Unidades) y altímetro espacial a 10,000 M.
+- 📐 **Pizarra Mágica Cuántica:** Cálculo mental flash, tizas de colores, sumas, restas y tablas de multiplicar con multiplicador de combo.
+
+---
+
+## 🐾 4. Personajes Interactivos y Mochila
+
+- **Nonina 🌸:** Avatar animado con uniforme escolar y lazo rosa.
+- **Doydo 💙:** Avatar animado con gorra azul y rayo relámpago.
+- **ARA BOT 🤖:** Robot flotante que brinda pistas pedagógicas.
+- **Lolita 🐰:** Conejita con orejas tiernas.
+- **Bruno 🐶:** Border Collie fiel con pecho blanco y pata delantera blanca.
+- **Física de Arrastre & Alimentación:** Arrastra dulces 🍬, pizza 🍕, zanahorias 🥕 y agua 💧 hacia cualquier personaje para ver reacciones y corazones.
+
+---
+
+## 🛠️ 5. Requisitos Técnicos y Arquitectura PWA
+
+- **Single Screen Zero-Scroll View:** Vista fija en `100dvh` optimizada para tablets y smartphones sin desbordamiento vertical.
+- **100% Offline (Web Audio API):** Síntesis de ondas de sonido senoidales/cuadradas generadas directamente en el navegador sin dependencias de archivos externos.
+- **Auto-Update Engine (Network-First):** Verificación automática de `version.json` con purgado de Service Worker y actualización instantánea.
 
 ---
 
 ## 👨‍👧‍👦 Dedicatoria
 
-Creado con amor para **Romina (Nonina)** y **Ricardo (Doydo)**. ¡Aprender matemáticas jugando en su propio mundo escolar interactivo! 🏫🚀🦖🥊🥪
+Creado con amor para **Romina (Nonina)** y **Ricardo (Doydo)**. ¡Aprender jugando en su propio universo escolar interactivo! 🏫🌸💙
+
