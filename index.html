@@ -217,6 +217,91 @@
     .glow-blue { box-shadow: 0 0 16px rgba(56, 189, 248, 0.6); }
     .glow-pink { box-shadow: 0 0 16px rgba(244, 63, 94, 0.6); }
 
+    /* ========================================================================= */
+    /* 🍬 3D ISOMETRIC ENGINE & ROBLOX / OVERCOOKED STYLES                       */
+    /* ========================================================================= */
+    .perspective-1000 {
+      perspective: 1000px;
+      perspective-origin: 50% 35%;
+    }
+    .preserve-3d {
+      transform-style: preserve-3d;
+    }
+    .isom-stage {
+      transform: rotateX(24deg) rotateY(-8deg) rotateZ(0deg);
+      transform-style: preserve-3d;
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .isom-block {
+      transform: translateZ(12px);
+      box-shadow: -4px 8px 16px rgba(0,0,0,0.35), inset 0 2px 4px rgba(255,255,255,0.15);
+    }
+
+    /* Conveyor Belt 3D */
+    @keyframes conveyorScroll {
+      0% { background-position: 0 0; }
+      100% { background-position: 48px 0; }
+    }
+    .conveyor-belt-anim {
+      background: repeating-linear-gradient(90deg, #1e293b, #1e293b 16px, #0f172a 16px, #0f172a 32px);
+      background-size: 32px 100%;
+      animation: conveyorScroll 0.8s linear infinite;
+    }
+
+    /* 3D Folding Box Flaps */
+    .box-3d-container {
+      position: relative;
+      transform-style: preserve-3d;
+    }
+    .flap-top {
+      transform-origin: top center;
+      transition: transform 0.35s ease-out;
+    }
+    .flap-bottom {
+      transform-origin: bottom center;
+      transition: transform 0.35s ease-out;
+    }
+    .flap-left {
+      transform-origin: left center;
+      transition: transform 0.35s ease-out;
+    }
+    .flap-right {
+      transform-origin: right center;
+      transition: transform 0.35s ease-out;
+    }
+    .box-closed-state .flap-top { transform: rotateX(-90deg); }
+    .box-closed-state .flap-bottom { transform: rotateX(90deg); }
+    .box-closed-state .flap-left { transform: rotateY(-90deg); }
+    .box-closed-state .flap-right { transform: rotateY(90deg); }
+
+    /* Steam & Bubble Floating Animations */
+    @keyframes steamFloat {
+      0% { transform: translateY(0) scale(0.7); opacity: 0.8; }
+      50% { transform: translateY(-16px) scale(1.1) rotate(12deg); opacity: 0.5; }
+      100% { transform: translateY(-32px) scale(1.4) rotate(-12deg); opacity: 0; }
+    }
+    .animate-sweet-steam {
+      animation: steamFloat 1.8s ease-out infinite;
+    }
+
+    /* Holographic HUD */
+    .holo-hud {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(2, 6, 23, 0.95) 100%);
+      border: 2px solid rgba(245, 158, 11, 0.6);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.25), inset 0 0 15px rgba(245, 158, 11, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Truck Dispatch Drive-Off */
+    @keyframes truckDriveOff {
+      0% { transform: translateX(0); }
+      40% { transform: translateX(-15px) scale(1.02); }
+      100% { transform: translateX(450px); opacity: 0; }
+    }
+    .truck-driving {
+      animation: truckDriveOff 1.4s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+    }
+
     #fxCanvas {
       pointer-events: none;
       position: fixed;
@@ -764,12 +849,16 @@
       </div>
 
       <div id="drawerTabItems" class="flex items-center gap-3 overflow-x-auto py-1 no-scrollbar">
-        <button onclick="spawnItemToWorld('🍬', 'Dulce', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 transition-all"><span class="text-3xl">🍬</span><span class="text-[9px] font-black text-amber-900 mt-1">Dulce</span></button>
-        <button onclick="spawnItemToWorld('🛍️', 'Bolsa', 'toy')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 transition-all"><span class="text-3xl">🛍️</span><span class="text-[9px] font-black text-emerald-900 mt-1">Bolsa (10)</span></button>
-        <button onclick="spawnItemToWorld('📦', 'Caja', 'toy')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 transition-all"><span class="text-3xl">📦</span><span class="text-[9px] font-black text-amber-950 mt-1">Caja (100)</span></button>
-        <button onclick="spawnItemToWorld('💧', 'Agua', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 transition-all"><span class="text-3xl">💧</span><span class="text-[9px] font-black text-sky-900 mt-1">Agua</span></button>
-        <button onclick="spawnItemToWorld('🍕', 'Pizza', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 transition-all"><span class="text-3xl">🍕</span><span class="text-[9px] font-black text-amber-900 mt-1">Pizza</span></button>
-        <button onclick="spawnItemToWorld('🥕', 'Zanahoria', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 transition-all"><span class="text-3xl">🥕</span><span class="text-[9px] font-black text-amber-900 mt-1">Zanahoria</span></button>
+        <button onclick="spawnItemToWorld('🍬', 'Dulce', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all"><span class="text-3xl">🍬</span><span class="text-[9px] font-black text-amber-900 mt-1">Dulce</span></button>
+        <button onclick="spawnItemToWorld('🍕', 'Pizza', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all"><span class="text-3xl">🍕</span><span class="text-[9px] font-black text-amber-900 mt-1">Pizza</span></button>
+        <button onclick="spawnItemToWorld('🥕', 'Zanahoria', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all"><span class="text-3xl">🥕</span><span class="text-[9px] font-black text-amber-900 mt-1">Zanahoria</span></button>
+        <button onclick="spawnItemToWorld('🍖', 'Huesito', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all"><span class="text-3xl">🍖</span><span class="text-[9px] font-black text-amber-950 mt-1">Huesito</span></button>
+        <button onclick="spawnItemToWorld('🍦', 'Helado', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all"><span class="text-3xl">🍦</span><span class="text-[9px] font-black text-pink-900 mt-1">Helado</span></button>
+        <button onclick="spawnItemToWorld('🍩', 'Dona', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all"><span class="text-3xl">🍩</span><span class="text-[9px] font-black text-rose-900 mt-1">Dona</span></button>
+        <button onclick="spawnItemToWorld('🍎', 'Manzana', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all"><span class="text-3xl">🍎</span><span class="text-[9px] font-black text-red-900 mt-1">Manzana</span></button>
+        <button onclick="spawnItemToWorld('💧', 'Agua', 'food')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all"><span class="text-3xl">💧</span><span class="text-[9px] font-black text-sky-900 mt-1">Agua</span></button>
+        <button onclick="spawnItemToWorld('🛍️', 'Bolsa', 'toy')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all"><span class="text-3xl">🛍️</span><span class="text-[9px] font-black text-emerald-900 mt-1">Bolsa (10)</span></button>
+        <button onclick="spawnItemToWorld('📦', 'Caja', 'toy')" class="shrink-0 p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border-2 border-amber-300 flex flex-col items-center hover:scale-110 active:scale-95 transition-all"><span class="text-3xl">📦</span><span class="text-[9px] font-black text-amber-950 mt-1">Caja (100)</span></button>
       </div>
 
       <div id="drawerTabChars" class="hidden items-center gap-3 overflow-x-auto py-1 no-scrollbar">
@@ -877,109 +966,257 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- 🍬 PANTALLA 2: LA DULCERÍA MÁGICA DE DOÑA CECILIA (NUEVO JUEGO SEP)       -->
+  <!-- 🍬 PANTALLA 2: LA DULCERÍA 3D DE DOÑA CECILIA (OVERCOOKED / ROBLOX)       -->
   <!-- ========================================================================= -->
-  <section id="screen-dulceria" class="hidden flex-1 flex flex-col justify-between p-2.5 sm:p-3 w-full h-full relative z-20 overflow-hidden bg-slate-950 text-white">
+  <section id="screen-dulceria" class="hidden flex-1 flex flex-col justify-between p-2 sm:p-2.5 w-full h-full relative z-20 overflow-hidden bg-slate-950 text-white select-none">
     
     <!-- Top Header -->
-    <header class="h-12 bg-slate-900/95 border-2 border-amber-400 rounded-2xl px-3 flex items-center justify-between shrink-0 shadow-lg pr-14 backdrop-blur-md">
+    <header class="h-11 bg-slate-900/95 border-2 border-amber-400 rounded-2xl px-3 flex items-center justify-between shrink-0 shadow-lg pr-14 backdrop-blur-md">
       <div class="flex items-center gap-2">
-        <button onclick="goToPlayground()" class="h-8 px-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-black text-xs flex items-center gap-1.5 shadow active:scale-95 transition-all">
+        <button onclick="goToPlayground()" class="h-7 px-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-display font-black text-xs flex items-center gap-1.5 shadow active:scale-95 transition-all">
           <i class="fa-solid fa-arrow-left"></i>
           <span>Patio</span>
         </button>
         <div>
-          <h2 class="font-display font-black text-xs sm:text-sm text-amber-300 leading-none">
-            La Dulcería de Doña Cecilia 🍬
+          <h2 class="font-display font-black text-xs sm:text-sm text-amber-300 leading-none flex items-center gap-1.5">
+            <span>La Dulcería 3D de Doña Cecilia</span>
+            <span class="text-[9px] bg-amber-500/20 text-amber-300 border border-amber-400/40 px-1.5 py-0.2 rounded-full hidden sm:inline">Roblox / Overcooked 3D</span>
           </h2>
           <p class="text-[8px] text-slate-400">2.° Grado • Cajas (100 📦), Bolsas (10 🛍️) y Dulces (1 🍬)</p>
         </div>
       </div>
 
       <div class="flex items-center gap-2">
-        <button onclick="openDulceriaMissionSelector()" class="h-7 px-2.5 rounded-xl bg-slate-800 border border-amber-400 text-amber-300 font-display font-black text-[10px] flex items-center gap-1">
-          <i class="fa-solid fa-list-check"></i><span id="dulceriaMissionLabel">Misión 1</span>
+        <!-- Sub-Mode Switcher -->
+        <div class="flex items-center bg-slate-950 p-0.5 rounded-xl border border-slate-700 text-[10px] font-black">
+          <button id="btnDulceriaModeSep" onclick="setDulceriaSubMode('sep_tasks')" class="px-2 py-0.5 rounded-lg bg-amber-400 text-slate-950 shadow">📋 Tarea SEP</button>
+          <button id="btnDulceriaMode3D" onclick="setDulceriaSubMode('factory_3d')" class="px-2 py-0.5 rounded-lg text-slate-400 hover:text-white">🏭 Taller 3D</button>
+          <button id="btnDulceriaModeTruck" onclick="setDulceriaSubMode('truck_dispatch')" class="px-2 py-0.5 rounded-lg text-slate-400 hover:text-white">🚚 Despacho</button>
+        </div>
+
+        <button onclick="openDulceriaMissionSelector()" class="h-7 px-2 rounded-xl bg-slate-800 border border-amber-400 text-amber-300 font-display font-black text-[10px] flex items-center gap-1">
+          <i class="fa-solid fa-list-check"></i><span id="dulceriaMissionLabel">Misión 1/5</span>
         </button>
-        <div class="bg-slate-950 px-2.5 py-0.5 rounded-xl border border-amber-400 text-amber-300 font-display font-black text-xs">
+
+        <div class="bg-slate-950 px-2 py-0.5 rounded-xl border border-amber-400 text-amber-300 font-display font-black text-xs">
           ⭐ <span id="dulceriaScore">0</span>
         </div>
       </div>
     </header>
 
-    <!-- Main Workspace Grid (Single Screen Zero-Scroll) -->
-    <div class="flex-1 grid grid-cols-12 gap-2.5 my-1.5 overflow-hidden">
+    <!-- Main 3D Isometric Viewport & Controls Grid -->
+    <div class="flex-1 grid grid-cols-12 gap-2 my-1 overflow-hidden">
       
-      <!-- LEFT COL: CUSTOMER / TAREA SEP PROBLEM DISPLAY (Cols 1-5) -->
-      <div class="col-span-12 sm:col-span-5 bg-slate-900 border-2 border-amber-800/80 rounded-2xl p-3 flex flex-col justify-between relative overflow-hidden">
+      <!-- LEFT COL: ISOMETRIC 3D FACTORY & PACKAGING STATIONS (Cols 1-7 on desktop, 12 on mobile) -->
+      <div class="col-span-12 lg:col-span-7 bg-slate-900 border-2 border-amber-800/80 rounded-2xl p-2.5 flex flex-col justify-between relative overflow-hidden perspective-1000">
         
-        <div class="flex items-center justify-between border-b border-slate-800 pb-1 text-xs font-black">
-          <span id="dulceriaTitleText" class="text-amber-400 font-mono">PEDIDO DE DON RAMÓN</span>
-          <span class="text-emerald-400">Tarea SEP Oficial</span>
-        </div>
-
-        <div class="my-auto flex flex-col items-center justify-center text-center">
-          <div id="dulceriaAvatarGraphic" class="text-5xl mb-2 animate-bounce-soft">👨‍🌾</div>
-          
-          <div class="bg-slate-950 border-2 border-amber-400/80 rounded-2xl p-2.5 max-w-sm w-full shadow-xl text-left space-y-1">
-            <p id="dulceriaPromptText" class="text-xs sm:text-sm font-bold text-slate-100">
-              ¿Cuántos dulces le entregó a Don Ramón si le compró <span class="text-amber-400">3 Cajas</span> y <span class="text-emerald-400">6 Bolsas</span>?
-            </p>
-            
-            <!-- Graphic Representation of Boxes & Bags -->
-            <div id="dulceriaVisualPackages" class="bg-slate-900/90 rounded-xl p-2 border border-slate-800 flex flex-wrap items-center justify-center gap-1.5 my-1 max-h-24 overflow-y-auto"></div>
+        <!-- Header Bar of 3D Scene -->
+        <div class="flex items-center justify-between border-b border-slate-800 pb-1 text-xs font-black z-20">
+          <span class="text-amber-400 font-mono flex items-center gap-1.5">
+            <span>🏭 LÍNEA DE PRODUCCIÓN & EMPAQUE</span>
+          </span>
+          <div class="flex items-center gap-2 text-[10px]">
+            <span class="text-sky-400">🍬 Suelto = 1</span>
+            <span class="text-emerald-400">🛍️ 10🍬 = 1 Bolsa</span>
+            <span class="text-amber-400">📦 10🛍️ = 1 Caja</span>
           </div>
         </div>
 
-        <!-- Feedback Box -->
+        <!-- 3D ISOMETRIC STAGE -->
+        <div class="flex-1 relative w-full h-full my-1 flex items-center justify-around isom-stage">
+          
+          <!-- 1. NONINA'S 3D CANDY CAULDRON STATION -->
+          <div class="flex flex-col items-center isom-block bg-slate-950/90 border-2 border-rose-500/60 rounded-2xl p-2 text-center relative w-28 sm:w-32 shadow-2xl">
+            <div class="absolute -top-3 px-2 py-0.2 bg-rose-500 text-white font-black text-[8px] rounded-full shadow">🌸 Cocina Nonina</div>
+            
+            <!-- Steam Particles -->
+            <div class="relative w-12 h-6 flex justify-center">
+              <span class="absolute animate-sweet-steam text-sm">✨</span>
+              <span class="absolute animate-sweet-steam text-xs" style="animation-delay: 0.5s; left: 10px;">🫧</span>
+              <span class="absolute animate-sweet-steam text-sm" style="animation-delay: 1s; right: 10px;">🍯</span>
+            </div>
+
+            <!-- Cauldron / Pot -->
+            <div onclick="spawnCandyToConveyor()" class="w-16 h-14 rounded-b-3xl bg-gradient-to-b from-amber-600 to-amber-900 border-3 border-amber-400 flex items-center justify-center text-3xl shadow-inner cursor-pointer hover:scale-105 active:scale-95 transition-transform" title="¡Toca la olla para crear caramelo!">
+              🍯
+            </div>
+            
+            <button onclick="spawnCandyToConveyor()" class="mt-1.5 w-full py-1 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-black text-[9px] active:scale-95 shadow">
+              🍬 Cocinar +1
+            </button>
+          </div>
+
+          <!-- 2. 3D CONVEYOR BELT (CINTA TRANSPORTADORA) -->
+          <div class="flex flex-col items-center isom-block bg-slate-950/90 border-2 border-sky-500/60 rounded-2xl p-2 text-center w-36 sm:w-44 shadow-2xl">
+            <div class="text-[9px] font-black text-sky-300 mb-1 flex items-center gap-1">
+              <span>🏭 Cinta Rodante</span>
+              <span class="animate-pulse">⚡</span>
+            </div>
+
+            <!-- Animated Conveyor Belt Lane -->
+            <div onclick="spawnCandyToConveyor()" class="w-full h-10 rounded-xl conveyor-belt-anim border-2 border-slate-700 flex items-center justify-around px-1 cursor-pointer overflow-hidden shadow-inner" title="Toca la cinta para empacar caramelos">
+              <span id="conveyorCandy1" class="text-xl animate-bounce">🍬</span>
+              <span id="conveyorCandy2" class="text-lg animate-pulse">🍬</span>
+              <span id="conveyorCandy3" class="text-xl animate-bounce-soft">🍬</span>
+            </div>
+
+            <div class="flex items-center gap-1 mt-1.5 w-full">
+              <button onclick="spawnBurstOfCandies(5)" class="flex-1 py-1 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-black text-[8px] active:scale-95 shadow">
+                ⚡ +5 Ráfaga
+              </button>
+              <button onclick="spawnBurstOfCandies(10)" class="flex-1 py-1 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-black text-[8px] active:scale-95 shadow">
+                ✨ +10 Lluvia
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. 3D BAGGING STATION (MESA DE ENSACADO - 10 🍬 = 1 🛍️) -->
+          <div class="flex flex-col items-center isom-block bg-slate-950/90 border-2 border-emerald-500/60 rounded-2xl p-2 text-center w-32 sm:w-36 shadow-2xl relative">
+            <div class="absolute -top-3 px-2 py-0.2 bg-emerald-500 text-slate-950 font-black text-[8px] rounded-full shadow">🛍️ Bolsa (Decena)</div>
+            
+            <!-- 3D Bag Graphic with progress ring -->
+            <div id="bag3DGraphic" class="w-14 h-16 rounded-2xl bg-gradient-to-b from-emerald-600/30 to-emerald-950 border-2 border-emerald-400 flex flex-col items-center justify-center my-1 relative shadow-lg">
+              <span class="text-2xl animate-bounce-soft">🛍️</span>
+              <span id="bagCountBadge" class="text-[10px] font-mono font-black text-emerald-300 bg-slate-950/90 px-1.5 py-0.2 rounded-full border border-emerald-400 mt-0.5">0/10 🍬</span>
+            </div>
+
+            <button onclick="transferBagToBox()" class="w-full py-1 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-[9px] active:scale-95 shadow">
+              📦 Meter a Caja
+            </button>
+          </div>
+
+          <!-- 4. 3D BOXING STATION (MESA DE EMBALAJE - 10 🛍️ = 1 📦) -->
+          <div class="flex flex-col items-center isom-block bg-slate-950/90 border-2 border-amber-400/80 rounded-2xl p-2 text-center w-32 sm:w-36 shadow-2xl relative">
+            <div class="absolute -top-3 px-2 py-0.2 bg-amber-400 text-slate-950 font-black text-[8px] rounded-full shadow">📦 Caja (Centena)</div>
+            
+            <!-- 3D Cardboard Box with 4 Folding Flaps -->
+            <div id="box3DGraphic" class="box-3d-container w-14 h-16 rounded-xl bg-amber-800 border-2 border-amber-400 flex flex-col items-center justify-center my-1 relative shadow-xl">
+              <!-- Folding Flaps -->
+              <div class="flap-top absolute -top-2 inset-x-1 h-3 bg-amber-700 border border-amber-400 rounded-t"></div>
+              <div class="flap-bottom absolute -bottom-2 inset-x-1 h-3 bg-amber-700 border border-amber-400 rounded-b"></div>
+              <div class="flap-left absolute -left-2 inset-y-1 w-3 bg-amber-900 border border-amber-400 rounded-l"></div>
+              <div class="flap-right absolute -right-2 inset-y-1 w-3 bg-amber-900 border border-amber-400 rounded-r"></div>
+
+              <span class="text-2xl z-10">📦</span>
+              <span id="boxBagsCountBadge" class="text-[10px] font-mono font-black text-amber-300 bg-slate-950/90 px-1.5 py-0.2 rounded-full border border-amber-400 z-10">0/10 🛍️</span>
+            </div>
+
+            <button onclick="sealAndStoreBox()" class="w-full py-1 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-[9px] active:scale-95 shadow">
+              🔒 Sellar Caja (100)
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Inventory Status Bar -->
+        <div class="bg-slate-950/90 rounded-xl p-1.5 border border-slate-800 flex items-center justify-between text-[10px] font-black z-20">
+          <div class="flex items-center gap-1 text-amber-400"><span>📦 Cajas Listas:</span> <span id="invBoxesCount" class="text-white font-mono bg-amber-950 px-2 py-0.5 rounded border border-amber-500">0</span></div>
+          <div class="flex items-center gap-1 text-emerald-400"><span>🛍️ Bolsas Listas:</span> <span id="invBagsCount" class="text-white font-mono bg-emerald-950 px-2 py-0.5 rounded border border-emerald-500">0</span></div>
+          <div class="flex items-center gap-1 text-sky-400"><span>🍬 Dulces Sueltos:</span> <span id="invCandiesCount" class="text-white font-mono bg-sky-950 px-2 py-0.5 rounded border border-sky-500">0</span></div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COL: DOÑA CECILIA'S ORDER CLIPBOARD & ARA BOT HOLOGRAPHIC ODOMETER (Cols 8-12) -->
+      <div class="col-span-12 lg:col-span-5 bg-slate-900 border-2 border-amber-800/80 rounded-2xl p-2.5 flex flex-col justify-between overflow-hidden relative">
+        
+        <!-- Clipboard Header -->
+        <div class="flex items-center justify-between border-b border-slate-800 pb-1 text-xs font-black">
+          <span id="dulceriaTitleText" class="text-amber-400 font-mono flex items-center gap-1">
+            <span>📋</span> <span>PEDIDO DE DON RAMÓN</span>
+          </span>
+          <span id="dulceriaCustomerBadge" class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-500">Tarea SEP Oficial</span>
+        </div>
+
+        <!-- Order Customer Prompt Card -->
+        <div class="bg-slate-950 border-2 border-amber-400/80 rounded-2xl p-2.5 my-1 shadow-xl flex items-center gap-2.5">
+          <div id="dulceriaAvatarGraphic" class="text-4xl animate-bounce-soft shrink-0">👨‍🌾</div>
+          <div class="flex-1">
+            <p id="dulceriaPromptText" class="text-xs font-bold text-slate-100 leading-tight">
+              ¿Cuántos dulces le entregó a Don Ramón si le compró <span class="text-amber-400">3 Cajas</span> y <span class="text-emerald-400">6 Bolsas</span>?
+            </p>
+            <div id="dulceriaVisualPackages" class="flex flex-wrap items-center gap-1 mt-1.5"></div>
+          </div>
+        </div>
+
+        <!-- ARA BOT HOLOGRAPHIC BASE-10 ODOMETER HUD -->
+        <div class="holo-hud rounded-2xl p-2 text-center my-0.5 border border-amber-400/60 shadow-lg">
+          <div class="flex items-center justify-between text-[9px] font-black text-amber-300 mb-1 border-b border-amber-500/30 pb-0.5">
+            <span class="flex items-center gap-1">🤖 <span>ODÓMETRO BASE-10 ARA BOT</span></span>
+            <span id="hudEquivalenceText" class="text-emerald-300 font-mono">15 Bolsas = 1 Caja + 5 Bolsas</span>
+          </div>
+
+          <!-- 3-Column Positional Counters -->
+          <div class="grid grid-cols-3 gap-1.5 my-1">
+            <!-- Cajas (Centenas / 100) -->
+            <div class="bg-amber-950/80 border border-amber-500 rounded-xl p-1 flex flex-col items-center">
+              <span class="text-[8px] font-black text-amber-300">📦 CAJAS (×100)</span>
+              <div class="flex items-center gap-1 my-0.5">
+                <button onclick="adjustOdometer('boxes', -1)" class="w-5 h-5 rounded bg-amber-600 hover:bg-amber-500 text-slate-950 font-black text-xs active:scale-90">-</button>
+                <span id="odoBoxesVal" class="w-8 font-display font-black text-lg text-amber-300 text-center">0</span>
+                <button onclick="adjustOdometer('boxes', 1)" class="w-5 h-5 rounded bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs active:scale-90">+</button>
+              </div>
+              <span id="odoBoxesSubtotal" class="text-[8px] font-mono text-amber-400">= 0 dulces</span>
+            </div>
+
+            <!-- Bolsas (Decenas / 10) -->
+            <div class="bg-emerald-950/80 border border-emerald-500 rounded-xl p-1 flex flex-col items-center">
+              <span class="text-[8px] font-black text-emerald-300">🛍️ BOLSAS (×10)</span>
+              <div class="flex items-center gap-1 my-0.5">
+                <button onclick="adjustOdometer('bags', -1)" class="w-5 h-5 rounded bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black text-xs active:scale-90">-</button>
+                <span id="odoBagsVal" class="w-8 font-display font-black text-lg text-emerald-300 text-center">0</span>
+                <button onclick="adjustOdometer('bags', 1)" class="w-5 h-5 rounded bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-black text-xs active:scale-90">+</button>
+              </div>
+              <span id="odoBagsSubtotal" class="text-[8px] font-mono text-emerald-400">= 0 dulces</span>
+            </div>
+
+            <!-- Dulces Sueltos (Unidades / 1) -->
+            <div class="bg-sky-950/80 border border-sky-500 rounded-xl p-1 flex flex-col items-center">
+              <span class="text-[8px] font-black text-sky-300">🍬 SUELTOS (×1)</span>
+              <div class="flex items-center gap-1 my-0.5">
+                <button onclick="adjustOdometer('candies', -1)" class="w-5 h-5 rounded bg-sky-600 hover:bg-sky-500 text-white font-black text-xs active:scale-90">-</button>
+                <span id="odoCandiesVal" class="w-8 font-display font-black text-lg text-sky-300 text-center">0</span>
+                <button onclick="adjustOdometer('candies', 1)" class="w-5 h-5 rounded bg-sky-400 hover:bg-sky-300 text-slate-950 font-black text-xs active:scale-90">+</button>
+              </div>
+              <span id="odoCandiesSubtotal" class="text-[8px] font-mono text-sky-400">= 0 dulces</span>
+            </div>
+          </div>
+
+          <!-- Total Calculation Bar -->
+          <div class="flex items-center justify-between bg-slate-950 px-2 py-1 rounded-xl border border-amber-500/40 text-[10px] font-black">
+            <span class="text-slate-400">Total Despachado:</span>
+            <span id="odoTotalDisplay" class="font-display font-black text-sm text-yellow-400 font-mono">0 DULCES</span>
+          </div>
+        </div>
+
+        <!-- DYNAMIC ANSWER / DISPATCH BUTTON AREA -->
+        <div id="dulceriaInteractionArea" class="my-1 flex flex-col items-center justify-center gap-2"></div>
+
+        <!-- Feedback Alert Box -->
         <div class="bg-slate-950 border border-slate-800 rounded-xl p-1.5 text-center text-[10px] text-amber-300 font-mono">
           <span id="dulceriaFeedbackText">1 Caja 📦 = 100 dulces | 1 Bolsa 🛍️ = 10 dulces</span>
         </div>
 
       </div>
 
-      <!-- RIGHT COL: PACKING WORKBENCH & ANSWER CONTROLS (Cols 6-12) -->
-      <div class="col-span-12 sm:col-span-7 bg-slate-900 border-2 border-amber-800/80 rounded-2xl p-3 flex flex-col justify-between overflow-hidden">
-        
-        <!-- Color-Coded Helper Legend -->
-        <div class="grid grid-cols-3 gap-2 text-center text-[9px] font-black">
-          <div class="bg-amber-950/80 border border-amber-500 text-amber-300 rounded-xl p-1">
-            📦 CAJAS (100) = Centenas
-          </div>
-          <div class="bg-emerald-950/80 border border-emerald-500 text-emerald-300 rounded-xl p-1">
-            🛍️ BOLSAS (10) = Decenas
-          </div>
-          <div class="bg-sky-950/80 border border-sky-500 text-sky-300 rounded-xl p-1">
-            🍬 SUELTOS (1) = Unidades
-          </div>
-        </div>
-
-        <!-- Dynamic Answer Interface depending on problem type -->
-        <div id="dulceriaInteractionArea" class="my-auto flex flex-col items-center justify-center gap-3 py-1"></div>
-
-        <!-- Packing Tools Bar (Agrupador 10 dulces -> 1 bolsa; 10 bolsas -> 1 caja) -->
-        <div class="bg-slate-950 rounded-xl p-2 border border-slate-800 flex items-center justify-between gap-2 text-xs">
-          <span class="text-amber-400 font-bold text-[10px]">Taller de Empaque:</span>
-          <button onclick="fuseCandiesToBag()" class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-black text-[10px] active:scale-95 shadow">
-            10 🍬 ➔ 1 🛍️ Bolsa
-          </button>
-          <button onclick="fuseBagsToBox()" class="px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-[10px] active:scale-95 shadow">
-            10 🛍️ ➔ 1 📦 Caja
-          </button>
-        </div>
-
-      </div>
-
     </div>
 
-    <!-- Footer Advice -->
-    <footer class="bg-slate-900 border-2 border-amber-800 rounded-2xl p-2 flex items-center justify-between gap-2 shrink-0">
-      <div class="flex items-center gap-2">
-        <span class="text-xl">🤖</span>
-        <p id="dulceriaAraBotSpeech" class="text-xs text-amber-200 font-bold truncate">Multiplica cada caja por 100 y cada bolsa por 10 para saber el total.</p>
+    <!-- Footer Advice & Hint Bar -->
+    <footer class="bg-slate-900 border-2 border-amber-800 rounded-2xl p-1.5 px-3 flex items-center justify-between gap-2 shrink-0">
+      <div class="flex items-center gap-2 overflow-hidden">
+        <span class="text-lg shrink-0">🤖</span>
+        <p id="dulceriaAraBotSpeech" class="text-[10px] sm:text-xs text-amber-200 font-bold truncate">
+          ¡Arma las cajas de 100 y bolsas de 10 para cumplir el pedido exacto!
+        </p>
       </div>
-      <button onclick="hintDulceriaMath()" class="px-3 py-1 rounded-xl bg-amber-400 text-slate-950 font-black text-xs shadow shrink-0">
-        💡 Pista
-      </button>
+      <div class="flex items-center gap-2 shrink-0">
+        <button onclick="autoPackInventoryToTruck()" class="px-2.5 py-1 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-black text-[10px] shadow active:scale-95">
+          ⚡ Auto-Cargar
+        </button>
+        <button onclick="hintDulceriaMath()" class="px-3 py-1 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-[10px] shadow shrink-0 active:scale-95">
+          💡 Pista
+        </button>
+      </div>
     </footer>
 
   </section>
@@ -1244,16 +1481,25 @@
       // Photosynthesis State
       plantProgress: 0,
 
-      // Dulcería State (Real SEP Homework Exercises)
+      // Dulcería 3D State (Real SEP Homework Exercises + 3D Factory)
       dulceria: {
         score: 0,
         currentMissionIndex: 0,
+        subMode: 'sep_tasks', // 'sep_tasks' | 'factory_3d' | 'truck_dispatch'
+        candiesInBag: 0,
+        bagsInBox: 0,
+        packedBoxes: 0,
+        packedBags: 0,
+        looseCandies: 0,
+        odoBoxes: 0,
+        odoBags: 0,
+        odoCandies: 0,
         missions: [
           {
             id: 'don_ramon',
             title: 'PEDIDO DE DON RAMÓN',
             avatar: '👨‍🌾',
-            prompt: '¿Cuántos dulces le entregó a Don Ramón si le compró 3 Cajas (📦) y 6 Bolsas (🛍️)?',
+            prompt: '¿Cuántos dulces le entregó a Don Ramón si le compró <span class="text-amber-400">3 Cajas</span> y <span class="text-emerald-400">6 Bolsas</span>?',
             boxes: 3,
             bags: 6,
             candies: 0,
@@ -1264,7 +1510,7 @@
             id: 'pedido_520',
             title: 'PEDIDO DE 520 DULCES',
             avatar: '👧',
-            prompt: 'Doña Cecilia tiene que entregar un pedido de 520 dulces. Escribe cuántas cajas y bolsas necesita:',
+            prompt: 'Doña Cecilia tiene que entregar un pedido de <span class="text-amber-400">520 dulces</span>. Escribe cuántas cajas y bolsas necesita:',
             boxesRequired: 5,
             bagsRequired: 2,
             type: 'decompose_number'
@@ -1273,7 +1519,7 @@
             id: 'conversion_45_bolsas',
             title: 'PEDIDO DE 45 BOLSAS',
             avatar: '👦',
-            prompt: 'Si recibe un pedido de 45 bolsas de dulces, ¿cuántas cajas y cuántas bolsas necesita?',
+            prompt: 'Si recibe un pedido de <span class="text-emerald-400">45 bolsas de dulces</span>, ¿cuántas cajas y cuántas bolsas necesita?',
             boxesRequired: 4,
             bagsRequired: 5,
             totalDulces: 450,
@@ -1283,11 +1529,21 @@
             id: 'bodega_total',
             title: 'INVENTARIO EN BODEGA',
             avatar: '👵',
-            prompt: 'En la bodega tiene 6 Cajas (📦) y 15 Bolsas (🛍️). ¿Cuántos dulces tiene en total?',
+            prompt: 'En la bodega tiene <span class="text-amber-400">6 Cajas</span> y <span class="text-emerald-400">15 Bolsas</span>. ¿Cuántos dulces tiene en total?',
             boxes: 6,
             bags: 15,
             correctAnswer: 750,
             type: 'calculate_total'
+          },
+          {
+            id: 'mega_almacen_1350',
+            title: 'MEGA-PEDIDO DE DON JOSÉ',
+            avatar: '🚛',
+            prompt: 'Don José necesita un cargamento de <span class="text-yellow-400 font-mono">1,350 DULCES</span>. Empaca y despacha las cajas y bolsas exactas:',
+            boxesRequired: 13,
+            bagsRequired: 5,
+            correctAnswer: 1350,
+            type: 'mega_dispatch'
           }
         ]
       },
@@ -1390,6 +1646,27 @@
     function playFanfareSound() { [440, 554, 659, 880].forEach((f, i) => setTimeout(() => playTone(f, 'triangle', 0.25, 0.15), i * 90)); }
     function playCandyRustleSound() { playTone(880, 'sine', 0.06, 0.2); setTimeout(() => playTone(1200, 'triangle', 0.08, 0.15), 50); }
     function playDoorSlamSound() { playTone(80, 'sawtooth', 0.35, 0.35); setTimeout(() => playTone(50, 'square', 0.4, 0.4), 60); }
+    function playCandyPop() {
+      playTone(850, 'sine', 0.05, 0.25);
+      setTimeout(() => playTone(1200, 'triangle', 0.06, 0.2), 30);
+    }
+    function playBagTieSound() {
+      [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => {
+        setTimeout(() => playTone(f, 'sine', 0.12, 0.2), i * 60);
+      });
+    }
+    function playBoxSlamSound() {
+      playTone(90, 'square', 0.3, 0.4);
+      setTimeout(() => playTone(55, 'sawtooth', 0.4, 0.45), 50);
+    }
+    function playTruckHornSound() {
+      playTone(220, 'sawtooth', 0.35, 0.3);
+      playTone(277.18, 'sawtooth', 0.35, 0.3);
+      setTimeout(() => {
+        playTone(220, 'sawtooth', 0.5, 0.35);
+        playTone(277.18, 'sawtooth', 0.5, 0.35);
+      }, 250);
+    }
 
     function speakAraBot(text) {
       if ('speechSynthesis' in window && !appState.audioMuted) {
@@ -1506,9 +1783,27 @@
     }
 
     /* =========================================================================
-       2. LA DULCERÍA MÁGICA DE DOÑA CECILIA (TAREA SEP OFICIAL)
+       2. LA DULCERÍA 3D DE DOÑA CECILIA (ROBLOX / OVERCOOKED & TAREA SEP)
        ========================================================================= */
+    function setDulceriaSubMode(mode) {
+      playClickSound();
+      appState.dulceria.subMode = mode;
+      ['btnDulceriaModeSep', 'btnDulceriaMode3D', 'btnDulceriaModeTruck'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) {
+          const isActive = (id === 'btnDulceriaModeSep' && mode === 'sep_tasks') ||
+                           (id === 'btnDulceriaMode3D' && mode === 'factory_3d') ||
+                           (id === 'btnDulceriaModeTruck' && mode === 'truck_dispatch');
+          btn.className = isActive 
+            ? 'px-2 py-0.5 rounded-lg bg-amber-400 text-slate-950 shadow font-black' 
+            : 'px-2 py-0.5 rounded-lg text-slate-400 hover:text-white font-black';
+        }
+      });
+      loadDulceriaMission(appState.dulceria.currentMissionIndex);
+    }
+
     function openDulceriaMissionSelector() {
+      playClickSound();
       appState.dulceria.currentMissionIndex = (appState.dulceria.currentMissionIndex + 1) % appState.dulceria.missions.length;
       loadDulceriaMission(appState.dulceria.currentMissionIndex);
     }
@@ -1518,7 +1813,7 @@
       const m = appState.dulceria.missions[idx];
 
       document.getElementById('dulceriaMissionLabel').innerText = `Misión ${idx + 1}/${appState.dulceria.missions.length}`;
-      document.getElementById('dulceriaTitleText').innerText = m.title;
+      document.getElementById('dulceriaTitleText').innerHTML = `<span>📋</span> <span>${m.title}</span>`;
       document.getElementById('dulceriaAvatarGraphic').innerText = m.avatar;
       document.getElementById('dulceriaPromptText').innerHTML = m.prompt;
 
@@ -1527,66 +1822,206 @@
       visualContainer.innerHTML = '';
 
       if (m.boxes) {
-        for (let i = 0; i < m.boxes; i++) {
-          visualContainer.innerHTML += '<div class="px-2 py-1 bg-amber-500/30 border border-amber-400 rounded-lg text-xs font-black text-amber-300">📦 Caja (100)</div>';
+        for (let i = 0; i < Math.min(10, m.boxes); i++) {
+          visualContainer.innerHTML += '<span class="px-1.5 py-0.5 bg-amber-500/30 border border-amber-400 rounded-lg text-[10px] font-black text-amber-300 animate-bounce-soft">📦</span>';
         }
+        if (m.boxes > 10) visualContainer.innerHTML += `<span class="text-[10px] text-amber-300 font-bold">+${m.boxes - 10} Cajas</span>`;
       }
       if (m.bags) {
-        for (let i = 0; i < m.bags; i++) {
-          visualContainer.innerHTML += '<div class="px-2 py-1 bg-emerald-500/30 border border-emerald-400 rounded-lg text-xs font-black text-emerald-300">🛍️ Bolsa (10)</div>';
+        for (let i = 0; i < Math.min(15, m.bags); i++) {
+          visualContainer.innerHTML += '<span class="px-1.5 py-0.5 bg-emerald-500/30 border border-emerald-400 rounded-lg text-[10px] font-black text-emerald-300">🛍️</span>';
         }
       }
 
-      // Render Interaction Area
+      // Sync Odometer HUD with current mission initial values
+      appState.dulceria.odoBoxes = m.boxes || 0;
+      appState.dulceria.odoBags = m.bags || 0;
+      appState.dulceria.odoCandies = m.candies || 0;
+      updateDulceriaOdometer();
+
+      // Render Interaction Area based on mission & mode
       const area = document.getElementById('dulceriaInteractionArea');
       area.innerHTML = '';
 
       if (m.type === 'calculate_total') {
         area.innerHTML = `
           <div class="flex items-center gap-2">
-            <span class="text-sm font-bold text-amber-300">Total de dulces:</span>
-            <input id="dulceriaInputTotal" type="number" placeholder="Ej. 360" class="w-36 px-3 py-2 rounded-xl bg-slate-950 border-2 border-amber-400 text-center font-display font-black text-xl text-amber-400 focus:outline-none">
-            <span class="text-sm font-bold text-slate-300">dulces</span>
+            <span class="text-xs font-bold text-amber-300">Total calculado:</span>
+            <input id="dulceriaInputTotal" type="number" placeholder="Ej. 360" class="w-32 px-3 py-1.5 rounded-xl bg-slate-950 border-2 border-amber-400 text-center font-display font-black text-lg text-amber-400 focus:outline-none">
+            <span class="text-xs font-bold text-slate-300">dulces</span>
           </div>
-          <button onclick="checkDulceriaTotalAnswer()" class="w-full max-w-xs py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-display font-black text-sm shadow active:scale-95 transition-all">
+          <button onclick="checkDulceriaTotalAnswer()" class="w-full max-w-xs py-2 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-display font-black text-xs shadow active:scale-95 transition-all">
             ✓ ¡Verificar Pedido de Dulces!
           </button>
         `;
       } else if (m.type === 'decompose_number') {
         area.innerHTML = `
-          <div class="flex flex-col sm:flex-row items-center gap-3">
-            <div class="flex items-center gap-1.5">
-              <input id="inputBoxes" type="number" placeholder="0" class="w-20 px-2 py-2 rounded-xl bg-slate-950 border-2 border-amber-400 text-center font-display font-black text-xl text-amber-400">
-              <span class="text-xs font-black text-amber-300">Cajas 📦</span>
+          <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1">
+              <input id="inputBoxes" type="number" placeholder="0" class="w-16 px-2 py-1.5 rounded-xl bg-slate-950 border-2 border-amber-400 text-center font-display font-black text-lg text-amber-400">
+              <span class="text-[10px] font-black text-amber-300">Cajas 📦</span>
             </div>
-            <span class="text-lg font-black text-slate-500">y</span>
-            <div class="flex items-center gap-1.5">
-              <input id="inputBags" type="number" placeholder="0" class="w-20 px-2 py-2 rounded-xl bg-slate-950 border-2 border-emerald-400 text-center font-display font-black text-xl text-emerald-400">
-              <span class="text-xs font-black text-emerald-300">Bolsas 🛍️</span>
+            <span class="text-xs font-black text-slate-500">y</span>
+            <div class="flex items-center gap-1">
+              <input id="inputBags" type="number" placeholder="0" class="w-16 px-2 py-1.5 rounded-xl bg-slate-950 border-2 border-emerald-400 text-center font-display font-black text-lg text-emerald-400">
+              <span class="text-[10px] font-black text-emerald-300">Bolsas 🛍️</span>
             </div>
           </div>
-          <button onclick="checkDulceriaDecomposeAnswer()" class="w-full max-w-xs py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-display font-black text-sm shadow active:scale-95 transition-all">
+          <button onclick="checkDulceriaDecomposeAnswer()" class="w-full max-w-xs py-2 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-display font-black text-xs shadow active:scale-95 transition-all">
             ✓ ¡Empacar Pedido Exacto!
           </button>
         `;
       } else if (m.type === 'convert_bags') {
         area.innerHTML = `
-          <div class="flex flex-col sm:flex-row items-center gap-3">
-            <div class="flex items-center gap-1.5">
-              <input id="inputBoxesConvert" type="number" placeholder="0" class="w-20 px-2 py-2 rounded-xl bg-slate-950 border-2 border-amber-400 text-center font-display font-black text-xl text-amber-400">
-              <span class="text-xs font-black text-amber-300">Cajas 📦</span>
+          <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1">
+              <input id="inputBoxesConvert" type="number" placeholder="0" class="w-16 px-2 py-1.5 rounded-xl bg-slate-950 border-2 border-amber-400 text-center font-display font-black text-lg text-amber-400">
+              <span class="text-[10px] font-black text-amber-300">Cajas 📦</span>
             </div>
-            <span class="text-lg font-black text-slate-500">y</span>
-            <div class="flex items-center gap-1.5">
-              <input id="inputBagsConvert" type="number" placeholder="0" class="w-20 px-2 py-2 rounded-xl bg-slate-950 border-2 border-emerald-400 text-center font-display font-black text-xl text-emerald-400">
-              <span class="text-xs font-black text-emerald-300">Bolsas 🛍️</span>
+            <span class="text-xs font-black text-slate-500">y</span>
+            <div class="flex items-center gap-1">
+              <input id="inputBagsConvert" type="number" placeholder="0" class="w-16 px-2 py-1.5 rounded-xl bg-slate-950 border-2 border-emerald-400 text-center font-display font-black text-lg text-emerald-400">
+              <span class="text-[10px] font-black text-emerald-300">Bolsas 🛍️</span>
             </div>
           </div>
-          <button onclick="checkDulceriaConvertAnswer()" class="w-full max-w-xs py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-display font-black text-sm shadow active:scale-95 transition-all">
+          <button onclick="checkDulceriaConvertAnswer()" class="w-full max-w-xs py-2 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-display font-black text-xs shadow active:scale-95 transition-all">
             ✓ ¡Convertir Bolsas a Cajas!
           </button>
         `;
+      } else if (m.type === 'mega_dispatch') {
+        area.innerHTML = `
+          <button onclick="checkDulceriaMegaDispatchAnswer()" class="w-full max-w-xs py-2.5 rounded-2xl bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-display font-black text-xs shadow-xl active:scale-95 transition-all flex items-center justify-center gap-1.5">
+            <span>🚚</span> <span>¡DESPACHAR CARGAMENTO DE 1,350 DULCES!</span>
+          </button>
+        `;
       }
+    }
+
+    /* 3D Interactive Factory Methods */
+    function spawnCandyToConveyor() {
+      playCandyPop();
+      triggerParticleBurst(window.innerWidth * 0.3, window.innerHeight * 0.45, '#38bdf8', 8);
+      appState.dulceria.candiesInBag++;
+      if (appState.dulceria.candiesInBag >= 10) {
+        autoTieBag();
+      } else {
+        updateDulceriaFactoryUI();
+      }
+    }
+
+    function spawnBurstOfCandies(count) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => spawnCandyToConveyor(), i * 70);
+      }
+    }
+
+    function autoTieBag() {
+      playBagTieSound();
+      appState.dulceria.candiesInBag = 0;
+      appState.dulceria.packedBags++;
+      triggerParticleBurst(window.innerWidth * 0.4, window.innerHeight * 0.45, '#22c55e', 20);
+      const bagEl = document.getElementById('bag3DGraphic');
+      if (bagEl) {
+        bagEl.classList.add('animate-bounce');
+        setTimeout(() => bagEl.classList.remove('animate-bounce'), 600);
+      }
+      updateDulceriaFactoryUI();
+      document.getElementById('dulceriaAraBotSpeech').innerText = '¡Bolsa de 10 dulces sellada con éxito! 🛍️✨';
+    }
+
+    function transferBagToBox() {
+      if (appState.dulceria.packedBags <= 0) {
+        spawnBurstOfCandies(10);
+        return;
+      }
+      playCandyRustleSound();
+      appState.dulceria.packedBags--;
+      appState.dulceria.bagsInBox++;
+      if (appState.dulceria.bagsInBox >= 10) {
+        sealAndStoreBox();
+      } else {
+        updateDulceriaFactoryUI();
+      }
+    }
+
+    function sealAndStoreBox() {
+      playBoxSlamSound();
+      const boxEl = document.getElementById('box3DGraphic');
+      if (boxEl) boxEl.classList.add('box-closed-state');
+      triggerParticleBurst(window.innerWidth * 0.5, window.innerHeight * 0.45, '#f59e0b', 25);
+      setTimeout(() => {
+        if (boxEl) boxEl.classList.remove('box-closed-state');
+        appState.dulceria.bagsInBox = 0;
+        appState.dulceria.packedBoxes++;
+        updateDulceriaFactoryUI();
+        document.getElementById('dulceriaAraBotSpeech').innerText = '¡Caja sellada de 100 dulces (1 Centena)! 📦💥';
+      }, 700);
+    }
+
+    function updateDulceriaFactoryUI() {
+      const bagBadge = document.getElementById('bagCountBadge');
+      const boxBadge = document.getElementById('boxBagsCountBadge');
+      if (bagBadge) bagBadge.innerText = `${appState.dulceria.candiesInBag}/10 🍬`;
+      if (boxBadge) boxBadge.innerText = `${appState.dulceria.bagsInBox}/10 🛍️`;
+      const invB = document.getElementById('invBoxesCount');
+      const invBg = document.getElementById('invBagsCount');
+      const invC = document.getElementById('invCandiesCount');
+      if (invB) invB.innerText = appState.dulceria.packedBoxes;
+      if (invBg) invBg.innerText = appState.dulceria.packedBags;
+      if (invC) invC.innerText = appState.dulceria.looseCandies;
+    }
+
+    function adjustOdometer(type, delta) {
+      playClickSound();
+      if (type === 'boxes') appState.dulceria.odoBoxes = Math.max(0, appState.dulceria.odoBoxes + delta);
+      if (type === 'bags') appState.dulceria.odoBags = Math.max(0, appState.dulceria.odoBags + delta);
+      if (type === 'candies') appState.dulceria.odoCandies = Math.max(0, appState.dulceria.odoCandies + delta);
+      updateDulceriaOdometer();
+    }
+
+    function updateDulceriaOdometer() {
+      const b = appState.dulceria.odoBoxes;
+      const bg = appState.dulceria.odoBags;
+      const c = appState.dulceria.odoCandies;
+      const total = (b * 100) + (bg * 10) + c;
+
+      const elB = document.getElementById('odoBoxesVal');
+      const elBg = document.getElementById('odoBagsVal');
+      const elC = document.getElementById('odoCandiesVal');
+      if (elB) elB.innerText = b;
+      if (elBg) elBg.innerText = bg;
+      if (elC) elC.innerText = c;
+
+      const subB = document.getElementById('odoBoxesSubtotal');
+      const subBg = document.getElementById('odoBagsSubtotal');
+      const subC = document.getElementById('odoCandiesSubtotal');
+      if (subB) subB.innerText = `= ${b * 100} dulces`;
+      if (subBg) subBg.innerText = `= ${bg * 10} dulces`;
+      if (subC) subC.innerText = `= ${c} dulces`;
+
+      const totEl = document.getElementById('odoTotalDisplay');
+      if (totEl) totEl.innerText = `${total.toLocaleString()} DULCES`;
+
+      // Live Equivalence breakdown
+      const convertedBoxes = Math.floor(bg / 10);
+      const remainingBags = bg % 10;
+      const hudEq = document.getElementById('hudEquivalenceText');
+      if (hudEq) {
+        if (bg >= 10) {
+          hudEq.innerText = `${bg} Bolsas = ${convertedBoxes} Caja(s) + ${remainingBags} Bolsas (${bg * 10} Dulces)`;
+        } else {
+          hudEq.innerText = `${b} Cajas (${b*100}) + ${bg} Bolsas (${bg*10}) = ${total} Dulces`;
+        }
+      }
+    }
+
+    function autoPackInventoryToTruck() {
+      playClickSound();
+      appState.dulceria.odoBoxes = appState.dulceria.packedBoxes;
+      appState.dulceria.odoBags = appState.dulceria.packedBags;
+      appState.dulceria.odoCandies = appState.dulceria.looseCandies;
+      updateDulceriaOdometer();
+      document.getElementById('dulceriaAraBotSpeech').innerText = '¡Inventario cargado al odómetro de despacho! 🚚✨';
     }
 
     function checkDulceriaTotalAnswer() {
@@ -1601,9 +2036,7 @@
         document.getElementById('dulceriaScore').innerText = appState.dulceria.score;
         document.getElementById('dulceriaFeedbackText').innerText = `¡EXCELENTE! Total correcto: ${m.correctAnswer} dulces ⭐`;
         speakAraBot(`¡Excelente respuesta! Son ${m.correctAnswer} dulces en total.`);
-        setTimeout(() => {
-          openDulceriaMissionSelector();
-        }, 1600);
+        setTimeout(() => openDulceriaMissionSelector(), 1600);
       } else {
         playTone(180, 'sawtooth', 0.2, 0.25);
         document.getElementById('dulceriaFeedbackText').innerText = `¡Casi! Recuerda: ${m.boxes} cajas son ${m.boxes * 100} y ${m.bags} bolsas son ${m.bags * 10}.`;
@@ -1623,9 +2056,7 @@
         document.getElementById('dulceriaScore').innerText = appState.dulceria.score;
         document.getElementById('dulceriaFeedbackText').innerText = `¡PERFECTO! 520 dulces = ${m.boxesRequired} Cajas (500) y ${m.bagsRequired} Bolsas (20) ⭐`;
         speakAraBot(`¡Muy bien! 520 dulces son 5 cajas y 2 bolsas.`);
-        setTimeout(() => {
-          openDulceriaMissionSelector();
-        }, 1600);
+        setTimeout(() => openDulceriaMissionSelector(), 1600);
       } else {
         playTone(180, 'sawtooth', 0.2, 0.25);
         document.getElementById('dulceriaFeedbackText').innerText = 'Verifica: 500 dulces son 5 cajas y 20 dulces son 2 bolsas.';
@@ -1645,25 +2076,28 @@
         document.getElementById('dulceriaScore').innerText = appState.dulceria.score;
         document.getElementById('dulceriaFeedbackText').innerText = `¡CORRECTO! 45 bolsas = 4 Cajas (40 bolsas) y 5 Bolsas sueltas (${m.totalDulces} dulces) ⭐`;
         speakAraBot(`¡Brillante! 45 bolsas equivalen a 4 cajas y 5 bolsas.`);
-        setTimeout(() => {
-          openDulceriaMissionSelector();
-        }, 1600);
+        setTimeout(() => openDulceriaMissionSelector(), 1600);
       } else {
         playTone(180, 'sawtooth', 0.2, 0.25);
         document.getElementById('dulceriaFeedbackText').innerText = 'Recuerda: cada 10 bolsas llenan 1 caja (40 bolsas = 4 cajas).';
       }
     }
 
-    function fuseCandiesToBag() {
-      playCandyRustleSound();
-      triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.8, '#22c55e', 20);
-      document.getElementById('dulceriaAraBotSpeech').innerText = '¡Empacaste 10 dulces sueltos en 1 Bolsa verde 🛍️ (1 Decena)!';
-    }
-
-    function fuseBagsToBox() {
-      playCandyRustleSound();
-      triggerParticleBurst(window.innerWidth * 0.7, window.innerHeight * 0.8, '#f59e0b', 20);
-      document.getElementById('dulceriaAraBotSpeech').innerText = '¡Empacaste 10 bolsas en 1 Caja dorada 📦 (1 Centena = 100 dulces)!';
+    function checkDulceriaMegaDispatchAnswer() {
+      const total = (appState.dulceria.odoBoxes * 100) + (appState.dulceria.odoBags * 10) + appState.dulceria.odoCandies;
+      if (total === 1350) {
+        playTruckHornSound();
+        playFanfareSound();
+        triggerParticleBurst(window.innerWidth * 0.5, window.innerHeight * 0.4, '#f59e0b', 50);
+        appState.dulceria.score += 50;
+        document.getElementById('dulceriaScore').innerText = appState.dulceria.score;
+        document.getElementById('dulceriaFeedbackText').innerText = '¡CARGAMENTO DESPACHADO! 13 Cajas y 5 Bolsas = 1,350 Dulces 🚚💨⭐';
+        speakAraBot('¡Gran trabajo de almacén! El camión de 1,350 dulces va en camino.');
+        setTimeout(() => openDulceriaMissionSelector(), 2000);
+      } else {
+        playTone(180, 'sawtooth', 0.2, 0.25);
+        document.getElementById('dulceriaFeedbackText').innerText = `Llevas ${total} dulces. Se necesitan exactamente 1,350 dulces (13 Cajas y 5 Bolsas).`;
+      }
     }
 
     function hintDulceriaMath() {
@@ -1896,20 +2330,97 @@
 
     function checkDropInteractions(itemEl) {
       if (itemEl.dataset.type === 'food' || itemEl.dataset.type === 'toy') {
-        ['avatarNonina', 'avatarDoydo', 'avatarLolita', 'avatarBruno'].forEach(avatarId => {
+        const emoji = itemEl.querySelector('.text-4xl') ? itemEl.querySelector('.text-4xl').innerText : '🍎';
+        const label = itemEl.querySelector('.font-black') ? itemEl.querySelector('.font-black').innerText : 'Comida';
+        
+        ['avatarNonina', 'avatarDoydo', 'avatarLolita', 'avatarBruno', 'avatarAraBot'].forEach(avatarId => {
           const avatar = document.getElementById(avatarId);
-          if (avatar && isColliding(itemEl, avatar, 65)) {
-            playEatSound();
-            avatar.classList.add('animate-eat-chomp');
-            triggerParticleBurst(window.innerWidth * 0.5, window.innerHeight * 0.5, '#fb7185', 20);
+          if (avatar && isColliding(itemEl, avatar, 75)) {
             itemEl.remove();
-            setTimeout(() => avatar.classList.remove('animate-eat-chomp'), 800);
+            feedCharacterWithAnimation(avatarId, emoji, label);
           }
         });
       }
     }
 
-    function isColliding(el1, el2, threshold = 55) {
+    function feedCharacterWithAnimation(targetCharId, foodEmoji = '🍕', foodLabel = 'Comida') {
+      initAudio();
+      const avatar = document.getElementById(targetCharId);
+      if (!avatar) return;
+
+      const worldX = avatar.offsetLeft;
+      const worldY = avatar.offsetTop;
+
+      // 1. Create flying bite food element over the mouth
+      const biteFx = document.createElement('div');
+      biteFx.className = 'absolute z-50 pointer-events-none flex flex-col items-center select-none transition-all duration-300';
+      biteFx.style.left = `${worldX + 20}px`;
+      biteFx.style.top = `${worldY - 25}px`;
+      biteFx.innerHTML = `
+        <div id="biteFoodVisual_${targetCharId}" class="text-4xl filter drop-shadow-xl transition-transform duration-200 animate-bounce">
+          ${foodEmoji}
+        </div>
+        <div class="text-[9px] font-black text-rose-600 bg-white/95 px-2 py-0.5 rounded-full border border-rose-300 shadow mt-1">
+          ¡Ñam Ñam! 😋
+        </div>
+      `;
+      document.getElementById('worldSpawnedItemsLayer').appendChild(biteFx);
+
+      // 2. Multi-stage eating audio
+      playEatSound();
+      setTimeout(() => playTone(360, 'triangle', 0.08, 0.25), 140);
+      setTimeout(() => playTone(540, 'triangle', 0.1, 0.25), 280);
+      setTimeout(() => playTone(720, 'sine', 0.15, 0.2), 420); // Swallow 'glup!'
+
+      // 3. Avatar Chomp Animation
+      avatar.classList.add('animate-eat-chomp');
+
+      // Stage 1: 1st bite (crumbs fly)
+      setTimeout(() => {
+        const foodEl = document.getElementById(`biteFoodVisual_${targetCharId}`);
+        if (foodEl) {
+          foodEl.style.transform = 'scale(0.7) rotate(15deg)';
+          foodEl.style.opacity = '0.85';
+        }
+        triggerParticleBurst(worldX + 40, worldY + 20, '#fb7185', 12);
+      }, 160);
+
+      // Stage 2: 2nd bite
+      setTimeout(() => {
+        const foodEl = document.getElementById(`biteFoodVisual_${targetCharId}`);
+        if (foodEl) {
+          foodEl.style.transform = 'scale(0.35) rotate(-25deg)';
+          foodEl.style.opacity = '0.5';
+        }
+        triggerParticleBurst(worldX + 40, worldY + 20, '#f59e0b', 16);
+      }, 320);
+
+      // Stage 3: Swallow + Hearts + Jump
+      setTimeout(() => {
+        biteFx.remove();
+        avatar.classList.remove('animate-eat-chomp');
+        avatar.style.transform = 'translateY(-18px) scale(1.1)';
+        setTimeout(() => { avatar.style.transform = ''; }, 350);
+
+        // Hearts & stars explosion
+        triggerParticleBurst(worldX + 40, worldY + 10, '#ec4899', 25);
+        triggerParticleBurst(worldX + 40, worldY + 10, '#facc15', 20);
+
+        // Speech & dialogue bubble
+        let msg = `¡Mmm, qué rico ${foodEmoji}! 💖`;
+        if (targetCharId === 'avatarNonina') msg = `¡Gracias! ¡Delicioso ${foodEmoji}! 🌸😋`;
+        if (targetCharId === 'avatarDoydo') msg = `¡Super rico ${foodEmoji}! ¡Energía Z al 100%! ⚡🍕`;
+        if (targetCharId === 'avatarLolita') msg = `¡Ñam ñam! ¡Amo el ${foodEmoji}! 🐰💕`;
+        if (targetCharId === 'avatarBruno') msg = `¡Guau guau! ¡El mejor ${foodEmoji} del mundo! 🐶🍖`;
+        if (targetCharId === 'avatarAraBot') msg = `¡Energía cuántica recargada con ${foodEmoji}! 🤖✨`;
+
+        const bubbleId = targetCharId.replace('avatar', 'bubble');
+        showBubble(bubbleId, msg);
+        speakAraBot(msg);
+      }, 500);
+    }
+
+    function isColliding(el1, el2, threshold = 65) {
       const r1 = el1.getBoundingClientRect();
       const r2 = el2.getBoundingClientRect();
       const dx = (r1.left + r1.width/2) - (r2.left + r2.width/2);
@@ -1995,7 +2506,7 @@
     animateParticles();
 
     /* Auto-Update Engine */
-    const CURRENT_CLIENT_VERSION = 'v5.3.0';
+    const CURRENT_CLIENT_VERSION = 'v5.4.0';
     let isUpdatingApp = false;
 
     async function checkForAppUpdates(isManual = false) {

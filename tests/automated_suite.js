@@ -22,7 +22,7 @@ function assert(condition, testName, details = '') {
 }
 
 console.log('===========================================================');
-console.log('🚀 INICIANDO PRUEBAS AUTOMÁTICAS DEL SISTEMA DE JUEGOS V5.3.0');
+console.log('🚀 INICIANDO PRUEBAS AUTOMÁTICAS DEL SISTEMA DE JUEGOS V5.4.0');
 console.log('===========================================================\n');
 
 // 1. FILE SYSTEM & ASSETS INTEGRITY
@@ -49,15 +49,15 @@ assert(htmlContent.includes(`CURRENT_CLIENT_VERSION = '${currentVersion}'`), `in
 assert(swContent.includes(`CACHE_NAME = 'ara-bot-pwa-${currentVersion}'`), `sw.js sincronizado con cache ara-bot-pwa-${currentVersion}`);
 assert(manifestData.name.length > 0, 'manifest.json tiene nombre válido');
 
-// 3. MASCOTAS & PERSONAJES (NONINA, DOYDO, ARA BOT, LOLITA, BRUNO)
-console.log('\n🐾 3. Pruebas de Mascotas y Personajes');
+// 3. MASCOTAS, PERSONAJES Y ANIMACIÓN DE ALIMENTACIÓN
+console.log('\n🐾 3. Pruebas de Mascotas, Personajes y Alimentación');
 assert(htmlContent.includes('id="avatarNonina"'), 'Personaje Nonina 🌸 presente en el DOM');
 assert(htmlContent.includes('id="avatarDoydo"'), 'Personaje Doydo 💙 presente en el DOM');
 assert(htmlContent.includes('id="avatarAraBot"'), 'Mascota ARA BOT 🤖 presente en el DOM');
 assert(htmlContent.includes('id="avatarLolita"'), 'Mascota Lolita 🐰 (Coneja) presente en el DOM');
 assert(htmlContent.includes('id="avatarBruno"'), 'Mascota Bruno 🐶 (Border Collie) presente en el DOM');
 
-assert(htmlContent.includes('Bruno el Border Collie'), 'Diálogo y etiqueta de Bruno correctamente configurados');
+assert(htmlContent.includes('function feedCharacterWithAnimation('), 'Función feedCharacterWithAnimation() con bocados, masticar y corazones presente');
 assert(htmlContent.includes('id="bubbleBruno"'), 'Burbuja de diálogo de Bruno presente');
 assert(htmlContent.includes('id="bubbleLolita"'), 'Burbuja de diálogo de Lolita presente');
 assert(htmlContent.includes('id="bubbleNonina"'), 'Burbuja de diálogo de Nonina presente');
@@ -71,13 +71,19 @@ assert(htmlContent.includes('id="room2"'), 'Sala 3: La Dulcería de Doña Cecili
 assert(htmlContent.includes('id="room3"'), 'Sala 4: Gimnasio & Dojo Z 🥊⚡ presente');
 assert(htmlContent.includes('id="room4"'), 'Sala 5: Observatorio Espacial & Cohete 🚀🌌 presente');
 
-// 5. MOTOR MATEMÁTICO: LA DULCERÍA DE DOÑA CECILIA (Tarea SEP 2.° Grado)
-console.log('\n🍬 5. Motor Matemático: La Dulcería Mágica de Doña Cecilia (SEP)');
+// 5. MOTOR MATEMÁTICO: LA DULCERÍA 3D DE DOÑA CECILIA (SEP & MEGA-ALMACÉN)
+console.log('\n🍬 5. Motor Matemático: La Dulcería 3D de Doña Cecilia');
+assert(htmlContent.includes('conveyor-belt-anim'), 'Cinta Transportadora 3D animada presente');
+assert(htmlContent.includes('id="bag3DGraphic"'), 'Mesa de Ensacado 3D presente');
+assert(htmlContent.includes('id="box3DGraphic"'), 'Mesa de Embalaje 3D con solapas plegables presente');
+assert(htmlContent.includes('id="odoTotalDisplay"'), 'Odómetro Holográfico Base-10 ARA BOT presente');
+
 const dulceriaMissions = [
   { id: 'don_ramon', boxes: 3, bags: 6, expected: 360 },
   { id: 'pedido_520', total: 520, expBoxes: 5, expBags: 2 },
   { id: 'conversion_45_bolsas', bags: 45, expBoxes: 4, expBags: 5, totalDulces: 450 },
-  { id: 'bodega_total', boxes: 6, bags: 15, expected: 750 }
+  { id: 'bodega_total', boxes: 6, bags: 15, expected: 750 },
+  { id: 'mega_almacen_1350', total: 1350, expBoxes: 13, expBags: 5 }
 ];
 
 // Mission 1: Don Ramón
@@ -98,6 +104,11 @@ assert(m3Boxes === 4 && m3Bags === 5 && m3Total === 450, 'Misión 3 Conversión 
 // Mission 4: Bodega 6 Cajas + 15 Bolsas
 const m4 = (6 * 100) + (15 * 10);
 assert(m4 === 750, 'Misión 4 Conteo Bodega: 6 Cajas (600) + 15 Bolsas (150) = 750 dulces');
+
+// Mission 5: Mega Almacén 1,350 dulces
+const m5Boxes = Math.floor(1350 / 100);
+const m5Bags = Math.floor((1350 % 100) / 10);
+assert(m5Boxes === 13 && m5Bags === 5, 'Misión 5 Mega Almacén 1,350 dulces: 13 Cajas (1,300) y 5 Bolsas (50)');
 
 // 6. MOTOR MATEMÁTICO: EL COHETE NUMÉRICO (3.er Grado - Romina/Nonina)
 console.log('\n🚀 6. Motor Matemático: El Cohete Numérico (Series +5)');
@@ -173,7 +184,10 @@ assert(allCannonMathValid, 'Todos los proyectiles correctos suman exactamente la
 // 9. WEB AUDIO API SYNTHESIZER INTEGRITY
 console.log('\n🔊 9. Verificación de Síntesis de Sonido Offline');
 assert(htmlContent.includes('function initAudio()'), 'Función initAudio() presente');
-assert(htmlContent.includes('function playTone('), 'Sintetizador playTone() disponible');
+assert(htmlContent.includes('function playCandyPop()'), 'Sintetizador playCandyPop() disponible');
+assert(htmlContent.includes('function playBagTieSound()'), 'Sintetizador playBagTieSound() disponible');
+assert(htmlContent.includes('function playBoxSlamSound()'), 'Sintetizador playBoxSlamSound() disponible');
+assert(htmlContent.includes('function playTruckHornSound()'), 'Sintetizador playTruckHornSound() disponible');
 assert(htmlContent.includes('function playEatSound()'), 'Efecto sonoro playEatSound() disponible');
 assert(htmlContent.includes('function playFanfareSound()'), 'Efecto sonoro playFanfareSound() disponible');
 
