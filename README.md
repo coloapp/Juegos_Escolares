@@ -1,4 +1,4 @@
-# 🤖 ARA BOT de Mate • PWA Mundo Toca Boca & Juegos Escolares (v5.4.0)
+# 🤖 ARA BOT de Mate • PWA Mundo Toca Boca & Juegos Escolares (v5.4.1)
 
 [![PWA Ready](https://img.shields.io/badge/PWA-Ready-22c55e?style=for-the-badge&logo=pwa&logoColor=white)](https://web.dev/progressive-web-apps/)
 [![Offline 100%](https://img.shields.io/badge/Offline-100%25_Supported-3b82f6?style=for-the-badge&logo=offline&logoColor=white)](#)
@@ -8,7 +8,7 @@
 [![SEP Tareas](https://img.shields.io/badge/SEP_México-2.°_y_3.er_Grado-eab308?style=for-the-badge)](#)
 [![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub_Pages-0284c7?style=for-the-badge&logo=github)](https://coloapp.github.io/Juegos_Escolares/)
 
-> **PWA interactiva de mundo abierto escolar estilo Toca Life / Avatar World con personajes interactivos arrastrables (Nonina 🌸, Doydo 💙, ARA BOT 🤖, Lolita 🐰 y Bruno 🐶) con física de alimentación animada (mordiscos, migajas y sonidos de masticación), Rincón de Fotosíntesis 🌿☀️, La Dulcería 3D Isométrica de Doña Cecilia 🍬 (estilo Roblox/Overcooked con cinta transportadora, empaque en vivo y Retos SEP 2.° Grado), Menú de Hexágonos Neón ⬢ y minijuegos temáticos.**  
+> **PWA interactiva de mundo abierto escolar estilo Toca Life / Avatar World con personajes interactivos arrastrables (Nonina 🌸, Doydo 💙, ARA BOT 🤖, Lolita 🐰 y Bruno 🐶) con física de alimentación animada (mordiscos, migajas y sonidos de masticación), Rincón de Fotosíntesis 🌿☀️, La Dulcería 3D Isométrica de Doña Cecilia 🍬 (estilo Roblox/Overcooked con Odómetro Gigante de Bodega e Inventario, cinta transportadora, empaque en vivo y Retos SEP 2.° Grado), Menú de Hexágonos Neón ⬢ y minijuegos temáticos.**  
 > **Disponible online y 100% offline en [https://coloapp.github.io/Juegos_Escolares/](https://coloapp.github.io/Juegos_Escolares/)**
 
 ---
@@ -50,7 +50,8 @@ graph TD
 2. **🏭 Cinta Transportadora:** Dulces rodando en 3D con sonido sintetizado `playCandyPop()`.
 3. **🛍️ Estación de Embolsado:** 10 Dulces sueltos se unen automáticamente cerrando la bolsa con lazo y nudo 3D.
 4. **📦 Estación de Encartonado:** 10 Bolsas forman 1 Caja cúbica 3D que cierra sus 4 solapas (`flap-top/bottom/left/right`) y se sella con cinta de embalaje.
-5. **🔢 Odómetro Holográfico Base-10:** Cálculo en tiempo real de Unidades (🔵), Decenas (🟢) y Centenas (🟡) con descomposición de equivalencias (ej. $15 \text{ Bolsas} = 1 \text{ Caja} + 5 \text{ Bolsas} = 150 \text{ Dulces}$).
+5. **🔢 Odómetro Gigante de Bodega e Inventario:** Visualizador arcade en 3 columnas de gran tamaño (📦 Cajas $\times 100$, 🛍️ Bolsas $\times 10$, 🍬 Dulces $\times 1$) con subtotales en vivo y cálculo del gran total acumulado.
+6. **🤖 Odómetro Holográfico Base-10 ARA BOT:** Desglose en tiempo real con equivalencias (ej. $15 \text{ Bolsas} = 1 \text{ Caja} + 5 \text{ Bolsas} = 150 \text{ Dulces}$).
 6. **📋 Los 5 Retos SEP de Doña Cecilia:**
    - **Reto 1 (Contar Empacados):** 3 Cajas y 6 Bolsas $\rightarrow \mathbf{360 \text{ dulces}}$.
    - **Reto 2 (Descomponer Pedido):** Pedido de 520 dulces $\rightarrow \mathbf{5 \text{ Cajas y } 2 \text{ Bolsas}}$.

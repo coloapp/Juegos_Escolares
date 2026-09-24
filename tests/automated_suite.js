@@ -22,7 +22,7 @@ function assert(condition, testName, details = '') {
 }
 
 console.log('===========================================================');
-console.log('🚀 INICIANDO PRUEBAS AUTOMÁTICAS DEL SISTEMA DE JUEGOS V5.4.0');
+console.log('🚀 INICIANDO PRUEBAS AUTOMÁTICAS DEL SISTEMA DE JUEGOS V5.4.1');
 console.log('===========================================================\n');
 
 // 1. FILE SYSTEM & ASSETS INTEGRITY
@@ -77,6 +77,10 @@ assert(htmlContent.includes('conveyor-belt-anim'), 'Cinta Transportadora 3D anim
 assert(htmlContent.includes('id="bag3DGraphic"'), 'Mesa de Ensacado 3D presente');
 assert(htmlContent.includes('id="box3DGraphic"'), 'Mesa de Embalaje 3D con solapas plegables presente');
 assert(htmlContent.includes('id="odoTotalDisplay"'), 'Odómetro Holográfico Base-10 ARA BOT presente');
+assert(htmlContent.includes('id="invGrandTotalDulces"'), 'Odómetro Gigante de Bodega e Inventario Total presente');
+assert(htmlContent.includes('id="invBoxesDulcesSubtotal"'), 'Subtotal de Cajas en Bodega presente');
+assert(htmlContent.includes('id="invBagsDulcesSubtotal"'), 'Subtotal de Bolsas en Bodega presente');
+assert(htmlContent.includes('id="invCandiesDulcesSubtotal"'), 'Subtotal de Dulces Sueltos en Bodega presente');
 
 const dulceriaMissions = [
   { id: 'don_ramon', boxes: 3, bags: 6, expected: 360 },

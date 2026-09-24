@@ -2,7 +2,7 @@
  * Service Worker: ARA BOT de Mate PWA
  * Strategy: Network-First for Navigation (Auto-Updates daily) + Cache Fallback for 100% Offline
  */
-const CACHE_NAME = 'ara-bot-pwa-v5.4.0';
+const CACHE_NAME = 'ara-bot-pwa-v5.4.1';
 const STATIC_ASSETS = [
   './',
   './index.html',
